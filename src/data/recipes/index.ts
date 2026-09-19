@@ -6,3 +6,5 @@ export type {
   RecipeSubstitution,
   RecipeTip,
 } from './types';
+
+export { CURATED_DETAILED_RECIPES } from './curated';

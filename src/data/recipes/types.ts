@@ -31,8 +31,8 @@ export interface DetailedRecipe {
   name: string;
   description: string;
   servings: number;
-  cookingTime: number;
-  difficulty: RecipeDifficulty;
+  cookingTime: number | null;
+  difficulty: RecipeDifficulty | null;
   requiredIngredients: IngredientAmount[];
   pantryIngredients: string[];
   instructions: string[];
