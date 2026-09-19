@@ -3,6 +3,7 @@ export type {
   IngredientAmount,
   RecipeDifficulty,
   RecipeNutrition,
+  RecipeNutritionStatus,
   RecipeSubstitution,
   RecipeTip,
 } from './types';

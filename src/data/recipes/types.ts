@@ -10,9 +10,12 @@ export interface RecipeNutrition {
   protein: number;
   fat: number;
   carbs: number;
+  status?: RecipeNutritionStatus;
   source?: string;
   isEstimated?: boolean;
 }
+
+export type RecipeNutritionStatus = 'unverified' | 'verified';
 
 export type RecipeDifficulty = 'easy' | 'medium' | 'hard';
 
@@ -36,7 +39,7 @@ export interface DetailedRecipe {
   requiredIngredients: IngredientAmount[];
   pantryIngredients: string[];
   instructions: string[];
-  nutrition: RecipeNutrition & { calories: number };
+  nutrition: RecipeNutrition & { calories: number; status: RecipeNutritionStatus };
   substitutions: RecipeSubstitution[];
   tips: RecipeTip[];
   source: string;

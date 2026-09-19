@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { CANONICAL_INGREDIENTS, CANONICAL_MAP } from '../src/core/ingredients/canonical';
 import { resolveAlias } from '../src/core/ingredients/aliasResolver';
-import { isPantrySatisfied, getMissingPantry } from '../src/core/pantry/pantry';
+import { getMissingPantry, getPantryName, getStoredPantryCatalog, getStoredPantrySelection, isPantrySatisfied, PANTRY_ITEMS, savePantryCatalog, savePantrySelection } from '../src/core/pantry/pantry';
 import { matchRecipes } from '../src/core/matcher/matcher';
 import { CURATED_RECIPES, Recipe } from '../src/data/recipes';
 import { validateRecipe } from '../src/core/validator/recipeValidator';
@@ -241,5 +241,30 @@ describe('FitBite Production Comprehensive Suite (26 Tests)', () => {
       expect(removed).toBe(false);
       expect(isFavorite(id)).toBe(false);
     });
+  });
+});
+
+describe('Pantry Catalog and Persistence', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  it('规范调料目录 ID 唯一且可解析展示名称', () => {
+    const ids = PANTRY_ITEMS.map(item => item.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(getPantryName('pantry_oyster_sauce')).toBe('蚝油');
+  });
+
+  it('目录列表与用户已拥有列表分别持久化', () => {
+    savePantryCatalog(['pantry_oil', 'pantry_oyster_sauce']);
+    savePantrySelection(['pantry_oil']);
+
+    expect(getStoredPantryCatalog()).toEqual(['pantry_oil', 'pantry_oyster_sauce']);
+    expect(getStoredPantrySelection()).toEqual(['pantry_oil']);
+  });
+
+  it('刷新后仍能读取用户调料选择', () => {
+    savePantrySelection(['pantry_oyster_sauce']);
+    expect(getStoredPantrySelection()).toEqual(['pantry_oyster_sauce']);
   });
 });

@@ -32,7 +32,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ result, onSelect }) => {
             {recipe.name}
           </h3>
           <div style={{ fontSize: '12px', color: '#6b7280' }}>
-            {recipe.calories} kcal | 蛋白质 {recipe.nutrition.protein}g
+            {recipe.nutrition.status === 'unverified'
+              ? '营养数据待核验'
+              : `${recipe.calories} kcal | 蛋白质 ${recipe.nutrition.protein}g`}
           </div>
         </div>
         <FavoriteButton isFavorited={isFavorited} onToggle={() => toggleFavorite(recipe.id)} />
