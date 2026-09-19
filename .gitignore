@@ -10,3 +10,8 @@ dist/
 # Unused font assets
 /public/fonts/SubsetOTF/CN/
 /public/fonts/MonsieurLaDoulaise-Regular.ttf
+
+# Generated local database artifacts
+/data/fitbite_local.db
+*.db
+*.db-journal
