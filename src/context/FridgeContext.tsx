@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { CanonicalIngredient } from '../core/ingredients/canonical';
 import { getFavorites, toggleFavorite as toggleFavoriteRepo } from '../core/favorites/favoritesRepository';
-import { getStoredPantryCatalog, getStoredPantrySelection, savePantryCatalog, savePantrySelection } from '../core/pantry/pantry';
 
 interface FridgeContextType {
   fridgeIngredients: CanonicalIngredient[];
@@ -12,8 +11,6 @@ interface FridgeContextType {
   pantryIngredients: string[];
   togglePantry: (id: string) => void;
   setPantry: (ids: string[]) => void;
-  pantryCatalogIds: string[];
-  addPantryItem: (id: string) => void;
   
   favorites: string[];
   toggleFavorite: (id: string) => void;
@@ -23,8 +20,11 @@ const FridgeContext = createContext<FridgeContextType | undefined>(undefined);
 
 export const FridgeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [fridgeIngredients, setFridgeIngredients] = useState<CanonicalIngredient[]>([]);
-  const [pantryIngredients, setPantryIngredients] = useState<string[]>(getStoredPantrySelection);
-  const [pantryCatalogIds, setPantryCatalogIds] = useState<string[]>(getStoredPantryCatalog);
+  const [pantryIngredients, setPantryIngredients] = useState<string[]>([
+    'pantry_oil',
+    'pantry_salt',
+    'pantry_soy_sauce'
+  ]);
   const [favorites, setFavorites] = useState<string[]>([]);
 
   useEffect(() => {
@@ -45,26 +45,12 @@ export const FridgeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const clearIngredients = () => setFridgeIngredients([]);
 
   const togglePantry = (id: string) => {
-    setPantryIngredients(prev => {
-      const next = prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id];
-      savePantrySelection(next);
-      return next;
-    });
+    setPantryIngredients(prev =>
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
+    );
   };
 
-  const setPantry = (ids: string[]) => {
-    setPantryIngredients(ids);
-    savePantrySelection(ids);
-  };
-
-  const addPantryItem = (id: string) => {
-    setPantryCatalogIds(prev => {
-      if (prev.includes(id)) return prev;
-      const next = [...prev, id];
-      savePantryCatalog(next);
-      return next;
-    });
-  };
+  const setPantry = (ids: string[]) => setPantryIngredients(ids);
 
   const toggleFavorite = (id: string) => {
     toggleFavoriteRepo(id);
@@ -81,8 +67,6 @@ export const FridgeProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         pantryIngredients,
         togglePantry,
         setPantry,
-        pantryCatalogIds,
-        addPantryItem,
         favorites,
         toggleFavorite
       }}

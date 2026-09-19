@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './index.css';
 import { FridgeProvider } from './context/FridgeContext';
 import { HomeView } from './views/HomeView';
 import { DebugView } from './views/DebugView';
@@ -8,38 +9,33 @@ export const App: React.FC = () => {
 
   return (
     <FridgeProvider>
-      <div style={{ backgroundColor: '#ffffff', borderBottom: '1px solid #e5e7eb', padding: '8px 16px', display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
+      {/* 极简悬浮调试切换器（不阻碍主界面阅读） */}
+      <nav className="dev-floating-nav" aria-label="视图切换">
         <button
           onClick={() => setView('home')}
-          style={{
-            padding: '4px 10px',
-            fontSize: '12px',
-            borderRadius: '4px',
-            border: '1px solid #d1d5db',
-            backgroundColor: view === 'home' ? '#10b981' : '#f9fafb',
-            color: view === 'home' ? '#fff' : '#374151',
-            cursor: 'pointer'
-          }}
+          className={`dev-nav-btn ${view === 'home' ? 'active' : ''}`}
         >
-          正式首页
+          📱 首页
         </button>
         <button
           onClick={() => setView('debug')}
-          style={{
-            padding: '4px 10px',
-            fontSize: '12px',
-            borderRadius: '4px',
-            border: '1px solid #d1d5db',
-            backgroundColor: view === 'debug' ? '#10b981' : '#f9fafb',
-            color: view === 'debug' ? '#fff' : '#374151',
-            cursor: 'pointer'
-          }}
+          className={`dev-nav-btn ${view === 'debug' ? 'active' : ''}`}
         >
-          验收控制台 (DebugView)
+          ⚙️ 验收
         </button>
-      </div>
+      </nav>
 
-      {view === 'home' ? <HomeView /> : <DebugView />}
+      {view === 'home' ? (
+        <div className="ios-viewport-container">
+          <main className="ios-app-canvas">
+            <HomeView />
+          </main>
+        </div>
+      ) : (
+        <div className="debug-container">
+          <DebugView />
+        </div>
+      )}
     </FridgeProvider>
   );
 };

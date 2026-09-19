@@ -1,10 +1,1168 @@
+/* ==========================================================================
+   FitBite - iOS Native Kitchen AI Assistant (V3.2 Visual Foundation)
+   Font Hierarchy & Ultra-Thin Warm Glassmorphism System
+   ========================================================================== */
+
+/* 引入 AI 数据辅助字体 (Roboto Mono) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* 本地 @font-face 加载 Limelight-Regular (Art Deco 英文品牌装饰字体) */
+@font-face {
+  font-family: 'Limelight';
+  src: url('/fonts/Limelight-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 本地 @font-face 加载 SourceHanSerifCN-Heavy (思源宋体 Heavy) */
+@font-face {
+  font-family: 'SourceHanSerifCN-Heavy';
+  src: url('/fonts/SourceHanSerifCN-Heavy.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding: 0;
+:root {
+  /* --------------------------------------------------------------------------
+     字体系统分层 (思源宋体 Heavy 标题 + 苹方正文 + Limelight 装饰 + Mono 数据)
+     -------------------------------------------------------------------------- */
+  /* 一、中文核心标题与菜名：思源宋体 Heavy (生活感、温润沉稳、杂志感) */
+  --font-chinese-title: "SourceHanSerifCN-Heavy", "PingFang SC", "Songti SC", "SimSun", serif;
+
+  /* 二、中文正文主字体 (~85%)：iOS 原生苹方体系，温润、清晰、自然 */
+  --font-chinese: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "SF Pro Text", "Microsoft YaHei", sans-serif;
+
+  /* 三、Limelight-Regular：英文品牌与装饰辅助字体 */
+  --font-brand-display: "Limelight", Georgia, serif;
+
+  /* 四、Roboto Mono (~10%)：时间、状态、小标签与 AI 数据信息 */
+  --font-ai-mono: "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* --------------------------------------------------------------------------
+     iOS 暖调厨房配色
+     -------------------------------------------------------------------------- */
+  --ios-forest: #163323;
+  --ios-forest-light: #245e46;
+  --ios-text-primary: #1a2c21;
+  --ios-text-secondary: #4a5c51;
+  --ios-text-tertiary: #76877d;
+  --ios-warm-amber: #d97736;
+  --ios-warm-badge: #c45e2e;
+
+  /* --------------------------------------------------------------------------
+     iOS Light Material 超透温润毛玻璃 (轻透、呼吸感、背景自然透光，绝不灰蒙)
+     -------------------------------------------------------------------------- */
+  --ios-glass-bg: rgba(255, 253, 248, 0.18);
+  --ios-glass-bg-hover: rgba(255, 254, 250, 0.28);
+  --ios-glass-pill: rgba(255, 253, 248, 0.32);
+  --ios-glass-border: 0.5px solid rgba(255, 255, 255, 0.68);
+  --ios-glass-border-subtle: 0.5px solid rgba(255, 255, 255, 0.42);
+  --ios-glass-blur: blur(24px) saturate(180%);
+  --ios-glass-shadow: 0 8px 30px -4px rgba(65, 42, 20, 0.06), inset 0 1px 0.5px rgba(255, 255, 255, 0.88);
+
+  font-family: var(--font-chinese);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #dfd2be;
+  color: var(--ios-text-primary);
+  font-family: var(--font-chinese);
+}
+
+button, input {
+  font-family: inherit;
+}
+
+/* ==========================================================================
+   1. 真实厨房环境氛围背景与视口
+   ========================================================================== */
+
+/* 桌面端外层：以真实温馨阳光厨房环境为基底 */
+.ios-viewport-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow-x: hidden;
+  background-color: #e5dacb;
+}
+
+/* 铺满页面的真实厨房背景：温暖阳光、原木台面与自然光斑 */
+.ios-viewport-container::before {
+  content: "";
+  position: fixed;
+  inset: -16px;
+  background-image: url('/images/kitchen-bg.png');
+  background-position: center 36%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* 柔和微模糊：保留晨光倾洒、木质料理台与鲜活绿植环境 */
+  filter: blur(10px) brightness(1.05) saturate(118%);
+  transform: scale(1.06);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 柔和天光漫反射微透蒙层：保证卡片文字清晰透亮，绝不发暗灰沉 */
+.ios-viewport-container::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 242, 0.08) 0%, rgba(246, 238, 227, 0.16) 55%, rgba(235, 222, 207, 0.22) 100%),
+    radial-gradient(ellipse at 50% 15%, rgba(255, 248, 235, 0.16) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* iOS 原生 App 视口画布 (无黑壳边框，轻盈自洽) */
+.ios-app-canvas {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 252, 247, 0.06);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow:
+    0 0 50px rgba(50, 35, 20, 0.08),
+    0 0 0 0.5px rgba(255, 255, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .ios-app-canvas {
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================================
+   2. 验收控制台轻量悬浮胶囊
+   ========================================================================== */
+
+.dev-floating-nav {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 99999;
+  display: flex;
+  gap: 3px;
+  background: rgba(30, 26, 22, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 4px 6px;
+  border-radius: 18px;
+  border: 0.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.dev-floating-nav:hover {
+  opacity: 1;
+}
+
+.dev-nav-btn {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-chinese);
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.dev-nav-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dev-nav-btn.active {
+  background: #245e46;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(36, 94, 70, 0.4);
+}
+
+.debug-container {
+  min-height: 100vh;
+  background: #f3f4f6;
+  padding: 64px 20px 30px;
+  box-sizing: border-box;
+  font-family: var(--font-ai-mono);
+}
+
+/* ==========================================================================
+   3. 首页 iOS 原生毛玻璃卡片 (高透、空气感、字体系统深度融合)
+   ========================================================================== */
+
+.home-page {
+  min-height: 100%;
+  position: relative;
+  padding-top: 18px;
+}
+
+.home-inner {
+  padding: 10px 18px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+/* 顶部品牌区 (Monsieur La Doulaise 手作温度 + 中文主标题) */
+.home-topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 0 2px;
+}
+
+.home-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+/* 品牌微章字：Limelight */
+.home-brand .brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--ios-forest-light);
+  color: #fff;
+  border-radius: 50%;
+  font-family: var(--font-brand-display);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  padding-top: 1px;
+  box-shadow: 0 2px 6px rgba(36, 94, 70, 0.25);
+}
+
+/* FitBite 品牌文字：Limelight Art Deco 优雅复古衬线 */
+.home-brand .brand-name {
+  font-family: var(--font-brand-display);
+  font-size: 23px;
+  font-weight: 400;
+  color: var(--ios-forest);
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+
+/* 厨房助手副标：思源宋体 Heavy */
+.home-brand .brand-tagline {
+  font-family: var(--font-chinese-title);
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--ios-forest-light);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+/* 顶栏副标：Limelight 装饰辅助文字 */
+.home-topbar-note {
+  font-family: var(--font-brand-display);
+  color: var(--ios-forest-light);
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+/* Today 核心卡片 - iOS 超透空气感毛玻璃 */
+.today-card {
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: var(--ios-glass-border);
+  border-radius: 26px;
+  box-shadow: var(--ios-glass-shadow);
+  padding: 20px 22px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.25s ease;
+}
+
+/* 小标题容器 */
+.today-label {
+  color: var(--ios-forest-light);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 5px;
+  font-family: var(--font-chinese);
+}
+
+/* Today 英文装饰点缀：Limelight */
+.today-en-accent {
+  font-family: var(--font-brand-display);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  vertical-align: 0;
+  color: var(--ios-forest-light);
+  display: inline-block;
+}
+
+/* 中文核心文案：思源宋体 Heavy */
+.today-title-block p {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ios-forest);
+  letter-spacing: -0.01em;
+  font-family: var(--font-chinese-title);
+}
+
+.today-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-left: 0.5px solid rgba(36, 94, 70, 0.2);
+  padding-left: 18px;
+}
+
+/* AI 数据数字：清晰精准保持高可读性 */
+.today-count strong {
+  font-family: var(--font-ai-mono);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ios-forest-light);
+  letter-spacing: -0.03em;
+}
+
+/* 状态辅助微标：Ready to Cook (Limelight) */
+.today-en-sub {
+  font-family: var(--font-brand-display);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--ios-forest-light);
+  letter-spacing: 0.04em;
+  opacity: 0.88;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+/* 面板通用 iOS 毛玻璃样式 (温润透光、极强空气感) */
+.home-panel {
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: var(--ios-glass-border);
+  border-radius: 24px;
+  box-shadow: var(--ios-glass-shadow);
+  padding: 18px 18px;
+  margin-bottom: 16px;
+}
+
+.home-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* 模块英文装饰注释：My Fridge / Seasoning / Recommendations (Limelight) */
+.section-en-label {
+  font-family: var(--font-brand-display) !important;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  color: var(--ios-forest-light);
+  opacity: 0.9;
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+/* 中文模块标题：思源宋体 Heavy */
+.home-section-heading h2 {
+  margin: 2px 0 0;
+  font-size: 21px;
+  font-weight: 900;
+  color: var(--ios-forest);
+  letter-spacing: -0.01em;
+  font-family: var(--font-chinese-title);
+}
+
+.home-section-heading > b {
+  font-size: 12px;
+  color: var(--ios-forest-light);
+  font-weight: 600;
+  font-family: var(--font-chinese);
+}
+
+.home-section-heading.compact {
+  margin-bottom: 10px;
+}
+
+/* 冰箱输入框：自然融入毛玻璃 */
+.fridge-panel input[type="text"] {
+  background: rgba(255, 255, 255, 0.55) !important;
+  backdrop-filter: blur(14px) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.75) !important;
+  border-radius: 14px !important;
+  padding: 10px 14px !important;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03) !important;
+  color: var(--ios-text-primary) !important;
+  font-family: var(--font-chinese) !important;
+}
+
+.fridge-panel input[type="text"]::placeholder {
+  color: #6d7f74;
+}
+
+.fridge-panel button:not(.text-button) {
+  background: var(--ios-forest-light) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 2px 8px rgba(36, 94, 70, 0.25) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  font-family: var(--font-chinese) !important;
+  transition: opacity 0.2s;
+}
+
+.fridge-panel button:not(.text-button):hover {
+  opacity: 0.92;
+}
+
+.fridge-panel .ingredient-tags {
+  margin-bottom: 0;
+}
+
+/* 食材 Chips：半透明透光胶囊 */
+.ingredient-tags-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--ios-text-secondary);
+  margin-bottom: 8px;
+  font-family: var(--font-chinese);
+}
+
+.ingredient-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ios-glass-pill);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 0.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  box-shadow: 0 2px 6px rgba(60, 45, 25, 0.05);
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--ios-forest);
+  font-weight: 600;
+  font-family: var(--font-chinese);
+}
+
+.chip-remove {
+  background: none;
+  border: none;
+  color: #728579;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0 0 2px;
+}
+.chip-remove:hover {
+  color: #d9534f;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  color: var(--ios-forest-light);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-chinese);
+}
+
+.fridge-empty {
+  font-size: 12px;
+  color: var(--ios-text-secondary);
+  text-align: center;
+  padding: 8px 0;
+  font-family: var(--font-chinese);
+}
+
+/* ==========================================================================
+   4. 常备调料库 iOS 胶囊选择器与添加面板
+   ========================================================================== */
+
+.pantry-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pantry-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 调料胶囊：统一使用轻量毛玻璃小卡片 (未选) */
+.pantry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 6px 3px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  user-select: none;
+  border: 0.5px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.28);
+  color: var(--ios-forest-light);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 4px rgba(45, 30, 15, 0.03), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.7);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-chinese);
+}
+
+.pantry-pill:hover {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+/* 调料胶囊选中态：淡绿色半透明毛玻璃胶囊 (无 ✓，通过高透淡绿底色与墨绿文字区分) */
+.pantry-pill.active {
+  background: rgba(36, 94, 70, 0.16);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  color: #164e37;
+  font-weight: 600;
+  border: 0.5px solid rgba(36, 94, 70, 0.38);
+  box-shadow: 0 2px 8px rgba(36, 94, 70, 0.08), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.8);
+}
+
+.pantry-pill.active:hover {
+  background: rgba(36, 94, 70, 0.22);
+  border-color: rgba(36, 94, 70, 0.48);
+}
+
+/* 调料主体切换按钮 (点击切换 已备/未备) */
+.pantry-pill-body {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 3px 0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.pantry-pill-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.pantry-pill-name {
+  line-height: 1;
+}
+
+/* 微型 × 删除入口：轻量 iOS 风格，非显眼红钮 */
+.pantry-pill-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.07);
+  color: rgba(60, 60, 67, 0.6);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  margin-left: 2px;
+  padding: 0;
+  transition: all 0.16s ease;
+  outline: none;
+}
+
+.pantry-pill-delete:hover {
+  background: rgba(0, 0, 0, 0.14);
+  color: rgba(30, 30, 35, 0.85);
+  transform: scale(1.12);
+}
+
+.pantry-pill.active .pantry-pill-delete {
+  background: rgba(36, 94, 70, 0.14);
+  color: #164e37;
+}
+
+.pantry-pill.active .pantry-pill-delete:hover {
+  background: rgba(36, 94, 70, 0.26);
+  color: #0b3223;
+  transform: scale(1.12);
+}
+
+/* “＋ 添加调料” 按钮胶囊：轻透玻璃胶囊，无虚线 */
+.pantry-add-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 0.5px solid rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.26);
+  color: var(--ios-forest-light);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 4px rgba(45, 30, 15, 0.03), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.6);
+  transition: all 0.18s ease;
+  font-family: var(--font-chinese);
+}
+
+.pantry-add-trigger:hover {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+/* 添加调料展开式 iOS 轻量浮层面板 */
+.pantry-add-drawer {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 0.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  padding: 12px 14px;
+  margin-top: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.pantry-suggest-label {
+  font-size: 11px;
+  color: var(--ios-text-secondary);
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-family: var(--font-chinese);
+}
+
+.pantry-suggest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.pantry-suggest-tag {
+  background: rgba(255, 255, 255, 0.7);
+  border: 0.5px solid rgba(36, 94, 70, 0.2);
+  border-radius: 12px;
+  padding: 4px 9px;
+  font-size: 11px;
+  color: var(--ios-forest);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-chinese);
+}
+
+.pantry-suggest-tag:hover {
+  background: var(--ios-forest-light);
+  color: #ffffff;
+}
+
+.pantry-custom-input-row {
+  display: flex;
+  gap: 6px;
+}
+
+.pantry-custom-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 0.5px solid rgba(255, 255, 255, 0.9) !important;
+  border-radius: 12px !important;
+  padding: 6px 10px !important;
+  font-size: 12px !important;
+  color: var(--ios-text-primary) !important;
+  font-family: var(--font-chinese) !important;
+}
+
+.pantry-custom-btn {
+  background: var(--ios-forest-light);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-chinese);
+}
+
+/* ==========================================================================
+   5. 详情页 iOS 原生半透毛玻璃浮层弹窗
+   ========================================================================== */
+.recipe-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 12, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 10000;
+  padding: 0;
+}
+
+@media (min-width: 480px) {
+  .recipe-modal-overlay {
+    align-items: center;
+    padding: 20px;
+  }
+}
+
+.recipe-modal-sheet {
+  background: rgba(255, 253, 248, 0.92);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border: 0.5px solid rgba(255, 255, 255, 0.85);
+  border-radius: 28px 28px 0 0;
+  width: 100%;
+  max-width: 440px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 16px 20px 34px;
+  box-sizing: border-box;
+  box-shadow: 0 -8px 36px rgba(45, 30, 15, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 480px) {
+  .recipe-modal-sheet {
+    border-radius: 28px;
+  }
+}
+
+.recipe-modal-drag-handle {
+  width: 38px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.18);
+  margin: 0 auto 14px;
+}
+
+.recipe-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.recipe-modal-title {
+  margin: 0;
+  font-family: var(--font-chinese-title);
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--ios-forest);
+  line-height: 1.2;
+}
+
+.recipe-modal-close {
+  background: rgba(0, 0, 0, 0.06);
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ios-text-secondary);
+}
+
+.recipe-modal-readiness {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.recipe-modal-nutrition {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 0.5px solid rgba(36, 94, 70, 0.12);
+}
+
+.nutrition-pill {
+  background: rgba(255, 255, 255, 0.6);
+  border: 0.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 4px 9px;
+  font-size: 12px;
+  color: var(--ios-forest-light);
+  font-family: var(--font-ai-mono);
+}
+
+.recipe-modal-section {
+  margin-bottom: 20px;
+}
+
+.recipe-modal-section-title {
+  font-family: var(--font-chinese-title);
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--ios-forest);
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ingredient-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 0.5px dashed rgba(36, 94, 70, 0.1);
+  font-size: 13px;
+}
+
+.ingredient-item-row:last-child {
+  border-bottom: none;
+}
+
+.ingredient-item-name {
+  font-weight: 600;
+  color: var(--ios-forest);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ingredient-item-meta {
+  font-size: 12px;
+  color: var(--ios-text-secondary);
+}
+
+.pantry-status-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.pantry-status-badge.has {
+  background: rgba(36, 94, 70, 0.12);
+  color: #174e36;
+}
+
+.pantry-status-badge.missing {
+  background: rgba(196, 94, 46, 0.12);
+  color: #8c3b17;
+}
+
+.recipe-step-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ios-text-primary);
+}
+
+.recipe-step-num {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--ios-forest-light);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ai-mono);
+  margin-top: 2px;
+}
+
+/* 菜谱推荐区 */
+.home-recipes {
+  margin-top: 8px;
+}
+
+.recipes-heading h2 {
+  font-size: 22px;
+}
+
+.recipe-section {
+  margin-bottom: 18px;
+}
+
+.recipe-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* 菜谱分类标题：Limelight (Available Now / One Step Away) */
+.recipe-section-heading h3 {
+  margin: 0;
+  font-family: var(--font-brand-display);
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--ios-forest);
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  opacity: 0.95;
+}
+
+/* 菜谱数量徽标：Roboto Mono */
+.recipe-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-ai-mono);
+}
+
+/* 移动端流畅卡片流 */
+.recipe-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+
+/* 菜谱卡片：浮动透光毛玻璃质感 */
+.recipe-card {
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: var(--ios-glass-border);
+  border-radius: 24px;
+  box-shadow: var(--ios-glass-shadow);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-2px);
+  background: var(--ios-glass-bg-hover);
+  box-shadow: 0 14px 34px -4px rgba(55, 40, 25, 0.1), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================================
+   菜谱图片封面 (温暖真实光影，彻底告别假菜盘)
+   ========================================================================== */
+.recipe-image-wrap {
+  height: 116px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #d8cbba;
+}
+
+.recipe-image-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+}
+
+.recipe-card:hover .recipe-image-cover {
+  transform: scale(1.04);
+}
+
+/* 暖光暗角与柔和渐变过渡：无缝融合至卡片 Light Material 毛玻璃 */
+.recipe-image-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(255, 253, 248, 0.15) 60%, rgba(255, 253, 248, 0.72) 100%);
+  pointer-events: none;
+}
+
+/* 有图卡片内容内边距 */
+.recipe-card.has-image .recipe-card-content {
+  padding: 14px 18px 16px;
+}
+
+/* 无图版卡片：无真实图片时自动切换，精致、紧凑、透光的生活感卡片 */
+.recipe-card.no-image {
+  border-radius: 20px;
+  padding: 18px 20px;
+}
+
+.recipe-card.no-image .recipe-card-content {
+  padding: 0;
+}
+
+.recipe-card.no-image .recipe-card-topline {
+  margin-bottom: 8px;
+}
+
+.recipe-card.no-image .recipe-status {
+  margin-top: 8px;
+}
+
+.recipe-card.no-image .recipe-card-arrow {
+  right: 18px;
+  bottom: 18px;
+}
+
+.recipe-card-content {
+  padding: 14px 18px 16px;
+}
+
+.recipe-card-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.recipe-card h3 {
+  margin: 0 0 4px;
+  font-size: 19px;
+  font-weight: 900;
+  color: var(--ios-forest);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-family: var(--font-chinese-title);
+}
+
+/* 时间：Roboto Mono 带有精准度量感 */
+.recipe-time {
+  font-family: var(--font-ai-mono);
+  font-size: 11px;
+  color: var(--ios-text-secondary);
+}
+
+.recipe-status {
+  margin-top: 10px;
+}
+
+/* 状态标签：思源宋体 Heavy 搭配中文高质感微标 */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 11px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 900;
+  background: rgba(36, 94, 70, 0.14);
+  color: #154c34;
+  border: 0.5px solid rgba(36, 94, 70, 0.22);
+  font-family: var(--font-chinese-title);
+  letter-spacing: 0.02em;
+}
+
+.recipe-card-away .status-badge {
+  background: rgba(196, 94, 46, 0.14);
+  color: #943e16;
+  border: 0.5px solid rgba(196, 94, 46, 0.22);
+}
+
+.recipe-card-arrow {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  font-size: 15px;
+  color: #8c9e93;
+}
+
+.empty-recipes {
+  background: var(--ios-glass-bg);
+  border: 0.5px dashed rgba(36, 94, 70, 0.35);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  color: var(--ios-text-secondary);
+  font-size: 13px;
+  font-family: var(--font-chinese);
+}
+
+.other-recipes {
+  margin-top: 16px;
+  color: var(--ios-text-secondary);
+  font-size: 12px;
+  font-family: var(--font-chinese);
+}
+
+.other-recipes summary {
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.home-footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 11px;
+  color: #6a7c70;
+  letter-spacing: 0.02em;
+  font-family: var(--font-chinese);
+}
+
+.home-footer .footer-en-note {
+  font-family: var(--font-brand-display) !important;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+  display: block;
+  margin-top: 3px;
 }

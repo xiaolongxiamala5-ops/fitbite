@@ -20,7 +20,7 @@ export const CURATED_DETAILED_RECIPES: DetailedRecipe[] = [
       '加入适量温水，下入嫩豆腐块炖煮 3 分钟。',
       '放入大虾煮至完全变色卷曲，淋入生抽拌匀出锅。'
     ],
-    nutrition: { calories: 285, protein: 32, fat: 8, carbs: 14, status: 'unverified' },
+    nutrition: { calories: 285, protein: 32, fat: 8, carbs: 14 },
     substitutions: [],
     tips: [],
     source: 'FitBite Curated'
@@ -42,7 +42,7 @@ export const CURATED_DETAILED_RECIPES: DetailedRecipe[] = [
       '热锅放油，下蒜末和鸡丁中火翻炒至表面变白。',
       '倒入焯水后的西兰花，加入适量食盐，大火翻炒 1 分钟即可。'
     ],
-    nutrition: { calories: 310, protein: 46, fat: 7, carbs: 12, status: 'unverified' },
+    nutrition: { calories: 310, protein: 46, fat: 7, carbs: 12 },
     substitutions: [],
     tips: [],
     source: 'FitBite Curated'
@@ -64,7 +64,7 @@ export const CURATED_DETAILED_RECIPES: DetailedRecipe[] = [
       '锅热倒油，倒入蛋液快速划散凝固后盛出。',
       '锅底留底油翻炒番茄出红油，倒回炒蛋加入食盐翻匀即可出锅。'
     ],
-    nutrition: { calories: 260, protein: 14, fat: 18, carbs: 10, status: 'unverified' },
+    nutrition: { calories: 260, protein: 14, fat: 18, carbs: 10 },
     substitutions: [],
     tips: [],
     source: 'FitBite Curated'
@@ -86,7 +86,7 @@ export const CURATED_DETAILED_RECIPES: DetailedRecipe[] = [
       '热锅下油大火滑炒牛肉片至八成熟盛出。',
       '锅内放入洋葱翻炒断生，倒回牛肉大火翻炒均匀即成。'
     ],
-    nutrition: { calories: 340, protein: 35, fat: 16, carbs: 11, status: 'unverified' },
+    nutrition: { calories: 340, protein: 35, fat: 16, carbs: 11 },
     substitutions: [],
     tips: [],
     source: 'FitBite Curated'

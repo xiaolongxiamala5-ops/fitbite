@@ -6,27 +6,21 @@ export const IngredientTags: React.FC = () => {
 
   if (fridgeIngredients.length === 0) {
     return (
-      <div style={{ fontSize: '13px', color: '#9ca3af', marginBottom: '16px' }}>
+      <div className="fridge-empty">
         冰箱目前还是空的，请在上方添加食材。
       </div>
     );
   }
 
   return (
-    <div style={{ marginBottom: '16px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-        <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#4b5563' }}>
+    <div className="ingredient-tags">
+      <div className="ingredient-tags-heading">
+        <span>
           已放入食材 ({fridgeIngredients.length})
         </span>
         <button
           onClick={clearIngredients}
-          style={{
-            background: 'none',
-            border: 'none',
-            color: '#9ca3af',
-            fontSize: '12px',
-            cursor: 'pointer'
-          }}
+          className="text-button"
         >
           清空
         </button>
@@ -35,28 +29,12 @@ export const IngredientTags: React.FC = () => {
         {fridgeIngredients.map(item => (
           <span
             key={item.id}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              backgroundColor: '#e0f2fe',
-              color: '#0369a1',
-              padding: '4px 10px',
-              borderRadius: '16px',
-              fontSize: '13px'
-            }}
+            className="ingredient-chip"
           >
             {item.name}
             <button
               onClick={() => removeIngredient(item.id)}
-              style={{
-                marginLeft: '6px',
-                background: 'none',
-                border: 'none',
-                color: '#0369a1',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                padding: 0
-              }}
+              className="chip-remove"
             >
               ×
             </button>

@@ -1,3 +1,12 @@
 node_modules/
 dist/
 .DS_Store
+
+# Temporary development notes
+/findings.md
+/progress.md
+/task_plan.md
+
+# Unused font assets
+/public/fonts/SubsetOTF/CN/
+/public/fonts/MonsieurLaDoulaise-Regular.ttf

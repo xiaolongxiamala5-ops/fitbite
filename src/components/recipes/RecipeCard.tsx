@@ -2,6 +2,8 @@ import React from 'react';
 import { MatchResult } from '../../core/matcher/types';
 import { FavoriteButton } from './FavoriteButton';
 import { useFridge } from '../../context/FridgeContext';
+import { RecipeImage } from './RecipeImage';
+import { getRecipeImage } from '../../ui/recipeImages';
 
 interface RecipeCardProps {
   result: MatchResult;
@@ -10,47 +12,39 @@ interface RecipeCardProps {
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({ result, onSelect }) => {
   const { toggleFavorite } = useFridge();
-  const { recipe, canMake, missingIngredients, isFavorited } = result;
+  const { recipe, missingIngredients, isFavorited } = result;
+  // 核心护栏 1：统一使用“主食材决定可做性”规则，调料不阻断
+  const isReady = missingIngredients.length === 0;
+  const cookingTime = '家常快手';
+
+  // 只有存在真实图片 (local / remote) 时才显示图片区域，fallback 时采用精致无图布局
+  const imageInfo = getRecipeImage(recipe);
+  const hasRealImage = imageInfo.hasRealImage;
 
   return (
-    <div
+    <article
       onClick={onSelect}
-      style={{
-        backgroundColor: '#ffffff',
-        borderRadius: '10px',
-        padding: '16px',
-        border: '1px solid #e5e7eb',
-        cursor: 'pointer',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-        transition: 'transform 0.1s ease',
-        position: 'relative'
-      }}
+      className={`recipe-card ${isReady ? 'recipe-card-ready' : 'recipe-card-away'} ${hasRealImage ? 'has-image' : 'no-image'}`}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <div>
-          <h3 style={{ margin: '0 0 6px 0', fontSize: '16px', color: '#111827' }}>
-            {recipe.name}
-          </h3>
-          <div style={{ fontSize: '12px', color: '#6b7280' }}>
-            {recipe.nutrition.status === 'unverified'
-              ? '营养数据待核验'
-              : `${recipe.calories} kcal | 蛋白质 ${recipe.nutrition.protein}g`}
+      {hasRealImage && <RecipeImage recipe={recipe} />}
+      <div className="recipe-card-content">
+        <div className="recipe-card-topline">
+          <div>
+            <h3>{recipe.name}</h3>
+            <div className="recipe-time">◷ {cookingTime}</div>
           </div>
+          <FavoriteButton isFavorited={isFavorited} onToggle={() => toggleFavorite(recipe.id)} />
         </div>
-        <FavoriteButton isFavorited={isFavorited} onToggle={() => toggleFavorite(recipe.id)} />
-      </div>
 
-      <div style={{ marginTop: '12px', display: 'flex', gap: '8px', alignItems: 'center' }}>
-        {canMake ? (
-          <span style={{ fontSize: '12px', color: '#059669', backgroundColor: '#d1fae5', padding: '2px 8px', borderRadius: '4px', fontWeight: 'bold' }}>
-            ✓ 即可制作
-          </span>
-        ) : (
-          <span style={{ fontSize: '12px', color: '#d97706', backgroundColor: '#fef3c7', padding: '2px 8px', borderRadius: '4px' }}>
-            缺: {missingIngredients.map(i => i.name).join('、')}
-          </span>
-        )}
+        <div className="recipe-status">
+          {isReady ? (
+            <span className="status-badge">✓ 现在能做</span>
+          ) : (
+            <span className="status-badge">差 {missingIngredients.length} 样主食材</span>
+          )}
+        </div>
       </div>
-    </div>
+      <div className="recipe-card-arrow">↗</div>
+    </article>
   );
 };

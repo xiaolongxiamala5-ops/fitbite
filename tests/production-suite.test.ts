@@ -1,13 +1,22 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { CANONICAL_INGREDIENTS, CANONICAL_MAP } from '../src/core/ingredients/canonical';
 import { resolveAlias } from '../src/core/ingredients/aliasResolver';
-import { getMissingPantry, getPantryName, getStoredPantryCatalog, getStoredPantrySelection, isPantrySatisfied, PANTRY_ITEMS, savePantryCatalog, savePantrySelection } from '../src/core/pantry/pantry';
+import { isPantrySatisfied, getMissingPantry } from '../src/core/pantry/pantry';
 import { matchRecipes } from '../src/core/matcher/matcher';
 import { CURATED_RECIPES, Recipe } from '../src/data/recipes';
 import { validateRecipe } from '../src/core/validator/recipeValidator';
 import { addFavorite, removeFavorite, isFavorite, toggleFavorite } from '../src/core/favorites/favoritesRepository';
+import {
+  getStoredUserPantry,
+  saveUserPantry,
+  filterValidPantryIds,
+  registerPantryName,
+  getPantryItemName,
+  resetMemoryNameRegistryForTesting,
+  STORAGE_KEY_NAME_REGISTRY
+} from '../src/ui/pantryPresets';
 
-describe('FitBite Production Comprehensive Suite (26 Tests)', () => {
+describe('FitBite Production Comprehensive Suite (30 Tests)', () => {
 
   describe('1. Canonical Ingredients System', () => {
     it('1.1 基础词典包含核心基准食材', () => {
@@ -242,29 +251,59 @@ describe('FitBite Production Comprehensive Suite (26 Tests)', () => {
       expect(isFavorite(id)).toBe(false);
     });
   });
-});
 
-describe('Pantry Catalog and Persistence', () => {
-  beforeEach(() => {
-    localStorage.clear();
-  });
+  describe('7. UI Pantry Shelf & Storage Persistence (Presentation Layer)', () => {
+    beforeEach(() => {
+      if (typeof window !== 'undefined') {
+        localStorage.clear();
+      }
+      resetMemoryNameRegistryForTesting();
+    });
 
-  it('规范调料目录 ID 唯一且可解析展示名称', () => {
-    const ids = PANTRY_ITEMS.map(item => item.id);
-    expect(new Set(ids).size).toBe(ids.length);
-    expect(getPantryName('pantry_oyster_sauce')).toBe('蚝油');
-  });
+    it('7.1 无本地缓存时能安全恢复默认调料架且包含关键基础调料', () => {
+      const shelf = getStoredUserPantry();
+      expect(shelf.length).toBeGreaterThan(0);
+      expect(shelf.some(item => item.id === 'pantry_oil')).toBe(true);
+      expect(shelf.some(item => item.id === 'pantry_salt')).toBe(true);
+      expect(shelf.some(item => item.id === 'pantry_soy_sauce')).toBe(true);
+    });
 
-  it('目录列表与用户已拥有列表分别持久化', () => {
-    savePantryCatalog(['pantry_oil', 'pantry_oyster_sauce']);
-    savePantrySelection(['pantry_oil']);
+    it('7.2 调料架移除调料后，localStorage 数据与读取状态同步剔除', () => {
+      const initial = getStoredUserPantry();
+      const updated = initial.filter(item => item.id !== 'pantry_salt' && item.id !== 'pantry_soy_sauce');
+      saveUserPantry(updated);
 
-    expect(getStoredPantryCatalog()).toEqual(['pantry_oil', 'pantry_oyster_sauce']);
-    expect(getStoredPantrySelection()).toEqual(['pantry_oil']);
-  });
+      const reloaded = getStoredUserPantry();
+      expect(reloaded.some(item => item.id === 'pantry_salt')).toBe(false);
+      expect(reloaded.some(item => item.id === 'pantry_soy_sauce')).toBe(false);
+      expect(reloaded.some(item => item.id === 'pantry_oil')).toBe(true);
+    });
 
-  it('刷新后仍能读取用户调料选择', () => {
-    savePantrySelection(['pantry_oyster_sauce']);
-    expect(getStoredPantrySelection()).toEqual(['pantry_oyster_sauce']);
+    it('7.3 自定义调料真实写入 localStorage，并能通过持久化读取恢复，未知内部 ID 严格返回 null', () => {
+      const customId = 'custom_pantry_test_888';
+      registerPantryName(customId, '八角');
+
+      // 验证真实写入表现层 localStorage (fitbite_pantry_name_map)
+      const rawStored = localStorage.getItem(STORAGE_KEY_NAME_REGISTRY);
+      expect(rawStored).not.toBeNull();
+      const parsedMap = JSON.parse(rawStored!);
+      expect(parsedMap[customId]).toBe('八角');
+
+      // 重置内存缓存，模拟刷新或全新访问，强制走持久化读取链路
+      resetMemoryNameRegistryForTesting();
+      expect(getPantryItemName(customId)).toBe('八角');
+
+      // 内部未知 ID 严格拦截，返回 null，杜绝泄露给 UI
+      expect(getPantryItemName('custom_pantry_unregistered_999')).toBeNull();
+    });
+
+    it('7.4 状态清洗函数确保已从调料架删除的调料绝不残留于已备状态', () => {
+      const shelfWithoutSalt = getStoredUserPantry().filter(item => item.id !== 'pantry_salt');
+      const prevSelectedIds = ['pantry_oil', 'pantry_salt', 'pantry_soy_sauce'];
+
+      const cleanedIds = filterValidPantryIds(shelfWithoutSalt, prevSelectedIds);
+      expect(cleanedIds).toEqual(['pantry_oil', 'pantry_soy_sauce']);
+      expect(cleanedIds.includes('pantry_salt')).toBe(false);
+    });
   });
 });
