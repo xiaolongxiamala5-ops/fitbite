@@ -21,7 +21,9 @@ describe('FitBite Production Comprehensive Suite (30 Tests)', () => {
   describe('1. Canonical Ingredients System', () => {
     it('1.1 基础词典包含核心基准食材', () => {
       expect(CANONICAL_INGREDIENTS.length).toBeGreaterThanOrEqual(8);
-      expect(CANONICAL_MAP.has('p_shrimp')).toBe(true);
+      expect(CANONICAL_MAP.has('p_shrimp_whole')).toBe(true);
+      expect(CANONICAL_MAP.has('p_shrimp_peeled')).toBe(true);
+      expect(CANONICAL_MAP.has('p_shrimp')).toBe(false);
       expect(CANONICAL_MAP.has('v_tomato')).toBe(true);
     });
 
@@ -43,7 +45,7 @@ describe('FitBite Production Comprehensive Suite (30 Tests)', () => {
     it('2.1 精确匹配标准食材名称', () => {
       const res = resolveAlias('大虾');
       expect(res).not.toBeNull();
-      expect(res?.id).toBe('p_shrimp');
+      expect(res?.id).toBe('p_shrimp_whole');
     });
 
     it('2.2 正确解析同义别名：西红柿 -> v_tomato', () => {
@@ -51,10 +53,10 @@ describe('FitBite Production Comprehensive Suite (30 Tests)', () => {
       expect(res?.id).toBe('v_tomato');
     });
 
-    it('2.3 正确解析海鲜类口语别名：草虾/基围虾/虾仁 -> p_shrimp', () => {
-      expect(resolveAlias('基围虾')?.id).toBe('p_shrimp');
-      expect(resolveAlias('草虾')?.id).toBe('p_shrimp');
-      expect(resolveAlias('虾仁')?.id).toBe('p_shrimp');
+    it('2.3 正确解析海鲜类口语别名：草虾/基围虾 -> p_shrimp_whole，虾仁 -> p_shrimp_peeled', () => {
+      expect(resolveAlias('基围虾')?.id).toBe('p_shrimp_whole');
+      expect(resolveAlias('草虾')?.id).toBe('p_shrimp_whole');
+      expect(resolveAlias('虾仁')?.id).toBe('p_shrimp_peeled');
     });
 
     it('2.4 未收录词汇安全返回 null，不引发崩溃', () => {
@@ -95,7 +97,7 @@ describe('FitBite Production Comprehensive Suite (30 Tests)', () => {
   describe('4. Recipe Matcher Engine', () => {
     it('4.1 黄金固定场景回归：大虾 + 嫩豆腐 + 番茄 + 齐备调料 -> 必须 100% canMake', () => {
       const groups = matchRecipes({
-        fridgeIngredients: ['p_shrimp', 'p_tofu_soft', 'v_tomato'],
+        fridgeIngredients: ['p_shrimp_whole', 'p_tofu_silken', 'v_tomato'],
         pantryIngredients: ['pantry_garlic', 'pantry_soy_sauce', 'pantry_black_pepper', 'pantry_oil'],
         recipes: CURATED_RECIPES
       });
@@ -119,19 +121,19 @@ describe('FitBite Production Comprehensive Suite (30 Tests)', () => {
 
     it('4.3 仅缺失 1 样主食材时必须分入 missingOneOrTwo', () => {
       const groups = matchRecipes({
-        fridgeIngredients: ['p_shrimp', 'v_tomato'],
+        fridgeIngredients: ['p_shrimp_whole', 'v_tomato'],
         pantryIngredients: ['pantry_garlic', 'pantry_soy_sauce', 'pantry_black_pepper', 'pantry_oil'],
         recipes: CURATED_RECIPES
       });
       const matched = groups.missingOneOrTwo.find(r => r.recipe.id === 'curated_tomato_shrimp_tofu');
       expect(matched).toBeDefined();
       expect(matched?.missingIngredients.length).toBe(1);
-      expect(matched?.missingIngredients[0].id).toBe('p_tofu_soft');
+      expect(matched?.missingIngredients[0].id).toBe('p_tofu_silken');
     });
 
     it('4.4 缺失 2 样主食材时必须分入 missingOneOrTwo', () => {
       const groups = matchRecipes({
-        fridgeIngredients: ['p_shrimp'],
+        fridgeIngredients: ['p_shrimp_whole'],
         pantryIngredients: ['pantry_garlic', 'pantry_soy_sauce', 'pantry_black_pepper', 'pantry_oil'],
         recipes: CURATED_RECIPES
       });
@@ -153,7 +155,7 @@ describe('FitBite Production Comprehensive Suite (30 Tests)', () => {
 
     it('4.6 主食材全齐但缺失关键调料时，严禁判定为 canMake', () => {
       const groups = matchRecipes({
-        fridgeIngredients: ['p_shrimp', 'p_tofu_soft', 'v_tomato'],
+        fridgeIngredients: ['p_shrimp_whole', 'p_tofu_silken', 'v_tomato'],
         pantryIngredients: ['pantry_oil'],
         recipes: CURATED_RECIPES
       });

@@ -9,8 +9,8 @@ export const CURATED_DETAILED_RECIPES: DetailedRecipe[] = [
     cookingTime: null,
     difficulty: null,
     requiredIngredients: [
-      { id: 'p_shrimp', name: '大虾', amount: 150, unit: 'g' },
-      { id: 'p_tofu_soft', name: '嫩豆腐', amount: 200, unit: 'g' },
+      { id: 'p_shrimp_whole', name: '大虾', amount: 150, unit: 'g' },
+      { id: 'p_tofu_silken', name: '嫩豆腐', amount: 200, unit: 'g' },
       { id: 'v_tomato', name: '番茄', amount: 150, unit: 'g' }
     ],
     pantryIngredients: ['pantry_garlic', 'pantry_soy_sauce', 'pantry_black_pepper', 'pantry_oil'],

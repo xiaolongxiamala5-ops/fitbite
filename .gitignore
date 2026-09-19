@@ -15,3 +15,9 @@ dist/
 /data/fitbite_local.db
 *.db
 *.db-journal
+
+# External raw nutrition data snapshots
+/external/
+
+# Generated normalized nutrition artifacts
+/data/nutrition/generated/
