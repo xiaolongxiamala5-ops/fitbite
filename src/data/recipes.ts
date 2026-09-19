@@ -1,15 +1,6 @@
-export interface IngredientAmount {
-  id: string;
-  name: string;
-  amount: number;
-  unit: string;
-}
+import type { IngredientAmount, RecipeNutrition } from './recipes/types';
 
-export interface RecipeNutrition {
-  protein: number;
-  fat: number;
-  carbs: number;
-}
+export type { IngredientAmount, RecipeNutrition } from './recipes/types';
 
 export interface Recipe {
   id: string;
