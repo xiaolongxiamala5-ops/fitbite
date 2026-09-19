@@ -58,7 +58,7 @@ export function calculateEdibleGrams(
   basis: WeightBasis,
   edibleFraction: number
 ): number | null {
-  if (grams < 0) return null;
+  if (grams <= 0 || !Number.isFinite(grams)) return null;
   if (basis === 'edible_net') {
     return grams;
   }
@@ -67,3 +67,93 @@ export function calculateEdibleGrams(
   }
   return null;
 }
+
+/**
+ * Calculated nutrient quantities for an ingredient or recipe total.
+ * Missing/unmeasured nutrients remain null (not 0).
+ */
+export interface NutrientValues {
+  caloriesKcal: number;
+  proteinGrams: number;
+  fatGrams: number;
+  carbGrams: number;
+  fiberGrams: number | null;
+  sodiumMg: number | null;
+}
+
+export interface IngredientNutritionInput {
+  food: NutritionFood;
+  amount: number;
+  unit: string;
+  weightBasis: WeightBasis;
+  canonicalId?: string;
+  ingredientName?: string;
+}
+
+export type NutritionErrorCode =
+  | 'INVALID_AMOUNT'
+  | 'UNCONVERTIBLE_UNIT'
+  | 'MISSING_NUTRITION_FOOD'
+  | 'UNKNOWN_WEIGHT_BASIS'
+  | 'INVALID_WEIGHT_BASIS'
+  | 'CALCULATION_ERROR'
+  | 'EMPTY_RECIPE';
+
+export interface IngredientNutritionSuccessResult {
+  success: true;
+  food: NutritionFood;
+  canonicalId?: string;
+  ingredientName?: string;
+  weightBasis: WeightBasis;
+  rawAmount: number;
+  rawUnit: string;
+  actualGrams: number;
+  actualEdibleGrams: number;
+  nutrients: NutrientValues;
+}
+
+export interface IngredientNutritionFailureResult {
+  success: false;
+  code: NutritionErrorCode;
+  reason: string;
+  food?: NutritionFood;
+  canonicalId?: string;
+  ingredientName?: string;
+  rawAmount?: number;
+  rawUnit?: string;
+  weightBasis?: WeightBasis;
+}
+
+export type IngredientNutritionResult =
+  | IngredientNutritionSuccessResult
+  | IngredientNutritionFailureResult;
+
+export interface IncompleteReason {
+  canonicalId?: string;
+  ingredientName?: string;
+  code: NutritionErrorCode | string;
+  reason: string;
+}
+
+export interface RecipeNutritionSuccess {
+  status: 'complete';
+  isComplete: true;
+  total: NutrientValues;
+  perServing: NutrientValues | null;
+  servings: number | null;
+  ingredients: IngredientNutritionSuccessResult[];
+}
+
+export interface RecipeNutritionIncomplete {
+  status: 'incomplete';
+  isComplete: false;
+  total: null;
+  perServing: null;
+  servings: number | null;
+  incompleteReasons: IncompleteReason[];
+  successfulIngredients: IngredientNutritionSuccessResult[];
+}
+
+export type RecipeNutritionResult =
+  | RecipeNutritionSuccess
+  | RecipeNutritionIncomplete;
