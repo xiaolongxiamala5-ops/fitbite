@@ -10,7 +10,8 @@
     "test": "vitest run",
     "db:init": "npx tsx scripts/pipeline/initLocalDb.ts",
     "nutrition:sync": "npx tsx scripts/nutrition/syncSanotsu.ts",
-    "nutrition:verify": "npx tsx scripts/nutrition/verifyFullData.ts"
+    "nutrition:verify": "npx tsx scripts/nutrition/verifyFullData.ts",
+    "nutrition:evaluate": "npx tsx scripts/nutrition/evaluateImportedRecipes.ts"
   },
   "dependencies": {
     "react": "^18.3.1",
