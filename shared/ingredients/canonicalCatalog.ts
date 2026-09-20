@@ -82,6 +82,13 @@ export const CANONICAL_CATALOG: CanonicalDefinition[] = [
     category: 'protein',
     aliases: ['鲈鱼', '鲜鲈鱼', '海鲈鱼', '淡水鲈鱼']
   },
+  {
+    id: 'p_fish_grass_carp',
+    slug: 'fish_grass_carp',
+    name: '草鱼',
+    category: 'protein',
+    aliases: ['草鱼', '草鱼肉', '草鱼片', '草鱼块', '草鱼肉片', '净草鱼肉']
+  },
 
   // 豆制品 - 质地严格区分：内酯/嫩豆腐 与 老/北豆腐 不合并
   {
@@ -162,14 +169,14 @@ export const CANONICAL_CATALOG: CanonicalDefinition[] = [
     slug: 'green_bell_pepper',
     name: '青椒',
     category: 'vegetable',
-    aliases: ['青椒', '菜椒', '甜椒', '柿子椒', '圆椒', '大椒']
+    aliases: ['青椒', '青辣椒', '菜椒', '甜椒', '柿子椒', '圆椒', '大椒']
   },
   {
     id: 'v_hot_pepper',
     slug: 'hot_pepper',
     name: '尖椒',
     category: 'vegetable',
-    aliases: ['尖椒', '线椒', '螺丝椒', '二荆条鲜椒']
+    aliases: ['尖椒', '线椒', '螺丝椒', '二荆条鲜椒', '红辣椒', '红椒', '鲜辣椒']
   },
 
   // 菌菇类严格区分具体品种，绝不泛化合并为单一“菌菇”
@@ -230,6 +237,20 @@ export const CANONICAL_CATALOG: CanonicalDefinition[] = [
     category: 'vegetable',
     aliases: ['洋葱', '圆葱']
   },
+  {
+    id: 'v_soybean_sprout',
+    slug: 'soybean_sprout',
+    name: '黄豆芽',
+    category: 'vegetable',
+    aliases: ['黄豆芽', '豆芽', '大豆芽']
+  },
+  {
+    id: 'v_black_fungus',
+    slug: 'black_fungus',
+    name: '黑木耳',
+    category: 'vegetable',
+    aliases: ['黑木耳', '木耳', '干木耳', '干黑木耳', '泡发木耳', '云耳']
+  },
 
   // ================= 碳水类 (Carbs) =================
   {
@@ -254,6 +275,13 @@ export const CANONICAL_CATALOG: CanonicalDefinition[] = [
     name: '花生米',
     category: 'other',
     aliases: ['花生', '花生米', '熟花生', '生花生', '花生碎', '油炸花生米']
+  },
+  {
+    id: 'other_cola',
+    slug: 'cola',
+    name: '可乐',
+    category: 'other',
+    aliases: ['可乐', '可口可乐', '百事可乐']
   }
 ];
 

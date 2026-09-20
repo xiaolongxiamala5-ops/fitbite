@@ -18,7 +18,7 @@ export class RecipeValidator {
     const warnings: string[] = [];
 
     // 1. 基础标识验证
-    if (!recipe.id || !recipe.id.startsWith('imported_howtocook_')) {
+    if (!recipe.id || (!recipe.id.startsWith('imported_howtocook_') && !recipe.id.startsWith('imported_cookbook-kg_'))) {
       errors.push(`菜谱 ID 格式非法或缺失: ${recipe.id}`);
     }
     if (!recipe.name || recipe.name.trim().length === 0) {
@@ -30,7 +30,21 @@ export class RecipeValidator {
     if (!prov) {
       errors.push('完全缺失 provenance 出处信息');
     } else {
-      if (prov.source !== 'howtocook') {
+      if (prov.source === 'howtocook') {
+        if (!prov.sourceFile || !prov.sourceFile.endsWith('.md')) {
+          errors.push(`非法 sourceFile: ${prov.sourceFile}`);
+        }
+        if (prov.license !== 'CC-BY-4.0') {
+          errors.push(`许可证必须为 CC-BY-4.0，当前为: ${prov.license}`);
+        }
+      } else if (prov.source === 'cookbook-kg') {
+        if (!prov.sourceFile || !prov.sourceFile.endsWith('.json')) {
+          errors.push(`非法 sourceFile: ${prov.sourceFile}`);
+        }
+        if (prov.license !== 'unknown' && prov.license !== null) {
+          errors.push(`CookBook-KG 来源无明确许可证，license 必须为 'unknown' 或 null，当前为: ${prov.license}`);
+        }
+      } else {
         errors.push(`非法来源: ${prov.source}`);
       }
       if (!prov.sourceId || prov.sourceId.trim().length === 0) {
@@ -38,12 +52,6 @@ export class RecipeValidator {
       }
       if (!prov.sourceUrl || !prov.sourceUrl.startsWith('https://')) {
         errors.push(`非法 sourceUrl: ${prov.sourceUrl}`);
-      }
-      if (!prov.sourceFile || !prov.sourceFile.endsWith('.md')) {
-        errors.push(`非法 sourceFile: ${prov.sourceFile}`);
-      }
-      if (prov.license !== 'CC-BY-4.0') {
-        errors.push(`许可证必须为 CC-BY-4.0，当前为: ${prov.license}`);
       }
       if (!prov.contentHash || !/^[a-f0-9]{64}$/i.test(prov.contentHash)) {
         errors.push(`contentHash 非法，必须为标准的 64 位 SHA-256 哈希`);

@@ -9,12 +9,12 @@
 
 export interface SourceRecipe {
   originalTitle: string;
-  source: 'howtocook';
+  source: 'howtocook' | 'cookbook-kg';
   sourceId: string;
   sourceUrl: string;
   sourceFile: string;
-  license: string;
-  contentHash: string; // SHA-256 of raw markdown
+  license: string | null;
+  contentHash: string; // SHA-256 of raw source
   rawIngredients: string[];
   rawCalculations: string[];
   rawSteps: string[];
@@ -60,11 +60,11 @@ export interface NormalizedRecipe {
 }
 
 export interface RecipeProvenance {
-  source: 'howtocook';
+  source: 'howtocook' | 'cookbook-kg';
   sourceId: string;
   sourceUrl: string;
   sourceFile: string;
-  license: string;
+  license: string | null;
   contentHash: string;
 }
 
@@ -78,13 +78,21 @@ export interface FitBiteIngredientItem {
   alternatives?: CanonicalOption[]; // 包含所有允许二选一的规范食材选项
 }
 
+export interface FitBitePantryItem {
+  id: string; // Pantry ID (e.g. 'pantry_oil')
+  name: string; // Pantry Chinese name (e.g. '食用油')
+  amount?: number;
+  unit?: string;
+  originalRawText?: string;
+}
+
 export interface FitBiteRecipe {
   id: string;
   name: string;
   category: string;
   provenance: RecipeProvenance;
   requiredIngredients: FitBiteIngredientItem[];
-  pantryIngredients: string[]; // array of pantry IDs (e.g. ['pantry_oil', 'pantry_salt'])
+  pantryIngredients: Array<string | FitBitePantryItem>; // array of pantry IDs or quantified pantry items
   instructions: string[];
   tags: string[];
   cookingMethod: string | null;

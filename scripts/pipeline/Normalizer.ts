@@ -1,4 +1,4 @@
-import { SourceRecipe, NormalizedRecipe, NormalizedIngredient, FitBiteRecipe, FitBiteIngredientItem, CanonicalOption } from './types';
+import { SourceRecipe, NormalizedRecipe, NormalizedIngredient, FitBiteRecipe, FitBiteIngredientItem, FitBitePantryItem, CanonicalOption } from './types';
 import { resolveCanonicalWithOptions, cleanIngredientRawText } from './canonicalDictionary';
 import { resolvePantry, isWaterOrIgnored, isKitchenTool } from './pantryDictionary';
 
@@ -56,11 +56,27 @@ export class Normalizer {
       if (pantryDef) {
         if (!seenPantryIds.has(pantryDef.id)) {
           seenPantryIds.add(pantryDef.id);
+
+          // 从 calculationMap 中提取真实存在的数量与单位，绝不编造
+          let amount: number | undefined;
+          let unit: string | undefined;
+
+          const cleanedName = cleanIngredientRawText(cleanedRaw);
+          for (const [calcName, val] of calculationMap.entries()) {
+            if (calcName.includes(cleanedName) || cleanedName.includes(calcName)) {
+              amount = val.amount;
+              unit = val.unit;
+              break;
+            }
+          }
+
           pantryIngredients.push({
             canonicalId: pantryDef.id,
             displayName: pantryDef.name,
             category: 'pantry',
             rawText: cleanedRaw,
+            amount,
+            unit,
             isPantry: true
           });
         }
@@ -211,14 +227,22 @@ export class Normalizer {
       alternatives: item.alternatives
     }));
 
-    const fitBitePantryIds = pantryIngredients.map(p => p.canonicalId);
+    const fitBitePantryItems: Array<string | FitBitePantryItem> = source.source === 'howtocook'
+      ? pantryIngredients.map(p => p.canonicalId)
+      : pantryIngredients.map(p => ({
+          id: p.canonicalId,
+          name: p.displayName,
+          amount: p.amount,
+          unit: p.unit,
+          originalRawText: p.rawText
+        }));
 
     const fitBiteRecipe: FitBiteRecipe = {
-      id: `imported_howtocook_${source.sourceId}`,
+      id: `imported_${source.source}_${source.sourceId}`,
       name: cleanTitle,
       category,
       provenance: {
-        source: 'howtocook',
+        source: source.source,
         sourceId: source.sourceId,
         sourceUrl: source.sourceUrl,
         sourceFile: source.sourceFile,
@@ -226,7 +250,7 @@ export class Normalizer {
         contentHash: source.contentHash
       },
       requiredIngredients: fitBiteIngredients,
-      pantryIngredients: fitBitePantryIds,
+      pantryIngredients: fitBitePantryItems,
       instructions: source.rawSteps,
       tags,
       cookingMethod,
@@ -265,25 +289,38 @@ export class Normalizer {
   public static mapDifficultyLevel(rawDiff?: string | null): string | null {
     if (!rawDiff) return null;
     const trimmed = rawDiff.trim();
-    if (trimmed.includes('★★★★') || trimmed.includes('★★★★★')) return '困难';
-    if (trimmed.includes('★★★')) return '中等';
-    if (trimmed.includes('★★') || trimmed.includes('★')) return '简单';
+    if (trimmed.includes('★★★★') || trimmed.includes('★★★★★') || trimmed === '困难' || trimmed === '高级') return '困难';
+    if (trimmed.includes('★★★') || trimmed === '中等' || trimmed === '普通') return '中等';
+    if (trimmed.includes('★★') || trimmed.includes('★') || trimmed === '简单') return '简单';
     return null;
   }
 
   /**
-   * 严格收紧事实来源：只有当源文存在明确的整道菜耗时字段（如“预计耗时：30 分钟”）时才解析
+   * 严格收紧事实来源：只有当源文存在明确的整道菜耗时字段（如“预计耗时：30 分钟”或“耗时: 十分钟”）时才解析
    * 严禁从普通步骤或段落描述中抓取步骤时长！
    */
   public static parseEstimatedMinutes(rawTimeText?: string): number | null {
     if (!rawTimeText) return null;
 
-    const match = rawTimeText.match(/(?:预计耗时|总耗时|烹饪时间|制作时间)[：:]\s*([0-9.]+)?\s*(分钟|小时)/);
+    const match = rawTimeText.match(/(?:预计耗时|总耗时|烹饪时间|制作时间|耗时)[：:]\s*([0-9.一二两三四五六七八九十廿半]+)?\s*(分钟|小时|刻钟)?/);
     if (match) {
-      const val = parseFloat(match[1] || '0');
+      const rawNum = match[1] || '';
       const unit = match[2];
+
+      let val = 0;
+      if (rawNum === '十分钟' || rawNum === '十') val = 10;
+      else if (rawNum === '廿' || rawNum === '二十') val = 20;
+      else if (rawNum === '半') val = 0.5;
+      else if (rawNum === '一' || rawNum === '1') val = 1;
+      else if (rawNum === '两' || rawNum === '二' || rawNum === '2') val = 2;
+      else if (rawNum === '三' || rawNum === '3') val = 3;
+      else val = parseFloat(rawNum || '0');
+
       if (unit === '小时') {
         return Math.round(val * 60);
+      }
+      if (unit === '刻钟') {
+        return Math.round(val * 15);
       }
       return Math.round(val);
     }

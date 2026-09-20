@@ -13,7 +13,8 @@ export interface PantryDefinition {
 export const PANTRY_CATALOG: PantryDefinition[] = [
   { id: 'pantry_oil', name: '食用油', aliases: ['食用油', '油', '植物油', '花生油', '菜籽油', '玉米油', '橄榄油', '猪油', '色拉油'] },
   { id: 'pantry_salt', name: '食盐', aliases: ['食盐', '盐', '精盐', '细盐', '食用盐'] },
-  { id: 'pantry_soy_sauce', name: '生抽', aliases: ['生抽', '酱油', '生抽酱油', '味极鲜', '一品鲜', '老抽'] },
+  { id: 'pantry_soy_sauce', name: '生抽', aliases: ['生抽', '酱油', '生抽酱油', '味极鲜', '一品鲜'] },
+  { id: 'preset_dark_soy_sauce', name: '老抽', aliases: ['老抽', '老抽酱油', '浓色酱油', '红烧酱油'] },
   { id: 'pantry_garlic', name: '大蒜', aliases: ['大蒜', '蒜', '蒜瓣', '蒜末', '蒜泥', '蒜蓉', '大蒜瓣', '大蒜末'] },
   { id: 'pantry_black_pepper', name: '黑胡椒', aliases: ['黑胡椒', '白胡椒', '胡椒粉', '黑胡椒粉', '白胡椒粉'] },
   { id: 'preset_chicken_essence', name: '鸡精', aliases: ['鸡精', '鸡粉', '蘑菇精', '蔬之鲜'] },
@@ -21,17 +22,21 @@ export const PANTRY_CATALOG: PantryDefinition[] = [
   { id: 'preset_starch', name: '淀粉', aliases: ['淀粉', '玉米淀粉', '生粉', '水淀粉', '太白粉', '红薯淀粉'] },
   { id: 'preset_cooking_wine', name: '料酒', aliases: ['料酒', '黄酒', '绍兴酒', '烹调料酒', '白酒'] },
   { id: 'preset_vinegar', name: '香醋', aliases: ['香醋', '白醋', '陈醋', '米醋', '镇江香醋', '香醋（陈醋）', '醋'] },
-  { id: 'preset_sugar', name: '白糖', aliases: ['白糖', '糖', '白砂糖', '冰糖', '绵白糖', '砂糖'] },
+  { id: 'preset_sugar', name: '白糖', aliases: ['白糖', '糖', '白砂糖', '绵白糖', '砂糖'] },
+  { id: 'preset_rock_sugar', name: '冰糖', aliases: ['冰糖', '黄冰糖', '老冰糖', '碎冰糖'] },
   { id: 'preset_oyster_sauce', name: '蚝油', aliases: ['蚝油'] },
   { id: 'preset_scallion', name: '葱花', aliases: ['葱花', '葱', '大葱', '小葱', '香葱', '葱段', '葱白', '葱丝'] },
   { id: 'preset_star_anise', name: '八角', aliases: ['八角', '大料', '八角茴香'] },
   { id: 'preset_sichuan_pepper', name: '花椒', aliases: ['花椒', '花椒粉', '花椒粒', '花椒油', '青花椒', '麻椒'] },
   { id: 'preset_sesame_oil', name: '芝麻油', aliases: ['芝麻油', '香油', '麻油'] },
   { id: 'preset_cumin', name: '孜然', aliases: ['孜然', '孜然粉', '孜然粒'] },
-  { id: 'preset_chili_powder', name: '辣椒粉', aliases: ['辣椒粉', '干辣椒', '辣椒面', '辣椒碎', '辣椒油', '红油', '小米椒', '小米辣', '二荆条', '香辣酱', '蒜蓉辣酱', '油泼辣子', '辣椒'] },
+  { id: 'preset_chili_powder', name: '辣椒粉', aliases: ['辣椒粉', '辣椒面', '辣椒碎'] },
+  { id: 'preset_dried_chili', name: '干辣椒', aliases: ['干辣椒', '干红辣椒', '干辣椒碎', '干辣椒段'] },
+  { id: 'preset_chili_oil', name: '辣椒油', aliases: ['辣椒油', '红油', '油泼辣子', '红油辣子'] },
   { id: 'preset_doubanjiang', name: '豆瓣酱', aliases: ['豆瓣酱', '郫县豆瓣酱', '红油豆瓣酱'] },
   { id: 'preset_ketchup', name: '番茄酱', aliases: ['番茄酱', '番茄沙司', '番茄汁'] },
-  { id: 'preset_steamed_fish_soy_sauce', name: '蒸鱼豉油', aliases: ['蒸鱼豉油', '豉油'] }
+  { id: 'preset_steamed_fish_soy_sauce', name: '蒸鱼豉油', aliases: ['蒸鱼豉油', '豉油'] },
+  { id: 'preset_bay_leaf', name: '香叶', aliases: ['香叶', '月桂叶'] }
 ];
 
 // 建立精确匹配映射表

@@ -12,13 +12,15 @@ export const PANTRY_ITEMS: PantryItem[] = [
   { id: 'pantry_black_pepper', name: '黑胡椒', category: 'spice' }
 ];
 
-export function isPantrySatisfied(requiredPantry: string[], userPantry: string[]): boolean {
+export function isPantrySatisfied(requiredPantry: Array<string | { id: string }>, userPantry: string[]): boolean {
   if (!requiredPantry || requiredPantry.length === 0) return true;
   const userSet = new Set(userPantry);
-  return requiredPantry.every(id => userSet.has(id));
+  return requiredPantry.every(item => userSet.has(typeof item === 'string' ? item : item.id));
 }
 
-export function getMissingPantry(requiredPantry: string[], userPantry: string[]): string[] {
+export function getMissingPantry(requiredPantry: Array<string | { id: string }>, userPantry: string[]): string[] {
   const userSet = new Set(userPantry);
-  return requiredPantry.filter(id => !userSet.has(id));
+  return requiredPantry
+    .map(item => (typeof item === 'string' ? item : item.id))
+    .filter(id => !userSet.has(id));
 }

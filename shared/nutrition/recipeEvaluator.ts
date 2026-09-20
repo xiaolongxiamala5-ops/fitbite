@@ -121,7 +121,14 @@ export function evaluateRecipeNutrition(
   // Process each ingredient
   for (const item of allInputs) {
     const identifier = item.id || item.name;
-    const classification = classifyIngredient(identifier);
+    // 优先使用规范 ID 分类，若未命中特定分类且存在真实中文名，则回退检查中文名
+    let classification = classifyIngredient(identifier);
+    if (classification.category === 'calorie_macro_critical' && item.name && item.name !== item.id) {
+      const nameClassification = classifyIngredient(item.name);
+      if (nameClassification.category !== 'calorie_macro_critical') {
+        classification = nameClassification;
+      }
+    }
 
     // Resolve food if not directly provided
     const food = item.food || options?.foodLookup?.(identifier) || options?.foodLookup?.(item.name);
@@ -177,20 +184,35 @@ export function evaluateRecipeNutrition(
     // Ingredient was NOT successfully calculated (unquantified or unmapped)
     if (classification.isOil) {
       // Rule 5: Oil is NEVER negligible
+      let blockerReason: IncompleteBlocker['reason'] = 'unquantified_oil';
+      let message = `食用油未定量：油属于高供能食材，未定量时禁止估算整菜热量与三大宏量 (${item.name})`;
+
+      if (hasValidAmount && !hasConvertibleUnit) {
+        blockerReason = 'unconvertible_unit';
+        message = `核心食材 "${item.name}" 使用了非质量单位 "${item.unit}"，缺少密度或标准重量换算规则 (${item.amount}${item.unit})`;
+      } else if (hasValidAmount && !food) {
+        blockerReason = 'missing_mapping';
+        message = `核心食材 "${item.name}" 缺少营养数据映射`;
+      } else if (hasValidAmount && weightBasis === 'unknown') {
+        blockerReason = 'unknown_weight_basis';
+        message = `核心食材 "${item.name}" 的重量语义未知 (WeightBasis: unknown)`;
+      }
+
       const blocker: IncompleteBlocker = {
         ingredientId: item.id,
         ingredientName: item.name,
-        reason: 'unquantified_oil',
-        message: `食用油未定量：油属于高供能食材，未定量时禁止估算整菜热量与三大宏量 (${item.name})`
+        reason: blockerReason,
+        message
       };
       blockingCriticalIngredients.push(blocker);
       evaluatedIngredients.push({
         id: item.id,
         name: item.name,
         classification,
-        isQuantified: false,
+        isQuantified: hasValidAmount,
         rawAmount: item.amount,
         rawUnit: item.unit,
+        weightBasis: hasValidAmount ? weightBasis : undefined,
         blockReason: blocker.message
       });
     } else if (classification.isMacroCritical) {
@@ -220,7 +242,7 @@ export function evaluateRecipeNutrition(
         id: item.id,
         name: item.name,
         classification,
-        isQuantified: false,
+        isQuantified: hasValidAmount,
         rawAmount: item.amount,
         rawUnit: item.unit,
         weightBasis,
