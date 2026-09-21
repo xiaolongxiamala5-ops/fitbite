@@ -7,6 +7,60 @@ interface RecipeRecommendationListProps {
   matchGroups: MatchGroups;
 }
 
+export const DEFAULT_RECIPE_DISPLAY_LIMIT = 3;
+
+interface CollapsibleRecipeGridProps {
+  list: MatchResult[];
+  onSelect: (result: MatchResult) => void;
+  initialLimit?: number;
+}
+
+export const CollapsibleRecipeGrid: React.FC<CollapsibleRecipeGridProps> = ({
+  list,
+  onSelect,
+  initialLimit = DEFAULT_RECIPE_DISPLAY_LIMIT
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const hasMore = list.length > initialLimit;
+  const visibleList = isExpanded ? list : list.slice(0, initialLimit);
+
+  const handleToggle = () => {
+    if (isExpanded) {
+      containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    setIsExpanded(prev => !prev);
+  };
+
+  return (
+    <div ref={containerRef} className="collapsible-recipe-section">
+      <div className="recipe-grid">
+        {visibleList.map((item, index) => (
+          <RecipeCard
+            key={item.recipe.id}
+            result={item}
+            onSelect={() => onSelect(item)}
+            className={index >= initialLimit ? 'recipe-card-animated' : ''}
+          />
+        ))}
+      </div>
+      {hasMore && (
+        <button
+          type="button"
+          className="recipe-expand-btn"
+          onClick={handleToggle}
+        >
+          <span>{isExpanded ? '收起' : `查看更多（${list.length - initialLimit}）`}</span>
+          <span className={`recipe-expand-icon ${isExpanded ? 'expanded' : ''}`}>
+            ▾
+          </span>
+        </button>
+      )}
+    </div>
+  );
+};
+
 export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> = ({ matchGroups }) => {
   const [selectedResult, setSelectedResult] = useState<MatchResult | null>(null);
 
@@ -59,11 +113,10 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
             {list.length}
           </span>
         </div>
-        <div className="recipe-grid">
-          {list.map(item => (
-            <RecipeCard key={item.recipe.id} result={item} onSelect={() => setSelectedResult(item)} />
-          ))}
-        </div>
+        <CollapsibleRecipeGrid
+          list={list}
+          onSelect={setSelectedResult}
+        />
       </div>
     );
   };
@@ -84,10 +137,11 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
       {otherList.length > 0 && (
         <details className="other-recipes">
           <summary>查看其他暂不满足的菜谱 ({otherList.length})</summary>
-          <div className="recipe-grid">
-            {otherList.map(item => (
-              <RecipeCard key={item.recipe.id} result={item} onSelect={() => setSelectedResult(item)} />
-            ))}
+          <div style={{ marginTop: '12px' }}>
+            <CollapsibleRecipeGrid
+              list={otherList}
+              onSelect={setSelectedResult}
+            />
           </div>
         </details>
       )}

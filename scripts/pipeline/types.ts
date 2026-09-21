@@ -86,6 +86,8 @@ export interface FitBitePantryItem {
   originalRawText?: string;
 }
 
+import type { RecipeNutrition } from '../../shared/nutrition/types';
+
 export interface FitBiteRecipe {
   id: string;
   name: string;
@@ -96,7 +98,7 @@ export interface FitBiteRecipe {
   instructions: string[];
   tags: string[];
   cookingMethod: string | null;
-  nutrition: null; // Strictly null - LLM/pipeline is forbidden to hallucinate nutrition facts
+  nutrition: RecipeNutrition | null; // Calculated by nutrition engine via deterministic/calibrated dual-track
   servings: number | null;
   difficulty: string | null; // 映射等级：简单 / 中等 / 困难
   rawDifficulty?: string | null; // 原始难度值：如 "★★"

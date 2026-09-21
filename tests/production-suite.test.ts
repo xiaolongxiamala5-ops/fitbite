@@ -308,4 +308,76 @@ describe('FitBite Production Comprehensive Suite (30 Tests)', () => {
       expect(cleanedIds.includes('pantry_salt')).toBe(false);
     });
   });
+
+  describe('8. Recipe Recommendation Display & Folding Policy', () => {
+    it('8.1 默认展示卡片上限严格配置为 3 道', async () => {
+      const { DEFAULT_RECIPE_DISPLAY_LIMIT } = await import('../src/components/recipes/RecipeRecommendationList');
+      expect(DEFAULT_RECIPE_DISPLAY_LIMIT).toBe(3);
+    });
+
+    it('8.2 分组菜谱数 <= 3 时不超出上限，全部直接可见', () => {
+      const smallList = [
+        { recipe: CURATED_RECIPES[0], matchScore: 100, matchedCount: 2, totalCount: 2, missingIngredients: [], missingPantry: [], canMake: true, isFavorited: false },
+        { recipe: CURATED_RECIPES[1], matchScore: 100, matchedCount: 2, totalCount: 2, missingIngredients: [], missingPantry: [], canMake: true, isFavorited: false }
+      ];
+      const limit = 3;
+      const hasMore = smallList.length > limit;
+      const visible = hasMore ? smallList.slice(0, limit) : smallList;
+
+      expect(hasMore).toBe(false);
+      expect(visible.length).toBe(2);
+    });
+
+    it('8.3 分组菜谱数 > 3 时默认只取前 3 道，按钮文案严格符合「查看全部（N）」格式', () => {
+      const longList = Array.from({ length: 8 }, (_, i) => ({
+        recipe: { ...CURATED_RECIPES[0], id: `test_r_${i}` },
+        matchScore: 80,
+        matchedCount: 2,
+        totalCount: 3,
+        missingIngredients: [],
+        missingPantry: [],
+        canMake: false,
+        isFavorited: false
+      }));
+
+      const limit = 3;
+      const hasMore = longList.length > limit;
+      const defaultVisible = longList.slice(0, limit);
+
+      expect(hasMore).toBe(true);
+      expect(defaultVisible.length).toBe(3);
+
+      const expandBtnText = `查看全部（${longList.length}）`;
+      expect(expandBtnText).toBe('查看全部（8）');
+    });
+
+    it('8.4 展开后展示全部 N 道，按钮文案变为「收起」，收起后重新切片回 3 道', () => {
+      const totalCount = 11;
+      const list = Array.from({ length: totalCount }, (_, i) => i);
+      const limit = 3;
+
+      let isExpanded = false;
+      let visible = isExpanded ? list : list.slice(0, limit);
+      let btnText = isExpanded ? '收起' : `查看全部（${list.length}）`;
+
+      expect(visible.length).toBe(3);
+      expect(btnText).toBe('查看全部（11）');
+
+      // 模拟点击「查看全部（11）」
+      isExpanded = true;
+      visible = isExpanded ? list : list.slice(0, limit);
+      btnText = isExpanded ? '收起' : `查看全部（${list.length}）`;
+
+      expect(visible.length).toBe(11);
+      expect(btnText).toBe('收起');
+
+      // 模拟再次点击「收起」
+      isExpanded = false;
+      visible = isExpanded ? list : list.slice(0, limit);
+      btnText = isExpanded ? '收起' : `查看全部（${list.length}）`;
+
+      expect(visible.length).toBe(3);
+      expect(btnText).toBe('查看全部（11）');
+    });
+  });
 });

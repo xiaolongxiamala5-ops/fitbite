@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useFridge } from '../context/FridgeContext';
-import { CURATED_RECIPES } from '../data/recipes';
+import { ALL_APP_RECIPES } from '../data/recipes';
 import { matchRecipes } from '../core/matcher/matcher';
 import { MatchGroups } from '../core/matcher/types';
 
@@ -11,7 +11,7 @@ export function useRecipeMatcher(): MatchGroups {
     return matchRecipes({
       fridgeIngredients: fridgeIngredients.map(item => item.id),
       pantryIngredients,
-      recipes: CURATED_RECIPES,
+      recipes: ALL_APP_RECIPES,
       favorites
     });
   }, [fridgeIngredients, pantryIngredients, favorites]);

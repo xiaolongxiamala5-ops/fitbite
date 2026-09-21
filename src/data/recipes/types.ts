@@ -5,11 +5,16 @@ export interface IngredientAmount {
   unit: string;
 }
 
+import type { NutritionConfidenceLevel } from '../../../shared/nutrition/types';
+export type { NutritionConfidenceLevel };
+
 export interface RecipeNutrition {
   calories?: number;
   protein: number;
   fat: number;
   carbs: number;
+  confidence?: NutritionConfidenceLevel;
+  calorieRange?: [number, number];
   source?: string;
   isEstimated?: boolean;
 }

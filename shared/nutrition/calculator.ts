@@ -207,7 +207,8 @@ export function calculateIngredientNutrition(
       carbGrams,
       fiberGrams,
       sodiumMg
-    }
+    },
+    isEstimated: conversion.isEstimated
   };
 }
 

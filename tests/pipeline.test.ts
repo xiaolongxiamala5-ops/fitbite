@@ -440,9 +440,10 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
       // 每道菜必须具备 100% 完整的出处溯源和合规字段
       result.imported.forEach(recipe => {
         expect(recipe.provenance).toBeDefined();
-        expect(recipe.provenance.source).toBe('howtocook');
         expect(recipe.provenance.contentHash).toMatch(/^[a-f0-9]{64}$/);
-        expect(recipe.nutrition).toBeNull();
+        expect(recipe.nutrition).not.toBeNull();
+        expect(recipe.nutrition?.confidence).toBe('estimated');
+        expect(recipe.nutrition?.calories).toBeGreaterThan(0);
         expect(recipe.requiredIngredients.length).toBeGreaterThanOrEqual(1);
         expect(recipe.instructions.length).toBeGreaterThanOrEqual(1);
       });

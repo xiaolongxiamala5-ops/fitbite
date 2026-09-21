@@ -8,9 +8,10 @@ import { getRecipeImage } from '../../ui/recipeImages';
 interface RecipeCardProps {
   result: MatchResult;
   onSelect: () => void;
+  className?: string;
 }
 
-export const RecipeCard: React.FC<RecipeCardProps> = ({ result, onSelect }) => {
+export const RecipeCard: React.FC<RecipeCardProps> = ({ result, onSelect, className = '' }) => {
   const { toggleFavorite } = useFridge();
   const { recipe, missingIngredients, isFavorited } = result;
   // 核心护栏 1：统一使用“主食材决定可做性”规则，调料不阻断
@@ -24,7 +25,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ result, onSelect }) => {
   return (
     <article
       onClick={onSelect}
-      className={`recipe-card ${isReady ? 'recipe-card-ready' : 'recipe-card-away'} ${hasRealImage ? 'has-image' : 'no-image'}`}
+      className={`recipe-card ${isReady ? 'recipe-card-ready' : 'recipe-card-away'} ${hasRealImage ? 'has-image' : 'no-image'} ${className}`.trim()}
     >
       {hasRealImage && <RecipeImage recipe={recipe} />}
       <div className="recipe-card-content">

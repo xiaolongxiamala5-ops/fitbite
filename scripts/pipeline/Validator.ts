@@ -81,9 +81,24 @@ export class RecipeValidator {
       }
     }
 
-    // 5. 严格安全护栏：营养事实绝不可胡乱生成
+    // 5. 严格安全护栏：若包含营养数据，必须具备完整的宏量数值与合法置信度
     if (recipe.nutrition !== null) {
-      errors.push('违背数据护栏：LLM/Pipeline 禁止猜测或编造 nutrition 事实，当前阶段必须严格保持为 null');
+      if (typeof recipe.nutrition !== 'object') {
+        errors.push('nutrition 字段必须为合规对象或 null');
+      } else {
+        const { calories, protein, fat, carbs, confidence } = recipe.nutrition as any;
+        if (
+          typeof calories !== 'number' ||
+          typeof protein !== 'number' ||
+          typeof fat !== 'number' ||
+          typeof carbs !== 'number'
+        ) {
+          errors.push('nutrition 缺少关键宏量元素数值 (calories, protein, fat, carbs)');
+        }
+        if (!confidence || !['verified', 'estimated', 'incomplete'].includes(confidence)) {
+          errors.push(`nutrition 置信度非法: ${confidence}`);
+        }
+      }
     }
 
     return {

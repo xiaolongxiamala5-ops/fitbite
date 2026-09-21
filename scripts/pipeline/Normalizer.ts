@@ -1,18 +1,146 @@
+import fs from 'fs';
+import path from 'path';
 import { SourceRecipe, NormalizedRecipe, NormalizedIngredient, FitBiteRecipe, FitBiteIngredientItem, FitBitePantryItem, CanonicalOption } from './types';
 import { resolveCanonicalWithOptions, cleanIngredientRawText } from './canonicalDictionary';
 import { resolvePantry, isWaterOrIgnored, isKitchenTool } from './pantryDictionary';
+import { evaluateRecipeNutrition } from '../../shared/nutrition';
+import { CANONICAL_NUTRITION_LOOKUP, PANTRY_TO_SANOTSU } from '../../data/nutrition/mappings/canonical-to-sanotsu';
+import { NutritionFood } from '../../shared/nutrition/types';
+import { roundTo } from '../../shared/nutrition/calculator';
+
+let cachedFoodsMap: Map<string, NutritionFood> | null = null;
+function getFoodsMap(): Map<string, NutritionFood> {
+  if (cachedFoodsMap) return cachedFoodsMap;
+  cachedFoodsMap = new Map();
+  try {
+    const root = process.cwd();
+    const foodsPath = path.join(root, 'data', 'nutrition', 'generated', 'nutrition_foods.json');
+    if (fs.existsSync(foodsPath)) {
+      const foods: NutritionFood[] = JSON.parse(fs.readFileSync(foodsPath, 'utf8'));
+      for (const f of foods) {
+        cachedFoodsMap.set(f.foodCode, f);
+      }
+    }
+  } catch {
+    // fallback gracefully
+  }
+  return cachedFoodsMap;
+}
+
+function parseChineseNum(str: string): number | null {
+  const map: Record<string, number> = {
+    '一': 1, '二': 2, '两': 2, '三': 3, '四': 4, '五': 5,
+    '六': 6, '七': 7, '八': 8, '九': 9, '十': 10, '半': 0.5
+  };
+  if (map[str] !== undefined) return map[str];
+  const num = parseFloat(str);
+  return Number.isFinite(num) ? num : null;
+}
 
 /**
- * FitBite Normalizer (C.1.1 Refined)
- *
- * Strict Architectural Guardrails:
- * 1. ONLY true synonyms are merged into canonical keys. Meat cuts, fish species, and mushroom varieties
- *    preserve distinct canonical IDs.
- * 2. Ingredient alternatives (A or B / A（或者B）) are explicitly preserved as `mode: 'anyOf'` with `alternatives` array.
- * 3. NO hallucination of nutrition facts: nutrition remains strictly null.
- * 4. NO guessing of estimatedMinutes: ONLY parsed when source explicitly contains dedicated fields like
- *    "预计耗时" / "总耗时" / "烹饪时间" / "制作时间", otherwise strictly null.
- * 5. Difficulty preserves source fact `rawDifficulty` and deterministic level mapping `difficulty`.
+ * Parses raw calculation lines supporting both prefix and suffix quantity patterns
+ * Examples:
+ * - "西兰花 约 200 g （约 1/2 中等大小的西兰花）"
+ * - "青椒 2 个（共约 200g）"
+ * - "1 盒内脂豆腐"
+ * - "20-30g 五花肉"
+ * - "两瓣大蒜"
+ * - "2 片生姜"
+ * - "黄瓜 200 克 * 份数"
+ */
+function parseRawCalculationItem(calc: string): { name: string; amount?: number; unit?: string } | null {
+  const line = calc.replace(/^[-*•]\s*/, '').trim();
+  if (!line) return null;
+
+  // Case A: Explicit delimiter (=, :, ：)
+  // e.g. "带皮五花肉 = 800克", "手枪腿（或者鸡胸脯肉） = 1 支（约 350g）", "冰糖 = 80克", "八角 = 3个"
+  if (/[=：:]/.test(line)) {
+    const parts = line.split(/[=：:]/);
+    const rawName = parts[0].trim();
+    const qtyPart = parts.slice(1).join('=').trim();
+
+    // Check range in qtyPart: e.g. "10-15ml", "20-30g"
+    const range = qtyPart.match(/^([0-9.]+)\s*[-~至到]\s*([0-9.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)/);
+    if (range) {
+      return {
+        name: cleanIngredientRawText(rawName),
+        amount: (parseFloat(range[1]) + parseFloat(range[2])) / 2,
+        unit: range[3].trim()
+      };
+    }
+
+    const single = qtyPart.match(/^([一二两三四五六七八九十半\d\.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)?/);
+    if (single) {
+      const num = parseChineseNum(single[1]) ?? undefined;
+      const unit = single[2] ? single[2].trim() : undefined;
+      return {
+        name: cleanIngredientRawText(rawName),
+        amount: num,
+        unit
+      };
+    }
+
+    return { name: cleanIngredientRawText(rawName) };
+  }
+
+  // Case B: Leading quantity without delimiter
+  // e.g. "1 盒内脂豆腐", "1 枚咸鸭蛋", "20-30g 五花肉", "两瓣大蒜", "2 片生姜", "5 根小米辣"
+  const rangeMatch = line.match(/^([0-9.]+)\s*[-~至到]\s*([0-9.]+)\s*(g|kg|ml|克|千克|毫升|瓣|片|块|个|只|条|根|朵|盒|包|枚|支)\s*(?:的)?\s*(.+)$/);
+  if (rangeMatch) {
+    return {
+      name: cleanIngredientRawText(rangeMatch[4].trim()),
+      amount: (parseFloat(rangeMatch[1]) + parseFloat(rangeMatch[2])) / 2,
+      unit: rangeMatch[3].trim()
+    };
+  }
+
+  const leadingNumMatch = line.match(/^([一二两三四五六七八九十半\d\.]+)\s*([个只条根朵瓣盒块包枚支片粒gkgml克千克毫升]+)\s*(?:的)?\s*(.+)$/);
+  if (leadingNumMatch) {
+    const num = parseChineseNum(leadingNumMatch[1]) ?? undefined;
+    const unit = leadingNumMatch[2].trim();
+    const name = cleanIngredientRawText(leadingNumMatch[3].trim());
+    return { name, amount: num, unit };
+  }
+
+  // Case C: Name first without delimiter
+  // e.g. "西兰花 约 200 g （约 1/2...）", "青椒 2 个（共约 200g）", "虾 250g * 份数", "虾 10 只", "黄瓜 200 克", "鲈鱼 一条"
+  const parenGrams = line.match(/（(?:共约|约)?\s*([0-9.]+)\s*(g|克)）/);
+  if (parenGrams) {
+    const mainNamePart = line.replace(/（.*）/, '').trim();
+    const nameMatch = mainNamePart.match(/^([^\s0-9一二两三四五六七八九十半]+)/);
+    if (nameMatch) {
+      return {
+        name: cleanIngredientRawText(nameMatch[1].trim()),
+        amount: parseFloat(parenGrams[1]),
+        unit: parenGrams[2]
+      };
+    }
+  }
+
+  // Check suffix range: e.g. "食用油 10-15ml", "蒜 5-8 瓣"
+  const suffixRange = line.match(/^([^\d一二两三四五六七八九十半\s]+)\s+(?:约|大概)?\s*([0-9.]+)\s*[-~至到]\s*([0-9.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)/);
+  if (suffixRange) {
+    return {
+      name: cleanIngredientRawText(suffixRange[1].trim()),
+      amount: (parseFloat(suffixRange[2]) + parseFloat(suffixRange[3])) / 2,
+      unit: suffixRange[4].trim()
+    };
+  }
+
+  const standardMatch = line.match(/^([^\d一二两三四五六七八九十半\s]+)\s*(?:约|大概)?\s*([一二两三四五六七八九十半\d\.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)?/);
+  if (standardMatch) {
+    return {
+      name: cleanIngredientRawText(standardMatch[1].trim()),
+      amount: parseChineseNum(standardMatch[2]) ?? undefined,
+      unit: standardMatch[3] ? standardMatch[3].trim() : undefined
+    };
+  }
+
+  return null;
+}
+
+/**
+ * FitBite Normalizer (C.1.1 Refined & Dual-Track Nutrition Evaluation)
  */
 export class Normalizer {
   public static normalize(source: SourceRecipe): {
@@ -30,12 +158,9 @@ export class Normalizer {
     // 建立 calculation 快速检索映射，用于提取真实存在的克数或数量
     const calculationMap = new Map<string, { amount?: number; unit?: string }>();
     for (const calc of source.rawCalculations) {
-      const match = calc.match(/^([^=：:\s]+)\s*(=|:|：)?\s*([0-9.]+)?\s*([a-zA-Z\u4e00-\u9fa5]+)?/);
-      if (match) {
-        const ingName = match[1].trim();
-        const num = match[3] ? parseFloat(match[3]) : undefined;
-        const unit = match[4] ? match[4].trim() : undefined;
-        calculationMap.set(ingName, { amount: num, unit });
+      const parsed = parseRawCalculationItem(calc);
+      if (parsed) {
+        calculationMap.set(parsed.name, { amount: parsed.amount, unit: parsed.unit });
       }
     }
 
@@ -63,7 +188,7 @@ export class Normalizer {
 
           const cleanedName = cleanIngredientRawText(cleanedRaw);
           for (const [calcName, val] of calculationMap.entries()) {
-            if (calcName.includes(cleanedName) || cleanedName.includes(calcName)) {
+            if (calcName === cleanedName || calcName.includes(cleanedName) || cleanedName.includes(calcName)) {
               amount = val.amount;
               unit = val.unit;
               break;
@@ -96,7 +221,7 @@ export class Normalizer {
 
           const cleanedName = cleanIngredientRawText(cleanedRaw);
           for (const [calcName, val] of calculationMap.entries()) {
-            if (calcName.includes(cleanedName) || cleanedName.includes(calcName)) {
+            if (calcName === cleanedName || calcName.includes(cleanedName) || cleanedName.includes(calcName)) {
               amount = val.amount;
               unit = val.unit;
               break;
@@ -104,12 +229,10 @@ export class Normalizer {
           }
 
           // 核心护栏：为 anyOf 的每个选项精确分配自身的数量与单位
-          // 严禁将主项特定单位（如“1 支”手枪腿）自动借给替代项（鸡胸肉）！
           let optionsWithAmounts: CanonicalOption[] | undefined = undefined;
           if (resolved.mode === 'anyOf' && resolved.alternatives) {
             optionsWithAmounts = resolved.alternatives.map((opt, idx) => {
               if (idx === 0) {
-                // 主选项绑定主数量与单位（如：1 支）
                 return {
                   id: opt.id,
                   name: opt.name,
@@ -118,11 +241,9 @@ export class Normalizer {
                 };
               }
 
-              // 替代选项：只有当计算表中存在针对该替代项的独立单独声明（非联合替代行）时才赋值，否则严格保持 undefined
               let altAmount: number | undefined;
               let altUnit: string | undefined;
               for (const [calcName, val] of calculationMap.entries()) {
-                // 若此计算行为复合替代行或直接匹配原始组名，则属于主项所属行，严禁作为替代项的独立数量
                 if (/(或者|或|\/|or)/.test(calcName) || calcName.includes(cleanedName) || cleanedName.includes(calcName)) {
                   continue;
                 }
@@ -192,10 +313,10 @@ export class Normalizer {
     const rawDifficulty = source.rawDifficulty ? source.rawDifficulty.trim() : null;
     const difficultyLevel = Normalizer.mapDifficultyLevel(rawDifficulty);
 
-    // 6. 预估烹饪时长（严格收紧事实来源：只有存在明确“预计耗时/总耗时/烹饪时间/制作时间”字段时才解析，否则为 null）
+    // 6. 预估烹饪时长
     const estimatedMinutes = Normalizer.parseEstimatedMinutes(source.rawEstimatedTimeText);
 
-    // 7. 份数（完全依据原文计算说明，未指明时为 null）
+    // 7. 份数
     const servings = Normalizer.parseServingsFromText(source.rawCalculations, source.rawDescription);
 
     // 构建 NormalizedRecipe
@@ -254,12 +375,63 @@ export class Normalizer {
       instructions: source.rawSteps,
       tags,
       cookingMethod,
-      nutrition: null, // 严格置空，绝不生成或猜测热量与宏量营养素
+      nutrition: null,
       servings,
       difficulty: difficultyLevel,
       rawDifficulty,
       estimatedMinutes
     };
+
+    // 8. 营养计算引擎双轨估算注入 (Dual-Track Nutrition Feasibility)
+    const foodsMap = getFoodsMap();
+    const foodLookup = (idOrName: string): NutritionFood | undefined => {
+      let foodCode: string | undefined = CANONICAL_NUTRITION_LOOKUP.get(idOrName)?.foodCode || PANTRY_TO_SANOTSU[idOrName];
+      if (!foodCode) {
+        const resolved = resolveCanonicalWithOptions(idOrName)?.primary;
+        if (resolved) {
+          foodCode = CANONICAL_NUTRITION_LOOKUP.get(resolved.id)?.foodCode;
+        }
+      }
+      return foodCode ? foodsMap.get(foodCode) : undefined;
+    };
+
+    const evalResult = evaluateRecipeNutrition(
+      {
+        id: fitBiteRecipe.id,
+        name: fitBiteRecipe.name,
+        servings: fitBiteRecipe.servings,
+        requiredIngredients: fitBiteIngredients.map(ing => ({
+          id: ing.id,
+          name: ing.name,
+          amount: ing.amount,
+          unit: ing.unit,
+          originalRawText: ing.originalRawText
+        })),
+        pantryIngredients: pantryIngredients.map(p => ({
+          id: p.canonicalId,
+          name: p.displayName,
+          amount: p.amount,
+          unit: p.unit
+        }))
+      },
+      {
+        foodLookup,
+        allowEstimated: true,
+        mode: 'dual'
+      }
+    );
+
+    if (evalResult.total) {
+      fitBiteRecipe.nutrition = {
+        calories: Math.round(evalResult.total.caloriesKcal),
+        protein: roundTo(evalResult.total.proteinGrams, 1),
+        fat: roundTo(evalResult.total.fatGrams, 1),
+        carbs: roundTo(evalResult.total.carbGrams, 1),
+        confidence: evalResult.confidence,
+        calorieRange: evalResult.calorieRange,
+        isEstimated: evalResult.isEstimated
+      };
+    }
 
     return { normalized, fitBiteRecipe };
   }
@@ -295,10 +467,6 @@ export class Normalizer {
     return null;
   }
 
-  /**
-   * 严格收紧事实来源：只有当源文存在明确的整道菜耗时字段（如“预计耗时：30 分钟”或“耗时: 十分钟”）时才解析
-   * 严禁从普通步骤或段落描述中抓取步骤时长！
-   */
   public static parseEstimatedMinutes(rawTimeText?: string): number | null {
     if (!rawTimeText) return null;
 

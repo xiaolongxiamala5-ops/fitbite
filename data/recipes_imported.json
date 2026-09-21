@@ -53,7 +53,18 @@
       "炒"
     ],
     "cookingMethod": "炒",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 149,
+      "protein": 10,
+      "fat": 9.6,
+      "carbs": 7.1,
+      "confidence": "estimated",
+      "calorieRange": [
+        137,
+        161
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "简单",
     "rawDifficulty": "★★",
@@ -75,7 +86,8 @@
       {
         "id": "v_broccoli",
         "name": "西兰花",
-        "unit": "约",
+        "amount": 200,
+        "unit": "g",
         "originalRawText": "西兰花 1 个",
         "mode": "single"
       }
@@ -101,7 +113,18 @@
       "家常菜"
     ],
     "cookingMethod": null,
-    "nutrition": null,
+    "nutrition": {
+      "calories": 58,
+      "protein": 6.3,
+      "fat": 1,
+      "carbs": 9,
+      "confidence": "estimated",
+      "calorieRange": [
+        54,
+        63
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "简单",
     "rawDifficulty": "★★",
@@ -160,7 +183,18 @@
       "凉菜"
     ],
     "cookingMethod": "拌",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 293,
+      "protein": 49.7,
+      "fat": 8.5,
+      "carbs": 4.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        269,
+        316
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "中等",
     "rawDifficulty": "★★★",
@@ -210,7 +244,7 @@
     ],
     "pantryIngredients": [
       "preset_scallion",
-      "preset_chili_powder",
+      "preset_dried_chili",
       "pantry_soy_sauce",
       "preset_vinegar",
       "preset_sugar",
@@ -220,6 +254,7 @@
       "preset_starch",
       "pantry_oil",
       "preset_sesame_oil",
+      "preset_chili_oil",
       "preset_doubanjiang"
     ],
     "instructions": [
@@ -250,7 +285,18 @@
       "炒"
     ],
     "cookingMethod": "炒",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 1487,
+      "protein": 75,
+      "fat": 114.8,
+      "carbs": 42.4,
+      "confidence": "estimated",
+      "calorieRange": [
+        1368,
+        1606
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "困难",
     "rawDifficulty": "★★★★",
@@ -301,7 +347,18 @@
       "高蛋白"
     ],
     "cookingMethod": null,
-    "nutrition": null,
+    "nutrition": {
+      "calories": 226,
+      "protein": 22.2,
+      "fat": 12.3,
+      "carbs": 6.4,
+      "confidence": "estimated",
+      "calorieRange": [
+        208,
+        244
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "简单",
     "rawDifficulty": "★★",
@@ -350,7 +407,18 @@
       "高蛋白"
     ],
     "cookingMethod": "焖",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 128,
+      "protein": 17.8,
+      "fat": 3.9,
+      "carbs": 5.3,
+      "confidence": "estimated",
+      "calorieRange": [
+        118,
+        138
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "困难",
     "rawDifficulty": "★★★★",
@@ -396,7 +464,18 @@
       "高蛋白"
     ],
     "cookingMethod": "蒸",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 293,
+      "protein": 16,
+      "fat": 19,
+      "carbs": 14.5,
+      "confidence": "estimated",
+      "calorieRange": [
+        269,
+        316
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "简单",
     "rawDifficulty": "★★",
@@ -418,24 +497,32 @@
       {
         "id": "p_tofu_silken",
         "name": "内酯豆腐",
+        "amount": 1,
+        "unit": "盒",
         "originalRawText": "内脂豆腐（推荐清美）",
         "mode": "single"
       },
       {
         "id": "p_salted_duck_egg",
         "name": "咸鸭蛋",
+        "amount": 1,
+        "unit": "枚",
         "originalRawText": "咸鸭蛋（推荐留夫鸭的，这个是灵魂）",
         "mode": "single"
       },
       {
         "id": "p_pork_belly",
         "name": "五花肉",
+        "amount": 25,
+        "unit": "g",
         "originalRawText": "五花肉（超市的肉糜也行）",
         "mode": "anyOf",
         "alternatives": [
           {
             "id": "p_pork_belly",
-            "name": "五花肉"
+            "name": "五花肉",
+            "amount": 25,
+            "unit": "g"
           },
           {
             "id": "p_pork_minced",
@@ -447,7 +534,6 @@
     "pantryIngredients": [
       "pantry_garlic",
       "preset_ginger",
-      "preset_chili_powder",
       "preset_sichuan_pepper",
       "pantry_salt",
       "pantry_soy_sauce"
@@ -473,7 +559,18 @@
       "植物蛋白"
     ],
     "cookingMethod": "炒",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 324,
+      "protein": 23.4,
+      "fat": 19.7,
+      "carbs": 13.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        298,
+        350
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "中等",
     "rawDifficulty": "★★★",
@@ -522,7 +619,7 @@
       "preset_sugar",
       "preset_vinegar",
       "preset_sesame_oil",
-      "preset_chili_powder",
+      "preset_chili_oil",
       "preset_scallion"
     ],
     "instructions": [
@@ -537,7 +634,18 @@
       "植物蛋白"
     ],
     "cookingMethod": null,
-    "nutrition": null,
+    "nutrition": {
+      "calories": 584,
+      "protein": 30.8,
+      "fat": 43.8,
+      "carbs": 17.3,
+      "confidence": "estimated",
+      "calorieRange": [
+        537,
+        631
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "简单",
     "rawDifficulty": "★",
@@ -559,16 +667,16 @@
       {
         "id": "v_green_bell_pepper",
         "name": "青椒",
-        "amount": 2,
-        "unit": "个",
+        "amount": 200,
+        "unit": "g",
         "originalRawText": "青椒",
         "mode": "single"
       },
       {
         "id": "c_potato",
         "name": "土豆",
-        "amount": 2,
-        "unit": "个",
+        "amount": 300,
+        "unit": "g",
         "originalRawText": "土豆",
         "mode": "single"
       },
@@ -602,7 +710,18 @@
       "快手菜"
     ],
     "cookingMethod": "炒",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 1994,
+      "protein": 40.5,
+      "fat": 62.5,
+      "carbs": 319.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        1835,
+        2154
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "中等",
     "rawDifficulty": "★★★",
@@ -653,7 +772,18 @@
       "炒"
     ],
     "cookingMethod": "炒",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 116,
+      "protein": 5.7,
+      "fat": 1,
+      "carbs": 24.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        107,
+        125
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "中等",
     "rawDifficulty": "★★★",
@@ -708,7 +838,18 @@
       "凉菜"
     ],
     "cookingMethod": "拌",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 218,
+      "protein": 11.4,
+      "fat": 18.2,
+      "carbs": 2.1,
+      "confidence": "estimated",
+      "calorieRange": [
+        200,
+        235
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "简单",
     "rawDifficulty": "★★",
@@ -756,7 +897,18 @@
       "凉菜"
     ],
     "cookingMethod": "拌",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 37,
+      "protein": 1.7,
+      "fat": 0.4,
+      "carbs": 6.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        34,
+        40
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "简单",
     "rawDifficulty": "★",
@@ -778,7 +930,8 @@
       {
         "id": "p_fish_seabass",
         "name": "鲈鱼",
-        "unit": "一条",
+        "amount": 1,
+        "unit": "条",
         "originalRawText": "鲈鱼（害怕杀鱼的同学可以让店家帮忙杀）",
         "mode": "single"
       }
@@ -808,7 +961,18 @@
       "高蛋白"
     ],
     "cookingMethod": "蒸",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 418,
+      "protein": 54.5,
+      "fat": 21.5,
+      "carbs": 1.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        385,
+        452
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "中等",
     "rawDifficulty": "★★★",
@@ -869,7 +1033,6 @@
       }
     ],
     "pantryIngredients": [
-      "preset_chili_powder",
       "pantry_oil",
       "pantry_salt",
       "preset_cooking_wine",
@@ -897,7 +1060,18 @@
       "炒"
     ],
     "cookingMethod": "炒",
-    "nutrition": null,
+    "nutrition": {
+      "calories": 174,
+      "protein": 6,
+      "fat": 10,
+      "carbs": 18,
+      "confidence": "estimated",
+      "calorieRange": [
+        160,
+        188
+      ],
+      "isEstimated": true
+    },
     "servings": null,
     "difficulty": "中等",
     "rawDifficulty": "★★★",

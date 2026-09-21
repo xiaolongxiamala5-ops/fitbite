@@ -1,13 +1,61 @@
 import React from 'react';
 import { Recipe } from '../../data/recipes';
 import { MatchResult } from '../../core/matcher/types';
-import { PANTRY_ITEMS } from '../../core/pantry/pantry';
+import { getPantryItemName } from '../../ui/pantryPresets';
 import { useFridge } from '../../context/FridgeContext';
 
 interface RecipeDetailModalProps {
   recipe: Recipe | null;
   matchResult?: MatchResult | null;
   onClose: () => void;
+}
+
+/**
+ * 调料 ID → 中文展示词典
+ * 覆盖主库之外的工程预设 ID，确保 UI 层永不裸露 preset_sugar / pantry_oil 等原始字符
+ */
+const PANTRY_ID_LABEL_MAP: Record<string, string> = {
+  pantry_oil: '食用油',
+  pantry_salt: '食盐',
+  pantry_soy_sauce: '生抽',
+  pantry_garlic: '大蒜',
+  pantry_black_pepper: '黑胡椒',
+  preset_chicken_essence: '鸡精',
+  preset_ginger: '生姜',
+  preset_starch: '淀粉',
+  preset_cooking_wine: '料酒',
+  preset_vinegar: '香醋',
+  preset_sugar: '白糖',
+  preset_oyster_sauce: '蚝油',
+  preset_scallion: '葱',
+  preset_star_anise: '八角',
+  preset_sichuan_pepper: '花椒',
+  preset_sesame_oil: '芝麻油',
+  preset_cumin: '孜然',
+  preset_chili_powder: '辣椒粉',
+  preset_doubanjiang: '豆瓣酱',
+  preset_ketchup: '番茄酱'
+};
+
+const PANTRY_ID_PREFIXES = ['custom_pantry_', 'preset_', 'pantry_', 'custom_'];
+
+/**
+ * 调料名称中文化统一入口：词典命中 → 全局名称定位器 → 去除工程前缀兜底
+ */
+function resolvePantryLabel(id: string): string {
+  if (!id) return '';
+
+  const dictHit = PANTRY_ID_LABEL_MAP[id];
+  if (dictHit) return dictHit;
+
+  const located = getPantryItemName(id);
+  if (located) return located;
+
+  const stripped = PANTRY_ID_PREFIXES.reduce(
+    (acc, prefix) => (acc.startsWith(prefix) ? acc.slice(prefix.length) : acc),
+    id
+  );
+  return stripped.replace(/_/g, ' ').trim() || id;
 }
 
 export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
@@ -39,9 +87,6 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
         <div className="recipe-modal-header">
           <div>
             <h2 className="recipe-modal-title">{recipe.name}</h2>
-            <div style={{ fontSize: '12px', color: 'var(--ios-forest-light)', marginTop: '4px', fontWeight: 500 }}>
-              {recipe.source || 'FitBite 家常厨房灵感'}
-            </div>
           </div>
           <button
             type="button"
@@ -66,13 +111,79 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
           )}
         </div>
 
-        {/* 营养参考标签 */}
-        <div className="recipe-modal-nutrition">
-          <span className="nutrition-pill">🔥 <strong>{recipe.calories}</strong> kcal</span>
-          <span className="nutrition-pill">🥩 蛋白 <strong>{recipe.nutrition.protein}g</strong></span>
-          <span className="nutrition-pill">🥑 脂肪 <strong>{recipe.nutrition.fat}g</strong></span>
-          <span className="nutrition-pill">🍚 碳水 <strong>{recipe.nutrition.carbs}g</strong></span>
-        </div>
+        {/* 营养参考标签 (双轨模式：verified 精准核算 vs estimated 厨房估算) */}
+        {recipe.nutrition ? (() => {
+          const { nutrition } = recipe;
+          const isVerified = nutrition.confidence === 'verified';
+          const pEnergy = (nutrition.protein || 0) * 4;
+          const fEnergy = (nutrition.fat || 0) * 9;
+          const cEnergy = (nutrition.carbs || 0) * 4;
+          const totalMacroEnergy = pEnergy + fEnergy + cEnergy;
+
+          const pPct = totalMacroEnergy > 0 ? Math.round((pEnergy / totalMacroEnergy) * 100) : 0;
+          const fPct = totalMacroEnergy > 0 ? Math.round((fEnergy / totalMacroEnergy) * 100) : 0;
+          const cPct = totalMacroEnergy > 0 ? Math.max(0, 100 - pPct - fPct) : 0;
+
+          const calorieDisplay = isVerified
+            ? `${recipe.calories || nutrition.calories || 0} kcal`
+            : nutrition.calorieRange
+              ? `约 ${nutrition.calorieRange[0]}–${nutrition.calorieRange[1]} kcal`
+              : `约 ${recipe.calories || nutrition.calories || 0} kcal`;
+
+          return (
+            <div className="recipe-modal-nutrition">
+              <div className="nutrition-pills-row">
+                <span className="nutrition-pill">
+                  🔥 <strong>{calorieDisplay}</strong>
+                </span>
+                <span className="nutrition-pill">
+                  🥩 蛋白 <strong>{nutrition.protein}g</strong>
+                </span>
+                <span className="nutrition-pill">
+                  🥑 脂肪 <strong>{nutrition.fat}g</strong>
+                </span>
+                <span className="nutrition-pill">
+                  🍚 碳水 <strong>{nutrition.carbs}g</strong>
+                </span>
+                {isVerified ? (
+                  <span className="nutrition-badge-verified">精准核算</span>
+                ) : (
+                  <span className="nutrition-badge-estimated">厨房估算</span>
+                )}
+              </div>
+              {totalMacroEnergy > 0 && (
+                <div className="macro-ratio-wrapper">
+                  <div
+                    className="macro-ratio-bar"
+                    title={`供能比: 蛋白 ${pPct}%, 脂肪 ${fPct}%, 碳水 ${cPct}%`}
+                  >
+                    {pPct > 0 && <div className="macro-segment-protein" style={{ width: `${pPct}%` }} />}
+                    {fPct > 0 && <div className="macro-segment-fat" style={{ width: `${fPct}%` }} />}
+                    {cPct > 0 && <div className="macro-segment-carbs" style={{ width: `${cPct}%` }} />}
+                  </div>
+                  <div className="macro-ratio-labels">
+                    <span className="macro-label-item">
+                      <span className="macro-dot protein" />
+                      蛋白 {pPct}%
+                    </span>
+                    <span className="macro-label-item">
+                      <span className="macro-dot fat" />
+                      脂肪 {fPct}%
+                    </span>
+                    <span className="macro-label-item">
+                      <span className="macro-dot carbs" />
+                      碳水 {cPct}%
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })() : (
+          <div className="recipe-modal-nutrition" style={{ fontSize: '12px', color: 'var(--ios-text-secondary)', padding: '4px 0' }}>
+            <span>🥗 营养数据核算中（待可信估算）</span>
+          </div>
+        )}
 
         {/* 一、主食材清单 */}
         <div className="recipe-modal-section">
@@ -93,7 +204,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                   </div>
                   <div className="ingredient-item-meta">
                     <span style={{ marginRight: '8px' }}>
-                      {item.amount} {item.unit}
+                      {item.amount > 0 ? `${item.amount} ${item.unit || ''}`.trim() : (item.unit || '适量')}
                     </span>
                     <span className={`pantry-status-badge ${hasIngredient ? 'has' : 'missing'}`}>
                       {hasIngredient ? '冰箱已有' : '待备'}
@@ -116,8 +227,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
           <div>
             {recipe.pantryIngredients && recipe.pantryIngredients.length > 0 ? (
               recipe.pantryIngredients.map(pId => {
-                const pantryObj = PANTRY_ITEMS.find(p => p.id === pId);
-                const name = pantryObj ? pantryObj.name : pId;
+                const name = resolvePantryLabel(pId);
                 const hasPantry = userPantrySet.has(pId);
                 return (
                   <div key={pId} className="ingredient-item-row">

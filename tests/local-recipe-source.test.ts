@@ -110,8 +110,10 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
       expect(kungPao.difficulty).toBe('困难');
       expect(kungPao.rawDifficulty).toBe('★★★★');
 
-      // 核心护栏：nutrition 严格为 null
-      expect(kungPao.nutrition).toBeNull();
+      // 营养估算脱困验证
+      expect(kungPao.nutrition).not.toBeNull();
+      expect(kungPao.nutrition?.confidence).toBe('estimated');
+      expect(kungPao.nutrition?.calories).toBeGreaterThan(0);
 
       // 出处严格保留
       expect(kungPao.provenance.source).toBe('howtocook');
@@ -147,7 +149,7 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
 
       // 步骤与调料
       expect(kungPao.instructions.length).toBe(21);
-      expect(kungPao.pantryIngredients.length).toBe(12);
+      expect(kungPao.pantryIngredients.length).toBe(13);
     });
 
     it('3.2 Adapter 单独验证：FitBiteRecipe 与 SQLite Row 双向转换具备 100% 幂等与保真性', () => {
@@ -164,7 +166,7 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
         expect(restored.pantryIngredients).toEqual(original.pantryIngredients);
         expect(restored.instructions).toEqual(original.instructions);
         expect(restored.provenance).toEqual(original.provenance);
-        expect(restored.nutrition).toBeNull();
+        expect(restored.nutrition).toEqual(original.nutrition);
       });
     });
   });
@@ -254,6 +256,9 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
         expect(kungPao).not.toBeNull();
         expect(kungPao?.provenance.source).toBe('howtocook');
         expect(kungPao?.requiredIngredients[0].mode).toBe('anyOf');
+        expect(kungPao?.nutrition).not.toBeNull();
+        expect(kungPao?.nutrition?.confidence).toBe('estimated');
+        expect(kungPao?.nutrition?.calories).toBeGreaterThan(0);
 
         // 4. 验证文件数据库上的重复导入幂等性
         const summary2 = fileSource.importFromJson(jsonPath);

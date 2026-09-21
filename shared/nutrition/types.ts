@@ -99,6 +99,19 @@ export type NutritionErrorCode =
   | 'CALCULATION_ERROR'
   | 'EMPTY_RECIPE';
 
+export type NutritionConfidenceLevel = 'verified' | 'estimated' | 'incomplete';
+
+export interface RecipeNutrition {
+  calories: number;                      // 基础计算热量 (kcal)
+  protein: number;                       // 蛋白质 (g)
+  fat: number;                           // 脂肪 (g)
+  carbs: number;                         // 碳水化合物 (g)
+  confidence: NutritionConfidenceLevel;  // 置信度标识
+  calorieRange?: [number, number];       // 估算区间，仅在 estimated 时计算 (calories ±8%)
+  isEstimated?: boolean;                 // 保留向下兼容
+  source?: string;
+}
+
 export interface IngredientNutritionSuccessResult {
   success: true;
   food: NutritionFood;
@@ -110,6 +123,7 @@ export interface IngredientNutritionSuccessResult {
   actualGrams: number;
   actualEdibleGrams: number;
   nutrients: NutrientValues;
+  isEstimated?: boolean;
 }
 
 export interface IngredientNutritionFailureResult {
@@ -142,6 +156,8 @@ export interface RecipeNutritionSuccess {
   perServing: NutrientValues | null;
   servings: number | null;
   ingredients: IngredientNutritionSuccessResult[];
+  confidence?: NutritionConfidenceLevel;
+  calorieRange?: [number, number];
 }
 
 export interface RecipeNutritionIncomplete {
@@ -152,6 +168,7 @@ export interface RecipeNutritionIncomplete {
   servings: number | null;
   incompleteReasons: IncompleteReason[];
   successfulIngredients: IngredientNutritionSuccessResult[];
+  confidence?: NutritionConfidenceLevel;
 }
 
 export type RecipeNutritionResult =

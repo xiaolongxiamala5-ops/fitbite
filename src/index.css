@@ -831,11 +831,18 @@ button, input {
 
 .recipe-modal-nutrition {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 18px;
   padding-bottom: 14px;
   border-bottom: 0.5px solid rgba(36, 94, 70, 0.12);
+}
+
+.nutrition-pills-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .nutrition-pill {
@@ -846,6 +853,96 @@ button, input {
   font-size: 12px;
   color: var(--ios-forest-light);
   font-family: var(--font-ai-mono);
+}
+
+.nutrition-badge-verified {
+  background: rgba(16, 185, 129, 0.1);
+  border: 0.5px solid rgba(16, 185, 129, 0.3);
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #065f46;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.nutrition-badge-estimated {
+  background: rgba(245, 158, 11, 0.1);
+  border: 0.5px solid rgba(245, 158, 11, 0.3);
+  border-radius: 10px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #92400e;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.macro-ratio-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.macro-ratio-bar {
+  display: flex;
+  height: 6px;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.macro-segment-protein {
+  background: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.macro-segment-fat {
+  background: #f59e0b;
+  transition: width 0.3s ease;
+}
+
+.macro-segment-carbs {
+  background: #10b981;
+  transition: width 0.3s ease;
+}
+
+.macro-ratio-labels {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--ios-text-secondary);
+  font-family: var(--font-ai-mono);
+}
+
+.macro-label-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.macro-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.macro-dot.protein {
+  background: #3b82f6;
+}
+
+.macro-dot.fat {
+  background: #f59e0b;
+}
+
+.macro-dot.carbs {
+  background: #10b981;
 }
 
 .recipe-modal-section {
@@ -1147,6 +1244,75 @@ button, input {
 .other-recipes summary {
   cursor: pointer;
   padding: 4px 0;
+}
+
+/* ==========================================================================
+   菜谱推荐分组折叠与微展开动效 (iOS 温润低干预毛玻璃质感)
+   ========================================================================== */
+.collapsible-recipe-section {
+  width: 100%;
+}
+
+.recipe-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 16px;
+  background: rgba(255, 253, 248, 0.42);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 0.5px solid rgba(255, 255, 255, 0.75);
+  border-radius: 16px;
+  color: var(--ios-forest-light);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-chinese);
+  box-shadow: 0 2px 8px rgba(65, 42, 20, 0.04), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.8);
+}
+
+.recipe-expand-btn:hover {
+  background: rgba(255, 254, 250, 0.68);
+  border-color: rgba(255, 255, 255, 0.95);
+  color: var(--ios-forest);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(65, 42, 20, 0.07), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.9);
+}
+
+.recipe-expand-btn:active {
+  transform: translateY(0);
+  background: rgba(255, 253, 248, 0.5);
+}
+
+.recipe-expand-icon {
+  font-size: 11px;
+  display: inline-block;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.75;
+}
+
+.recipe-expand-icon.expanded {
+  transform: rotate(180deg);
+}
+
+/* 新展开卡片的轻柔微动效 (轻、顺、不突兀) */
+@keyframes recipeCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recipe-card-animated {
+  animation: recipeCardFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
 .home-footer {

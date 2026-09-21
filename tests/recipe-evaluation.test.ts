@@ -455,4 +455,95 @@ describe('Recipe Nutrition Evaluation & Materiality Policy Test Suite (C.2.3)', 
     });
   });
 
+  // =========================================================================
+  // 6. Dual-Track Kitchen Estimation (nutrition_estimated)
+  // =========================================================================
+  describe('6. Dual-Track Kitchen Estimation (nutrition_estimated)', () => {
+    it('6.1 去水分校准：蒜 2瓣 (4g) + 姜 1片 (1g) + 葱 1段 (1.5g) 热量累计 <= 5 kcal', () => {
+      // 蒜 2 瓣 -> 4g (大蒜 126 kcal/100g -> ~5 kcal)
+      // 姜 1 片 -> 1g (生姜 41 kcal/100g -> ~0.4 kcal)
+      // 葱 1 段 -> 1.5g (葱 30 kcal/100g -> ~0.45 kcal)
+      const res = evaluateRecipeNutrition(
+        {
+          name: '家常爆锅底料',
+          requiredIngredients: [
+            { name: '大蒜', id: 'pantry_garlic', amount: 2, unit: '瓣' },
+            { name: '生姜', id: 'preset_ginger', amount: 1, unit: '片' },
+            { name: '葱', id: 'preset_scallion', amount: 1, unit: '段' }
+          ]
+        },
+        { allowEstimated: true }
+      );
+
+      expect(res.canEstimateMacros).toBe(true);
+      expect(res.nutritionStatus).toBe('nutrition_estimated');
+      expect(res.confidence).toBe('estimated');
+      expect(res.total).not.toBeNull();
+      // 真实去水分校准下，蒜2瓣+姜1片+葱1段总能量极低（约 5 kcal 左右，绝非虚高 15-20 kcal）
+      expect(res.total!.caloriesKcal).toBeLessThanOrEqual(10);
+      expect(res.total!.caloriesKcal).toBeGreaterThan(0);
+    });
+
+    it('6.2 未定量食用油强制注入快炒底线油 8g (~72 kcal, 8g 脂肪)，进入 nutrition_estimated，严禁阻断', () => {
+      const res = evaluateRecipeNutrition(
+        {
+          name: '家常清炒西兰花（油未定量）',
+          requiredIngredients: [
+            { name: '西兰花', amount: 200, unit: 'g', food: realSanotsuBroccoli, weightBasis: 'edible_net' }
+          ],
+          pantryIngredients: ['pantry_oil']
+        },
+        { allowEstimated: true }
+      );
+
+      expect(res.canEstimateMacros).toBe(true);
+      expect(res.nutritionStatus).toBe('nutrition_estimated');
+      expect(res.confidence).toBe('estimated');
+      expect(res.total).not.toBeNull();
+      expect(res.blockingCriticalIngredients.length).toBe(0);
+
+      // 西兰花 200g (54 kcal, 1.2g fat) + 8g 底线油 (71.84 kcal, 7.98g fat)
+      expect(res.total!.fatGrams).toBeCloseTo(9.2, 1);
+      expect(res.total!.caloriesKcal).toBeCloseTo(126, 0);
+      expect(res.calorieRange).toBeDefined();
+      expect(res.calorieRange![0]).toBe(Math.round(res.total!.caloriesKcal * 0.92));
+      expect(res.calorieRange![1]).toBe(Math.round(res.total!.caloriesKcal * 1.08));
+    });
+
+    it('6.3 瓷勺标准：1 瓷勺食用油按 8g 计，1 瓷勺生抽按 10g 计', () => {
+      const res = evaluateRecipeNutrition(
+        {
+          name: '勺量家常热菜',
+          requiredIngredients: [
+            { name: '鸡胸肉', amount: 100, unit: 'g', food: realSanotsuChickenBreast, weightBasis: 'edible_net' },
+            { name: '食用油', id: 'pantry_oil', amount: 1, unit: '勺' }
+          ]
+        },
+        { allowEstimated: true }
+      );
+
+      expect(res.nutritionStatus).toBe('nutrition_estimated');
+      expect(res.confidence).toBe('estimated');
+      // 100g 鸡胸肉 (1.9g 脂肪) + 1 勺油 (8g 脂肪) -> 9.9g 脂肪
+      expect(res.total!.fatGrams).toBeCloseTo(9.9, 1);
+    });
+
+    it('6.4 纯公制定量菜谱严格保持 nutrition_verified，置信度为 verified，且无 calorieRange', () => {
+      const res = evaluateRecipeNutrition({
+        name: '精准定量鸡胸肉',
+        requiredIngredients: [
+          { name: '鸡胸肉', amount: 200, unit: 'g', food: realSanotsuChickenBreast, weightBasis: 'edible_net' }
+        ],
+        pantryIngredients: [
+          { name: '花生油', amount: 10, unit: 'g', food: realSanotsuOil, weightBasis: 'edible_net' }
+        ]
+      });
+
+      expect(res.nutritionStatus).toBe('nutrition_verified');
+      expect(res.confidence).toBe('verified');
+      expect(res.calorieRange).toBeUndefined();
+      expect(res.isEstimated).toBe(false);
+    });
+  });
+
 });

@@ -80,7 +80,7 @@ export class RecipeAdapter {
       pantryIngredients: JSON.parse(row.pantry_ingredients_json),
       instructions: JSON.parse(row.instructions_json),
       tags: JSON.parse(row.tags_json),
-      nutrition: null
+      nutrition: row.nutrition_json ? JSON.parse(row.nutrition_json) : null
     };
   }
 }

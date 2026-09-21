@@ -115,6 +115,13 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     notes: '生鲜牛肉，净肉净重计算',
     verifiedBy: 'manual_curation'
   },
+  {
+    canonicalId: 'p_pork_minced',
+    foodCode: '081108', // 猪肉末 / 肉糜
+    defaultWeightBasis: 'edible_net',
+    notes: '猪肉末/肉糜，纯肉净重计算',
+    verifiedBy: 'manual_curation'
+  },
 
   // ================= 蔬菜类 (Vegetable) =================
   {
@@ -143,6 +150,34 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     foodCode: '044301', // 洋葱（鲜）［葱头］
     defaultWeightBasis: 'gross_as_purchased',
     notes: '鲜洋葱，去外皮可食部约 90%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_green_bell_pepper',
+    foodCode: '043124', // 甜椒［灯笼椒、柿子椒］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '青椒/菜椒/柿子椒，去蒂去籽可食部约 82%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_mushroom_shiitake',
+    foodCode: '051019', // 香菇（鲜）［香蕈，冬菇］
+    defaultWeightBasis: 'edible_net',
+    notes: '鲜香菇，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_mushroom_shimeji',
+    foodCode: '051011', // 蘑菇（鲜蘑）
+    defaultWeightBasis: 'edible_net',
+    notes: '蟹味菇，鲜蘑 proxy，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_mushroom_white_beech',
+    foodCode: '051011', // 蘑菇（鲜蘑）
+    defaultWeightBasis: 'edible_net',
+    notes: '白玉菇，鲜蘑 proxy，100% 可食',
     verifiedBy: 'manual_curation'
   },
 
@@ -175,3 +210,13 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
 export const CANONICAL_NUTRITION_LOOKUP = new Map<string, CanonicalNutritionMapping>(
   CANONICAL_TO_SANOTSU.map(m => [m.canonicalId, m])
 );
+
+/**
+ * 调料/油脂厨房映射表 (用于估算模式与油脂兜底)
+ */
+export const PANTRY_TO_SANOTSU: Record<string, string> = {
+  pantry_oil: '192014',          // 色拉油 (898 kcal, 99.8g fat / 100g)
+  preset_sesame_oil: '192014',   // 芝麻油/植物油脂 proxy
+  preset_sugar: '071001',        // 白砂糖 (fallback food)
+  preset_starch: '022103'        // 玉米淀粉 (346 kcal, 85g carbs / 100g)
+};
