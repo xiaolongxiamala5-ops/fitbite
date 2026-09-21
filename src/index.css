@@ -945,6 +945,166 @@ button, input {
   background: #10b981;
 }
 
+/* 泛称输入消歧滑出栏 (0.18s 平滑过渡) */
+.disambiguation-container {
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 0.5px solid rgba(47, 118, 91, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  animation: slideDownDisambiguation 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownDisambiguation {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.disambiguation-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ios-forest);
+  margin-bottom: 8px;
+}
+
+.disambiguation-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.disambiguation-pill {
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ios-forest);
+  background: rgba(36, 94, 70, 0.08);
+  border: 0.5px solid rgba(36, 94, 70, 0.25);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.disambiguation-pill:hover {
+  background: rgba(36, 94, 70, 0.16);
+  transform: translateY(-1px);
+}
+
+.disambiguation-pill:active {
+  transform: scale(0.97);
+}
+
+/* 健康分流徽标 (Calorie Tier Badges) */
+.health-badge-lean {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 0.5px solid rgba(16, 185, 129, 0.3);
+  color: #047857;
+}
+
+.health-badge-warning {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(245, 158, 11, 0.14);
+  border: 0.5px solid rgba(245, 158, 11, 0.35);
+  color: #b45309;
+}
+
+/* 详情弹窗：减脂烹饪改良建议卡片 */
+.health-guidance-card {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(254, 243, 199, 0.55);
+  border: 0.5px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.health-guidance-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.health-guidance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.health-guidance-item {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #78350f;
+}
+
+/* 推荐流菜谱搜索框 */
+.recipe-search-bar {
+  position: relative;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.recipe-search-input {
+  width: 100%;
+  padding: 10px 36px 10px 14px;
+  font-size: 13px;
+  border-radius: 10px;
+  border: 0.5px solid rgba(36, 94, 70, 0.2);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ios-forest);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.recipe-search-input:focus {
+  border-color: #10b981;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+.recipe-search-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ios-text-secondary);
+  font-size: 14px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .recipe-modal-section {
   margin-bottom: 20px;
 }

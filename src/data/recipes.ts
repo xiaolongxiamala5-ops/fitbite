@@ -13,6 +13,8 @@ export interface Recipe {
   servings: number;
   source: string;
   instructions: string[];
+  tags?: string[];
+  cookingMethod?: string;
 }
 
 function toLegacyRecipe(recipe: DetailedRecipe): Recipe {

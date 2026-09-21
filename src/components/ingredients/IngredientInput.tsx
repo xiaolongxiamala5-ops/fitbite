@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { resolveAlias } from '../../core/ingredients/aliasResolver';
+import { findDisambiguation, DisambiguationPill } from '../../core/ingredients/taxonomy';
 import { useFridge } from '../../context/FridgeContext';
 
 export const IngredientInput: React.FC = () => {
   const [text, setText] = useState('');
   const [tip, setTip] = useState<string | null>(null);
   const { addIngredient } = useFridge();
+
+  // 侦测是否触发泛称消歧字典
+  const disambiguation = useMemo(() => findDisambiguation(text), [text]);
 
   const handleAdd = () => {
     if (!text.trim()) return;
@@ -16,6 +20,15 @@ export const IngredientInput: React.FC = () => {
       setTip(null);
     } else {
       setTip(`暂未收录食材 "${text}"，试着输入“大虾”、“豆腐”、“西红柿”`);
+    }
+  };
+
+  const handleSelectPill = (pill: DisambiguationPill) => {
+    const resolved = resolveAlias(pill.name) || resolveAlias(pill.canonicalId);
+    if (resolved) {
+      addIngredient(resolved);
+      setText('');
+      setTip(null);
     }
   };
 
@@ -59,6 +72,26 @@ export const IngredientInput: React.FC = () => {
           加入冰箱
         </button>
       </div>
+
+      {/* 泛称消歧胶囊滑出栏 (0.18s 平滑过渡) */}
+      {disambiguation && (
+        <div className="disambiguation-container">
+          <div className="disambiguation-title">💡 种类较多，您家里的具体是：</div>
+          <div className="disambiguation-pills">
+            {disambiguation.disambiguationPills.map(pill => (
+              <button
+                key={pill.canonicalId}
+                type="button"
+                className="disambiguation-pill"
+                onClick={() => handleSelectPill(pill)}
+              >
+                {pill.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {tip && (
         <div style={{ color: '#ef4444', fontSize: '12px', marginTop: '6px' }}>
           {tip}

@@ -89,6 +89,50 @@ export const CANONICAL_CATALOG: CanonicalDefinition[] = [
     category: 'protein',
     aliases: ['草鱼', '草鱼肉', '草鱼片', '草鱼块', '草鱼肉片', '净草鱼肉']
   },
+  {
+    id: 'p_fish_salmon',
+    slug: 'fish_salmon',
+    name: '三文鱼',
+    category: 'protein',
+    aliases: ['三文鱼', '三文鱼肉', '三文鱼排', '鲑鱼']
+  },
+  {
+    id: 'p_fish_basa',
+    slug: 'fish_basa',
+    name: '巴沙鱼',
+    category: 'protein',
+    aliases: ['巴沙鱼', '巴沙鱼柳', '巴沙鱼片', '龙利鱼']
+  },
+
+  // ================= 基础泛称类 (Generic / Hypernym) =================
+  {
+    id: 'p_fish_generic',
+    slug: 'fish_generic',
+    name: '鱼',
+    category: 'protein',
+    aliases: ['鱼', '海鲜', '海鱼', '河鱼', '鲜鱼', '鱼肉', '生鱼', '活鱼']
+  },
+  {
+    id: 'p_tofu_generic',
+    slug: 'tofu_generic',
+    name: '豆腐',
+    category: 'protein',
+    aliases: ['豆腐', '大豆豆腐', '鲜豆腐']
+  },
+  {
+    id: 'p_pork_generic',
+    slug: 'pork_generic',
+    name: '猪肉',
+    category: 'protein',
+    aliases: ['肉', '猪肉', '肉类', '鲜肉', '生肉']
+  },
+  {
+    id: 'p_egg_generic',
+    slug: 'egg_generic',
+    name: '蛋',
+    category: 'protein',
+    aliases: ['蛋', '蛋类', '禽蛋']
+  },
 
   // 豆制品 - 质地严格区分：内酯/嫩豆腐 与 老/北豆腐 不合并
   {

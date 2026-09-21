@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .DS_Store
+.codex/
 
 # Temporary development notes
 /findings.md

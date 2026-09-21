@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { MatchGroups, MatchResult } from '../../core/matcher/types';
+import { searchRecipesByKeyword } from '../../core/matcher/matcher';
 import { RecipeCard } from './RecipeCard';
 import { RecipeDetailModal } from './RecipeDetailModal';
 
@@ -63,8 +64,9 @@ export const CollapsibleRecipeGrid: React.FC<CollapsibleRecipeGridProps> = ({
 
 export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> = ({ matchGroups }) => {
   const [selectedResult, setSelectedResult] = useState<MatchResult | null>(null);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
-  // 统一聚合所有结果，并严格按“主食材决定可做性”进行重组
+  // 统一聚合所有结果，并严格按“主食材决定可做性”进行重组与健康加权分流
   const { availableNow, oneStepAway, otherList } = useMemo(() => {
     const map = new Map<string, MatchResult>();
     [
@@ -76,17 +78,42 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
       map.set(item.recipe.id, item);
     });
 
-    const all = Array.from(map.values());
+    let all = Array.from(map.values());
+
+    // 搜索过滤（支持菜名、标签与上位词层级反查）
+    if (searchKeyword.trim()) {
+      all = searchRecipesByKeyword(searchKeyword, all);
+    }
 
     // 核心护栏 1：主食材缺失为 0 时即为“现在就能做”，调料不参与阻断
+    // 模块二：引入健康加权（lean_choice 优先加权，cheat_or_share 同度降权后移）
     const ready = all
       .filter(item => item.missingIngredients.length === 0)
-      .sort((a, b) => (b.isFavorited ? 1 : 0) - (a.isFavorited ? 1 : 0));
+      .sort((a, b) => {
+        // 1. 收藏优先
+        if (b.isFavorited !== a.isFavorited) {
+          return (b.isFavorited ? 1 : 0) - (a.isFavorited ? 1 : 0);
+        }
+        // 2. 健康加权分优先：lean_choice 置顶，cheat_or_share 降权
+        const aScore = a.healthAdjustedScore ?? a.matchScore;
+        const bScore = b.healthAdjustedScore ?? b.matchScore;
+        if (bScore !== aScore) {
+          return bScore - aScore;
+        }
+        return 0;
+      });
 
     // 主食材缺 1~2 样即为“就差一步”，调料不阻止
     const stepAway = all
       .filter(item => item.missingIngredients.length === 1 || item.missingIngredients.length === 2)
-      .sort((a, b) => a.missingIngredients.length - b.missingIngredients.length);
+      .sort((a, b) => {
+        if (a.missingIngredients.length !== b.missingIngredients.length) {
+          return a.missingIngredients.length - b.missingIngredients.length;
+        }
+        const aScore = a.healthAdjustedScore ?? a.matchScore;
+        const bScore = b.healthAdjustedScore ?? b.matchScore;
+        return bScore - aScore;
+      });
 
     // 主食材缺失 > 2 样归入其他
     const others = all.filter(item => item.missingIngredients.length > 2);
@@ -96,7 +123,7 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
       oneStepAway: stepAway,
       otherList: others
     };
-  }, [matchGroups]);
+  }, [matchGroups, searchKeyword]);
 
   const renderSection = (enTitle: string, cnSubtitle: string, list: MatchResult[], badgeColor: string) => {
     if (list.length === 0) return null;
@@ -125,12 +152,33 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
 
   return (
     <div className="recommendation-list">
+      {/* 搜索与包含检索框 */}
+      <div className="recipe-search-bar">
+        <input
+          type="text"
+          value={searchKeyword}
+          onChange={e => setSearchKeyword(e.target.value)}
+          placeholder="🔍 搜索菜谱名或食材（如：鱼、豆腐、五花肉...）"
+          className="recipe-search-input"
+        />
+        {searchKeyword && (
+          <button
+            type="button"
+            className="recipe-search-clear"
+            onClick={() => setSearchKeyword('')}
+            aria-label="清空搜索"
+          >
+            ✕
+          </button>
+        )}
+      </div>
+
       {renderSection('Available Now', '现在就能做', availableNow, '#2f765b')}
       {renderSection('One Step Away', '就差一步', oneStepAway, '#c97850')}
 
       {totalActionable === 0 && (
         <div className="empty-recipes">
-          目前还没有满足条件的菜谱，在上方输入或勾选更多食材试一试。
+          {searchKeyword ? `未找到与 “${searchKeyword}” 相关的菜谱，换个关键词试一试。` : '目前还没有满足条件的菜谱，在上方输入或勾选更多食材试一试。'}
         </div>
       )}
 

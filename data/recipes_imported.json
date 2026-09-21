@@ -686,7 +686,19 @@
         "amount": 200,
         "unit": "g",
         "originalRawText": "猪肉（五花肉）",
-        "mode": "single"
+        "mode": "anyOf",
+        "alternatives": [
+          {
+            "id": "p_pork_belly",
+            "name": "五花肉",
+            "amount": 200,
+            "unit": "g"
+          },
+          {
+            "id": "p_pork_generic",
+            "name": "猪肉"
+          }
+        ]
       }
     ],
     "pantryIngredients": [
@@ -933,7 +945,21 @@
         "amount": 1,
         "unit": "条",
         "originalRawText": "鲈鱼（害怕杀鱼的同学可以让店家帮忙杀）",
-        "mode": "single"
+        "mode": "anyOf",
+        "alternatives": [
+          {
+            "id": "p_fish_seabass",
+            "name": "鲈鱼",
+            "amount": 1,
+            "unit": "条"
+          },
+          {
+            "id": "p_fish_generic",
+            "name": "鱼",
+            "amount": 12.5,
+            "unit": "ml"
+          }
+        ]
       }
     ],
     "pantryIngredients": [
@@ -962,14 +988,14 @@
     ],
     "cookingMethod": "蒸",
     "nutrition": {
-      "calories": 418,
-      "protein": 54.5,
-      "fat": 21.5,
+      "calories": 426,
+      "protein": 55.7,
+      "fat": 21.8,
       "carbs": 1.9,
       "confidence": "estimated",
       "calorieRange": [
-        385,
-        452
+        392,
+        461
       ],
       "isEstimated": true
     },

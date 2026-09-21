@@ -125,6 +125,13 @@ export function resolveCanonicalWithOptions(rawText: string): CanonicalResolvedR
     return null;
   }
 
+  // 优先选择具体品种（非 _generic 泛称），确保“猪肉（五花肉）”等优先取具体部位
+  resolvedDefs.sort((a, b) => {
+    const aIsGeneric = a.id.endsWith('_generic') ? 1 : 0;
+    const bIsGeneric = b.id.endsWith('_generic') ? 1 : 0;
+    return aIsGeneric - bIsGeneric;
+  });
+
   if (resolvedDefs.length === 1) {
     return {
       primary: resolvedDefs[0],

@@ -100,6 +100,8 @@ export type NutritionErrorCode =
   | 'EMPTY_RECIPE';
 
 export type NutritionConfidenceLevel = 'verified' | 'estimated' | 'incomplete';
+export type { CalorieTier } from './healthTier';
+
 
 export interface RecipeNutrition {
   calories: number;                      // 基础计算热量 (kcal)

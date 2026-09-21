@@ -1,4 +1,5 @@
 import { Recipe, IngredientAmount } from '../../data/recipes';
+import { CalorieTier } from '../../../shared/nutrition';
 
 export interface MatchResult {
   recipe: Recipe;
@@ -9,6 +10,8 @@ export interface MatchResult {
   missingPantry: string[];
   canMake: boolean;
   isFavorited: boolean;
+  calorieTier?: CalorieTier;
+  healthAdjustedScore?: number;
 }
 
 export interface MatchGroups {

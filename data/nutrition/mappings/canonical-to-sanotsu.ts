@@ -122,6 +122,34 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     notes: '猪肉末/肉糜，纯肉净重计算',
     verifiedBy: 'manual_curation'
   },
+  {
+    canonicalId: 'p_pork_generic',
+    foodCode: '081108', // 猪肉（代表值 proxy）
+    defaultWeightBasis: 'edible_net',
+    notes: '猪肉泛称，按家常中位数净重计算',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_fish_generic',
+    foodCode: '121102', // 鱼类（淡水鱼代表值 proxy）
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '鲜鱼泛称，带骨带鳞可食部约 58%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_tofu_generic',
+    foodCode: '031304', // 豆腐代表值
+    defaultWeightBasis: 'edible_net',
+    notes: '豆腐泛称，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_egg_generic',
+    foodCode: '111101', // 鲜鸡蛋代表值
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '蛋类泛称，带壳可食部约 88%',
+    verifiedBy: 'manual_curation'
+  },
 
   // ================= 蔬菜类 (Vegetable) =================
   {

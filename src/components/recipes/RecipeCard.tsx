@@ -43,6 +43,12 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({ result, onSelect, classN
           ) : (
             <span className="status-badge">差 {missingIngredients.length} 样主食材</span>
           )}
+          {result.calorieTier === 'lean_choice' && (
+            <span className="health-badge-lean">减脂优选</span>
+          )}
+          {result.calorieTier === 'cheat_or_share' && (
+            <span className="health-badge-warning">建议分食 / 高能量</span>
+          )}
         </div>
       </div>
       <div className="recipe-card-arrow">↗</div>

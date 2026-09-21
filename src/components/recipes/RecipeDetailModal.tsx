@@ -3,6 +3,8 @@ import { Recipe } from '../../data/recipes';
 import { MatchResult } from '../../core/matcher/types';
 import { getPantryItemName } from '../../ui/pantryPresets';
 import { useFridge } from '../../context/FridgeContext';
+import { getHealthGuidanceTips } from '../../../shared/nutrition';
+import { isIngredientFulfilled } from '../../core/ingredients/taxonomy';
 
 interface RecipeDetailModalProps {
   recipe: Recipe | null;
@@ -70,10 +72,10 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
   const userFridgeSet = new Set(fridgeIngredients.map(i => i.id));
   const userPantrySet = new Set(pantryIngredients);
 
-  // 核心护栏 1：所有用户可见“可做状态”必须严格统一遵循“主食材决定可做性”
+  // 核心护栏 1：所有用户可见“可做状态”必须严格统一遵循“主食材决定可做性”（支持上位词满足）
   const missingMainCount = matchResult
     ? matchResult.missingIngredients.length
-    : recipe.requiredIngredients.filter(i => !userFridgeSet.has(i.id)).length;
+    : recipe.requiredIngredients.filter(i => !isIngredientFulfilled(i.id, userFridgeSet)).length;
 
   const isReadyToCook = missingMainCount === 0;
 
@@ -177,6 +179,27 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
                   </div>
                 </div>
               )}
+
+              {/* 模块二：高热量减脂烹饪改良建议卡片 */}
+              {(() => {
+                const tips = getHealthGuidanceTips(recipe);
+                if (tips.length === 0) return null;
+                return (
+                  <div className="health-guidance-card">
+                    <div className="health-guidance-title">
+                      <span>💡 减脂改良建议</span>
+                      <span className="health-badge-warning" style={{ fontSize: '10px', padding: '1px 6px' }}>建议分食 / 高能量</span>
+                    </div>
+                    <div className="health-guidance-list">
+                      {tips.map((tip, idx) => (
+                        <div key={idx} className="health-guidance-item">
+                          {tip}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
           );
         })() : (
@@ -195,7 +218,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
           </div>
           <div>
             {recipe.requiredIngredients.map(item => {
-              const hasIngredient = userFridgeSet.has(item.id);
+              const hasIngredient = isIngredientFulfilled(item.id, userFridgeSet);
               return (
                 <div key={item.id} className="ingredient-item-row">
                   <div className="ingredient-item-name">
