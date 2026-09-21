@@ -94,7 +94,9 @@ button, input {
   display: flex;
   justify-content: center;
   position: relative;
+  /* 用 clip 替代 hidden：既裁剪横向溢出，又不建立滚动容器，确保内部 position: sticky 吸顶岛生效 */
   overflow-x: hidden;
+  overflow-x: clip;
   background-color: #e5dacb;
 }
 
@@ -1473,6 +1475,134 @@ button, input {
 
 .recipe-card-animated {
   animation: recipeCardFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* ==========================================================================
+   44px 毛玻璃悬浮双轴吸顶岛 (搜索框 + 筛选标签，滚动折叠)
+   ========================================================================== */
+
+/* 毛玻璃悬浮岛基础：纵向吸顶 */
+.recommendation-island-wrap {
+  position: sticky;
+  top: 10px;
+  z-index: 30;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 14px;
+}
+
+/* 展开态：搜索框与标签流之间的留白 */
+.recommendation-island-wrap .recipe-search-bar {
+  margin-bottom: 8px;
+}
+
+/* 标签流：展开态可换行，折叠态横向滚动 */
+.island-tabs-scroll {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* 44px 折叠吸顶态：胶囊化，左侧横滑标签 + 右侧迷你放大镜 */
+.recommendation-island-wrap.is-collapsed {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 12px;
+  border-radius: 999px;
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-glass-blur);
+  -webkit-backdrop-filter: var(--ios-glass-blur);
+  border: var(--ios-glass-border);
+  box-shadow: var(--ios-glass-shadow);
+}
+
+/* 折叠态标签流：横向滚动，隐藏原生滚动条，禁止换行 */
+.recommendation-island-wrap.is-collapsed .island-tabs-scroll {
+  flex: 1;
+  min-width: 0;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.recommendation-island-wrap.is-collapsed .island-tabs-scroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* 筛选标签胶囊 */
+.island-filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-chinese);
+  color: var(--ios-forest-light);
+  background: rgba(255, 255, 255, 0.42);
+  border: 0.5px solid rgba(255, 255, 255, 0.75);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 4px rgba(45, 30, 15, 0.03), inset 0 0.5px 0.5px rgba(255, 255, 255, 0.6);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.island-filter-tab:hover {
+  background: rgba(255, 255, 255, 0.62);
+  border-color: rgba(255, 255, 255, 0.92);
+  color: var(--ios-forest);
+  transform: translateY(-1px);
+}
+
+.island-filter-tab:active {
+  transform: translateY(0);
+}
+
+.island-filter-tab.active {
+  background: var(--ios-forest-light);
+  color: #ffffff;
+  border-color: var(--ios-forest-light);
+  box-shadow: 0 2px 8px rgba(36, 94, 70, 0.25);
+}
+
+.island-filter-tab.active:hover {
+  background: var(--ios-forest-light);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.island-filter-tab:focus-visible,
+.island-mini-search-btn:focus-visible {
+  outline: 2px solid var(--ios-forest-light);
+  outline-offset: 2px;
+}
+
+/* 折叠态右侧迷你放大镜按钮 */
+.island-mini-search-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  border: 0.5px solid rgba(255, 255, 255, 0.8);
+  color: var(--ios-forest);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 8px;
+  font-size: 14px;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.island-mini-search-btn:active {
+  transform: scale(0.92);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .home-footer {

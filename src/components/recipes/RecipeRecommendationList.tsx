@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { MatchGroups, MatchResult } from '../../core/matcher/types';
 import { searchRecipesByKeyword } from '../../core/matcher/matcher';
 import { RecipeCard } from './RecipeCard';
@@ -9,6 +9,14 @@ interface RecipeRecommendationListProps {
 }
 
 export const DEFAULT_RECIPE_DISPLAY_LIMIT = 3;
+
+type FilterMode = 'all' | 'ready' | 'lean';
+
+const FILTER_TABS: { value: FilterMode; label: string }[] = [
+  { value: 'all', label: '全部' },
+  { value: 'ready', label: '✓ 现成可做' },
+  { value: 'lean', label: '减脂优选' }
+];
 
 interface CollapsibleRecipeGridProps {
   list: MatchResult[];
@@ -65,6 +73,26 @@ export const CollapsibleRecipeGrid: React.FC<CollapsibleRecipeGridProps> = ({
 export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> = ({ matchGroups }) => {
   const [selectedResult, setSelectedResult] = useState<MatchResult | null>(null);
   const [searchKeyword, setSearchKeyword] = useState('');
+  const [filterMode, setFilterMode] = useState<FilterMode>('all');
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const searchInputRef = React.useRef<HTMLInputElement>(null);
+
+  // 吸顶岛：监听实际滚动容器（当前页面由 window 承载滚动），scrollTop > 50 时折叠为 44px
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY ?? document.documentElement.scrollTop ?? 0;
+      setIsCollapsed(scrollTop > 50);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const handleMiniSearch = () => {
+    setIsCollapsed(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    requestAnimationFrame(() => searchInputRef.current?.focus());
+  };
 
   // 统一聚合所有结果，并严格按“主食材决定可做性”进行重组与健康加权分流
   const { availableNow, oneStepAway, otherList } = useMemo(() => {
@@ -83,6 +111,13 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
     // 搜索过滤（支持菜名、标签与上位词层级反查）
     if (searchKeyword.trim()) {
       all = searchRecipesByKeyword(searchKeyword, all);
+    }
+
+    // 筛选标签过滤：现成可做 / 减脂优选
+    if (filterMode === 'ready') {
+      all = all.filter(item => item.missingIngredients.length === 0);
+    } else if (filterMode === 'lean') {
+      all = all.filter(item => item.calorieTier === 'lean_choice');
     }
 
     // 核心护栏 1：主食材缺失为 0 时即为“现在就能做”，调料不参与阻断
@@ -123,7 +158,7 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
       oneStepAway: stepAway,
       otherList: others
     };
-  }, [matchGroups, searchKeyword]);
+  }, [matchGroups, searchKeyword, filterMode]);
 
   const renderSection = (enTitle: string, cnSubtitle: string, list: MatchResult[], badgeColor: string) => {
     if (list.length === 0) return null;
@@ -152,23 +187,53 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
 
   return (
     <div className="recommendation-list">
-      {/* 搜索与包含检索框 */}
-      <div className="recipe-search-bar">
-        <input
-          type="text"
-          value={searchKeyword}
-          onChange={e => setSearchKeyword(e.target.value)}
-          placeholder="🔍 搜索菜谱名或食材（如：鱼、豆腐、五花肉...）"
-          className="recipe-search-input"
-        />
-        {searchKeyword && (
+      {/* 44px 毛玻璃悬浮双轴吸顶岛：搜索框 + 筛选标签，滚动折叠为紧凑横滑标签 + 迷你放大镜 */}
+      <div className={`recommendation-island-wrap ${isCollapsed ? 'is-collapsed' : ''}`}>
+        {!isCollapsed && (
+          <div className="recipe-search-bar">
+            <input
+              ref={searchInputRef}
+              type="text"
+              value={searchKeyword}
+              onChange={e => setSearchKeyword(e.target.value)}
+              placeholder="🔍 搜索菜谱名或食材（如：鱼、豆腐、五花肉...）"
+              className="recipe-search-input"
+            />
+            {searchKeyword && (
+              <button
+                type="button"
+                className="recipe-search-clear"
+                onClick={() => setSearchKeyword('')}
+                aria-label="清空搜索"
+              >
+                ✕
+              </button>
+            )}
+          </div>
+        )}
+
+        <div className="island-tabs-scroll" aria-label="筛选推荐">
+          {FILTER_TABS.map(tab => (
+            <button
+              key={tab.value}
+              type="button"
+              aria-pressed={filterMode === tab.value}
+              className={`island-filter-tab ${filterMode === tab.value ? 'active' : ''}`}
+              onClick={() => setFilterMode(tab.value)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {isCollapsed && (
           <button
             type="button"
-            className="recipe-search-clear"
-            onClick={() => setSearchKeyword('')}
-            aria-label="清空搜索"
+            className="island-mini-search-btn"
+            onClick={handleMiniSearch}
+            aria-label="展开搜索"
           >
-            ✕
+            🔍
           </button>
         )}
       </div>
