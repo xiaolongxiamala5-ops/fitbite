@@ -191,10 +191,10 @@ function resolveCalibratedGramsPerUnit(
     }
   }
 
-  // 鸡腿
+  // 鸡腿 (去骨纯鸡肉可食部中位数)
   if (idLower.includes('chicken_leg') || idLower.includes('鸡腿') || idLower.includes('手枪腿')) {
     if (['支', '根', '只', '个'].includes(normUnit)) {
-      return 250; // 鸡腿 1 支约 250g
+      return 160; // 纯可食部去骨鸡肉克重约 160g (150-180g 厨房合理配比)
     }
   }
 

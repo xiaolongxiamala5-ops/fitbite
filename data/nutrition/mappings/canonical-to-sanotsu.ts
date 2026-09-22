@@ -246,5 +246,7 @@ export const PANTRY_TO_SANOTSU: Record<string, string> = {
   pantry_oil: '192014',          // 色拉油 (898 kcal, 99.8g fat / 100g)
   preset_sesame_oil: '192014',   // 芝麻油/植物油脂 proxy
   preset_sugar: '071001',        // 白砂糖 (fallback food)
+  preset_rock_sugar: '071001',   // 冰糖 (fallback food, 400 kcal, 100g carbs / 100g)
+  preset_cooking_wine: '161001', // 黄酒/料酒 (120 kcal, 1.2g protein, 5g carbs / 100g)
   preset_starch: '022103'        // 玉米淀粉 (346 kcal, 85g carbs / 100g)
 };

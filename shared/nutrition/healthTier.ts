@@ -38,17 +38,57 @@ export const CALORIE_TIER_CONFIG: Record<CalorieTier, CalorieTierInfo> = {
 };
 
 /**
- * 判定菜谱热量梯队
- * 1. lean_choice（减脂优选）：
- *    - calories <= 350 kcal 且 脂肪供能比 <= 35%（或轻食 <= 200 kcal）
- * 2. cheat_or_share（高能/建议分食）：
+ * 严禁分配“减脂优选”的重油重糖传统菜品与技法黑名单关键词 (C.1.3 强规则一票否决)
+ */
+export const LEAN_CHOICE_BLACKLIST_KEYWORDS = [
+  '油焖',
+  '油炸',
+  '炸',
+  '干锅',
+  '拔丝',
+  '脆皮',
+  '红烧',
+  '高糖红烧',
+  '锅包',
+  '扣肉',
+  '东坡'
+];
+
+export interface RecipeMetaForTier {
+  name?: string;
+  cookingMethod?: string | null;
+  tags?: string[];
+}
+
+export function isLeanChoiceBlacklisted(
+  meta?: RecipeMetaForTier | string | null
+): boolean {
+  if (!meta) return false;
+  const text = typeof meta === 'string'
+    ? meta
+    : `${meta.name || ''} ${meta.cookingMethod || ''} ${(meta.tags || []).join(' ')}`;
+  
+  return LEAN_CHOICE_BLACKLIST_KEYWORDS.some(kw => text.includes(kw));
+}
+
+/**
+ * 判定菜谱热量梯队与健康标签
+ * 
+ * 核心护栏与双红线规则：
+ * 1. cheat_or_share（高能/建议分食）：
  *    - calories > 550 kcal 或 脂肪量 > 25g
- * 3. balanced（家常均衡）：
- *    - 其余区间（350 < calories <= 550 且 脂肪量 <= 25g）
+ * 2. 规则一（技法一票否决）：
+ *    - 凡是菜品名或主要技法包含“油焖、油炸、干锅、拔丝、脆皮、高糖红烧”的传统菜肴，直接封杀，严禁分配“减脂优选”。
+ * 3. 规则二（营养阈值红线）：
+ *    - 单份总热量必须 <= 350 kcal 且 脂肪供能比 < 35%（超低卡轻食 <= 200 kcal 且 脂肪总量 <= 10g 亦受极低总热量保护）
+ *    - 必须同时满足阈值且不在黑名单内，方可被打标为“减脂优选”。
+ * 4. balanced（家常均衡）：
+ *    - 其余区间（包括黑名单中热量适中者、清炒蔬菜因用油导致脂肪比超标者等）
  */
 export function getCalorieTier(
   nutrition?: RecipeNutritionLike | null,
-  fallbackCalories?: number | null
+  fallbackCalories?: number | null,
+  recipeMeta?: RecipeMetaForTier | string | null
 ): CalorieTier {
   const calories = (typeof nutrition?.calories === 'number' ? nutrition.calories : null) ?? fallbackCalories ?? 0;
   const fat = (typeof nutrition?.fat === 'number' ? nutrition.fat : null) ?? 0;
@@ -58,17 +98,25 @@ export function getCalorieTier(
     return 'cheat_or_share';
   }
 
-  // 2. 轻食或低脂优选
-  if (calories > 0) {
+  // 2. 规则一：技法与菜名一票否决黑名单判断
+  const isBlacklisted = isLeanChoiceBlacklisted(recipeMeta);
+
+  // 3. 规则二：营养阈值红线（严禁重油重糖菜品进入）
+  if (calories > 0 && !isBlacklisted) {
     const fatEnergy = fat * 9;
     const fatEnergyRatio = (fatEnergy / calories) * 100;
 
-    if (calories <= 200 || (calories <= 350 && fatEnergyRatio <= 35)) {
+    // A) 减脂标准：calories <= 350 kcal 且 脂肪供能比 < 35%
+    // B) 超低热量清淡保护：calories <= 200 kcal 且 脂肪绝对克数 <= 10g（避免如西兰花淋10ml油导致脂肪超标仍被误标）
+    if (
+      (calories <= 350 && fatEnergyRatio < 35) ||
+      (calories <= 200 && fat <= 10 && fatEnergyRatio <= 60)
+    ) {
       return 'lean_choice';
     }
   }
 
-  // 3. 默认家常均衡
+  // 4. 默认家常均衡
   return 'balanced';
 }
 

@@ -22,13 +22,20 @@ export const MASTER_KNOWN_SEASONINGS: PantryShelfItem[] = [
   { id: 'preset_vinegar', name: '香醋', icon: '🍶' },
   { id: 'preset_sugar', name: '白糖', icon: '🍬' },
   { id: 'preset_oyster_sauce', name: '蚝油', icon: '🥢' },
-  // 高频快捷添加候选项
+  // 扩展常备调料
   { id: 'preset_scallion', name: '葱花', icon: '🌿' },
   { id: 'preset_star_anise', name: '八角', icon: '✨' },
   { id: 'preset_sichuan_pepper', name: '花椒', icon: '🌿' },
   { id: 'preset_sesame_oil', name: '芝麻油', icon: '🍶' },
   { id: 'preset_cumin', name: '孜然', icon: '🌿' },
   { id: 'preset_chili_powder', name: '辣椒粉', icon: '🌶️' },
+  { id: 'preset_dried_chili', name: '干辣椒', icon: '🌶️' },
+  { id: 'preset_chili_dry', name: '干辣椒', icon: '🌶️' },
+  { id: 'preset_chili_oil', name: '辣椒油', icon: '🌶️' },
+  { id: 'preset_rock_sugar', name: '冰糖', icon: '🍬' },
+  { id: 'preset_dark_soy_sauce', name: '老抽', icon: '🥢' },
+  { id: 'preset_bay_leaf', name: '香叶', icon: '🍃' },
+  { id: 'preset_steamed_fish_soy_sauce', name: '蒸鱼豉油', icon: '🥢' },
   { id: 'preset_doubanjiang', name: '豆瓣酱', icon: '🫙' },
   { id: 'preset_ketchup', name: '番茄酱', icon: '🍅' }
 ];
@@ -171,10 +178,141 @@ export function getPantryItemName(id: string): string | null {
     }
   } catch {}
 
-  // 5. 内部 ID 严禁泄露给 UI
+  // 5. 全局常用英文与内部 ID 严格汉化反查（彻底消除 dried chili 等英文裸露）
+  const translated = translatePantryEnglishOrId(id);
+  if (translated) {
+    memoryNameRegistry.set(id, translated);
+    return translated;
+  }
+
+  // 6. 若依然含有内部前缀或下划线，返回 null 防止 ID 泄露
   if (id.startsWith('custom_pantry_') || id.includes('_')) {
     return null;
   }
 
   return id;
+}
+
+/**
+ * 常见英文/下划线调料 ID 全量汉化映射表
+ */
+export const COMMON_PANTRY_TRANSLATION_MAP: Record<string, string> = {
+  // 辣椒类
+  'preset_dried_chili': '干辣椒',
+  'preset_chili_dry': '干辣椒',
+  'dried_chili': '干辣椒',
+  'dried chili': '干辣椒',
+  'dry_chili': '干辣椒',
+  'dry chili': '干辣椒',
+  'chili': '辣椒',
+  'preset_chili_oil': '辣椒油',
+  'chili_oil': '辣椒油',
+  'chili oil': '辣椒油',
+  'preset_chili_powder': '辣椒粉',
+  'chili_powder': '辣椒粉',
+  'chili powder': '辣椒粉',
+  // 糖类
+  'preset_rock_sugar': '冰糖',
+  'rock_sugar': '冰糖',
+  'rock sugar': '冰糖',
+  'preset_sugar': '白糖',
+  'white_sugar': '白糖',
+  'white sugar': '白糖',
+  'sugar': '白糖',
+  // 酱油与油类
+  'preset_dark_soy_sauce': '老抽',
+  'dark_soy_sauce': '老抽',
+  'dark soy sauce': '老抽',
+  'pantry_soy_sauce': '生抽',
+  'soy_sauce': '生抽',
+  'soy sauce': '生抽',
+  'pantry_oil': '食用油',
+  'cooking_oil': '食用油',
+  'cooking oil': '食用油',
+  'oil': '食用油',
+  'vegetable_oil': '植物油',
+  'vegetable oil': '植物油',
+  'preset_sesame_oil': '芝麻油',
+  'sesame_oil': '芝麻油',
+  'sesame oil': '芝麻油',
+  // 酒醋调味类
+  'preset_cooking_wine': '料酒',
+  'cooking_wine': '料酒',
+  'cooking wine': '料酒',
+  'yellow_wine': '黄酒',
+  'yellow wine': '黄酒',
+  'preset_vinegar': '香醋',
+  'vinegar': '香醋',
+  'pantry_salt': '食盐',
+  'salt': '食盐',
+  'preset_oyster_sauce': '蚝油',
+  'oyster_sauce': '蚝油',
+  'oyster sauce': '蚝油',
+  // 香辛料类
+  'pantry_garlic': '大蒜',
+  'garlic': '大蒜',
+  'preset_ginger': '生姜',
+  'ginger': '生姜',
+  'preset_scallion': '葱',
+  'scallion': '葱',
+  'green_onion': '葱',
+  'green onion': '葱',
+  'preset_sichuan_pepper': '花椒',
+  'sichuan_pepper': '花椒',
+  'sichuan pepper': '花椒',
+  'pantry_black_pepper': '黑胡椒',
+  'black_pepper': '黑胡椒',
+  'black pepper': '黑胡椒',
+  'preset_chicken_essence': '鸡精',
+  'chicken_essence': '鸡精',
+  'chicken essence': '鸡精',
+  'preset_star_anise': '八角',
+  'star_anise': '八角',
+  'star anise': '八角',
+  'preset_bay_leaf': '香叶',
+  'bay_leaf': '香叶',
+  'bay leaf': '香叶',
+  'preset_steamed_fish_soy_sauce': '蒸鱼豉油',
+  'steamed_fish_soy_sauce': '蒸鱼豉油',
+  'steamed fish soy sauce': '蒸鱼豉油',
+  'preset_starch': '淀粉',
+  'starch': '淀粉',
+  'preset_cumin': '孜然',
+  'cumin': '孜然',
+  'preset_doubanjiang': '豆瓣酱',
+  'doubanjiang': '豆瓣酱',
+  'preset_ketchup': '番茄酱',
+  'ketchup': '番茄酱'
+};
+
+/**
+ * 将任意英文调料名称或工程 ID 规范汉化为标准中文
+ */
+export function translatePantryEnglishOrId(raw: string): string | null {
+  if (!raw) return null;
+  const key = raw.trim().toLowerCase();
+
+  // 1. 直接全词匹配
+  if (COMMON_PANTRY_TRANSLATION_MAP[key]) {
+    return COMMON_PANTRY_TRANSLATION_MAP[key];
+  }
+
+  // 2. 去除前缀后匹配
+  const stripped = key
+    .replace(/^custom_pantry_/, '')
+    .replace(/^preset_/, '')
+    .replace(/^pantry_/, '')
+    .replace(/^custom_/, '');
+
+  if (COMMON_PANTRY_TRANSLATION_MAP[stripped]) {
+    return COMMON_PANTRY_TRANSLATION_MAP[stripped];
+  }
+
+  // 3. 空格/下划线转换后匹配
+  const normalized = stripped.replace(/_/g, ' ').trim();
+  if (COMMON_PANTRY_TRANSLATION_MAP[normalized]) {
+    return COMMON_PANTRY_TRANSLATION_MAP[normalized];
+  }
+
+  return null;
 }

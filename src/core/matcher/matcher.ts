@@ -31,7 +31,11 @@ export function matchRecipes(options: MatchOptions): MatchGroups {
     const isFavorited = favoriteSet.has(recipe.id);
 
     // 模块二：高热量健康分流状态评定
-    const calorieTier = getCalorieTier(recipe.nutrition, recipe.calories);
+    const calorieTier = getCalorieTier(recipe.nutrition, recipe.calories, {
+      name: recipe.name,
+      cookingMethod: recipe.cookingMethod,
+      tags: recipe.tags
+    });
     let healthAdjustedScore = matchScore;
     if (calorieTier === 'lean_choice') {
       healthAdjustedScore += 15;

@@ -167,10 +167,21 @@ export class Normalizer {
     const seenMainIds = new Set<string>();
     const seenPantryIds = new Set<string>();
 
+    // 预处理：展开单行包含多个食材/调料的情况（如 "葱、姜"、"料酒、盐、冰糖、植物油"）
+    const expandedRawIngredients: string[] = [];
     for (const rawItem of source.rawIngredients) {
-      const cleanedRaw = rawItem.replace(/^[-*•]\s*/, '').trim();
-      if (!cleanedRaw) continue;
+      const cleaned = rawItem.replace(/^[-*•]\s*/, '').trim();
+      if (!cleaned) continue;
+      // 若包含顿号/逗号且不是二选一 (or / 或者)
+      if (/[、,，]/.test(cleaned) && !/(或者|或|\/|or)/i.test(cleaned)) {
+        const parts = cleaned.split(/[、,，]/).map(s => s.trim()).filter(Boolean);
+        expandedRawIngredients.push(...parts);
+      } else {
+        expandedRawIngredients.push(cleaned);
+      }
+    }
 
+    for (const cleanedRaw of expandedRawIngredients) {
       // 过滤水介质与厨房工具/器皿
       if (isWaterOrIgnored(cleanedRaw) || isKitchenTool(cleanedRaw)) {
         continue;
@@ -186,12 +197,36 @@ export class Normalizer {
           let amount: number | undefined;
           let unit: string | undefined;
 
+          // 1. 优先严格完全相等匹配，防止白糖误匹冰糖、干辣椒误匹辣椒粉
           const cleanedName = cleanIngredientRawText(cleanedRaw);
           for (const [calcName, val] of calculationMap.entries()) {
-            if (calcName === cleanedName || calcName.includes(cleanedName) || cleanedName.includes(calcName)) {
+            const cleanCalc = cleanIngredientRawText(calcName);
+            const isExact =
+              calcName === cleanedName ||
+              cleanCalc === pantryDef.name ||
+              pantryDef.aliases.some(a => cleanCalc === a);
+
+            if (isExact) {
               amount = val.amount;
               unit = val.unit;
               break;
+            }
+          }
+
+          // 2. 若未严格匹配，进行无歧义别名匹配（排除“糖”、“油”等易混淆单字别名）
+          if (amount === undefined) {
+            for (const [calcName, val] of calculationMap.entries()) {
+              const cleanCalc = cleanIngredientRawText(calcName);
+              const safeAliases = pantryDef.aliases.filter(a => a.length >= 2);
+              const isMatch =
+                (cleanCalc.length >= 2 && cleanedName.length >= 2 && (calcName.includes(cleanedName) || cleanedName.includes(calcName))) ||
+                safeAliases.some(a => (cleanCalc.length >= 2 && (cleanCalc.includes(a) || a.includes(cleanCalc))));
+
+              if (isMatch) {
+                amount = val.amount;
+                unit = val.unit;
+                break;
+              }
             }
           }
 
@@ -280,6 +315,91 @@ export class Normalizer {
       }
 
       unrecognizedItems.push(cleanedRaw);
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // StepIngredientAligner (C.1.3)
+    // 扫描步骤文本中明确量化的调料，对比已解析的 pantryIngredients，
+    // 若发现缺失则自动补入，防止"步骤用了但清单没写"的热量漏算。
+    // 兼具两种中文烹饪语序：
+    // 模式 A (数量在前): "10 ml 食用油"
+    // 模式 B (调料在前): "黄酒 30g", "盐 3g", "冰糖 10 克"
+    // ─────────────────────────────────────────────────────────────
+    const PANTRY_KEYWORDS = '食用油|植物油|菜籽油|花生油|猪油|色拉油|冰糖|白糖|砂糖|黄酒|料酒|绍兴酒|生抽|老抽|蚝油|盐|精盐|食用盐|淀粉|生粉|水淀粉|花椒|八角|香叶|葱|大葱|小葱|香葱|姜|生姜';
+    const STEP_PANTRY_PATTERN_A = new RegExp(`(\\d+(?:\\.\\d+)?)\\s*(ml|g|克|毫升|大勺|茶匙)\\s*(?:的)?\\s*(${PANTRY_KEYWORDS})`, 'g');
+    const STEP_PANTRY_PATTERN_B = new RegExp(`(${PANTRY_KEYWORDS})\\s*(?:约|大概)?\\s*(\\d+(?:\\.\\d+)?)\\s*(ml|g|克|毫升|大勺|茶匙)`, 'g');
+
+    for (const step of source.rawSteps) {
+      // 提取匹配结果数组 [amount, unit, ingredient]
+      const matches: Array<{ amount: number; unit: string; ingredient: string }> = [];
+
+      let mA: RegExpExecArray | null;
+      STEP_PANTRY_PATTERN_A.lastIndex = 0;
+      while ((mA = STEP_PANTRY_PATTERN_A.exec(step)) !== null) {
+        matches.push({ amount: parseFloat(mA[1]), unit: mA[2], ingredient: mA[3] });
+      }
+
+      let mB: RegExpExecArray | null;
+      STEP_PANTRY_PATTERN_B.lastIndex = 0;
+      while ((mB = STEP_PANTRY_PATTERN_B.exec(step)) !== null) {
+        matches.push({ amount: parseFloat(mB[2]), unit: mB[3], ingredient: mB[1] });
+      }
+
+      for (const { amount, unit, ingredient } of matches) {
+        const pantryDef = resolvePantry(ingredient);
+        if (!pantryDef) continue;
+
+        if (!seenPantryIds.has(pantryDef.id)) {
+          // 步骤中发现了清单完全缺失的调料，补入
+          seenPantryIds.add(pantryDef.id);
+          pantryIngredients.push({
+            canonicalId: pantryDef.id,
+            displayName: pantryDef.name,
+            category: 'pantry',
+            rawText: `${amount}${unit}${ingredient}（步骤文本对齐补入）`,
+            amount,
+            unit,
+            isPantry: true
+          });
+        } else {
+          // 已有条目，若数量缺失则从步骤补充
+          const existing = pantryIngredients.find(p => p.canonicalId === pantryDef.id);
+          if (existing && existing.amount === undefined) {
+            existing.amount = amount;
+            existing.unit = unit;
+          }
+        }
+      }
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // 烹调方式用油兜底规则 (C.1.3)
+    // 炒/爆炒/煎/炸/油焖类菜谱，若食材与调料中完全无任何油脂类，
+    // 注入 10ml 兜底估算值（标注来源，便于审计追溯）。
+    // 排除已有麻油的凉拌、清蒸或水煮类菜品。
+    // ─────────────────────────────────────────────────────────────
+    const isColdOrSteamed = cleanTitle.includes('凉拌') || cleanTitle.includes('清蒸') || cleanTitle.includes('水煮');
+    const HOT_OIL_METHODS = ['炒', '煎', '炸', '焖', '爆炒', '油焖'];
+    const hasOilInTitle = HOT_OIL_METHODS.some(m => source.originalTitle.includes(m));
+    const hasOilInSteps = source.rawSteps.some(s =>
+      /起锅烧油|热锅.*油|倒油.*烧热|油温.*成热|下油.*煎/.test(s)
+    );
+    const hasAnyOilRegistered =
+      seenPantryIds.has('pantry_oil') ||
+      seenPantryIds.has('preset_sesame_oil') ||
+      seenPantryIds.has('preset_chili_oil');
+
+    if (!isColdOrSteamed && (hasOilInTitle || hasOilInSteps) && !hasAnyOilRegistered) {
+      seenPantryIds.add('pantry_oil');
+      pantryIngredients.push({
+        canonicalId: 'pantry_oil',
+        displayName: '食用油',
+        category: 'pantry',
+        rawText: '食用油（烹调方式兜底估算 10ml）',
+        amount: 10,
+        unit: 'ml',
+        isPantry: true
+      });
     }
 
     // 3. 烹饪方式（属于标准化元数据，若无明确依据则设为 null）

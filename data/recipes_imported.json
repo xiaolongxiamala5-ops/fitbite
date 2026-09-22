@@ -80,7 +80,7 @@
       "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E8%92%9C%E8%93%89%E8%A5%BF%E5%85%B0%E8%8A%B1.md",
       "sourceFile": "dishes/vegetable_dish/蒜蓉西兰花.md",
       "license": "CC-BY-4.0",
-      "contentHash": "59a8c2a875182a8a59dd253e58a7c26c66fb03448891bb025ec0189e4baab940"
+      "contentHash": "1ba3a15254c64f119807d4411d0e50ed3f1a3a6037249c6a4ebd0a071f91ef22"
     },
     "requiredIngredients": [
       {
@@ -94,6 +94,7 @@
     ],
     "pantryIngredients": [
       "pantry_garlic",
+      "pantry_oil",
       "pantry_soy_sauce",
       "preset_oyster_sauce",
       "preset_sugar"
@@ -114,14 +115,14 @@
     ],
     "cookingMethod": null,
     "nutrition": {
-      "calories": 58,
+      "calories": 141,
       "protein": 6.3,
-      "fat": 1,
+      "fat": 10.2,
       "carbs": 9,
       "confidence": "estimated",
       "calorieRange": [
-        54,
-        63
+        130,
+        152
       ],
       "isEstimated": true
     },
@@ -184,14 +185,14 @@
     ],
     "cookingMethod": "拌",
     "nutrition": {
-      "calories": 293,
-      "protein": 49.7,
+      "calories": 317,
+      "protein": 50,
       "fat": 8.5,
-      "carbs": 4.2,
+      "carbs": 5.2,
       "confidence": "estimated",
       "calorieRange": [
-        269,
-        316
+        291,
+        342
       ],
       "isEstimated": true
     },
@@ -210,7 +211,7 @@
       "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/meat_dish/%E5%AE%AB%E4%BF%9D%E9%B8%A1%E4%B8%81/%E5%AE%AB%E4%BF%9D%E9%B8%A1%E4%B8%81.md",
       "sourceFile": "dishes/meat_dish/宫保鸡丁/宫保鸡丁.md",
       "license": "CC-BY-4.0",
-      "contentHash": "c44371612f01646a0395f7f9e0ef1a6dab6592992f9c1a80ae7d2b0550d6a5ee"
+      "contentHash": "4208f08fca5f07d359ecc3759693d678d374dfa80ae7185077d0f9bd38b8c9a1"
     },
     "requiredIngredients": [
       {
@@ -236,7 +237,7 @@
       {
         "id": "other_peanut",
         "name": "花生米",
-        "amount": 150,
+        "amount": 30,
         "unit": "g",
         "originalRawText": "熟花生",
         "mode": "single"
@@ -286,14 +287,14 @@
     ],
     "cookingMethod": "炒",
     "nutrition": {
-      "calories": 1487,
-      "protein": 75,
-      "fat": 114.8,
-      "carbs": 42.4,
+      "calories": 579,
+      "protein": 31.8,
+      "fat": 43.8,
+      "carbs": 12.6,
       "confidence": "estimated",
       "calorieRange": [
-        1368,
-        1606
+        533,
+        625
       ],
       "isEstimated": true
     },
@@ -348,14 +349,14 @@
     ],
     "cookingMethod": null,
     "nutrition": {
-      "calories": 226,
-      "protein": 22.2,
+      "calories": 250,
+      "protein": 22.5,
       "fat": 12.3,
-      "carbs": 6.4,
+      "carbs": 7.4,
       "confidence": "estimated",
       "calorieRange": [
-        208,
-        244
+        230,
+        270
       ],
       "isEstimated": true
     },
@@ -374,7 +375,7 @@
       "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/aquatic/%E6%B2%B9%E7%84%96%E5%A4%A7%E8%99%BE/%E6%B2%B9%E7%84%96%E5%A4%A7%E8%99%BE.md",
       "sourceFile": "dishes/aquatic/油焖大虾/油焖大虾.md",
       "license": "CC-BY-4.0",
-      "contentHash": "f7d0a6c69cdd4253e3db8816a2d8bacf61fd75bf0ac7c256f4acd2ce42f29c39"
+      "contentHash": "549b692854b812ee008f4280ff471e052d975028d12188d25f7a6d18093b598f"
     },
     "requiredIngredients": [
       {
@@ -382,12 +383,17 @@
         "name": "鲜虾",
         "amount": 10,
         "unit": "只",
-        "originalRawText": "黑虎虾 or 明虾、",
+        "originalRawText": "黑虎虾 or 明虾",
         "mode": "single"
       }
     ],
     "pantryIngredients": [
+      "preset_scallion",
       "preset_ginger",
+      "preset_sichuan_pepper",
+      "preset_cooking_wine",
+      "pantry_salt",
+      "preset_rock_sugar",
       "pantry_oil"
     ],
     "instructions": [
@@ -408,14 +414,14 @@
     ],
     "cookingMethod": "焖",
     "nutrition": {
-      "calories": 128,
-      "protein": 17.8,
-      "fat": 3.9,
-      "carbs": 5.3,
+      "calories": 411,
+      "protein": 19.5,
+      "fat": 28.5,
+      "carbs": 12,
       "confidence": "estimated",
       "calorieRange": [
-        118,
-        138
+        378,
+        444
       ],
       "isEstimated": true
     },
@@ -507,7 +513,7 @@
         "name": "咸鸭蛋",
         "amount": 1,
         "unit": "枚",
-        "originalRawText": "咸鸭蛋（推荐留夫鸭的，这个是灵魂）",
+        "originalRawText": "咸鸭蛋（推荐留夫鸭的",
         "mode": "single"
       },
       {
@@ -536,7 +542,8 @@
       "preset_ginger",
       "preset_sichuan_pepper",
       "pantry_salt",
-      "pantry_soy_sauce"
+      "pantry_soy_sauce",
+      "pantry_oil"
     ],
     "instructions": [
       "大蒜和生姜切碎，备用",
@@ -560,14 +567,14 @@
     ],
     "cookingMethod": "炒",
     "nutrition": {
-      "calories": 324,
+      "calories": 448,
       "protein": 23.4,
-      "fat": 19.7,
+      "fat": 33.5,
       "carbs": 13.6,
       "confidence": "estimated",
       "calorieRange": [
-        298,
-        350
+        412,
+        484
       ],
       "isEstimated": true
     },
@@ -707,7 +714,8 @@
       "pantry_garlic",
       "pantry_salt",
       "pantry_soy_sauce",
-      "preset_starch"
+      "preset_starch",
+      "pantry_oil"
     ],
     "instructions": [
       "青椒去除根蒂切小块，土豆去皮切 2mm 薄片，猪肉切 4mm 薄片，葱横纵切 3mm 小段，姜蒜去皮拍散剁碎末；土豆淀粉加入约 15g 水搅拌均匀至水淀粉。",
@@ -723,14 +731,14 @@
     ],
     "cookingMethod": "炒",
     "nutrition": {
-      "calories": 1994,
-      "protein": 40.5,
-      "fat": 62.5,
-      "carbs": 319.9,
+      "calories": 1056,
+      "protein": 37,
+      "fat": 71.4,
+      "carbs": 69.2,
       "confidence": "estimated",
       "calorieRange": [
-        1835,
-        2154
+        972,
+        1141
       ],
       "isEstimated": true
     },
@@ -877,7 +885,7 @@
       "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E5%87%89%E6%8B%8C%E9%BB%84%E7%瓜.md",
       "sourceFile": "dishes/vegetable_dish/凉拌黄瓜.md",
       "license": "CC-BY-4.0",
-      "contentHash": "2b1798821af132fdaf09cfae8381513dfcdbe2810288e1012137c93d8d82eea7"
+      "contentHash": "4e0602a73250f8e485a5500ed7a3daa6722e64d017efdf517100c4c76562ce67"
     },
     "requiredIngredients": [
       {
@@ -892,6 +900,7 @@
     "pantryIngredients": [
       "preset_vinegar",
       "pantry_soy_sauce",
+      "preset_sugar",
       "pantry_garlic"
     ],
     "instructions": [
@@ -910,14 +919,14 @@
     ],
     "cookingMethod": "拌",
     "nutrition": {
-      "calories": 37,
-      "protein": 1.7,
+      "calories": 49,
+      "protein": 2.2,
       "fat": 0.4,
-      "carbs": 6.9,
+      "carbs": 9.4,
       "confidence": "estimated",
       "calorieRange": [
-        34,
-        40
+        45,
+        53
       ],
       "isEstimated": true
     },
@@ -988,14 +997,14 @@
     ],
     "cookingMethod": "蒸",
     "nutrition": {
-      "calories": 426,
-      "protein": 55.7,
+      "calories": 441,
+      "protein": 55.8,
       "fat": 21.8,
-      "carbs": 1.9,
+      "carbs": 2.5,
       "confidence": "estimated",
       "calorieRange": [
-        392,
-        461
+        406,
+        477
       ],
       "isEstimated": true
     },
@@ -1087,14 +1096,14 @@
     ],
     "cookingMethod": "炒",
     "nutrition": {
-      "calories": 174,
-      "protein": 6,
+      "calories": 176,
+      "protein": 6.1,
       "fat": 10,
-      "carbs": 18,
+      "carbs": 18.1,
       "confidence": "estimated",
       "calorieRange": [
-        160,
-        188
+        162,
+        190
       ],
       "isEstimated": true
     },

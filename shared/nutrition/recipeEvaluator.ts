@@ -250,6 +250,31 @@ const FALLBACK_SCALLION_FOOD: NutritionFood = {
   }
 };
 
+/** 161001 黄酒/料酒 (Standard cooking wine fallback: 120 kcal, 1.2g protein, 0g fat, 5.0g carbs / 100g) */
+const FALLBACK_COOKING_WINE_FOOD: NutritionFood = {
+  id: 'sanotsu:preset_cooking_wine',
+  foodCode: '161001',
+  name: '黄酒/料酒',
+  englishName: 'Cooking wine',
+  category: '调味品-酒',
+  edibleFraction: 1,
+  per100g: {
+    calories: 120,
+    protein: 1.2,
+    fat: 0,
+    carbs: 5.0,
+    fiber: 0,
+    sodium: 10
+  },
+  provenance: {
+    source: 'china_food_composition_v6',
+    commit: 'd15675c27582748307023b7ee7aca2a63fc52756',
+    sourceFile: 'food_composition_full.csv',
+    rawEdible: '100',
+    hasTraceValues: false
+  }
+};
+
 /**
  * Evaluates recipe nutrition feasibility and calculates total/serving nutrition
  * under the FitBite Nutrition Materiality Policy (C.2.3) & Dual-Track Kitchen Estimation.
@@ -305,8 +330,10 @@ export function evaluateRecipeNutrition(
     if (!food && isDualOrEstimated) {
       if (classification.isOil) {
         food = FALLBACK_OIL_FOOD;
-      } else if (identifier === 'preset_sugar' || (item.name && item.name.includes('糖'))) {
+      } else if (identifier === 'preset_sugar' || identifier === 'preset_rock_sugar' || (item.name && item.name.includes('糖'))) {
         food = FALLBACK_SUGAR_FOOD;
+      } else if (identifier === 'preset_cooking_wine' || (item.name && (item.name.includes('料酒') || item.name.includes('黄酒') || item.name.includes('绍兴酒')))) {
+        food = FALLBACK_COOKING_WINE_FOOD;
       } else if (identifier === 'preset_starch' || (item.name && item.name.includes('淀粉'))) {
         food = FALLBACK_STARCH_FOOD;
       } else if (identifier === 'pantry_garlic' || (item.name && item.name.includes('蒜'))) {

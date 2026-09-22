@@ -1,7 +1,7 @@
 import React from 'react';
 import { Recipe } from '../../data/recipes';
 import { MatchResult } from '../../core/matcher/types';
-import { getPantryItemName } from '../../ui/pantryPresets';
+import { getPantryItemName, translatePantryEnglishOrId } from '../../ui/pantryPresets';
 import { useFridge } from '../../context/FridgeContext';
 import { getHealthGuidanceTips } from '../../../shared/nutrition';
 import { isIngredientFulfilled } from '../../core/ingredients/taxonomy';
@@ -20,6 +20,7 @@ const PANTRY_ID_LABEL_MAP: Record<string, string> = {
   pantry_oil: '食用油',
   pantry_salt: '食盐',
   pantry_soy_sauce: '生抽',
+  preset_dark_soy_sauce: '老抽',
   pantry_garlic: '大蒜',
   pantry_black_pepper: '黑胡椒',
   preset_chicken_essence: '鸡精',
@@ -28,6 +29,7 @@ const PANTRY_ID_LABEL_MAP: Record<string, string> = {
   preset_cooking_wine: '料酒',
   preset_vinegar: '香醋',
   preset_sugar: '白糖',
+  preset_rock_sugar: '冰糖',
   preset_oyster_sauce: '蚝油',
   preset_scallion: '葱',
   preset_star_anise: '八角',
@@ -35,6 +37,11 @@ const PANTRY_ID_LABEL_MAP: Record<string, string> = {
   preset_sesame_oil: '芝麻油',
   preset_cumin: '孜然',
   preset_chili_powder: '辣椒粉',
+  preset_dried_chili: '干辣椒',
+  preset_chili_dry: '干辣椒',
+  preset_chili_oil: '辣椒油',
+  preset_bay_leaf: '香叶',
+  preset_steamed_fish_soy_sauce: '蒸鱼豉油',
   preset_doubanjiang: '豆瓣酱',
   preset_ketchup: '番茄酱'
 };
@@ -42,21 +49,32 @@ const PANTRY_ID_LABEL_MAP: Record<string, string> = {
 const PANTRY_ID_PREFIXES = ['custom_pantry_', 'preset_', 'pantry_', 'custom_'];
 
 /**
- * 调料名称中文化统一入口：词典命中 → 全局名称定位器 → 去除工程前缀兜底
+ * 调料名称中文化统一入口：词典命中 → 全局名称定位器 → 英文短语深度汉化 → 严禁英文 ID 泄露
  */
 function resolvePantryLabel(id: string): string {
   if (!id) return '';
 
+  // 1. 本地精准字典命中
   const dictHit = PANTRY_ID_LABEL_MAP[id];
   if (dictHit) return dictHit;
 
+  // 2. 调料主库检索
   const located = getPantryItemName(id);
   if (located) return located;
 
+  // 3. 英文或工程 ID 智能汉化翻译 (如 dried chili -> 干辣椒)
+  const translated = translatePantryEnglishOrId(id);
+  if (translated) return translated;
+
+  // 4. 去除工程前缀后再次尝试翻译
   const stripped = PANTRY_ID_PREFIXES.reduce(
     (acc, prefix) => (acc.startsWith(prefix) ? acc.slice(prefix.length) : acc),
     id
   );
+  const strippedTranslated = translatePantryEnglishOrId(stripped);
+  if (strippedTranslated) return strippedTranslated;
+
+  // 5. 兜底清洗：严禁展示带有下划线的原始 ID
   return stripped.replace(/_/g, ' ').trim() || id;
 }
 

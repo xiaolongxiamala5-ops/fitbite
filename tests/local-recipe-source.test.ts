@@ -141,10 +141,10 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
       expect(breastOption?.amount).toBeUndefined();
       expect(breastOption?.unit).toBeUndefined();
 
-      // 花生米（普通 single 食材）
+      // 花生米（普通 single 食材，厨房合理配比 30g）
       const peanutItem = kungPao.requiredIngredients[1];
       expect(peanutItem.id).toBe('other_peanut');
-      expect(peanutItem.amount).toBe(150);
+      expect(peanutItem.amount).toBe(30);
       expect(peanutItem.unit).toBe('g');
 
       // 步骤与调料

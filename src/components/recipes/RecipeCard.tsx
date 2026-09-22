@@ -2,8 +2,6 @@ import React from 'react';
 import { MatchResult } from '../../core/matcher/types';
 import { FavoriteButton } from './FavoriteButton';
 import { useFridge } from '../../context/FridgeContext';
-import { RecipeImage } from './RecipeImage';
-import { getRecipeImage } from '../../ui/recipeImages';
 
 interface RecipeCardProps {
   result: MatchResult;
@@ -11,47 +9,56 @@ interface RecipeCardProps {
   className?: string;
 }
 
+/**
+ * RecipeCard — 紧凑行版（Editorial Dense Row）
+ * 高度锁定 50px，单行横向信息流，彻底去除封面图。
+ * Props 签名与父级调用完全兼容，零破坏。
+ */
 export const RecipeCard: React.FC<RecipeCardProps> = ({ result, onSelect, className = '' }) => {
   const { toggleFavorite } = useFridge();
   const { recipe, missingIngredients, isFavorited } = result;
-  // 核心护栏 1：统一使用“主食材决定可做性”规则，调料不阻断
-  const isReady = missingIngredients.length === 0;
-  const cookingTime = '家常快手';
 
-  // 只有存在真实图片 (local / remote) 时才显示图片区域，fallback 时采用精致无图布局
-  const imageInfo = getRecipeImage(recipe);
-  const hasRealImage = imageInfo.hasRealImage;
+  // 核心护栏：统一使用"主食材决定可做性"规则，调料不阻断
+  const isReady = missingIngredients.length === 0;
 
   return (
     <article
       onClick={onSelect}
-      className={`recipe-card ${isReady ? 'recipe-card-ready' : 'recipe-card-away'} ${hasRealImage ? 'has-image' : 'no-image'} ${className}`.trim()}
+      className={`recipe-card recipe-card-dense ${isReady ? 'recipe-card-ready' : 'recipe-card-away'} ${className}`.trim()}
     >
-      {hasRealImage && <RecipeImage recipe={recipe} />}
-      <div className="recipe-card-content">
-        <div className="recipe-card-topline">
-          <div>
-            <h3>{recipe.name}</h3>
-            <div className="recipe-time">◷ {cookingTime}</div>
-          </div>
-          <FavoriteButton isFavorited={isFavorited} onToggle={() => toggleFavorite(recipe.id)} />
+      {/* ── 左侧：菜名 + 微晶标签行 + 参数微文字 ── */}
+      <div className="dense-card-left">
+        {/* 第一行：菜名 + 状态/健康微晶标 */}
+        <div className="dense-card-main-row">
+          <span className="dense-card-name">{recipe.name}</span>
+
+          {/* 状态微晶标 */}
+          {isReady ? (
+            <span className="dense-badge dense-badge-ready">✓ 可做</span>
+          ) : (
+            <span className="dense-badge dense-badge-missing">差 {missingIngredients.length} 样</span>
+          )}
+
+          {/* 健康分流微标（仅减脂优选展示，高能菜克制不打扰） */}
+          {result.calorieTier === 'lean_choice' && (
+            <span className="dense-badge dense-badge-lean">减脂优选</span>
+          )}
         </div>
 
-        <div className="recipe-status">
-          {isReady ? (
-            <span className="status-badge">✓ 现在能做</span>
-          ) : (
-            <span className="status-badge">差 {missingIngredients.length} 样主食材</span>
+        {/* 第二行：参数微文字（kcal + 时间） */}
+        <div className="dense-card-meta">
+          {recipe.calories > 0 && (
+            <span className="dense-meta-kcal">· 约 {recipe.calories} kcal</span>
           )}
-          {result.calorieTier === 'lean_choice' && (
-            <span className="health-badge-lean">减脂优选</span>
-          )}
-          {result.calorieTier === 'cheat_or_share' && (
-            <span className="health-badge-warning">建议分食 / 高能量</span>
-          )}
+          <span className="dense-meta-time">· ◷ 家常快手</span>
         </div>
       </div>
-      <div className="recipe-card-arrow">↗</div>
+
+      {/* ── 右侧：收藏按钮 + 导向箭头 ── */}
+      <div className="dense-card-right">
+        <FavoriteButton isFavorited={isFavorited} onToggle={() => toggleFavorite(recipe.id)} />
+        <span className="dense-card-chevron">›</span>
+      </div>
     </article>
   );
 };

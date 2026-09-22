@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { MatchGroups, MatchResult } from '../../core/matcher/types';
 import { searchRecipesByKeyword } from '../../core/matcher/matcher';
+import { useFridge } from '../../context/FridgeContext';
 import { RecipeCard } from './RecipeCard';
 import { RecipeDetailModal } from './RecipeDetailModal';
 
@@ -10,13 +11,7 @@ interface RecipeRecommendationListProps {
 
 export const DEFAULT_RECIPE_DISPLAY_LIMIT = 3;
 
-type FilterMode = 'all' | 'ready' | 'lean';
-
-const FILTER_TABS: { value: FilterMode; label: string }[] = [
-  { value: 'all', label: '全部' },
-  { value: 'ready', label: '✓ 现成可做' },
-  { value: 'lean', label: '减脂优选' }
-];
+type FilterMode = 'all' | 'ready' | 'lean' | 'favorites';
 
 interface CollapsibleRecipeGridProps {
   list: MatchResult[];
@@ -70,32 +65,69 @@ export const CollapsibleRecipeGrid: React.FC<CollapsibleRecipeGridProps> = ({
   );
 };
 
+/** 轻盈纤细的 SVG 放大镜图标（1.5px 线条，继承 currentColor）*/
+const SearchIcon: React.FC = () => (
+  <svg
+    className="island-search-icon-svg"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <circle cx="8.5" cy="8.5" r="5.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M12.5 12.5L16.5 16.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+
 export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> = ({ matchGroups }) => {
+  const { favorites } = useFridge();
+  const favoriteCount = favorites.length;
+
   const [selectedResult, setSelectedResult] = useState<MatchResult | null>(null);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [filterMode, setFilterMode] = useState<FilterMode>('all');
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const searchInputRef = React.useRef<HTMLInputElement>(null);
+  // 吸顶态内联搜索展开状态（不触发任何滚动，原地展开）
+  const [isStickySearchOpen, setIsStickySearchOpen] = useState(false);
+  const stickySearchRef = React.useRef<HTMLInputElement>(null);
+  const pageSearchRef = React.useRef<HTMLInputElement>(null);
+
+  // 筛选标签定义（收藏数量动态）
+  const FILTER_TABS: { value: FilterMode; label: string }[] = [
+    { value: 'all', label: '全部' },
+    { value: 'ready', label: '✓ 现成可做' },
+    { value: 'lean', label: '减脂优选' },
+    { value: 'favorites', label: `❤️ 收藏${favoriteCount > 0 ? ` (${favoriteCount})` : ''}` }
+  ];
 
   // 吸顶岛：监听实际滚动容器（当前页面由 window 承载滚动），scrollTop > 50 时折叠为 44px
   useEffect(() => {
     const onScroll = () => {
       const scrollTop = window.scrollY ?? document.documentElement.scrollTop ?? 0;
-      setIsCollapsed(scrollTop > 50);
+      const collapsed = scrollTop > 50;
+      setIsCollapsed(collapsed);
+      // 回到顶部后自动收起吸顶搜索框，避免残留态
+      if (!collapsed) setIsStickySearchOpen(false);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleMiniSearch = () => {
-    setIsCollapsed(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    requestAnimationFrame(() => searchInputRef.current?.focus());
+  // 点击放大镜：原地展开吸顶搜索框，不触发任何滚动
+  const handleOpenStickySearch = () => {
+    setIsStickySearchOpen(true);
+    requestAnimationFrame(() => stickySearchRef.current?.focus());
   };
 
-  // 统一聚合所有结果，并严格按“主食材决定可做性”进行重组与健康加权分流
-  const { availableNow, oneStepAway, otherList } = useMemo(() => {
+  // 取消吸顶搜索：清空关键词，收起搜索框，恢复标签栏
+  const handleCloseStickySearch = () => {
+    setSearchKeyword('');
+    setIsStickySearchOpen(false);
+  };
+
+  // 统一聚合所有结果，并严格按"主食材决定可做性"进行重组与健康加权分流
+  const { availableNow, oneStepAway, otherList, favoritedList } = useMemo(() => {
     const map = new Map<string, MatchResult>();
     [
       ...matchGroups.favoritedCanMake,
@@ -113,14 +145,24 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
       all = searchRecipesByKeyword(searchKeyword, all);
     }
 
-    // 筛选标签过滤：现成可做 / 减脂优选
+    // 收藏模式：仅展示已收藏菜谱（跨越可做/不可做边界，按收藏时间逆序暂不支持，改按 score 排）
+    const favoriteSet = new Set(favorites);
+    const favoritedAll = all
+      .filter(item => favoriteSet.has(item.recipe.id))
+      .sort((a, b) => {
+        const aScore = a.healthAdjustedScore ?? a.matchScore;
+        const bScore = b.healthAdjustedScore ?? b.matchScore;
+        return bScore - aScore;
+      });
+
+    // 筛选标签过滤（收藏模式走独立分支，不再参与下方三栏分组）
     if (filterMode === 'ready') {
       all = all.filter(item => item.missingIngredients.length === 0);
     } else if (filterMode === 'lean') {
       all = all.filter(item => item.calorieTier === 'lean_choice');
     }
 
-    // 核心护栏 1：主食材缺失为 0 时即为“现在就能做”，调料不参与阻断
+    // 核心护栏 1：主食材缺失为 0 时即为"现在就能做"，调料不参与阻断
     // 模块二：引入健康加权（lean_choice 优先加权，cheat_or_share 同度降权后移）
     const ready = all
       .filter(item => item.missingIngredients.length === 0)
@@ -138,7 +180,7 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
         return 0;
       });
 
-    // 主食材缺 1~2 样即为“就差一步”，调料不阻止
+    // 主食材缺 1~2 样即为"就差一步"，调料不阻止
     const stepAway = all
       .filter(item => item.missingIngredients.length === 1 || item.missingIngredients.length === 2)
       .sort((a, b) => {
@@ -156,9 +198,10 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
     return {
       availableNow: ready,
       oneStepAway: stepAway,
-      otherList: others
+      otherList: others,
+      favoritedList: favoritedAll
     };
-  }, [matchGroups, searchKeyword, filterMode]);
+  }, [matchGroups, searchKeyword, filterMode, favorites]);
 
   const renderSection = (enTitle: string, cnSubtitle: string, list: MatchResult[], badgeColor: string) => {
     if (list.length === 0) return null;
@@ -187,12 +230,14 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
 
   return (
     <div className="recommendation-list">
-      {/* 44px 毛玻璃悬浮双轴吸顶岛：搜索框 + 筛选标签，滚动折叠为紧凑横滑标签 + 迷你放大镜 */}
+      {/* 44px 毛玻璃悬浮双轴吸顶岛：展开态=搜索框+标签，折叠-标签态=横滑胶囊+放大镜，折叠-搜索态=原位输入框 */}
       <div className={`recommendation-island-wrap ${isCollapsed ? 'is-collapsed' : ''}`}>
+
+        {/* ── 展开态：完整搜索框 ── */}
         {!isCollapsed && (
           <div className="recipe-search-bar">
             <input
-              ref={searchInputRef}
+              ref={pageSearchRef}
               type="text"
               value={searchKeyword}
               onChange={e => setSearchKeyword(e.target.value)}
@@ -212,51 +257,94 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
           </div>
         )}
 
-        <div className="island-tabs-scroll" aria-label="筛选推荐">
-          {FILTER_TABS.map(tab => (
+        {/* ── 折叠-搜索激活态：原位紧凑输入框 + 取消 ── */}
+        {isCollapsed && isStickySearchOpen && (
+          <div className="island-inline-search">
+            <input
+              ref={stickySearchRef}
+              type="text"
+              value={searchKeyword}
+              onChange={e => setSearchKeyword(e.target.value)}
+              placeholder="搜索菜谱名或食材…"
+              className="island-inline-search-input"
+            />
             <button
-              key={tab.value}
               type="button"
-              aria-pressed={filterMode === tab.value}
-              className={`island-filter-tab ${filterMode === tab.value ? 'active' : ''}`}
-              onClick={() => setFilterMode(tab.value)}
+              className="island-inline-search-cancel"
+              onClick={handleCloseStickySearch}
+              aria-label="取消搜索"
             >
-              {tab.label}
+              取消
             </button>
-          ))}
-        </div>
+          </div>
+        )}
 
-        {isCollapsed && (
+        {/* ── 筛选标签胶囊（折叠搜索激活时隐藏）── */}
+        {!(isCollapsed && isStickySearchOpen) && (
+          <div className="island-tabs-scroll" aria-label="筛选推荐">
+            {FILTER_TABS.map(tab => (
+              <button
+                key={tab.value}
+                type="button"
+                aria-pressed={filterMode === tab.value}
+                className={`island-filter-tab ${filterMode === tab.value ? 'active' : ''}`}
+                onClick={() => setFilterMode(tab.value)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* ── 折叠-标签态：SVG 放大镜按钮（搜索激活时隐藏）── */}
+        {isCollapsed && !isStickySearchOpen && (
           <button
             type="button"
             className="island-mini-search-btn"
-            onClick={handleMiniSearch}
+            onClick={handleOpenStickySearch}
             aria-label="展开搜索"
           >
-            🔍
+            <SearchIcon />
           </button>
         )}
       </div>
 
-      {renderSection('Available Now', '现在就能做', availableNow, '#2f765b')}
-      {renderSection('One Step Away', '就差一步', oneStepAway, '#c97850')}
-
-      {totalActionable === 0 && (
-        <div className="empty-recipes">
-          {searchKeyword ? `未找到与 “${searchKeyword}” 相关的菜谱，换个关键词试一试。` : '目前还没有满足条件的菜谱，在上方输入或勾选更多食材试一试。'}
-        </div>
-      )}
-
-      {otherList.length > 0 && (
-        <details className="other-recipes">
-          <summary>查看其他暂不满足的菜谱 ({otherList.length})</summary>
-          <div style={{ marginTop: '12px' }}>
-            <CollapsibleRecipeGrid
-              list={otherList}
-              onSelect={setSelectedResult}
-            />
+      {/* ── 收藏模式独立渲染分支 ── */}
+      {filterMode === 'favorites' ? (
+        favoritedList.length > 0 ? (
+          renderSection('My Favorites', '我的收藏', favoritedList, '#c45e2e')
+        ) : (
+          <div className="empty-recipes empty-favorites">
+            <p className="empty-favorites-icon">🤍</p>
+            <p className="empty-favorites-title">暂无收藏菜谱</p>
+            <p className="empty-favorites-hint">
+              点击卡片右上角的心形图标，把喜欢的家常菜存到这里吧
+            </p>
           </div>
-        </details>
+        )
+      ) : (
+        <>
+          {renderSection('Available Now', '现在就能做', availableNow, '#2f765b')}
+          {renderSection('One Step Away', '就差一步', oneStepAway, '#c97850')}
+
+          {totalActionable === 0 && (
+            <div className="empty-recipes">
+              {searchKeyword ? `未找到与 "${searchKeyword}" 相关的菜谱，换个关键词试一试。` : '目前还没有满足条件的菜谱，在上方输入或勾选更多食材试一试。'}
+            </div>
+          )}
+
+          {otherList.length > 0 && (
+            <details className="other-recipes">
+              <summary>查看其他暂不满足的菜谱 ({otherList.length})</summary>
+              <div style={{ marginTop: '12px' }}>
+                <CollapsibleRecipeGrid
+                  list={otherList}
+                  onSelect={setSelectedResult}
+                />
+              </div>
+            </details>
+          )}
+        </>
       )}
 
       <RecipeDetailModal
