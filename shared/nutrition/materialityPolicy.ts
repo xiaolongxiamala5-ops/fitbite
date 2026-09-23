@@ -59,7 +59,8 @@ const SUGAR_KEYWORDS = [
 ];
 
 const SUGAR_IDS = new Set([
-  'preset_sugar'
+  'preset_sugar',
+  'preset_rock_sugar'
 ]);
 
 /** Starches (calorie-dense carbs) */
@@ -80,15 +81,17 @@ const PASTE_KEYWORDS = [
 const SAUCE_KEYWORDS = [
   '生抽', '老抽', '酱油', '生抽酱油', '味极鲜', '一品鲜',
   '蚝油', '蒸鱼豉油', '豉油', '豆瓣酱', '郫县豆瓣酱', '红油豆瓣酱',
-  '番茄酱', '番茄沙司'
+  '番茄酱', '番茄沙司', '黄豆酱', '大豆酱'
 ];
 
 const SAUCE_IDS = new Set([
   'pantry_soy_sauce',
+  'preset_dark_soy_sauce',
   'preset_oyster_sauce',
   'preset_steamed_fish_soy_sauce',
   'preset_doubanjiang',
-  'preset_ketchup'
+  'preset_ketchup',
+  'preset_bean_paste'
 ]);
 
 /** Minor seasonings with high sodium impact */
@@ -106,6 +109,7 @@ const SODIUM_SEASONING_IDS = new Set([
 const MINOR_SPICE_KEYWORDS = [
   // Alliums & aromatics
   '葱', '葱花', '小葱', '大葱', '香葱', '葱段', '葱白', '葱丝',
+  '香菜', '香菜段', '香菜碎', '香菜叶', '芫荽',
   '生姜', '姜', '老姜', '姜片', '姜丝', '姜末',
   '大蒜', '蒜', '蒜瓣', '蒜末', '蒜泥', '蒜蓉', '大蒜瓣', '大蒜末',
   // Peppers & spices
@@ -125,10 +129,14 @@ const MINOR_SPICE_IDS = new Set([
   'pantry_black_pepper',
   'preset_ginger',
   'preset_scallion',
+  'preset_coriander',
   'preset_star_anise',
   'preset_sichuan_pepper',
   'preset_cumin',
   'preset_chili_powder',
+  'preset_dried_chili',
+  'preset_bay_leaf',
+  'preset_cinnamon',
   'preset_cooking_wine',
   'preset_vinegar'
 ]);

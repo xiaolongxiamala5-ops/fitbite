@@ -124,12 +124,12 @@ function resolveCalibratedGramsPerUnit(
   // 禽蛋类 (p_egg, 鸡蛋, 蛋)
   if (idLower.includes('egg') || idLower.includes('蛋')) {
     if (idLower.includes('century') || idLower.includes('preserved') || idLower.includes('皮蛋') || idLower.includes('松花蛋')) {
-      if (['个', '枚', '只'].includes(normUnit)) return 60;
+      if (['个', '枚', '只', '颗'].includes(normUnit)) return 60;
     }
     if (idLower.includes('salted') || idLower.includes('咸鸭蛋') || idLower.includes('咸蛋')) {
-      if (['枚', '个', '只'].includes(normUnit)) return 65;
+      if (['枚', '个', '只', '颗'].includes(normUnit)) return 65;
     }
-    if (['个', '只', '枚'].includes(normUnit)) {
+    if (['个', '只', '枚', '颗'].includes(normUnit)) {
       return 50; // 鸡蛋标准生重 50g
     }
   }
@@ -184,10 +184,30 @@ function resolveCalibratedGramsPerUnit(
     }
   }
 
+  // 生蚝 / 牡蛎
+  if (idLower.includes('oyster') || idLower.includes('生蚝') || idLower.includes('牡蛎')) {
+    if (['个', '只', '枚'].includes(normUnit)) {
+      return 65; // 带壳生蚝 1 个约 65g
+    }
+  }
+
   // 鲈鱼 / 鱼类
-  if (idLower.includes('fish') || idLower.includes('bass') || idLower.includes('鲈鱼') || idLower.includes('鱼')) {
+  if (idLower.includes('fish') || idLower.includes('bass') || idLower.includes('鲈鱼') || idLower.includes('鳕鱼') || idLower.includes('鱼')) {
     if (['条', '尾', '条鲈鱼'].includes(normUnit) || normUnit.includes('条')) {
       return 500; // 一条家常清蒸鲜鲈鱼标准重量 500g
+    }
+    if (['片', '块', '柳'].includes(normUnit)) {
+      return 200; // 鱼片/鱼排/鱼柳每片约 200g (鳕鱼片 2 片约 400g)
+    }
+  }
+
+  // 猪肉 / 五花肉
+  if (idLower.includes('pork') || idLower.includes('五花肉') || idLower.includes('瘦肉') || idLower.includes('肉')) {
+    if (['片'].includes(normUnit)) {
+      return 10; // 五花肉薄片 1 片约 10g
+    }
+    if (['块'].includes(normUnit)) {
+      return 30; // 炖肉块 1 块约 30g
     }
   }
 
@@ -195,6 +215,16 @@ function resolveCalibratedGramsPerUnit(
   if (idLower.includes('chicken_leg') || idLower.includes('鸡腿') || idLower.includes('手枪腿')) {
     if (['支', '根', '只', '个'].includes(normUnit)) {
       return 160; // 纯可食部去骨鸡肉克重约 160g (150-180g 厨房合理配比)
+    }
+  }
+
+  // 花生米
+  if (idLower.includes('peanut') || idLower.includes('花生')) {
+    if (['颗', '粒'].includes(normUnit)) {
+      return 2; // 花生仁 1 粒约 2g
+    }
+    if (['把'].includes(normUnit)) {
+      return 30;
     }
   }
 
@@ -212,10 +242,151 @@ function resolveCalibratedGramsPerUnit(
     }
   }
 
+  // 洋葱
+  if (idLower.includes('onion') || idLower.includes('洋葱') || idLower.includes('圆葱')) {
+    if (['个', '颗', '只'].includes(normUnit)) {
+      return 150; // 中等大小洋葱 1 个约 150g
+    }
+  }
+
+  // 包菜 / 卷心菜 / 圆白菜 / 结球甘蓝
+  if (idLower.includes('cabbage') || idLower.includes('包菜') || idLower.includes('卷心菜') || idLower.includes('圆白菜') || idLower.includes('甘蓝')) {
+    if (['颗', '个', '只'].includes(normUnit)) {
+      return 500; // 一颗普通包菜约 500g
+    }
+  }
+
+  // 娃娃菜
+  if (idLower.includes('baby_cabbage') || idLower.includes('娃娃菜')) {
+    if (['颗', '棵', '袋', '包', '个'].includes(normUnit)) {
+      return 200; // 一棵中等娃娃菜约 200g
+    }
+    if (['片', '叶'].includes(normUnit)) {
+      return 15; // 娃娃菜叶 1 片约 15g
+    }
+  }
+
+  // 生菜
+  if (idLower.includes('lettuce') || idLower.includes('生菜')) {
+    if (['颗', '棵', '个'].includes(normUnit)) {
+      return 200; // 一棵中等生菜约 200g
+    }
+    if (['片', '叶'].includes(normUnit)) {
+      return 10; // 单片生菜叶约 10g
+    }
+  }
+
+  // 油麦菜
+  if (idLower.includes('youmaicai') || idLower.includes('油麦菜')) {
+    if (['颗', '棵', '把', '扎'].includes(normUnit)) {
+      return 200; // 一棵油麦菜约 200g
+    }
+  }
+
+  // 菠菜 / 空心菜
+  if (idLower.includes('spinach') || idLower.includes('菠菜') || idLower.includes('空心菜')) {
+    if (['把', '扎', '捆', '棵', '颗'].includes(normUnit)) {
+      return 250; // 一把绿叶蔬菜约 250g
+    }
+  }
+
+  // 青菜 / 小白菜 / 油菜
+  if (idLower.includes('bok_choy') || idLower.includes('青菜') || idLower.includes('油菜') || idLower.includes('小白菜')) {
+    if (['颗', '棵', '株', '根'].includes(normUnit)) {
+      return 30; // 单棵小青菜约 30g
+    }
+    if (['把', '扎'].includes(normUnit)) {
+      return 200;
+    }
+  }
+
+  // 菜花 / 花菜
+  if (idLower.includes('cauliflower') || idLower.includes('花菜') || idLower.includes('菜花')) {
+    if (['约', '朵', '个', '颗', '棵'].includes(normUnit)) {
+      return 300; // 炒制花菜约 300g
+    }
+  }
+
+  // 西葫芦
+  if (idLower.includes('zucchini') || idLower.includes('西葫芦')) {
+    if (['根', '个', '只'].includes(normUnit)) {
+      return 200; // 1 根西葫芦约 200g
+    }
+  }
+
+  // 冬瓜
+  if (idLower.includes('winter_melon') || idLower.includes('冬瓜')) {
+    if (['块', '片', '圈'].includes(normUnit)) {
+      return 200; // 1 块冬瓜约 200g
+    }
+  }
+
+  // 南瓜
+  if (idLower.includes('pumpkin') || idLower.includes('南瓜')) {
+    if (['块', '个'].includes(normUnit)) {
+      return 300; // 1 块蒸南瓜约 300g
+    }
+  }
+
+  // 蒜苔
+  if (idLower.includes('garlic_moss') || idLower.includes('蒜苔') || idLower.includes('蒜薹')) {
+    if (['扎', '把', '捆'].includes(normUnit)) {
+      return 190; // 1 扎蒜苔约 190g
+    }
+    if (['根'].includes(normUnit)) {
+      return 10;
+    }
+  }
+
+  // 莴笋
+  if (idLower.includes('asparagus_lettuce') || idLower.includes('莴笋') || idLower.includes('莴苣')) {
+    if (['根', '个', '条'].includes(normUnit)) {
+      return 350; // 1 根中等莴笋削皮去叶净重约 350g
+    }
+  }
+
+  // 糖类 / 冰糖
+  if (idLower.includes('sugar') || idLower.includes('糖')) {
+    if (['粒', '块', '个'].includes(normUnit)) {
+      return 5; // 烹饪冰糖 1 粒/小块约 5g
+    }
+  }
+
+  // 大米 / 米
+  if (idLower.includes('rice') || idLower.includes('米') || idLower.includes('大米')) {
+    if (['ml', '毫升'].includes(normUnit)) {
+      return 0.85; // 生大米密度约 0.85 g/ml (150ml ~ 128g)
+    }
+  }
+
+  // 菜心 / 菜薹
+  if (idLower.includes('choy_sum') || idLower.includes('菜心') || idLower.includes('菜薹')) {
+    if (['颗', '棵', '根', '株', '把'].includes(normUnit)) {
+      return 25; // 单棵菜心约 25g
+    }
+  }
+
+  // 芹菜
+  if (idLower.includes('celery') || idLower.includes('芹菜')) {
+    if (['根', '棵', '株', '段'].includes(normUnit)) {
+      return 15; // 芹菜 1 根约 15g
+    }
+  }
+
+  // 尖椒 / 辣椒 / 小米辣 / 螺丝椒 / 线椒
+  if (idLower.includes('hot_pepper') || idLower.includes('尖椒') || idLower.includes('线椒') || idLower.includes('螺丝椒') || idLower.includes('小米辣') || idLower.includes('小米椒') || idLower.includes('野山椒') || idLower.includes('朝天椒')) {
+    if (idLower.includes('millet') || idLower.includes('小米辣') || idLower.includes('小米椒') || idLower.includes('野山椒') || idLower.includes('朝天椒')) {
+      if (['根', '个', '条', '支', '粒'].includes(normUnit)) return 3; // 鲜小米辣 1 根约 3g
+    }
+    if (['根', '个', '条', '支'].includes(normUnit)) {
+      return 15; // 鲜尖椒/二荆条 1 根约 15g
+    }
+  }
+
   // 青椒 / 菜椒 / 甜椒
   if (idLower.includes('pepper') || idLower.includes('青椒') || idLower.includes('菜椒') || idLower.includes('柿子椒')) {
-    if (idLower.includes('millet') || idLower.includes('小米辣') || idLower.includes('辣椒圈')) {
-      if (['根', '个'].includes(normUnit)) return 3;
+    if (idLower.includes('millet') || idLower.includes('小米辣') || idLower.includes('辣椒圈') || idLower.includes('野山椒')) {
+      if (['根', '个', '条', '支'].includes(normUnit)) return 3;
     }
     if (['个', '颗', '只'].includes(normUnit)) {
       return 100; // 普通青椒 1 个约 100g
@@ -231,8 +402,8 @@ function resolveCalibratedGramsPerUnit(
 
   // 香菇
   if (idLower.includes('shiitake') || idLower.includes('香菇')) {
-    if (['朵', '个'].includes(normUnit)) {
-      return 20; // 鲜香菇 1 朵约 20g
+    if (['朵', '个', '粒'].includes(normUnit)) {
+      return 15; // 泡发干香菇/鲜香菇 1 朵/粒约 15g
     }
   }
 

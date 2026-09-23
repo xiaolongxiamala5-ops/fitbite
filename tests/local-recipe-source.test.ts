@@ -68,30 +68,32 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
   });
 
   describe('2. JSON to SQLite Import & Idempotency Guardrails', () => {
-    it('2.1 正确将 15 道真实菜谱导入 SQLite，入库数与文件完全一致', () => {
+    it('2.1 正确将真实菜谱导入 SQLite，入库数与文件完全一致', () => {
+      const expectedCount = JSON.parse(fs.readFileSync(jsonPath, 'utf-8')).length;
       const summary = source.importFromJson(jsonPath);
 
-      expect(summary.totalInJson).toBe(15);
-      expect(summary.inserted).toBe(15);
+      expect(summary.totalInJson).toBe(expectedCount);
+      expect(summary.inserted).toBe(expectedCount);
       expect(summary.updated).toBe(0);
       expect(summary.skipped).toBe(0);
-      expect(source.count()).toBe(15);
+      expect(source.count()).toBe(expectedCount);
     });
 
     it('2.2 幂等性强断言：重复导入相同 content_hash 的菜谱时，必须完全跳过且不产生重复数据', () => {
+      const expectedCount = JSON.parse(fs.readFileSync(jsonPath, 'utf-8')).length;
       const firstRun = source.importFromJson(jsonPath);
-      expect(firstRun.inserted).toBe(15);
-      expect(source.count()).toBe(15);
+      expect(firstRun.inserted).toBe(expectedCount);
+      expect(source.count()).toBe(expectedCount);
 
       // 第二次导入
       const secondRun = source.importFromJson(jsonPath);
-      expect(secondRun.totalInJson).toBe(15);
+      expect(secondRun.totalInJson).toBe(expectedCount);
       expect(secondRun.inserted).toBe(0);
       expect(secondRun.updated).toBe(0);
-      expect(secondRun.skipped).toBe(15);
+      expect(secondRun.skipped).toBe(expectedCount);
 
-      // 记录总数依然严格保持 15，绝不膨胀翻倍
-      expect(source.count()).toBe(15);
+      // 记录总数依然严格保持，绝不膨胀翻倍
+      expect(source.count()).toBe(expectedCount);
     });
   });
 
@@ -233,7 +235,7 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
       }
     });
 
-    it('5.1 从零开始创建基于文件的数据库：验证创建、15 道菜导入、索引反查、幂等性与测试后清理', () => {
+    it('5.1 从零开始创建基于文件的数据库：验证创建、21 道菜导入、索引反查、幂等性与测试后清理', () => {
       // 1. 强断言：开始前临时文件绝不存在
       expect(fs.existsSync(tempDbPath)).toBe(false);
 
@@ -242,10 +244,11 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
       try {
         expect(fs.existsSync(tempDbPath)).toBe(true);
 
+        const expectedCount = JSON.parse(fs.readFileSync(jsonPath, 'utf-8')).length;
         const summary1 = fileSource.importFromJson(jsonPath);
-        expect(summary1.totalInJson).toBe(15);
-        expect(summary1.inserted).toBe(15);
-        expect(fileSource.count()).toBe(15);
+        expect(summary1.totalInJson).toBe(expectedCount);
+        expect(summary1.inserted).toBe(expectedCount);
+        expect(fileSource.count()).toBe(expectedCount);
 
         // 3. 验证 anyOf 关系与 canonical 索引在新创建的文件数据库中正常工作
         const chickenMatches = fileSource.findRecipesByCanonicalIds(['p_chicken_breast']);
@@ -263,8 +266,8 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
         // 4. 验证文件数据库上的重复导入幂等性
         const summary2 = fileSource.importFromJson(jsonPath);
         expect(summary2.inserted).toBe(0);
-        expect(summary2.skipped).toBe(15);
-        expect(fileSource.count()).toBe(15);
+        expect(summary2.skipped).toBe(expectedCount);
+        expect(fileSource.count()).toBe(expectedCount);
       } finally {
         fileSource.close();
       }

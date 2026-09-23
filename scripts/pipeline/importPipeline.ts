@@ -86,6 +86,36 @@ const MANIFEST: RecipeManifestItem[] = [
     slug: 'oyster_sauce_mushrooms',
     sourceFile: 'dishes/vegetable_dish/蚝油三鲜菇/蚝油三鲜菇.md',
     sourceUrl: 'https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E8%90%BD%E6%B2%B9%E4%B8%89%E9%B2%9C%E8%8F%87/%E8%90%BD%E6%B2%B9%E4%B8%89%E9%B2%9C%E8%8F%87.md'
+  },
+  {
+    slug: 'black_pepper_beef',
+    sourceFile: 'dishes/meat_dish/黑椒牛柳/黑椒牛柳.md',
+    sourceUrl: 'https://github.com/Anduin2017/HowToCook/blob/master/dishes/meat_dish/%E9%BB%91%E6%84%92%E7%89%9B%E6%9F%B3/%E9%BB%91%E6%84%92%E7%89%9B%E6%9F%B3.md'
+  },
+  {
+    slug: 'stir_fried_beef',
+    sourceFile: 'dishes/meat_dish/小炒黄牛肉/小炒黄牛肉.md',
+    sourceUrl: 'https://github.com/Anduin2017/HowToCook/blob/master/dishes/meat_dish/%E5%B0%8F%E7%82%92%E9%BB%84%E7%89%9B%E8%82%89/%E5%B0%8F%E7%82%92%E9%BB%84%E7%89%9B%E8%82%89.md'
+  },
+  {
+    slug: 'chicken_with_mushrooms',
+    sourceFile: 'dishes/meat_dish/香菇滑鸡/香菇滑鸡.md',
+    sourceUrl: 'https://github.com/Anduin2017/HowToCook/blob/master/dishes/meat_dish/%E9%A6%99%E8%8F%87%E6%BB%91%E9%B8%A1/%E9%A6%99%E8%8F%87%E6%BB%91%E9%B8%A1.md'
+  },
+  {
+    slug: 'boiled_choy_sum',
+    sourceFile: 'dishes/vegetable_dish/白灼菜心/白灼菜心.md',
+    sourceUrl: 'https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E7%99%BD%E7%81%BC%E8%8F%9C%E5%BF%83/%E7%99%BD%E7%81%BC%E8%8F%9C%E5%BF%83.md'
+  },
+  {
+    slug: 'shredded_cabbage',
+    sourceFile: 'dishes/vegetable_dish/手撕包菜/手撕包菜.md',
+    sourceUrl: 'https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E6%89%8B%E6%92%95%E5%8C%85%E8%8F%9C/%E6%89%8B%E6%92%95%E5%8C%85%E8%8F%9C.md'
+  },
+  {
+    slug: 'baby_cabbage_in_broth',
+    sourceFile: 'dishes/vegetable_dish/上汤娃娃菜/上汤娃娃菜.md',
+    sourceUrl: 'https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E4%B8%8A%E6%B1%A4%E5%A8%83%E5%A8%83%E8%8F%9C/%E4%B8%8A%E6%B1%A4%E5%A8%83%E5%A8%83%E8%8F%9C.md'
   }
 ];
 

@@ -747,42 +747,30 @@ button, input {
 .recipe-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(20, 16, 12, 0.4);
+  background: rgba(20, 16, 12, 0.45);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  z-index: 10000;
-  padding: 0;
-}
-
-@media (min-width: 480px) {
-  .recipe-modal-overlay {
-    align-items: center;
-    padding: 20px;
-  }
+  z-index: 9999;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .recipe-modal-sheet {
-  background: rgba(255, 253, 248, 0.92);
+  background: rgba(255, 253, 248, 0.95);
   backdrop-filter: blur(32px) saturate(190%);
   -webkit-backdrop-filter: blur(32px) saturate(190%);
   border: 0.5px solid rgba(255, 255, 255, 0.85);
-  border-radius: 28px 28px 0 0;
+  border-radius: 28px;
   width: 100%;
   max-width: 440px;
-  max-height: 88vh;
+  max-height: 85vh;
   overflow-y: auto;
   padding: 16px 20px 34px;
   box-sizing: border-box;
-  box-shadow: 0 -8px 36px rgba(45, 30, 15, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.9);
-}
-
-@media (min-width: 480px) {
-  .recipe-modal-sheet {
-    border-radius: 28px;
-  }
+  box-shadow: 0 16px 48px rgba(45, 30, 15, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 
 .recipe-modal-drag-handle {
@@ -1858,6 +1846,55 @@ button, input {
   color: var(--ios-text-secondary);
   line-height: 1.55;
   max-width: 200px;
+}
+
+/* ──────────────────────────────────────────────
+   方案 3：精选置顶 + 步进展开（Step Pagination）按钮
+   ────────────────────────────────────────────── */
+.recipe-pagination-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
+
+.recipe-pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.76);
+  border: 0.5px solid rgba(22, 51, 35, 0.14);
+  border-radius: 19px;
+  font-family: var(--font-chinese);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ios-forest-light);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.recipe-pagination-btn:hover {
+  background: rgba(255, 253, 248, 0.98);
+  border-color: rgba(36, 94, 70, 0.3);
+  color: var(--ios-forest);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(22, 51, 35, 0.08);
+}
+
+.recipe-pagination-btn:active {
+  transform: scale(0.98);
+}
+
+.recipe-pagination-icon {
+  font-size: 11px;
+  opacity: 0.85;
 }
 
 

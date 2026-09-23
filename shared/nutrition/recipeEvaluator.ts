@@ -507,9 +507,9 @@ export function evaluateRecipeNutrition(
         blockReason: blocker.message
       });
     } else if (classification.isMacroCritical) {
-      if (isDualOrEstimated && !hasValidAmount && (identifier === 'preset_sugar' || identifier === 'preset_starch')) {
+      if (isDualOrEstimated && !hasValidAmount && (identifier === 'preset_sugar' || identifier === 'preset_rock_sugar' || identifier === 'preset_starch')) {
         // 估算模式：调料篮中的未定量少量提鲜糖/勾芡淀粉注入家常底线估算 (糖 2g，淀粉 3g)
-        if (identifier === 'preset_sugar') {
+        if (identifier === 'preset_sugar' || identifier === 'preset_rock_sugar') {
           const sugarFood = food || FALLBACK_SUGAR_FOOD;
           const sugarNutrients: NutrientValues = {
             caloriesKcal: roundTo((2 / 100) * sugarFood.per100g.calories),
@@ -523,7 +523,7 @@ export function evaluateRecipeNutrition(
           hasEstimatedFactors = true;
           evaluatedIngredients.push({
             id: item.id,
-            name: item.name || '白糖',
+            name: item.name || (identifier === 'preset_rock_sugar' ? '冰糖' : '白糖'),
             classification,
             isQuantified: false,
             rawAmount: 2,

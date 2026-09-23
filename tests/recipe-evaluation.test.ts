@@ -351,19 +351,19 @@ describe('Recipe Nutrition Evaluation & Materiality Policy Test Suite (C.2.3)', 
   });
 
   // =========================================================================
-  // 4. Batch Evaluation of 15 Real Imported Recipes
+  // 4. Batch Evaluation of 21 Real Imported Recipes
   // =========================================================================
-  describe('4. Batch Evaluation of 15 Real Imported Recipes', () => {
-    it('4.1 15 道真实菜谱严格按 Materiality Policy 执行评估', () => {
+  describe('4. Batch Evaluation of 21 Real Imported Recipes', () => {
+    it('4.1 21 道真实菜谱严格按 Materiality Policy 执行评估', () => {
       const results = runImportedRecipesEvaluation();
-      expect(results.length).toBe(15);
+      expect(results.length).toBe(21);
 
-      // 15 道导入菜谱因缺少 WeightBasis 来源证据、或未定量油糖/非质量单位，全部判定为 nutrition_incomplete
+      // 21 道导入菜谱因缺少 WeightBasis 来源证据、或未定量油糖/非质量单位，全部判定为 nutrition_incomplete
       const verifiedRecipes = results.filter(r => r.nutritionStatus === 'nutrition_verified');
       expect(verifiedRecipes.length).toBe(0);
 
       const incompleteRecipes = results.filter(r => r.nutritionStatus === 'nutrition_incomplete');
-      expect(incompleteRecipes.length).toBe(15);
+      expect(incompleteRecipes.length).toBe(21);
 
       // 凉拌黄瓜：因黄瓜缺少 WeightBasis 来源证据判定为 unknown，整道菜判定为 nutrition_incomplete
       const cucumber = results.find(r => r.recipeId === 'imported_howtocook_cold_cucumber');

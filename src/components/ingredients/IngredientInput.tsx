@@ -80,7 +80,7 @@ export const IngredientInput: React.FC = () => {
           <div className="disambiguation-pills">
             {disambiguation.disambiguationPills.map(pill => (
               <button
-                key={pill.canonicalId}
+                key={`${pill.canonicalId}-${pill.name}`}
                 type="button"
                 className="disambiguation-pill"
                 onClick={() => handleSelectPill(pill)}

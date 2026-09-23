@@ -105,6 +105,70 @@ describe('Pantry Subsumption, Disambiguation & Health Calorie Tiering Suite', ()
       expect(findDisambiguation('鲈鱼')).toBeNull();
       expect(findDisambiguation('五花肉')).toBeNull();
     });
+
+    it('2.5 虾类消歧：输入“虾”、“鲜虾”、“大虾”命中，胶囊覆盖[基围虾, 虾仁, 对虾, 白对虾]', () => {
+      for (const input of ['虾', '鲜虾', '大虾', '  大虾  ']) {
+        const dis = findDisambiguation(input);
+        expect(dis).not.toBeNull();
+        const pills = dis?.disambiguationPills.map(p => p.name);
+        expect(pills).toEqual(expect.arrayContaining(['基围虾', '虾仁', '对虾', '白对虾']));
+      }
+    });
+
+    it('2.6 鸡肉类消歧：输入“鸡”、“鸡肉”命中，胶囊覆盖[鸡胸肉, 鸡腿肉, 鸡翅, 鸡爪]', () => {
+      for (const input of ['鸡', '鸡肉']) {
+        const dis = findDisambiguation(input);
+        expect(dis).not.toBeNull();
+        const pills = dis?.disambiguationPills.map(p => p.name);
+        expect(pills).toEqual(expect.arrayContaining(['鸡胸肉', '鸡腿肉', '鸡翅', '鸡爪']));
+      }
+    });
+
+    it('2.7 牛肉类消歧：输入“牛”、“牛肉”命中，胶囊覆盖[牛里脊, 牛腩, 肥牛片, 牛排]', () => {
+      for (const input of ['牛', '牛肉']) {
+        const dis = findDisambiguation(input);
+        expect(dis).not.toBeNull();
+        const pills = dis?.disambiguationPills.map(p => p.name);
+        expect(pills).toEqual(expect.arrayContaining(['牛里脊', '牛腩', '肥牛片', '牛排']));
+      }
+    });
+
+    it('2.8 蛋类消歧：输入“蛋”命中，胶囊覆盖[鸡蛋, 鸭蛋, 鹌鹑蛋]', () => {
+      const dis = findDisambiguation('蛋');
+      expect(dis).not.toBeNull();
+      const pills = dis?.disambiguationPills.map(p => p.name);
+      expect(pills).toEqual(expect.arrayContaining(['鸡蛋', '鸭蛋', '鹌鹑蛋']));
+    });
+
+    it('2.9 菇类消歧：输入“蘑菇”、“菌菇”、“菇”命中，胶囊覆盖[香菇, 金针菇, 杏鲍菇, 口蘑]', () => {
+      for (const input of ['蘑菇', '菌菇', '菇']) {
+        const dis = findDisambiguation(input);
+        expect(dis).not.toBeNull();
+        const pills = dis?.disambiguationPills.map(p => p.name);
+        expect(pills).toEqual(expect.arrayContaining(['香菇', '金针菇', '杏鲍菇', '口蘑']));
+      }
+    });
+
+    it('2.10 椒类消歧：输入“椒”、“辣椒”命中，胶囊覆盖[青椒, 红椒, 彩椒, 朝天椒]', () => {
+      for (const input of ['椒', '辣椒']) {
+        const dis = findDisambiguation(input);
+        expect(dis).not.toBeNull();
+        const pills = dis?.disambiguationPills.map(p => p.name);
+        expect(pills).toEqual(expect.arrayContaining(['青椒', '红椒', '彩椒', '朝天椒']));
+      }
+    });
+
+    it('2.11 边界防护：细分具体食材绝不误触发消歧', () => {
+      const specificLeaves = [
+        '青椒', '红椒', '彩椒', '朝天椒', '香菇', '金针菇', '杏鲍菇', '口蘑',
+        '基围虾', '虾仁', '对虾', '白对虾', '鸡胸肉', '鸡腿肉', '鸡翅', '鸡爪',
+        '牛里脊', '牛腩', '肥牛片', '牛排', '猪里脊', '排骨', '鸭蛋', '鹌鹑蛋',
+        '嫩豆腐', '老豆腐', '内酯豆腐', '冻豆腐'
+      ];
+      for (const item of specificLeaves) {
+        expect(findDisambiguation(item)).toBeNull();
+      }
+    });
   });
 
   // =========================================================================

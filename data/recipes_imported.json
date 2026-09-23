@@ -6,8 +6,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "tomato_scrambled_eggs",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E8%A5%BF%E7%BA%A2%E6%9F%BF%E7%82%92%E9%B8%A1%E8%9B%8B.md",
-      "sourceFile": "dishes/vegetable_dish/西红柿炒鸡蛋.md",
+      "sourceUrl": "https://local.import/tomato_scrambled_eggs",
+      "sourceFile": "data/raw_recipes/tomato_scrambled_eggs.md",
       "license": "CC-BY-4.0",
       "contentHash": "6ef54c60c7701866ba212e3e7cbc19a2d84c109e142824084d1f467dc701dc2f"
     },
@@ -77,8 +77,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "garlic_broccoli",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E8%92%9C%E8%93%89%E8%A5%BF%E5%85%B0%E8%8A%B1.md",
-      "sourceFile": "dishes/vegetable_dish/蒜蓉西兰花.md",
+      "sourceUrl": "https://local.import/garlic_broccoli",
+      "sourceFile": "data/raw_recipes/garlic_broccoli.md",
       "license": "CC-BY-4.0",
       "contentHash": "1ba3a15254c64f119807d4411d0e50ed3f1a3a6037249c6a4ebd0a071f91ef22"
     },
@@ -115,14 +115,14 @@
     ],
     "cookingMethod": null,
     "nutrition": {
-      "calories": 141,
-      "protein": 6.3,
-      "fat": 10.2,
+      "calories": 144,
+      "protein": 6.8,
+      "fat": 10.3,
       "carbs": 9,
       "confidence": "estimated",
       "calorieRange": [
-        130,
-        152
+        132,
+        155
       ],
       "isEstimated": true
     },
@@ -138,8 +138,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "cold_shredded_chicken",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/meat_dish/%E5%87%89%E6%8B%8C%E9%B8%A1%E4%B8%9D/%E5%87%89%E6%8B%8C%E9%B8%A1%E4%B8%9D.md",
-      "sourceFile": "dishes/meat_dish/凉拌鸡丝/凉拌鸡丝.md",
+      "sourceUrl": "https://local.import/cold_shredded_chicken",
+      "sourceFile": "data/raw_recipes/cold_shredded_chicken.md",
       "license": "CC-BY-4.0",
       "contentHash": "9e61031ea3b77c4686b05fb40bf54f50928c9ff807acd81d9a1dcdf3b1345c18"
     },
@@ -208,8 +208,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "kung_pao_chicken",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/meat_dish/%E5%AE%AB%E4%BF%9D%E9%B8%A1%E4%B8%81/%E5%AE%AB%E4%BF%9D%E9%B8%A1%E4%B8%81.md",
-      "sourceFile": "dishes/meat_dish/宫保鸡丁/宫保鸡丁.md",
+      "sourceUrl": "https://local.import/kung_pao_chicken",
+      "sourceFile": "data/raw_recipes/kung_pao_chicken.md",
       "license": "CC-BY-4.0",
       "contentHash": "4208f08fca5f07d359ecc3759693d678d374dfa80ae7185077d0f9bd38b8c9a1"
     },
@@ -283,18 +283,20 @@
     ],
     "tags": [
       "家常菜",
-      "炒"
+      "炒",
+      "cheat_or_share",
+      "控油建议"
     ],
     "cookingMethod": "炒",
     "nutrition": {
-      "calories": 579,
-      "protein": 31.8,
-      "fat": 43.8,
-      "carbs": 12.6,
+      "calories": 581,
+      "protein": 32.1,
+      "fat": 43.9,
+      "carbs": 12.7,
       "confidence": "estimated",
       "calorieRange": [
-        533,
-        625
+        534,
+        627
       ],
       "isEstimated": true
     },
@@ -310,8 +312,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "boiled_shrimp",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/aquatic/%E7%99%BD%E7%81%BC%E8%99%BE/%E7%99%BD%E7%81%BC%E8%99%BE.md",
-      "sourceFile": "dishes/aquatic/白灼虾/白灼虾.md",
+      "sourceUrl": "https://local.import/boiled_shrimp",
+      "sourceFile": "data/raw_recipes/boiled_shrimp.md",
       "license": "CC-BY-4.0",
       "contentHash": "6296adcbaaeb2ecd0280c60b22c91d1c4a97b888791320942e4787b9d58f9b43"
     },
@@ -323,12 +325,20 @@
         "unit": "g",
         "originalRawText": "活虾",
         "mode": "single"
+      },
+      {
+        "id": "v_onion",
+        "name": "洋葱",
+        "amount": 1,
+        "unit": "根",
+        "originalRawText": "洋葱",
+        "mode": "single"
       }
     ],
     "pantryIngredients": [
-      "preset_scallion",
       "preset_ginger",
       "pantry_garlic",
+      "preset_scallion",
       "pantry_oil",
       "pantry_soy_sauce",
       "preset_cooking_wine",
@@ -349,14 +359,14 @@
     ],
     "cookingMethod": null,
     "nutrition": {
-      "calories": 250,
-      "protein": 22.5,
-      "fat": 12.3,
+      "calories": 256,
+      "protein": 23.6,
+      "fat": 12.5,
       "carbs": 7.4,
       "confidence": "estimated",
       "calorieRange": [
-        230,
-        270
+        235,
+        276
       ],
       "isEstimated": true
     },
@@ -372,8 +382,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "braised_prawns",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/aquatic/%E6%B2%B9%E7%84%96%E5%A4%A7%E8%99%BE/%E6%B2%B9%E7%84%96%E5%A4%A7%E8%99%BE.md",
-      "sourceFile": "dishes/aquatic/油焖大虾/油焖大虾.md",
+      "sourceUrl": "https://local.import/braised_prawns",
+      "sourceFile": "data/raw_recipes/braised_prawns.md",
       "license": "CC-BY-4.0",
       "contentHash": "549b692854b812ee008f4280ff471e052d975028d12188d25f7a6d18093b598f"
     },
@@ -437,8 +447,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "garlic_shrimp",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/aquatic/%E8%92%9C%E8%93%89%E8%99%BE/%E8%92%9C%E8%93%89%E8%99%BE.md",
-      "sourceFile": "dishes/aquatic/蒜蓉虾/蒜蓉虾.md",
+      "sourceUrl": "https://local.import/garlic_shrimp",
+      "sourceFile": "data/raw_recipes/garlic_shrimp.md",
       "license": "CC-BY-4.0",
       "contentHash": "d8965d8b868bdba8892843fabf5c58fcad6a46fe1b92da25eaec07895e471881"
     },
@@ -494,8 +504,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "mapo_tofu",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/meat_dish/%E9%BA%BB%E5%A9%86%E8%B1%86%E8%85%90/%E9%BA%BB%E5%A9%86%E8%B1%86%E8%85%90.md",
-      "sourceFile": "dishes/meat_dish/麻婆豆腐/麻婆豆腐.md",
+      "sourceUrl": "https://local.import/mapo_tofu",
+      "sourceFile": "data/raw_recipes/mapo_tofu.md",
       "license": "CC-BY-4.0",
       "contentHash": "11547a2586819cd712ccd275aebf7318a724e2bb5d47d10f5f0e6fa71735ba3d"
     },
@@ -513,7 +523,7 @@
         "name": "咸鸭蛋",
         "amount": 1,
         "unit": "枚",
-        "originalRawText": "咸鸭蛋（推荐留夫鸭的",
+        "originalRawText": "咸鸭蛋（推荐留夫鸭的，这个是灵魂）",
         "mode": "single"
       },
       {
@@ -535,6 +545,14 @@
             "name": "猪肉末"
           }
         ]
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 5,
+        "unit": "根",
+        "originalRawText": "小米椒（不吃辣的可选）",
+        "mode": "single"
       }
     ],
     "pantryIngredients": [
@@ -563,18 +581,20 @@
     "tags": [
       "家常菜",
       "炒",
-      "植物蛋白"
+      "植物蛋白",
+      "cheat_or_share",
+      "控油建议"
     ],
     "cookingMethod": "炒",
     "nutrition": {
-      "calories": 448,
-      "protein": 23.4,
-      "fat": 33.5,
-      "carbs": 13.6,
+      "calories": 463,
+      "protein": 23.9,
+      "fat": 33.7,
+      "carbs": 17.2,
       "confidence": "estimated",
       "calorieRange": [
-        412,
-        484
+        426,
+        500
       ],
       "isEstimated": true
     },
@@ -590,8 +610,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "century_egg_tofu",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E7%9A%AE%E8%9B%8B%E8%B1%86%E8%85%90.md",
-      "sourceFile": "dishes/vegetable_dish/皮蛋豆腐.md",
+      "sourceUrl": "https://local.import/century_egg_tofu",
+      "sourceFile": "data/raw_recipes/century_egg_tofu.md",
       "license": "CC-BY-4.0",
       "contentHash": "efafaaf488fb839634e9146ec98298c86a33e0507a0838cedf4aa17c115e5127"
     },
@@ -611,14 +631,6 @@
         "unit": "盒",
         "originalRawText": "内酯豆腐",
         "mode": "single"
-      },
-      {
-        "id": "other_peanut",
-        "name": "花生米",
-        "amount": 10,
-        "unit": "g",
-        "originalRawText": "花生碎（可选）",
-        "mode": "single"
       }
     ],
     "pantryIngredients": [
@@ -627,7 +639,8 @@
       "preset_vinegar",
       "preset_sesame_oil",
       "preset_chili_oil",
-      "preset_scallion"
+      "preset_scallion",
+      "preset_coriander"
     ],
     "instructions": [
       "先把皮蛋剥壳，切成四瓣。",
@@ -638,18 +651,20 @@
     "tags": [
       "家常菜",
       "快手菜",
-      "植物蛋白"
+      "植物蛋白",
+      "cheat_or_share",
+      "控油建议"
     ],
     "cookingMethod": null,
     "nutrition": {
-      "calories": 584,
-      "protein": 30.8,
-      "fat": 43.8,
-      "carbs": 17.3,
+      "calories": 527,
+      "protein": 28.3,
+      "fat": 39.3,
+      "carbs": 15.1,
       "confidence": "estimated",
       "calorieRange": [
-        537,
-        631
+        485,
+        569
       ],
       "isEstimated": true
     },
@@ -665,8 +680,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "pepper_potato_pork",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/meat_dish/%E9%9D%92%E6%84%92%E5%9C%9F%E8%B1%86%E7%82%92%E8%82%89/%E9%9D%92%E6%84%92%E5%9C%9F%E8%B1%86%E7%82%92%E8%82%89.md",
-      "sourceFile": "dishes/meat_dish/青椒土豆炒肉/青椒土豆炒肉.md",
+      "sourceUrl": "https://local.import/pepper_potato_pork",
+      "sourceFile": "data/raw_recipes/pepper_potato_pork.md",
       "license": "CC-BY-4.0",
       "contentHash": "6312784fb25a4f1d7b144e3824180e3951890a75e6c3c34f4332dc7db35f011d"
     },
@@ -727,7 +742,9 @@
     "tags": [
       "家常菜",
       "炒",
-      "快手菜"
+      "快手菜",
+      "cheat_or_share",
+      "控油建议"
     ],
     "cookingMethod": "炒",
     "nutrition": {
@@ -754,8 +771,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "tiger_skin_pepper",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E8%99%8E%E7%9A%AE%E9%9D%92%E6%84%92/%E8%99%8E%E7%9A%AE%E9%9D%92%E6%84%92.md",
-      "sourceFile": "dishes/vegetable_dish/虎皮青椒/虎皮青椒.md",
+      "sourceUrl": "https://local.import/tiger_skin_pepper",
+      "sourceFile": "data/raw_recipes/tiger_skin_pepper.md",
       "license": "CC-BY-4.0",
       "contentHash": "b49f516f967eb74688024ba32c332ee3893ad85ab0706de61ed87d6cd33e71da"
     },
@@ -816,8 +833,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "steamed_egg_custard",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E9%B8%A1%E8%9B%8B%E7%BE%B9/%E9%B8%A1%E8%9B%8B%E7%BE%B9.md",
-      "sourceFile": "dishes/vegetable_dish/鸡蛋羹/鸡蛋羹.md",
+      "sourceUrl": "https://local.import/steamed_egg_custard",
+      "sourceFile": "data/raw_recipes/steamed_egg_custard.md",
       "license": "CC-BY-4.0",
       "contentHash": "315fa22701bdabd3a35de3546f3f3a08fe325ff75b5dc70c1f519d5e8254d248"
     },
@@ -882,8 +899,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "cold_cucumber",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E5%87%89%E6%8B%8C%E9%BB%84%E7%瓜.md",
-      "sourceFile": "dishes/vegetable_dish/凉拌黄瓜.md",
+      "sourceUrl": "https://local.import/cold_cucumber",
+      "sourceFile": "data/raw_recipes/cold_cucumber.md",
       "license": "CC-BY-4.0",
       "contentHash": "4e0602a73250f8e485a5500ed7a3daa6722e64d017efdf517100c4c76562ce67"
     },
@@ -942,8 +959,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "steamed_sea_bass",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/aquatic/%E6%B8%85%E8%92%B8%E9%B2%88%E9%B1%BC/%E6%B8%85%E8%92%B8%E9%B2%88%E9%B1%BC.md",
-      "sourceFile": "dishes/aquatic/清蒸鲈鱼/清蒸鲈鱼.md",
+      "sourceUrl": "https://local.import/steamed_sea_bass",
+      "sourceFile": "data/raw_recipes/steamed_sea_bass.md",
       "license": "CC-BY-4.0",
       "contentHash": "fe51b4171a90f9f8f2b194f24ac8da7e1966518ca7f437935418bf339a21ff1a"
     },
@@ -1020,8 +1037,8 @@
     "provenance": {
       "source": "howtocook",
       "sourceId": "oyster_sauce_mushrooms",
-      "sourceUrl": "https://github.com/Anduin2017/HowToCook/blob/master/dishes/vegetable_dish/%E8%90%BD%E6%B2%B9%E4%B8%89%E9%B2%9C%E8%8F%87/%E8%90%BD%E6%B2%B9%E4%B8%89%E9%B2%9C%E8%8F%87.md",
-      "sourceFile": "dishes/vegetable_dish/蚝油三鲜菇/蚝油三鲜菇.md",
+      "sourceUrl": "https://local.import/oyster_sauce_mushrooms",
+      "sourceFile": "data/raw_recipes/oyster_sauce_mushrooms.md",
       "license": "CC-BY-4.0",
       "contentHash": "c2581b940bc3682d53fe0d1911f225195829e153d25fc059c1f3deadaedd43e5"
     },
@@ -1048,6 +1065,14 @@
         "amount": 30,
         "unit": "g",
         "originalRawText": "白玉菇",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 1,
+        "unit": "根",
+        "originalRawText": "小米辣",
         "mode": "single"
       },
       {
@@ -1096,20 +1121,3895 @@
     ],
     "cookingMethod": "炒",
     "nutrition": {
-      "calories": 176,
-      "protein": 6.1,
-      "fat": 10,
-      "carbs": 18.1,
+      "calories": 182,
+      "protein": 6.9,
+      "fat": 10.2,
+      "carbs": 18.3,
       "confidence": "estimated",
       "calorieRange": [
-        162,
-        190
+        168,
+        197
       ],
       "isEstimated": true
     },
     "servings": null,
     "difficulty": "中等",
     "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_baby_cabbage_in_broth",
+    "name": "上汤娃娃菜",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "baby_cabbage_in_broth",
+      "sourceUrl": "https://local.import/baby_cabbage_in_broth",
+      "sourceFile": "data/raw_recipes/baby_cabbage_in_broth.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "711961387a8d1d0827971b4f9cc56683c8718711b8f99ade547de5aa19b94b0d"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_baby_cabbage",
+        "name": "娃娃菜",
+        "amount": 700,
+        "unit": "g",
+        "originalRawText": "娃娃菜",
+        "mode": "single"
+      },
+      {
+        "id": "p_preserved_egg",
+        "name": "皮蛋",
+        "amount": 1,
+        "unit": "个",
+        "originalRawText": "皮蛋",
+        "mode": "single"
+      },
+      {
+        "id": "p_luncheon_meat",
+        "name": "午餐肉",
+        "amount": 50,
+        "unit": "g",
+        "originalRawText": "午餐肉（火腿肠）",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "pantry_garlic",
+      "pantry_salt",
+      "preset_sugar",
+      "preset_starch",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "娃娃菜洗净, 竖着切开切成段。",
+      "葱 3g 切 小段。蒜 10g 切片。姜 10g 切小片。",
+      "皮蛋切成丁, 火腿肠或者午餐肉切成丁（1cm 大小的丁）",
+      "金针菇洗净撕开",
+      "烧热水娃娃菜放进去十秒钟出一下水捞出。",
+      "热锅凉油, 加热锅倒入油过一遍就倒出来, 重新倒入一点油。",
+      "调至小火加入葱姜蒜，煎炒出香味即可。",
+      "加入适 300g 清水（水量没过娃娃菜即可）, 放入娃娃菜, 金针菇, 午餐肉",
+      "加入调味料蚝油、糖、盐、味精烧开。",
+      "煮 3 分钟, 煮开后开始装盘, 盛出娃娃菜后皮蛋放在上面把汤汁浇上去就可以了"
+    ],
+    "tags": [
+      "家常菜",
+      "煮"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 400,
+      "protein": 25.5,
+      "fat": 24.3,
+      "carbs": 29.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        368,
+        432
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_black_pepper_beef",
+    "name": "黑椒牛柳",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "black_pepper_beef",
+      "sourceUrl": "https://local.import/black_pepper_beef",
+      "sourceFile": "data/raw_recipes/black_pepper_beef.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "8940e16d6bde2acaae1cb2eb51dde3179f8616cb2a66d7562fb3a54064951471"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_beef",
+        "name": "牛肉",
+        "amount": 100,
+        "unit": "克",
+        "originalRawText": "牛肉（可以用牛里脊肉或者牛排肉）",
+        "mode": "anyOf",
+        "alternatives": [
+          {
+            "id": "p_beef",
+            "name": "牛肉",
+            "amount": 100,
+            "unit": "克"
+          },
+          {
+            "id": "p_pork_lean",
+            "name": "猪瘦肉"
+          }
+        ]
+      },
+      {
+        "id": "v_onion",
+        "name": "洋葱",
+        "amount": 0.08333333333333333,
+        "unit": "个",
+        "originalRawText": "洋葱",
+        "mode": "single"
+      },
+      {
+        "id": "v_green_bell_pepper",
+        "name": "青椒",
+        "amount": 0.08333333333333333,
+        "unit": "个",
+        "originalRawText": "菜椒（红/黄椒）",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_starch",
+      "pantry_black_pepper",
+      "pantry_salt",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "将牛肉切条，长度最好控制在 8 厘米以下，厚度约 5-10 毫米，宽度约 1 厘米（要求不严格）",
+      "利用腌料腌制牛肉，混合均匀后静置，用量与时间请参照商品说明，可以延长不能缩短。",
+      "如果使用液态腌料，可以在腌制结束前三分钟撒一层黑胡椒粉，然后再加入淀粉，再次混合均匀后静置 20 分钟。",
+      "开火，热锅，加入花生油。",
+      "当能看到锅里的油冒出一丝烟时，放入牛肉，翻炒。",
+      "开中火偏大，翻炒 2 分钟至牛肉外表变色（即不出现明显血色，有血色部分说明翻炒不到位）（此处应小心油滴溅射）。",
+      "放入洋葱和菜椒，翻炒 2 分钟。",
+      "加入盐，再次撒一份黑胡椒粉，翻炒 30 秒，搅拌均匀。",
+      "观察洋葱已经变软即可关火，出锅，盛盘。"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 259,
+      "protein": 20.2,
+      "fat": 17.9,
+      "carbs": 4.3,
+      "confidence": "estimated",
+      "calorieRange": [
+        238,
+        279
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "困难",
+    "rawDifficulty": "★★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_boiled_choy_sum",
+    "name": "白灼菜心",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "boiled_choy_sum",
+      "sourceUrl": "https://local.import/boiled_choy_sum",
+      "sourceFile": "data/raw_recipes/boiled_choy_sum.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "561f737f57b78c83187b17abbc77df05cb5bf4f4f80467dcb7232a34147c1eb2"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_choy_sum",
+        "name": "菜心",
+        "amount": 250,
+        "unit": "g",
+        "originalRawText": "新鲜菜心",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 1.5,
+        "unit": "根",
+        "originalRawText": "小米辣",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_soy_sauce",
+      "preset_oyster_sauce",
+      "pantry_salt",
+      "pantry_garlic",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "菜心洗净，**去除根部比较硬或老的地方**。此处还用刀刮了**刮菜心根茎部分**，刮掉外面那层比较硬的，菜心内部更可口，但要注意根茎白灼时长，时间太长的话根茎不脆了",
+      "大蒜切成蒜末，有洋葱顺便加了点洋葱",
+      "调制灵魂料汁：生抽 5g 吧、蚝油 5g，加 3g 糖和 100g 清水半碗成一碗汁儿",
+      "一锅 500ml 清水加 5g 盐和 10g 食用油烧开",
+      "将菜心根茎在沸水中烫 1 分钟，直到根茎颜色变成深绿。再将整个菜心放到锅中烫熟 1 分钟，捞起来码入盘中",
+      "开另一小锅将兑好的料汁倒入，小火烧开，放入一半的蒜末，一点点姜丝和小米椒碎。在制作时加了一点点洋葱碎和大蒜，先在锅底倒油，五成热后倒入蒜末、洋葱，稍稍爆香后再加入料汁，加入小米辣煮开",
+      "料汁稍微收汁，煮沸后稍等十来秒吧，后直接浇在菜心上，不要特别多，但蒜末还是很给力的不要少蒜"
+    ],
+    "tags": [
+      "家常菜"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 167,
+      "protein": 7,
+      "fat": 11.2,
+      "carbs": 11.8,
+      "confidence": "estimated",
+      "calorieRange": [
+        154,
+        181
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_braised_carp_tofu",
+    "name": "鳊鱼炖豆腐",
+    "category": "水产海鲜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "braised_carp_tofu",
+      "sourceUrl": "https://local.import/braised_carp_tofu",
+      "sourceFile": "data/raw_recipes/braised_carp_tofu.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "7c8e55be70aa36ad253badbe1b1e7ef1084ba32c1e749afb790ef1e8e5a42089"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_fish_bream",
+        "name": "鳊鱼",
+        "amount": 550,
+        "unit": "克",
+        "originalRawText": "鳊鱼（鱼可以让摊主帮忙处理好）",
+        "mode": "anyOf",
+        "alternatives": [
+          {
+            "id": "p_fish_bream",
+            "name": "鳊鱼",
+            "amount": 550,
+            "unit": "克"
+          },
+          {
+            "id": "p_fish_generic",
+            "name": "鱼"
+          }
+        ]
+      },
+      {
+        "id": "p_tofu_firm",
+        "name": "老豆腐",
+        "amount": 400,
+        "unit": "克",
+        "originalRawText": "老豆腐",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_ginger",
+      "preset_scallion",
+      "pantry_garlic",
+      "preset_dark_soy_sauce",
+      "preset_cinnamon",
+      "preset_rock_sugar",
+      "preset_dried_chili",
+      "preset_cooking_wine",
+      "pantry_soy_sauce",
+      "pantry_salt",
+      "preset_star_anise",
+      "preset_bay_leaf"
+    ],
+    "instructions": [
+      "鳊鱼改刀，放上姜片和料酒腌制 5-10 分钟",
+      "老豆腐切块后放入水中备用",
+      "锅中加油，可以放点盐在锅里，防止煎鱼的时候粘锅，把腌制的鱼用厨房纸擦干水分，把鱼放到锅中，两面都煎一下",
+      "等两面都煎好时，把鱼推向锅边一点，留点空间放入葱姜蒜，干辣椒，香叶，八角炒出味道",
+      "炒出佐料香味后，加入料酒，生抽，老抽，冰糖，桂皮，倒入热水，水量和鱼平齐或者少点",
+      "大火烧开后，放入老豆腐，豆腐贴在锅边，加入食盐，转小火",
+      "小火烧 10-15 分钟，然后大火收点汁，即可出锅"
+    ],
+    "tags": [
+      "家常菜",
+      "高蛋白",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 1122,
+      "protein": 104,
+      "fat": 53.3,
+      "carbs": 60.7,
+      "confidence": "estimated",
+      "calorieRange": [
+        1032,
+        1212
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_carp_with_cabbage",
+    "name": "鲤鱼炖白菜",
+    "category": "水产海鲜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "carp_with_cabbage",
+      "sourceUrl": "https://local.import/carp_with_cabbage",
+      "sourceFile": "data/raw_recipes/carp_with_cabbage.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "401ff1a661e38930f6d7057dab7045cbf4d05bfad8f63e13a3a802980ee46122"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_fish_carp",
+        "name": "鲤鱼",
+        "amount": 1.2,
+        "unit": "斤",
+        "originalRawText": "鲤鱼",
+        "mode": "single"
+      },
+      {
+        "id": "v_baby_cabbage",
+        "name": "娃娃菜",
+        "amount": 13,
+        "unit": "片",
+        "originalRawText": "白菜心/娃娃菜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil",
+      "preset_ginger",
+      "pantry_garlic",
+      "pantry_salt",
+      "preset_dark_soy_sauce",
+      "pantry_soy_sauce",
+      "preset_cinnamon",
+      "preset_star_anise",
+      "preset_doubanjiang",
+      "preset_dried_chili"
+    ],
+    "instructions": [
+      "鲤鱼清洗干净，改刀（在鱼身上多划几个伤口，方便入味）",
+      "娃娃菜清洗干净放入盘中备用",
+      "锅中加油，等油热放入“少盐” “姜” “蒜” “郫县豆瓣酱” “桂皮” “八角” 炒出香味",
+      "把鱼放锅里煎（3 分钟）每（30 秒）需要翻面",
+      "加入“水”（水量尽量和鱼平齐，可以少一点点） 放入 “生抽” “老抽” “娃娃菜”",
+      "大火炖 15-20 分钟，汤汁快干时添加 “盐” 即可出锅"
+    ],
+    "tags": [
+      "家常菜",
+      "快手菜",
+      "高蛋白"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 469,
+      "protein": 60.9,
+      "fat": 22.9,
+      "carbs": 8,
+      "confidence": "estimated",
+      "calorieRange": [
+        432,
+        507
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_catfish_tofu_soup",
+    "name": "昂刺鱼豆腐汤",
+    "category": "水产海鲜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "catfish_tofu_soup",
+      "sourceUrl": "https://local.import/catfish_tofu_soup",
+      "sourceFile": "data/raw_recipes/catfish_tofu_soup.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "a4d624b7221e2759cf8e2c4a1db27f9298a620ab62f58d57109a6c557e0d4ae3"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_fish_generic",
+        "name": "鱼",
+        "amount": 1,
+        "unit": "条",
+        "originalRawText": "昂刺鱼或者沙光鱼",
+        "mode": "single"
+      },
+      {
+        "id": "p_tofu_generic",
+        "name": "豆腐",
+        "amount": 100,
+        "unit": "g",
+        "originalRawText": "豆腐",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "pantry_oil",
+      "preset_cooking_wine",
+      "pantry_salt",
+      "pantry_black_pepper"
+    ],
+    "instructions": [
+      "鱼处理好后洗净，（特别注意肚内的血丝、不洗干净会有腥味），放入大碗中，倒入料酒、10g 姜片、5g 盐，腌制 15 分钟",
+      "豆腐切块，放入凉水浸泡 5 分钟，捞出备用",
+      "煎鱼前，先用生姜片擦一下锅防止粘锅，倒入油（油量为 15ml * 鱼的条数 ），烧热后放入鱼煎 2~3 分钟，期间需要晃动一下鱼，防止粘底，且需要翻一次身",
+      "待鱼全部煎好之后，倒入开水、5ml 料酒、姜片，小火转至大火，盖上锅盖、大火煮 10 分钟（水要稍微多一些，后面会蒸发掉一些）",
+      "见汤变白后倒入准备好的豆腐，调中火再煮 5 分钟，加入 10g 盐、3g 胡椒粉调味，最后撒上葱花出锅"
+    ],
+    "tags": [
+      "家常菜",
+      "煮",
+      "快手菜",
+      "高蛋白",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 513,
+      "protein": 53.4,
+      "fat": 30.8,
+      "carbs": 4.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        472,
+        554
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_century_egg_lean_pork_porridge",
+    "name": "皮蛋瘦肉粥",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "century_egg_lean_pork_porridge",
+      "sourceUrl": "https://local.import/century_egg_lean_pork_porridge",
+      "sourceFile": "data/raw_recipes/century_egg_lean_pork_porridge.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "4667b625ebf86e20cb666a8dec32404247a71d290a02fc109b14f2171a9045f7"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_preserved_egg",
+        "name": "皮蛋",
+        "amount": 2,
+        "unit": "颗",
+        "originalRawText": "皮蛋（松花蛋）",
+        "mode": "single"
+      },
+      {
+        "id": "p_pork_lean",
+        "name": "猪瘦肉",
+        "amount": 100,
+        "unit": "g",
+        "originalRawText": "瘦肉",
+        "mode": "single"
+      },
+      {
+        "id": "c_rice",
+        "name": "米饭",
+        "amount": 150,
+        "unit": "ml",
+        "originalRawText": "大米",
+        "mode": "single"
+      },
+      {
+        "id": "v_lettuce",
+        "name": "生菜",
+        "amount": 4,
+        "unit": "叶",
+        "originalRawText": "生菜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_coriander",
+      "preset_ginger",
+      "pantry_soy_sauce",
+      "preset_oyster_sauce",
+      "pantry_salt",
+      "pantry_black_pepper",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "大米 - 洗净 - 放入电饭锅内胆 - 加入 1 升 饮用水",
+      "瘦肉 - 洗净 - 简易晾去水分 - 加入 10ml 食用油 - 揉搓均匀 - 放入电饭锅内胆",
+      "皮蛋 - 去壳 - 洗净 - 对半切开 - 分离蛋白蛋黄 - 蛋白简单切碎块 - 蛋黄揉碎 - 放入电饭锅内胆",
+      "生姜 - 洗净 - 削皮 - 去除枯黄枯黑无法食用部分 - 切丝 - 放入电饭锅内胆",
+      "小葱 - 洗净 - 去除根部 - 去除枯黄枯黑无法食用部分 - 切碎 - 放入小碗备用",
+      "香菜 - 洗净 - 去除根部 - 去除枯黄枯黑无法食用部分 - 切碎 - 放入小碗备用",
+      "生菜 - 洗净 - 去除根部 - 去除枯黄枯黑无法食用部分 - 切碎 - 放入小碗备用",
+      "酱油 + 蚝油 + 盐 + 胡椒粉 - 搅拌均匀 - 放入小碗备用",
+      "主料 - 使用电饭锅煮粥模式煮熟",
+      "配料 - 待主料煮熟后，生菜单独过一次热水，并与其余配料一同开盖加入主料中搅拌均匀",
+      "酱料 - 待主料煮熟后，与其余配料一同开盖加入主料中搅拌均匀"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "凉菜"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 594,
+      "protein": 40.8,
+      "fat": 27.6,
+      "carbs": 46,
+      "confidence": "estimated",
+      "calorieRange": [
+        547,
+        642
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_chicken_with_mushrooms",
+    "name": "香菇滑鸡",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "chicken_with_mushrooms",
+      "sourceUrl": "https://local.import/chicken_with_mushrooms",
+      "sourceFile": "data/raw_recipes/chicken_with_mushrooms.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "4a6b5f53985d554fb022fe4aba1aecc0a8d09b6afd70ac31004aa3400eb13070"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_chicken_leg",
+        "name": "鸡腿肉",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "大鸡腿",
+        "mode": "single"
+      },
+      {
+        "id": "v_mushroom_shiitake",
+        "name": "香菇",
+        "amount": 5,
+        "unit": "粒",
+        "originalRawText": "干香菇",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_ginger",
+      "preset_scallion",
+      "pantry_garlic",
+      "preset_cooking_wine",
+      "pantry_soy_sauce",
+      "pantry_salt",
+      "preset_dark_soy_sauce"
+    ],
+    "instructions": [
+      "温水泡发干香菇",
+      "姜切小块，葱切段，蒜对半切小粒",
+      "鸡腿去骨（不去骨也可，只是略影响程序员吃饭的效率而已），切成小块",
+      "泡发的香菇一分为四，香菇水留着备用",
+      "鸡腿肉焯水 1 分钟，去除血沫和杂质",
+      "鸡腿肉中加料酒 15ml、生抽 15ml、盐 1.5g、老抽 15ml，抓匀",
+      "油温 3 成，下入鸡腿肉煸炒，等鸡腿肉金黄后盛出备用",
+      "锅留底油，下入葱、姜、蒜炒香，香菇入锅，大火翻匀",
+      "等待 20 秒会有香菇香味从锅中飘出，此时下入煸炒过的鸡腿肉，下入香菇水（全部，**本程序员认为的灵魂操作**）、糖 15ml、生抽 30ml",
+      "转中火不盖盖，咕嘟 2 分钟收浓汤汁，淋入香油 5ml，撒上葱花后即可关火、装盘"
+    ],
+    "tags": [
+      "家常菜"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 389,
+      "protein": 49.9,
+      "fat": 17.3,
+      "carbs": 5.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        358,
+        420
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_chives_scrambled_eggs",
+    "name": "韭菜炒蛋",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "chives_scrambled_eggs",
+      "sourceUrl": "https://local.import/chives_scrambled_eggs",
+      "sourceFile": "data/raw_recipes/chives_scrambled_eggs.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "7e81de0922c738b6490a51e8f642d6ea2e0e32056498977c889bd13db4b1c432"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil",
+      "pantry_salt"
+    ],
+    "instructions": [
+      "韭菜洗净，沥干水分",
+      "韭菜切成约 3cm 长的小段，即为 `韭菜段`",
+      "将鸡蛋打入碗中，搅匀，即为 `鸡蛋液`",
+      "热锅，加入食用油",
+      "油热后，倒入 `鸡蛋液`，快速翻炒至鸡蛋凝固成块，盛出备用，即为 `炒好的鸡蛋`",
+      "锅中再加 5ml 食用油，放入 `韭菜段`，大火快速翻炒 30 秒",
+      "向锅中加入 `炒好的鸡蛋`，翻炒均匀",
+      "加入盐，翻炒均匀",
+      "关火，盛盘"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 204,
+      "protein": 11.4,
+      "fat": 16.7,
+      "carbs": 2.1,
+      "confidence": "estimated",
+      "calorieRange": [
+        187,
+        220
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_cold_asparagus_lettuce",
+    "name": "凉拌莴笋",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "cold_asparagus_lettuce",
+      "sourceUrl": "https://local.import/cold_asparagus_lettuce",
+      "sourceFile": "data/raw_recipes/cold_asparagus_lettuce.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "afaa0919e959544ca06727903301ea17b086712ca7a3114e6737a98e58e1ec7d"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_asparagus_lettuce",
+        "name": "莴笋",
+        "amount": 1,
+        "unit": "根",
+        "originalRawText": "莴笋",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "小米辣",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_ginger",
+      "pantry_garlic",
+      "pantry_salt",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "莴笋削皮，切小条。萝卜切条，一起放入大碗，加入盐搅拌，放置 10 分钟",
+      "放置后的莴笋用水清洗 1-2 遍",
+      "起锅烧水，放入莴笋，水煮 1 分钟 捞出，沥干水分，放入大碗",
+      "起锅烧油，放入姜片、蒜粒、小米椒煸炒 30-45 S ，倒入莴笋中",
+      "搅拌充分，端盘"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "快手菜",
+      "凉菜"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 246,
+      "protein": 2.4,
+      "fat": 23.3,
+      "carbs": 7.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        226,
+        265
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_cold_black_fungus",
+    "name": "凉拌木耳",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "cold_black_fungus",
+      "sourceUrl": "https://local.import/cold_black_fungus",
+      "sourceFile": "data/raw_recipes/cold_black_fungus.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "b95f20a1c5b898edb1aa7c424bb92ffed443062978d5221fb3a5348d9bfef748"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_black_fungus",
+        "name": "黑木耳",
+        "amount": 20,
+        "unit": "g",
+        "originalRawText": "干木耳 （湿木耳也可，但不能太久之前泡发的，必须是新鲜的湿木耳）",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "小米辣",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_garlic",
+      "preset_sugar",
+      "pantry_salt",
+      "preset_sesame_oil",
+      "pantry_soy_sauce",
+      "preset_vinegar"
+    ],
+    "instructions": [
+      "泡发干木耳, 水量约为 400ml, 泡发约 45 分钟。 （湿木耳跳过此步骤）",
+      "将泡发好的木耳, 进行去根处理（如图 4, 5, 6）, 并彻底洗净。",
+      "起锅烧水，水开后放入木耳, 大火煮 1.5-2 分钟。",
+      "将蒜瓣、小米辣切碎放入碗中 （可选取中大碗）, 并依次加入盐、糖、生抽、醋、香油、芥末, 用量如上。",
+      "木耳盛出后沥水, 放入上一步碗中。",
+      "搅拌充分，端盘。"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "快手菜",
+      "凉菜"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 213,
+      "protein": 6.7,
+      "fat": 5.2,
+      "carbs": 38.1,
+      "confidence": "estimated",
+      "calorieRange": [
+        196,
+        230
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_cold_enoki_mushroom",
+    "name": "凉拌金针菇",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "cold_enoki_mushroom",
+      "sourceUrl": "https://local.import/cold_enoki_mushroom",
+      "sourceFile": "data/raw_recipes/cold_enoki_mushroom.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "80ef4610a4e7212a2f320d74fb663b0365cfe2735c66a5c0aa0daa68921708f0"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_mushroom_enoki",
+        "name": "金针菇",
+        "amount": 150,
+        "unit": "g",
+        "originalRawText": "金针菇",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "pantry_garlic",
+      "pantry_soy_sauce",
+      "preset_vinegar",
+      "preset_sugar",
+      "preset_sesame_oil",
+      "preset_chili_oil"
+    ],
+    "instructions": [
+      "将 金针菇 根部切除，用清水冲洗干净，备用。",
+      "将 小葱 洗净，切成葱花，备用。",
+      "将 大蒜 去皮，切成蒜末，备用。",
+      "锅中加入 1000 ml 饮用水，大火烧开。",
+      "放入 金针菇，煮 **1-2 分钟**，至金针菇变软。",
+      "将 煮好的 金针菇 捞出，沥干水分，放入一个较大的碗中，备用。",
+      "在另一个干净的小碗中，加入 15 ml 生抽，10 ml 醋，3 g 白糖（可选），5 ml 香油（可选）。",
+      "加入切好的 大蒜末。",
+      "搅拌均匀，使 白糖 充分溶解，酱汁混合均匀。",
+      "将制作好的酱汁均匀淋在 金针菇 上。",
+      "撒上切好的 小葱花。",
+      "根据个人喜好，淋上 5 ml 辣椒油（可选）。",
+      "用 筷子 轻轻拌匀，即可食用。"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "凉菜"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 144,
+      "protein": 4.1,
+      "fat": 9.8,
+      "carbs": 11.8,
+      "confidence": "estimated",
+      "calorieRange": [
+        133,
+        156
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_cold_tofu",
+    "name": "凉拌豆腐",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "cold_tofu",
+      "sourceUrl": "https://local.import/cold_tofu",
+      "sourceFile": "data/raw_recipes/cold_tofu.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "81b9f1abfa69206d096ea92190a2528905b92903d52fda178ac98aed72accf00"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_tofu_firm",
+        "name": "老豆腐",
+        "amount": 250,
+        "unit": "g",
+        "originalRawText": "豆腐 （推荐选用北豆腐或老豆腐）",
+        "mode": "anyOf",
+        "alternatives": [
+          {
+            "id": "p_tofu_firm",
+            "name": "老豆腐",
+            "amount": 250,
+            "unit": "g"
+          },
+          {
+            "id": "p_tofu_generic",
+            "name": "豆腐"
+          }
+        ]
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "pantry_garlic",
+      "pantry_soy_sauce",
+      "preset_sesame_oil",
+      "preset_vinegar",
+      "preset_sugar",
+      "preset_chili_oil"
+    ],
+    "instructions": [
+      "将 豆腐 切成 2 cm 见方的小块，备用。",
+      "锅中加入 500 ml 饮用水，大火烧开。",
+      "放入 豆腐 块，煮 **1-2 分钟**，以去除豆腥味并使豆腐口感更紧实。",
+      "将 煮好的 豆腐 块捞出，沥干水分，放入碗中，备用。",
+      "将 小葱 洗净，切成葱花，备用。",
+      "将 大蒜 去皮，切成蒜末，备用。",
+      "在一个干净的小碗中，加入 15 ml 生抽，5 ml 香油，5 ml 醋（可选），2 g 白糖（可选）。",
+      "加入切好的 大蒜末。",
+      "搅拌均匀，使 白糖 充分溶解，酱汁混合均匀。",
+      "将制作好的酱汁均匀淋在 豆腐 块上。",
+      "撒上切好的 小葱花。",
+      "根据个人喜好，淋上 5 ml 辣椒油（可选）。",
+      "用 筷子 或勺子轻轻拌匀，即可食用。"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "凉菜"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 387,
+      "protein": 23.6,
+      "fat": 29.5,
+      "carbs": 10.3,
+      "confidence": "estimated",
+      "calorieRange": [
+        356,
+        418
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_cold_youmaicai",
+    "name": "凉拌油麦菜",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "cold_youmaicai",
+      "sourceUrl": "https://local.import/cold_youmaicai",
+      "sourceFile": "data/raw_recipes/cold_youmaicai.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "2b4e49e5b21d37d6f9c2e96868bb19f040520e510c618189c9435860a5894596"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_youmaicai",
+        "name": "油麦菜",
+        "amount": 1,
+        "unit": "颗",
+        "originalRawText": "油麦菜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_soy_sauce",
+      "preset_vinegar",
+      "preset_oyster_sauce",
+      "preset_sugar",
+      "preset_sesame_oil",
+      "pantry_garlic",
+      "pantry_salt"
+    ],
+    "instructions": [
+      "蒜拍碎切末",
+      "醋，酱油，芝麻酱，香油，糖，蚝油，蒜末放到碗里搅拌均匀",
+      "油麦菜切段，每段不超过 4cm",
+      "油麦菜放到一个大点的盆里，倒入上述碗中酱料，充分搅拌均匀."
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "快手菜",
+      "凉菜"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 74,
+      "protein": 2.9,
+      "fat": 5.4,
+      "carbs": 4.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        68,
+        79
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_cucumber_century_egg_soup",
+    "name": "黄瓜皮蛋汤",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "cucumber_century_egg_soup",
+      "sourceUrl": "https://local.import/cucumber_century_egg_soup",
+      "sourceFile": "data/raw_recipes/cucumber_century_egg_soup.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "da89a5f0b9cab8aebb24a44066143c864f3fed9e382c78e88d4d7df0c561c4e1"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_cucumber",
+        "name": "黄瓜",
+        "amount": 1,
+        "unit": "根",
+        "originalRawText": "黄瓜",
+        "mode": "single"
+      },
+      {
+        "id": "p_preserved_egg",
+        "name": "皮蛋",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "皮蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_garlic",
+      "preset_scallion",
+      "pantry_oil",
+      "pantry_salt",
+      "preset_chicken_essence"
+    ],
+    "instructions": [
+      "黄瓜洗净，切成 0.5-1.2 mm 厚的薄片",
+      "葱洗净切成末，蒜用刀拍几下去皮，对半切一下",
+      "皮蛋剥去壳，然后每个切成 6-8 份。锅里倒入油，放入切好的皮蛋和大蒜",
+      "小火炒至皮蛋和大蒜表面有些焦黄，加入水，转大火烧开",
+      "放入黄瓜片。水再次沸腾以后立马关火，放入盐、鸡精调味即可出锅",
+      "装入碗中，再撒上葱花即可"
+    ],
+    "tags": [
+      "家常菜",
+      "煮",
+      "快手菜"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 325,
+      "protein": 16.7,
+      "fat": 24.3,
+      "carbs": 9.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        299,
+        351
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_cucumber_stir_fried_pork",
+    "name": "黄瓜炒肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "cucumber_stir_fried_pork",
+      "sourceUrl": "https://local.import/cucumber_stir_fried_pork",
+      "sourceFile": "data/raw_recipes/cucumber_stir_fried_pork.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "3c4dced5ce7e8fda59c68b4e6b0b6f384c6bb234d9a7fa29645b03ffbaf917f5"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_cucumber",
+        "name": "黄瓜",
+        "amount": 100,
+        "unit": "克",
+        "originalRawText": "黄瓜",
+        "mode": "single"
+      },
+      {
+        "id": "p_pork_lean",
+        "name": "猪瘦肉",
+        "amount": 50,
+        "unit": "克",
+        "originalRawText": "猪瘦肉",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 1,
+        "unit": "根",
+        "originalRawText": "小米辣",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil",
+      "pantry_soy_sauce",
+      "pantry_salt",
+      "pantry_garlic"
+    ],
+    "instructions": [
+      "将猪瘦肉切片，放入碗中，倒入食用油 10 克，生抽，搅拌均匀，腌制 10 分钟",
+      "将黄瓜切去 5 厘米的头尾，剩余部分斜着切成 0.5 厘米的薄片",
+      "将黄瓜倒入碗中，撒上盐 8 克，搅拌均匀，腌制 5 分钟",
+      "将蒜瓣去皮，压扁，切成蒜末备用",
+      "将小米辣去丁切分成均匀 0.5 厘米的段状",
+      "热锅，倒油 40 克，等油温到冒烟，放入蒜蓉小米辣翻炒 5 次",
+      "放入腌制好的猪瘦肉，翻炒至肉熟变色",
+      "放入黄瓜，加入盐 2 克，大火翻炒均匀半分钟，出锅（如果无法保证大火，可能会有点生。可以考虑增加到 50 秒。）"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 543,
+      "protein": 11.2,
+      "fat": 53.2,
+      "carbs": 5.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        500,
+        587
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_cumin_beef",
+    "name": "孜然牛肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "cumin_beef",
+      "sourceUrl": "https://local.import/cumin_beef",
+      "sourceFile": "data/raw_recipes/cumin_beef.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "1e5985b6e05fe60c3567361e9fe38f2359da7873c266ed71585c06fc4e95479d"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_beef",
+        "name": "牛肉",
+        "amount": 250,
+        "unit": "g",
+        "originalRawText": "牛柳或牛肩肉",
+        "mode": "single"
+      },
+      {
+        "id": "v_green_bell_pepper",
+        "name": "青椒",
+        "amount": 2,
+        "unit": "颗",
+        "originalRawText": "青椒",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 3,
+        "unit": "颗",
+        "originalRawText": "小米椒",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_cumin",
+      "pantry_soy_sauce",
+      "preset_starch",
+      "pantry_oil",
+      "pantry_salt",
+      "preset_scallion"
+    ],
+    "instructions": [
+      "首先将小米椒切碎，和孜然粒一起放入捣药罐捣碎成颗粒，这样更入味。如果时间紧张可跳过捣碎步骤",
+      "青椒切头去籽（喜欢辣的可不去），切成丝。葱切段。",
+      "牛肉提前解冻，过一边水洗干净，晾干或用厨用纸吸干，将牛肉顺着纹理切成片",
+      "然后进行腌肉，加入生抽，淀粉，油，均匀搅拌，静止 30 分钟。腌肉方法也可参考[学习腌](../../tips/learn/学习腌.md)",
+      "热锅下油，放入葱，爆出香味后放入腌好的牛肉煸炒",
+      "牛肉变色后均匀放入孜然辣椒颗粒并炒熟",
+      "然后下入青椒丝，断生后放盐",
+      "大🔥炒 1 分钟后关火再翻炒 30 秒保证受热均匀即可出锅"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 651,
+      "protein": 54.1,
+      "fat": 36.7,
+      "carbs": 30.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        598,
+        703
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_dried_tofu_celery_pork",
+    "name": "香干芹菜炒肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "dried_tofu_celery_pork",
+      "sourceUrl": "https://local.import/dried_tofu_celery_pork",
+      "sourceFile": "data/raw_recipes/dried_tofu_celery_pork.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "46f585ea15424884b1990ca9455466fb1d64235b07649c7681c57d27c9135a0c"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_celery",
+        "name": "芹菜",
+        "amount": 4,
+        "unit": "根",
+        "originalRawText": "香芹/芹菜",
+        "mode": "single"
+      },
+      {
+        "id": "p_pork_generic",
+        "name": "猪肉",
+        "amount": 200,
+        "unit": "g",
+        "originalRawText": "猪肉",
+        "mode": "single"
+      },
+      {
+        "id": "v_green_bell_pepper",
+        "name": "青椒",
+        "amount": 4,
+        "unit": "个",
+        "originalRawText": "辣椒：青椒或者红椒都可以",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_garlic",
+      "preset_sichuan_pepper",
+      "pantry_salt",
+      "preset_chicken_essence",
+      "preset_dark_soy_sauce",
+      "preset_oyster_sauce",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "芹菜去叶切段、切成不超过 4cm 的条状，备用",
+      "香干切条，宽约小拇指，备用",
+      "蒜头切片或者剁成蒜泥都行，备用",
+      "辣椒切圈或者斜切成条都行，备用",
+      "热锅，锅内放入 10ml - 15ml 食用油。等待 10 秒让油温升高",
+      "放入花椒、大蒜爆香（可以吃姜的也可以额外放入一些姜片/姜丝）",
+      "加入猪肉炒至变色，再加入 8ml 老抽上色翻炒均匀（有豆瓣酱的，可以放入 3ml 豆瓣酱一起翻炒）",
+      "加入香干翻炒均匀（大约 2 分钟）",
+      "加入辣椒翻炒均匀（大约 1-2 分钟）",
+      "加入芹菜，放入 5g 盐翻炒 1 分钟",
+      "加入 3g 鸡精、5ml 蚝油翻炒均匀，即可出锅"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 855,
+      "protein": 31.9,
+      "fat": 73.6,
+      "carbs": 18.7,
+      "confidence": "estimated",
+      "calorieRange": [
+        786,
+        923
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_dried_tofu_shredded_pork",
+    "name": "香干肉丝",
+    "category": "豆品素食",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "dried_tofu_shredded_pork",
+      "sourceUrl": "https://local.import/dried_tofu_shredded_pork",
+      "sourceFile": "data/raw_recipes/dried_tofu_shredded_pork.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "a99888f4dc5aab15ca961a2fd63bfab1dccd90deafd1b90b6cc16cf9df4b2e02"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_pork_lean",
+        "name": "猪瘦肉",
+        "amount": 100,
+        "unit": "g",
+        "originalRawText": "猪里脊（可以买超市切好且称重好的肉丝）",
+        "mode": "anyOf",
+        "alternatives": [
+          {
+            "id": "p_pork_lean",
+            "name": "猪瘦肉",
+            "amount": 100,
+            "unit": "g"
+          },
+          {
+            "id": "p_pork_generic",
+            "name": "猪肉"
+          }
+        ]
+      },
+      {
+        "id": "p_tofu_dried",
+        "name": "香干",
+        "amount": 75,
+        "unit": "g",
+        "originalRawText": "香干",
+        "mode": "single"
+      },
+      {
+        "id": "v_green_bell_pepper",
+        "name": "青椒",
+        "amount": 5,
+        "unit": "个",
+        "originalRawText": "青椒",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_salt",
+      "pantry_soy_sauce",
+      "preset_starch",
+      "pantry_garlic",
+      "preset_chicken_essence"
+    ],
+    "instructions": [
+      "`肉丝`（没有肉丝，自己切）用生抽(3ml)，生粉混合均匀待用。",
+      "将`青椒`洗净，再用`滚刀手法`切好备用。",
+      "`大蒜`横切成片，`香干`切丝。",
+      "`淀粉`与水(10ml)混合，搅拌均匀。",
+      "干净锅 15ml 油，不用等油热就倒入肉丝慢慢划散，肉丝熟了，立马捞出，留油到锅里。",
+      "将蒜片和香干放入锅中，加入 2ml 生抽，翻炒均匀。",
+      "2-3 分钟，看火大小，将青椒丝放入锅中混合，翻炒。",
+      "1 分钟后，放入肉丝混合。",
+      "倒入淀粉与水的混合物勾芡，加入盐 3g，鸡精 2g，翻炒 2-3 分钟出锅。",
+      "成品。"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "植物蛋白"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 356,
+      "protein": 36.8,
+      "fat": 13,
+      "carbs": 26.5,
+      "confidence": "estimated",
+      "calorieRange": [
+        328,
+        385
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_enoki_mushroom_soup",
+    "name": "金针菇汤",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "enoki_mushroom_soup",
+      "sourceUrl": "https://local.import/enoki_mushroom_soup",
+      "sourceFile": "data/raw_recipes/enoki_mushroom_soup.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "63c779c7d77aed5c48293929dc3eeb53517cf412f2eb4de665fa9f5158ddd0da"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_mushroom_enoki",
+        "name": "金针菇",
+        "amount": 450,
+        "unit": "克",
+        "originalRawText": "金针菇",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [],
+    "instructions": [
+      "金针菇徒手掰散，越散越好**不然容易藏牙**，洗净备用。",
+      "用菜刀或者水果刀将上述金针菇段段切，可依据个人喜好，但长度不宜超过 5 cm。",
+      "将金针菇放入锅中，加水没过约食材总高度 1.1 倍，沸腾后**等待 3 分钟**。",
+      "加入味精和食盐并搅拌。",
+      "继续加热约 30 秒，关火装盘。"
+    ],
+    "tags": [
+      "家常菜",
+      "煮",
+      "快手菜"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 144,
+      "protein": 10.8,
+      "fat": 1.8,
+      "carbs": 27,
+      "confidence": "estimated",
+      "calorieRange": [
+        132,
+        156
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_garlic_celery",
+    "name": "蒜蓉炒芹菜",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "garlic_celery",
+      "sourceUrl": "https://local.import/garlic_celery",
+      "sourceFile": "data/raw_recipes/garlic_celery.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "97175dd6dd96f92bbfb1d99f8f54f72e4c9a2ecfbf2d7e6ba63d86d8b29d11b3"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_celery",
+        "name": "芹菜",
+        "amount": 300,
+        "unit": "g",
+        "originalRawText": "芹菜（香芹最佳）",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil",
+      "pantry_garlic",
+      "pantry_salt"
+    ],
+    "instructions": [
+      "芹菜摘去大部分叶子，只保留少量嫩叶。如果梗部较粗，纵向剖开一刀使其粗细一致，然后切成不超过 5 cm 的段（约大拇指长度，太长容易卡嗓子）",
+      "蒜切成蒜末，备用",
+      "芹菜段入锅前尽可能沥干水分，甩得越干越好",
+      "炒锅烧热，放入 15 ml 猪油，油热后先撒入 2 g 盐",
+      "放入蒜末，小火炒 10 秒煸香",
+      "**转大火**，倒入芹菜段，快速翻炒 **30 秒**，立即出锅",
+      "出锅标准：芹菜看起来**半生不熟**、颜色翠绿、没有炒软塌，这时的口感最脆"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 178,
+      "protein": 2.8,
+      "fat": 14.2,
+      "carbs": 11.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        164,
+        192
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_garlic_moss_minced_pork",
+    "name": "蒜苔炒肉末",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "garlic_moss_minced_pork",
+      "sourceUrl": "https://local.import/garlic_moss_minced_pork",
+      "sourceFile": "data/raw_recipes/garlic_moss_minced_pork.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "904213150ca13ef09dc912bde114457ba5ce9eba17f5efc7620ee36ad9dbb904"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_pork_belly",
+        "name": "五花肉",
+        "amount": 4,
+        "unit": "片",
+        "originalRawText": "五花肉薄片",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_garlic",
+      "pantry_salt",
+      "pantry_soy_sauce",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "蒜苔切成 5cm 小段，备用",
+      "五花肉切成 5mm * 5cm 丝状，备用",
+      "蒜瓣拍碎切成末，备用",
+      "热锅，锅内放入 10ml 食用油。等待 10 秒让油温升高",
+      "放入蒜末，中火翻炒 **10 秒** 将蒜末炒出香味",
+      "放入五花肉和 5ml 生抽，中火翻炒 **30 秒** 将肉炒熟并上色",
+      "将蒜苔放入锅内并加入 10ml 生抽，翻炒 **30 秒**",
+      "锅内加入 20g 水，中火翻炒 **5 分钟** 将蒜苔炒至稍稍变软",
+      "最后加入 2g 食盐，中火翻炒 **30 秒**，即可出锅装盘"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 458,
+      "protein": 14,
+      "fat": 21.8,
+      "carbs": 51.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        421,
+        494
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_garlic_water_spinach",
+    "name": "蒜蓉空心菜",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "garlic_water_spinach",
+      "sourceUrl": "https://local.import/garlic_water_spinach",
+      "sourceFile": "data/raw_recipes/garlic_water_spinach.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "a6cdf483004897f134973d0b077be06440f562a4fb2051648321433aae1eadfa"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_water_spinach",
+        "name": "空心菜",
+        "amount": 250,
+        "unit": "g",
+        "originalRawText": "空心菜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_garlic",
+      "pantry_salt",
+      "pantry_soy_sauce",
+      "preset_sugar",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "空心菜洗净，去掉烂叶或者老梗，均匀切成 2 段或者 3 段（防止过长不好炒）",
+      "锅里先倒少量油，烧至微微冒烟，此时拿起锅将国内的热油向四周浸润，让油均匀覆盖锅底，然后再倒入剩余的油（[热锅凉油法](../../../tips/learn/学习炒与煎.md)）。",
+      "放入蒜末，小火炒 10 到 15 秒煸香",
+      "尽快均匀地放入空心菜，**开大火**，左手拿铲子，右手拿筷子，配合将空心菜不停翻动，**直至软化变绿**。",
+      "接着不需使用筷子，而是使用铲子快速翻炒已软化的空心菜 15 - 20 秒，使之受热更均匀，撒入盐 2 g ，白糖 3 g，生抽 8 ml。",
+      "继续大火翻炒 10 秒，即可出锅。"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "快手菜"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 156,
+      "protein": 6.4,
+      "fat": 9.7,
+      "carbs": 15.4,
+      "confidence": "estimated",
+      "calorieRange": [
+        144,
+        169
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_microwave_cod",
+    "name": "微波葱姜黑鳕鱼",
+    "category": "水产海鲜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "microwave_cod",
+      "sourceUrl": "https://local.import/microwave_cod",
+      "sourceFile": "data/raw_recipes/microwave_cod.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "f1e923faeee86cc7c5aa65aca1b43345b830286d757bf24a6672ca8e93f2ec1b"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_fish_cod",
+        "name": "鳕鱼",
+        "amount": 450,
+        "unit": "g",
+        "originalRawText": "黑鳕鱼",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "preset_cooking_wine",
+      "pantry_soy_sauce",
+      "preset_sesame_oil",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "鱼片分别放入密封袋，鱼皮向下放在盘子中。",
+      "取葱白切丝 25g，姜去皮后切丝，10g，混合在一起后分成两半，分别放在袋内鱼片上。",
+      "每个袋子倒入 2.5mL 料酒。",
+      "封好密封袋，放入微波炉中，中火（800 瓦）微波至*不透明且容易散开*时（约 3.5-5 分钟），从袋中取出鱼片。",
+      "去除青葱和姜。",
+      "取酱油 25mL，芝麻油 2mL，混合均匀后平均淋在两片鱼片上。",
+      "取葱绿切细丝 10g，姜去皮后切丝 3g，混合后分成两份撒在鱼片上。",
+      "取花生油 50mL，在小锅中加热至 190℃。",
+      "将热油淋到放油葱绿的鱼片上，立刻上桌。"
+    ],
+    "tags": [
+      "家常菜",
+      "高蛋白",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 622,
+      "protein": 41.7,
+      "fat": 48.9,
+      "carbs": 2.8,
+      "confidence": "estimated",
+      "calorieRange": [
+        572,
+        672
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_milk_oatmeal",
+    "name": "牛奶燕麦",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "milk_oatmeal",
+      "sourceUrl": "https://local.import/milk_oatmeal",
+      "sourceFile": "data/raw_recipes/milk_oatmeal.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "a2c84966d9c9ef586ed5ce00958758fe65d6ddbba6d1d4752c756d8308db0114"
+    },
+    "requiredIngredients": [
+      {
+        "id": "other_milk",
+        "name": "纯牛奶",
+        "amount": 280,
+        "unit": "ml",
+        "originalRawText": "牛奶（巴氏奶口感更好）",
+        "mode": "single"
+      },
+      {
+        "id": "c_oats",
+        "name": "燕麦",
+        "amount": 40,
+        "unit": "g",
+        "originalRawText": "燕麦",
+        "mode": "single"
+      },
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 1,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil"
+    ],
+    "instructions": [
+      "将牛奶倒入早餐杯（冷的即可）",
+      "准备好 200ml 水，如果是直饮水直接加入燕麦，否则请烧开后加入燕麦",
+      "水沸后 2 分钟，燕麦煮好",
+      "煮好的燕麦捞出倒入牛奶中（尽量不要将煮燕麦的水也倒入牛奶，影响口感）",
+      "将燕麦替换为快煮燕麦",
+      "将牛奶倒入装有快煮燕麦的容器中并搅拌",
+      "将混合物放入微波炉中",
+      "中等火力微波 4 分钟",
+      "热锅，锅内放一层底油，油热后煎鸡蛋，每面煎 20s，考虑调底味（3g 椒盐，可选）",
+      "关火，装盘"
+    ],
+    "tags": [
+      "家常菜"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 460,
+      "protein": 19,
+      "fat": 23.1,
+      "carbs": 45.7,
+      "confidence": "estimated",
+      "calorieRange": [
+        423,
+        497
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_onion_scrambled_eggs",
+    "name": "洋葱炒鸡蛋",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "onion_scrambled_eggs",
+      "sourceUrl": "https://local.import/onion_scrambled_eggs",
+      "sourceFile": "data/raw_recipes/onion_scrambled_eggs.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "ca3d8d53751aef91f2a19098e4467a9698563adb51c2ca8275e13fbc408a58c9"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      },
+      {
+        "id": "v_onion",
+        "name": "洋葱",
+        "amount": 50,
+        "unit": "g",
+        "originalRawText": "洋葱",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil",
+      "pantry_salt",
+      "preset_scallion",
+      "preset_cooking_wine"
+    ],
+    "instructions": [
+      "鸡蛋打入大碗中，加入洋葱片、盐后搅拌 60 S",
+      "起锅烧油，倒入鸡蛋，一面煎炸 30-45 S ，翻面继续翻炒，反复 2-3 分钟 后散上料酒出锅",
+      "鸡蛋装盘，散上葱花"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "快手菜",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 556,
+      "protein": 12,
+      "fat": 53.5,
+      "carbs": 6.4,
+      "confidence": "estimated",
+      "calorieRange": [
+        511,
+        600
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_onion_stir_fried_pork",
+    "name": "洋葱炒猪肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "onion_stir_fried_pork",
+      "sourceUrl": "https://local.import/onion_stir_fried_pork",
+      "sourceFile": "data/raw_recipes/onion_stir_fried_pork.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "b5a321be1aecd75da42fa4a9d3989d7e6b66d92c6bc9066ead12ce3835147c5c"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_onion",
+        "name": "洋葱",
+        "amount": 1,
+        "unit": "颗",
+        "originalRawText": "洋葱",
+        "mode": "single"
+      },
+      {
+        "id": "p_pork_generic",
+        "name": "猪肉",
+        "amount": 250,
+        "unit": "g",
+        "originalRawText": "猪肉片",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_ketchup",
+      "preset_sesame_oil"
+    ],
+    "instructions": [
+      "洋葱切片，猪肉，蒜头拍碎，以及混合上述调味料备用",
+      "炒锅内倒入 1 大匙食用油（等待 10 秒让油温升高），倒入猪肉",
+      "炒至变色后下蒜头炒香盛起备用",
+      "原锅下洋葱翻炒 3~4 分钟后加入调味料炒匀",
+      "下刚盛起备用的猪肉翻炒至猪肉熟后",
+      "待猪肉熟后再翻炒 1、2 分钟即可起锅"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "快手菜",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 945,
+      "protein": 35.6,
+      "fat": 81.4,
+      "carbs": 18.1,
+      "confidence": "estimated",
+      "calorieRange": [
+        869,
+        1021
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_onsen_tamago",
+    "name": "温泉蛋",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "onsen_tamago",
+      "sourceUrl": "https://local.import/onsen_tamago",
+      "sourceFile": "data/raw_recipes/onsen_tamago.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "52bb1be5b966e0746fb43825e55202b6cf5605c793feb939e3227d296d515f05"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 1,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_soy_sauce",
+      "preset_scallion"
+    ],
+    "instructions": [
+      "在锅中盛装一定量自来水，确保水面没过约鸡蛋 3cm，水中插入温度计",
+      "开火或打开电磁炉，逐渐调整电磁炉功率或火苗大小，使得水温保持在 **70 摄氏度**",
+      "将鸡蛋放入锅中。鸡蛋不可互相堆叠，应皆在底部，并留有空间可以晃动",
+      "保持当前温度 **25 分钟**",
+      "准备一杯冰水",
+      "捞出鸡蛋，并立刻放入冰水中，**等待 3 分钟**",
+      "将鸡蛋打入小碗，完成制作"
+    ],
+    "tags": [
+      "家常菜"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 60,
+      "protein": 5.7,
+      "fat": 3.7,
+      "carbs": 1,
+      "confidence": "estimated",
+      "calorieRange": [
+        56,
+        65
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_oyster_sauce_lettuce",
+    "name": "蚝油生菜",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "oyster_sauce_lettuce",
+      "sourceUrl": "https://local.import/oyster_sauce_lettuce",
+      "sourceFile": "data/raw_recipes/oyster_sauce_lettuce.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "3ac2ff58c425cf5b6a743dd324416b54557c55a0bcad82449433a79a9ba5a766"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_lettuce",
+        "name": "生菜",
+        "amount": 200,
+        "unit": "g",
+        "originalRawText": "生菜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_oyster_sauce",
+      "pantry_garlic",
+      "pantry_soy_sauce",
+      "pantry_salt",
+      "preset_sugar",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "生菜洗净并去掉烂菜叶。",
+      "热锅，先放 1 L 清水（凉），然后在锅内放入 2 ml - 3 ml 食用油和 0.5 g 盐，等待锅中的水煮沸。",
+      "水沸后，放入生菜，将**每一片**生菜叶都焯水 10 s。",
+      "捞出生菜，控干水份，摆盘 。",
+      "调汁：将生抽 10 ml 、蚝油 6-8 ml 、盐 0.5 g 、 白糖 1 g 放入碗中调匀，并加入 10-15 ml 清水（凉）搅拌均匀。",
+      "再开火，热锅，放入食用油 5-8 ml，油热放入蒜泥。",
+      "等待有蒜香飘出，倒入调好的汁，煮沸即可，立马关火。",
+      "将锅中的汤汁均匀地**浇**在生菜上。"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "凉菜"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 94,
+      "protein": 4.3,
+      "fat": 6.9,
+      "carbs": 4.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        86,
+        101
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_pan_fried_red_shrimp",
+    "name": "干煎阿根廷红虾",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "pan_fried_red_shrimp",
+      "sourceUrl": "https://local.import/pan_fried_red_shrimp",
+      "sourceFile": "data/raw_recipes/pan_fried_red_shrimp.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "759641a261146017a692138033516cec82daac23e8868802a5907e2c08fd93d8"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_onion",
+        "name": "洋葱",
+        "amount": 10,
+        "unit": "g",
+        "originalRawText": "洋葱",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_salt",
+      "pantry_black_pepper",
+      "pantry_soy_sauce",
+      "preset_coriander",
+      "preset_ginger",
+      "pantry_garlic",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "阿根廷红虾解冻，最好是提前 1 天从速冻取出放到冷藏里自然解冻，能更好保持风味和口感。可买已经开背去虾线的，节省了不少时间",
+      "解冻好的红虾洗净擦干备用，注意这里一定要沥干水分，赶时间可以用厨房用纸吸干水分",
+      "生姜切片，洋葱切小方块，香菜洗干净后，叶茎分离，把香菜叶切碎，大蒜压碎切成小块碎末",
+      "大火热锅，热锅后倒入两调羹橄榄油，等油温升高后，放入生姜片，洋葱块和香菜茎煸炒",
+      "约 1 分钟后取出生姜，洋葱和香菜茎，弃用",
+      "调中大火，放入红虾开始煎，注意所有虾需要单面都完整接触平底锅，煎约 2 分钟，同时给每只虾刷上一层油",
+      "待底面虾壳有微微焦黄时翻面，并撒入大蒜碎末，轻微晃动平底锅使得受热均匀",
+      "约 1 分钟后添加 20ml 白葡萄酒",
+      "再煎 1 分钟后调中小火，均匀撒上一层盐和黑胡椒",
+      "给每只虾滴上一滴生抽",
+      "撒上香菜叶，装盘",
+      "切好柠檬片，摆放到盘边即可"
+    ],
+    "tags": [
+      "家常菜",
+      "煎"
+    ],
+    "cookingMethod": "煎",
+    "nutrition": {
+      "calories": 103,
+      "protein": 0.7,
+      "fat": 9.3,
+      "carbs": 4.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        95,
+        111
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_pepper_stir_fried_beef",
+    "name": "尖椒炒牛肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "pepper_stir_fried_beef",
+      "sourceUrl": "https://local.import/pepper_stir_fried_beef",
+      "sourceFile": "data/raw_recipes/pepper_stir_fried_beef.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "32a690457c3872da77f494531d443edb4f851854c7c3ad3ed5a09f512afb86ff"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_beef",
+        "name": "牛肉",
+        "amount": 250,
+        "unit": "g",
+        "originalRawText": "牛肉",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 1,
+        "unit": "根",
+        "originalRawText": "尖椒",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "pantry_garlic",
+      "pantry_soy_sauce",
+      "pantry_salt",
+      "preset_sugar",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "蒜剁成蒜泥",
+      "葱切段",
+      "姜切成姜片",
+      "尖椒切成段",
+      "牛肉放入碗中",
+      "加姜、盐、酱油、糖进行腌制 30-40 分钟",
+      "腌制完姜可以去掉",
+      "冷油下锅，待油变热至偶有气泡",
+      "加入蒜泥",
+      "蒜泥变金黄后加入尖椒",
+      "待尖椒表皮微皱，加入腌制好的牛肉翻炒",
+      "翻炒变熟之前加入葱，继续翻炒",
+      "翻炒至牛肉变熟，关火出锅"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 493,
+      "protein": 50.1,
+      "fat": 31,
+      "carbs": 3.4,
+      "confidence": "estimated",
+      "calorieRange": [
+        453,
+        532
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_perfect_boiled_egg",
+    "name": "完美水煮蛋",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "perfect_boiled_egg",
+      "sourceUrl": "https://local.import/perfect_boiled_egg",
+      "sourceFile": "data/raw_recipes/perfect_boiled_egg.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "64c95d707c57dff5a936314c74b23404654f4181bcbf61730beb86c71066979f"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 60,
+        "unit": "g",
+        "originalRawText": "新鲜鸡蛋（推荐 AA 级）",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [],
+    "instructions": [
+      "准备两锅水： A 锅维持 100°C 沸水， B 锅维持 30°C 温水",
+      "用漏勺将鸡蛋放入 A 锅，启动定时器",
+      "精准**每 2 分钟**将鸡蛋转移至另一锅水",
+      "重复转移操作共 16 次（总时长 32 分钟）",
+      "最后一次转移后，在 B 锅静置 30 秒",
+      "立即放入冰水（ 0 摄氏度）终止加热（维持 30 秒）",
+      "剥壳时从钝端气室处开始，沿纵轴剥离蛋膜"
+    ],
+    "tags": [
+      "家常菜",
+      "煮"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 73,
+      "protein": 6.8,
+      "fat": 4.5,
+      "carbs": 1.3,
+      "confidence": "estimated",
+      "calorieRange": [
+        67,
+        78
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_saliva_chicken",
+    "name": "口水鸡",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "saliva_chicken",
+      "sourceUrl": "https://local.import/saliva_chicken",
+      "sourceFile": "data/raw_recipes/saliva_chicken.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "de67bbfaa84db02ada45cd7419645f2fc7180f60a5805c0f435d351179de623b"
+    },
+    "requiredIngredients": [
+      {
+        "id": "other_peanut",
+        "name": "花生米",
+        "amount": 30,
+        "unit": "g",
+        "originalRawText": "花生",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_chili_powder",
+      "preset_sichuan_pepper",
+      "pantry_garlic",
+      "preset_sugar",
+      "pantry_soy_sauce",
+      "preset_vinegar",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "姜切片，1 颗小葱，15 颗花椒备用",
+      "鸡肉洗干净，放入锅中，清水没过鸡肉，放入姜片、小葱和花椒，开大火烧开。",
+      "大火烧开后，转中小火 20 分钟关火",
+      "取出鸡肉，放入冰水中，直至冰凉",
+      "取出鸡肉，切块摆盘子中，备用",
+      "小火把锅烧热，导入花生，烘烤至表皮爆裂。（注意随时翻动，不要糊了）",
+      "一颗葱切成段，蒜拍成末，花椒 15 颗，花生去皮切碎。",
+      "锅内导入油烧热后，放入葱段，花椒和一半蒜末，炒香",
+      "炒至油温 8 成热，关火，滤出热油",
+      "将热油倒入放辣椒粉的碗中，搅拌，并滤出红油",
+      "红油中放入剩余蒜末、生抽、醋、盐、味精、糖、香油、花椒粉。拌匀放凉",
+      "在鸡肉上撒上花生碎，把红油淋到切好的鸡肉上，撒上香菜。成盘"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "凉菜"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 279,
+      "protein": 8.3,
+      "fat": 22.5,
+      "carbs": 11.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        257,
+        302
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_scallion_braised_chicken_leg",
+    "name": "葱烧鸡腿",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "scallion_braised_chicken_leg",
+      "sourceUrl": "https://local.import/scallion_braised_chicken_leg",
+      "sourceFile": "data/raw_recipes/scallion_braised_chicken_leg.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "e290e334bf12486e801d5d96d5c18a1c963c3f1459ef6574977d0d5442a02188"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_chicken_leg",
+        "name": "鸡腿肉",
+        "amount": 350,
+        "unit": "g",
+        "originalRawText": "鸡腿 2 个（约 500g）",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "pantry_soy_sauce",
+      "preset_dark_soy_sauce",
+      "preset_oyster_sauce",
+      "preset_sugar",
+      "preset_cooking_wine",
+      "pantry_salt",
+      "pantry_black_pepper",
+      "pantry_oil",
+      "preset_ginger",
+      "preset_sichuan_pepper"
+    ],
+    "instructions": [
+      "鸡腿去骨：用剪刀从鸡腿大的那头伸进去，贴着骨头把肉剪开，再沿骨剪两下把骨肉分离，最后把骨头整根抽出。比用刀去骨更安全。",
+      "去骨后的鸡腿肉切成 2-3cm 的丁。",
+      "大葱切厚片（约 0.5cm 厚），小葱切 1cm 长的小段。",
+      "鸡腿丁加入 10ml 料酒、5ml 生抽、2g 盐、1g 白胡椒粉抓匀，腌制 10 分钟。",
+      "取一个小碗调好料汁：10ml 生抽 + 5ml 老抽 + 10ml 蚝油 + 5g 糖，搅匀备用。",
+      "热锅，锅内放入 15-20ml 食用油。",
+      "放入姜片和花椒，保持小火炸到姜片微微焦黄、花椒颜色变深。",
+      "用漏勺把姜片和花椒捞出丢弃，留底油。",
+      "保持中大火，将腌好的鸡腿丁平铺下锅，不要急着翻动。",
+      "等待 2-3 分钟让鸡腿丁底部煎出焦壳，再翻炒到所有面都变色、鸡肉完全断生。",
+      "下入大葱片，保持中大火翻炒 1 分钟炒出葱香。",
+      "倒入调好的料汁，翻炒均匀后盖上锅盖。",
+      "等待 2 分钟让料汁和葱香完全融合到鸡肉里。",
+      "开盖，下入小葱段和 2g 熟白芝麻（可选），翻炒 5-10 秒即可关火出锅。"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 579,
+      "protein": 55.1,
+      "fat": 35.1,
+      "carbs": 8.1,
+      "confidence": "estimated",
+      "calorieRange": [
+        533,
+        626
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_scallion_mandarin_fish",
+    "name": "葱油桂鱼",
+    "category": "水产海鲜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "scallion_mandarin_fish",
+      "sourceUrl": "https://local.import/scallion_mandarin_fish",
+      "sourceFile": "data/raw_recipes/scallion_mandarin_fish.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "45309510d75b4ce5cf4599af5ef8c344b7b5e2cbef53b446b0b7f367b58f7e02"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_fish_mandarin",
+        "name": "鳜鱼",
+        "amount": 1,
+        "unit": "斤",
+        "originalRawText": "桂鱼",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "小米辣",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "preset_cooking_wine",
+      "pantry_oil",
+      "pantry_salt",
+      "preset_steamed_fish_soy_sauce"
+    ],
+    "instructions": [
+      "去菜市场买已经处理好的鱼（自己处理的话最好不要内脏），将鱼身表面的所有鳞片刮干净",
+      "用厨房用纸将鱼肚子里的贴骨血和黑膜擦干净（帖骨血会影响口感，黑膜是鱼腥味的来源）",
+      "用菜刀在鱼身表面来回刮几次，将鱼身的黏液刮掉，进一步去除腥味，然后用清水将鱼内外冲洗干净",
+      "将鱼平放在砧板，使用厨房纸将鱼内外的水分擦干，然后鱼头朝左，尾朝右，从鱼鳃边开始，每隔 3cm 纵向划一刀，深度达到鱼的脊椎骨即可，另一面使用同样的处理方式",
+      "将鱼平放在盆中，确保盘中没有多余水分",
+      "取一块 50g 姜（鸡蛋大小），用削皮刀把表面的皮去除并洗干净，然后切成厚度为 3mm 的姜片",
+      "将小米辣洗干净、去蒂，切成厚度为 2mm 的小圆片（或切成 1mm 宽度的丝状）",
+      "将小葱洗干净，去除根须，切成 3cm 的小段，稍微粗一点的小葱，可以沿着小葱生长的方向沿中间劈开",
+      "加入 8g 盐，25g 料酒到盆中，带上一次性手套，然后对鱼进行全身按摩 1 分钟，确保鱼身每个部位都均匀涂抹了盐和料酒",
+      "按摩好鱼后，在鱼身的每一个刀口中塞入一片姜片，鱼肚子中放入 3 片姜片，腌制 10 分钟（建议不要腌制太久，否则鱼的鲜度降低）",
+      "在鱼腌制期间，在蒸锅中加入 5L 清水，烧开后，在蒸锅上放上蒸笼",
+      "鱼腌制好后，会析出水分，将多余水分和腌制用料酒、姜片倒掉，用清水冲洗干净鱼身和鱼肚，用厨房纸擦干鱼身和鱼肚",
+      "将鱼平放在蒸鱼盘中，重新在鱼身、鱼肚刀口处塞入姜片",
+      "然后将蒸鱼盘放入蒸笼中，盖上盖子，中火蒸 20 分钟",
+      "期间水蒸气会附着整个鱼和盘子上，凝结后形成鱼汤，出锅后千万不要倒掉这个汤，这个汤汁是鲜味精华",
+      "用防烫夹将蒸鱼盘夹出，在鱼身和鱼周围淋上 10g 蒸鱼豉油",
+      "然后在鱼身和周围均匀撒上小葱段和小米辣",
+      "在铁锅中倒入 15g 植物油，用中小火慢熬 5 分钟，不要用大火，否则油会挥发很快",
+      "将出锅后的热油均匀地慢慢地淋在鱼身上，鲜掉眉毛的葱油桂鱼就出炉啦！"
+    ],
+    "tags": [
+      "家常菜",
+      "高蛋白"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 557,
+      "protein": 63,
+      "fat": 28.5,
+      "carbs": 6.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        512,
+        602
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "困难",
+    "rawDifficulty": "★★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_scallion_oil_chicken",
+    "name": "姜葱捞鸡",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "scallion_oil_chicken",
+      "sourceUrl": "https://local.import/scallion_oil_chicken",
+      "sourceFile": "data/raw_recipes/scallion_oil_chicken.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "1ba57e41be6f2b6338d90c2be293bca13d310043f6779db9e3ef7ecc431344e8"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_chicken_leg",
+        "name": "鸡腿肉",
+        "amount": 4,
+        "unit": "个",
+        "originalRawText": "鸡腿肉",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_chicken_essence",
+      "preset_scallion",
+      "preset_ginger"
+    ],
+    "instructions": [
+      "四个鸡腿清洗干净，放入碗中",
+      "碗中加入盐焗鸡粉和 5ml 油，搅拌均匀",
+      "让鸡腿静置腌制 15 分钟， 同时准备蒸锅并把水煮开",
+      "鸡腿腌制完成后， 放入水开后的蒸锅中，蒸制 20 分钟",
+      "将姜根据个人口味切成 1）姜蓉或 2）姜丝或 3）姜粒",
+      "将葱切成 0.5cm 小段",
+      "将葱姜放入蘸料碗，并加入盐和糖",
+      "将剩余的油倒入另一个锅中加热至六至七层热",
+      "将热油淋入葱姜碗中",
+      "鸡腿蒸好后将其撕碎成鸡丝，不需要特别细，大概 1cm 粗就可以",
+      "姜葱姜油淋在鸡丝上，搅拌均匀即可"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "凉菜",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 719,
+      "protein": 97.1,
+      "fat": 34.6,
+      "carbs": 4.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        661,
+        776
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_scrambled_eggs",
+    "name": "炒滑蛋",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "scrambled_eggs",
+      "sourceUrl": "https://local.import/scrambled_eggs",
+      "sourceFile": "data/raw_recipes/scrambled_eggs.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "22e52f28e305ed40704884ff3c0e8ad3cb2357306470f4715e8d59ba4db9b583"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 4,
+        "unit": "颗",
+        "originalRawText": "鸡蛋（最好是无菌蛋）",
+        "mode": "anyOf",
+        "alternatives": [
+          {
+            "id": "p_egg",
+            "name": "鸡蛋",
+            "amount": 4,
+            "unit": "颗"
+          },
+          {
+            "id": "p_egg_generic",
+            "name": "蛋"
+          }
+        ]
+      },
+      {
+        "id": "other_milk",
+        "name": "纯牛奶",
+        "amount": 30,
+        "unit": "ml",
+        "originalRawText": "牛奶",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil"
+    ],
+    "instructions": [
+      "鸡蛋加入牛奶以及 5ml 食用油搅拌均匀，备用",
+      "大火烧热平底锅约 30s, 加入 5ml 食用油",
+      "烧 30s 转小火, 并且放入搅拌好的鸡蛋",
+      "在锅中静置 5 秒后，用锅铲将蛋液从边缘缓慢推向中间",
+      "翻炒至鸡蛋大致凝固后关火，装盘"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "快手菜"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 303,
+      "protein": 23.8,
+      "fat": 20.6,
+      "carbs": 5.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        278,
+        327
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_seaweed_egg_soup",
+    "name": "紫菜蛋花汤",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "seaweed_egg_soup",
+      "sourceUrl": "https://local.import/seaweed_egg_soup",
+      "sourceFile": "data/raw_recipes/seaweed_egg_soup.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "0fca98cbf61d3540e95da8afd5e887c212d5f025774364ce754f5b2f5554f761"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      },
+      {
+        "id": "v_seaweed",
+        "name": "紫菜",
+        "amount": 10,
+        "unit": "g",
+        "originalRawText": "紫菜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "pantry_salt",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "干紫菜用清水泡 15 分钟，捞起沥干水份备用。",
+      "热锅，倒入 1.5 升清水、5ml 油、2g 盐。待水开后放入紫菜。",
+      "紫菜烧开后 3 分钟，将打好的蛋液徐徐倒入锅内，30 秒既可起锅。",
+      "撒上葱花，转小火 20 秒。",
+      "关火，出锅前放入几滴香油，也有的会放入一点虾皮，味道也不错。"
+    ],
+    "tags": [
+      "家常菜",
+      "煮",
+      "快手菜"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 218,
+      "protein": 14.1,
+      "fat": 15.6,
+      "carbs": 6.5,
+      "confidence": "estimated",
+      "calorieRange": [
+        200,
+        235
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_shredded_cabbage",
+    "name": "手撕包菜",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "shredded_cabbage",
+      "sourceUrl": "https://local.import/shredded_cabbage",
+      "sourceFile": "data/raw_recipes/shredded_cabbage.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "731648cd8ee9a4b74dbad22f3bea9cbdf702a5b9aafe308da557713eca354ace"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_cabbage",
+        "name": "包菜",
+        "amount": 1,
+        "unit": "颗",
+        "originalRawText": "包菜",
+        "mode": "single"
+      },
+      {
+        "id": "p_pork_belly",
+        "name": "五花肉",
+        "amount": 200,
+        "unit": "g",
+        "originalRawText": "五花肉",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 2,
+        "unit": "根",
+        "originalRawText": "小米辣",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil",
+      "preset_cooking_wine",
+      "pantry_soy_sauce",
+      "preset_vinegar",
+      "preset_chicken_essence",
+      "preset_ginger",
+      "pantry_garlic",
+      "pantry_salt"
+    ],
+    "instructions": [
+      "包菜对半切开，去掉中间白色部分【参见图一】",
+      "手撕包菜，碗中放入 2 g 盐，清洗包菜并沥干备用【参见图二】",
+      "姜片、蒜头、小米辣、蒜苗处理后备用【参见图三】",
+      "五花肉切片，清水清洗后备用",
+      "锅中加入 30 ml 食用油，倒入包菜翻炒，大火翻炒 1 分钟 后，加入 3 g 盐 ，继续翻炒 2 分钟 后取出备用",
+      "锅中加入 30 ml 食用油，倒入五花肉，大火翻炒 1 分钟",
+      "倒入姜片等材料，翻炒 1 分钟",
+      "倒入包菜翻炒后，加入 香醋、料酒、鸡精、料酒，大火继续翻炒，2 分钟 后出锅"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 1261,
+      "protein": 31.6,
+      "fat": 117.3,
+      "carbs": 23.4,
+      "confidence": "estimated",
+      "calorieRange": [
+        1161,
+        1362
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_spiced_beef",
+    "name": "酱牛肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "spiced_beef",
+      "sourceUrl": "https://local.import/spiced_beef",
+      "sourceFile": "data/raw_recipes/spiced_beef.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "5ae71ad86ccb58e54b2b24e8d2e5e3e2693eadd853d97036d83e2a77324cf167"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_beef",
+        "name": "牛肉",
+        "amount": 2000,
+        "unit": "克",
+        "originalRawText": "牛腱子肉",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_bay_leaf",
+      "preset_ginger",
+      "preset_scallion",
+      "preset_dark_soy_sauce",
+      "preset_cinnamon",
+      "preset_rock_sugar",
+      "preset_sichuan_pepper",
+      "preset_cooking_wine",
+      "pantry_soy_sauce",
+      "pantry_salt",
+      "preset_star_anise",
+      "preset_bean_paste"
+    ],
+    "instructions": [
+      "牛腱子肉清洗干净，用清水浸泡 1 小时，去除血水",
+      "用牙签或者叉子在牛腱子肉表面扎孔，加料酒、花椒、姜片后，用保鲜膜紧密包裹容器，腌制 4-6 小时",
+      "牛腱子肉切成 8cm，不超过 10cm 的肉块",
+      "牛腱子肉放入锅中，加入冷水至水面没过牛肉，开锅至水沸腾开始计时，同时捞出浮沫。3 分钟后停火，捞出牛肉，用温水洗净",
+      "将洗净后的牛腱子肉放入砂锅或炖锅，加水没过牛腱子肉，开大火，放入除盐之外其他未使用的配料",
+      "水开之后，大火转为小火，持续加热 90 分钟，加盐",
+      "加盐后，继续小火 90 分钟（注：每 30 分钟确认水位线，要求至少达到牛肉面高度的 80%）",
+      "加热 180 分钟后，捞出牛腱子肉，捞出牛腱子肉，用保鲜膜紧密包裹，放入冰箱冷藏数小时",
+      "取出后沿牛肉纹路切片，上桌食用，其他牛腱子肉建议不切片冷藏"
+    ],
+    "tags": [
+      "家常菜",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 3328,
+      "protein": 403.8,
+      "fat": 174.4,
+      "carbs": 30.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        3061,
+        3594
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "困难",
+    "rawDifficulty": "★★★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_spinach_scrambled_eggs",
+    "name": "菠菜炒鸡蛋",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "spinach_scrambled_eggs",
+      "sourceUrl": "https://local.import/spinach_scrambled_eggs",
+      "sourceFile": "data/raw_recipes/spinach_scrambled_eggs.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "ebda1888d738e86a4645f92c6bc5f3c37c4bf42003861e6aeb6be08b8e697962"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_spinach",
+        "name": "菠菜",
+        "amount": 350,
+        "unit": "g",
+        "originalRawText": "菠菜",
+        "mode": "single"
+      },
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil",
+      "pantry_salt"
+    ],
+    "instructions": [
+      "菠菜去根，洗净，放在篮子里，焯水",
+      "将鸡蛋打入碗中，搅匀",
+      "热锅，加入 10ml 油",
+      "油热后，倒入鸡蛋液，中火翻炒 15 秒，先煎成蛋饼，然后再用锅铲切成小块",
+      "关火，将鸡蛋块 盛到盘子中，不要洗锅",
+      "重新开火，倒入 5ml 油，油热后，放入菠菜，大火 翻炒 15 秒后，倒入鸡蛋块，翻炒均匀",
+      "加入 5g 盐、100ml 饮用水，大火 翻炒 10 秒",
+      "关火，盛盘"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 332,
+      "protein": 19.5,
+      "fat": 22.2,
+      "carbs": 16.1,
+      "confidence": "estimated",
+      "calorieRange": [
+        306,
+        359
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_steamed_meat_patty_egg",
+    "name": "肉饼炖蛋",
+    "category": "清爽凉菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "steamed_meat_patty_egg",
+      "sourceUrl": "https://local.import/steamed_meat_patty_egg",
+      "sourceFile": "data/raw_recipes/steamed_meat_patty_egg.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "7fe354fc4fce24aff00d0c264d79b3040425efb56e22cbddc9d6cd5be9e264d1"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_pork_minced",
+        "name": "猪肉末",
+        "amount": 300,
+        "unit": "g",
+        "originalRawText": "猪肉末",
+        "mode": "single"
+      },
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 2,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_cooking_wine",
+      "pantry_soy_sauce",
+      "pantry_black_pepper",
+      "preset_sesame_oil"
+    ],
+    "instructions": [
+      "在碗中加入猪肉末、料酒、生抽、白胡椒粉、鸡蛋和芝麻香油，搅拌均匀。",
+      "将调好味的猪肉末铺在盘子里，肉末中间用勺子挖一个洞，往洞中打入 1 个鸡蛋。",
+      "锅中加水至 1/4 高度，水烧开后，将盘子放入锅中，盖上锅盖，蒸 15 分钟。"
+    ],
+    "tags": [
+      "家常菜",
+      "拌",
+      "快手菜",
+      "凉菜",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "拌",
+    "nutrition": {
+      "calories": 1253,
+      "protein": 52.3,
+      "fat": 110.8,
+      "carbs": 9.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        1153,
+        1353
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_steamed_oysters",
+    "name": "清蒸生蚝",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "steamed_oysters",
+      "sourceUrl": "https://local.import/steamed_oysters",
+      "sourceFile": "data/raw_recipes/steamed_oysters.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "a71dcb15a30018425d947808f72d08291da0a8c95825aeb3c7f714dbe8136697"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_oyster",
+        "name": "生蚝",
+        "amount": 6,
+        "unit": "个",
+        "originalRawText": "生蚝",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "pantry_garlic",
+      "preset_ginger",
+      "pantry_soy_sauce"
+    ],
+    "instructions": [
+      "将生蚝用刷子刷干净（没有刷子用牙刷）。",
+      "蒸锅中放水，将蒸屉放上之后，将 6 个生蚝平铺在蒸屉，使用 50%功率，蒸 3 分钟。",
+      "用右手拿着湿抹布掀开烫锅盖，将每个生蚝的外壳掀开一半去掉，生蚝的凸面向下，平面向上，每个放 1 根姜丝,10g 蒜末放到生蚝上。",
+      "关上烫锅盖，100%功率蒸 3.5 分钟。",
+      "停火，用右手拿着抹布掀开烫锅盖，每个放 5ml 酱油。",
+      "盛盘。"
+    ],
+    "tags": [
+      "家常菜",
+      "蒸",
+      "快手菜"
+    ],
+    "cookingMethod": "蒸",
+    "nutrition": {
+      "calories": 237,
+      "protein": 43.1,
+      "fat": 5.9,
+      "carbs": 3.2,
+      "confidence": "estimated",
+      "calorieRange": [
+        218,
+        256
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_steamed_pumpkin",
+    "name": "清蒸南瓜",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "steamed_pumpkin",
+      "sourceUrl": "https://local.import/steamed_pumpkin",
+      "sourceFile": "data/raw_recipes/steamed_pumpkin.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "5e658e0b314f17d000026f31d86a72aaa43bf86e95a73bd77eebcbe3853e79eb"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_pumpkin",
+        "name": "南瓜",
+        "amount": 300,
+        "unit": "g",
+        "originalRawText": "南瓜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [],
+    "instructions": [
+      "将 南瓜 外皮洗净，去除瓜瓤和籽。",
+      "将 南瓜 切成厚度大约 2 cm 的片，备用。",
+      "在 蒸锅 的锅中加入 1000 ml 饮用水。",
+      "将切好的 南瓜 片均匀摆放在盘中。",
+      "待蒸锅中的水烧开后，将装有 南瓜 的盘子放入蒸锅中。",
+      "盖上锅盖，保持大火蒸 **15-20 分钟**，直至南瓜变软，可以用筷子轻松穿透。",
+      "关火，小心取出盘子。"
+    ],
+    "tags": [
+      "家常菜",
+      "蒸"
+    ],
+    "cookingMethod": "蒸",
+    "nutrition": {
+      "calories": 59,
+      "protein": 1.8,
+      "fat": 0.3,
+      "carbs": 13.5,
+      "confidence": "estimated",
+      "calorieRange": [
+        54,
+        63
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_stir_fried_beef",
+    "name": "小炒黄牛肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "stir_fried_beef",
+      "sourceUrl": "https://local.import/stir_fried_beef",
+      "sourceFile": "data/raw_recipes/stir_fried_beef.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "6ae03454317605642389b0bd92f0de1be39d2d148b67c1acd30a3e35eb6fa5d8"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_beef",
+        "name": "牛肉",
+        "amount": 400,
+        "unit": "g",
+        "originalRawText": "牛里脊",
+        "mode": "single"
+      },
+      {
+        "id": "v_celery",
+        "name": "芹菜",
+        "amount": 200,
+        "unit": "g",
+        "originalRawText": "芹菜",
+        "mode": "single"
+      },
+      {
+        "id": "v_hot_pepper",
+        "name": "尖椒",
+        "amount": 30,
+        "unit": "g",
+        "originalRawText": "小米椒",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_coriander",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "牛里脊切成不超过 3cm 宽，3mm 厚的薄片，倒入 6ml 酱油，用手抓匀备用",
+      "芹菜切成不超过 5cm 的小段，备用",
+      "小米椒切成丝状，备用",
+      "野山椒切成颗粒，备用",
+      "香菜切成成不超过 3cm 的小段，备用",
+      "热锅，锅内放入 15ml 食用油，大火等待 30 秒让油温升高",
+      "放入小米椒和野山椒爆香",
+      "放入牛里脊和芹菜，然后**大火翻炒 1 分钟**",
+      "关火，撒上香菜，盛盘"
+    ],
+    "tags": [
+      "家常菜",
+      "炒",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 799,
+      "protein": 81.8,
+      "fat": 48.9,
+      "carbs": 9.4,
+      "confidence": "estimated",
+      "calorieRange": [
+        735,
+        863
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "困难",
+    "rawDifficulty": "★★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_stir_fried_cauliflower",
+    "name": "清炒花菜",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "stir_fried_cauliflower",
+      "sourceUrl": "https://local.import/stir_fried_cauliflower",
+      "sourceFile": "data/raw_recipes/stir_fried_cauliflower.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "715be05ff33494e9ba48e6a3b4b90f9365d83fa98f01b49696bf8a0969ba6dcf"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_cauliflower",
+        "name": "菜花",
+        "amount": 300,
+        "unit": "g",
+        "originalRawText": "花菜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_garlic",
+      "pantry_salt",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "将 花菜 洗净，用刀或手掰成小朵，粗茎部分可以切片，备用。",
+      "将 大蒜 去皮，切成蒜片，备用。",
+      "锅中加入 1000 ml 饮用水，大火烧开。",
+      "放入 花菜 朵，煮 **2-3 分钟**，至花菜颜色变浅，口感稍微软化。",
+      "将 煮好的 花菜 捞出，沥干水分，备用。",
+      "热锅，加入 15 ml 食用油，大火烧热。",
+      "放入 蒜片，快速煸炒出香味。",
+      "放入 焯好水的 花菜 朵，转中大火，快速翻炒约 **2 分钟**，使花菜均匀受热。",
+      "加入 3 g 盐，继续翻炒均匀。",
+      "沿锅边淋入 50 ml 饮用水，盖上锅盖，焖 **1 分钟**，帮助花菜完全熟透入味。",
+      "开盖，快速翻炒均匀，即可出锅。"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 179,
+      "protein": 4.4,
+      "fat": 14.3,
+      "carbs": 11.7,
+      "confidence": "estimated",
+      "calorieRange": [
+        165,
+        194
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_stir_fried_greens",
+    "name": "炒青菜",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "stir_fried_greens",
+      "sourceUrl": "https://local.import/stir_fried_greens",
+      "sourceFile": "data/raw_recipes/stir_fried_greens.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "12569137a964dbd12a47bf0d44f32a1d39e2e8bbfad947d22045f25cf83e90d1"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_bok_choy",
+        "name": "青菜",
+        "amount": 100,
+        "unit": "g",
+        "originalRawText": "青菜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_oil"
+    ],
+    "instructions": [
+      "青菜掰成小瓣，用清水洗净，备用。",
+      "将蒜瓣剁碎，备用",
+      "中火或大火热锅后，锅内放入 10-15ml 食用油。再等待 30 秒让油温升高。",
+      "将准备好的青菜倒入锅中，翻炒至青菜变软（约 1 分钟）。",
+      "放入剁碎的蒜瓣",
+      "倒入计算好的清水，水位应当完全浸润或即将没过青菜，加入食盐 （2g * 份数），继续翻炒约 1 分钟。",
+      "最后加入白糖小火加热 2 分钟，加热时盖上锅盖。",
+      "盛盘。"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 137,
+      "protein": 1.3,
+      "fat": 14.1,
+      "carbs": 2.3,
+      "confidence": "estimated",
+      "calorieRange": [
+        126,
+        148
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_tea_egg",
+    "name": "茶叶蛋",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "tea_egg",
+      "sourceUrl": "https://local.import/tea_egg",
+      "sourceFile": "data/raw_recipes/tea_egg.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "a788392f0b29dcb0396e2ba372c44ca2fd965e17a40c6397dd1350b5e77b5305"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 400,
+        "unit": "g",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_star_anise",
+      "preset_bay_leaf",
+      "preset_cinnamon",
+      "preset_rock_sugar",
+      "pantry_soy_sauce",
+      "preset_dark_soy_sauce",
+      "pantry_salt"
+    ],
+    "instructions": [
+      "用冷水将鸡蛋煮熟，大火大约 8 分钟（根据自家厨具决定）",
+      "鸡蛋捞出，过冷水",
+      "将鸡蛋互相碰撞，使每个鸡蛋产生裂缝",
+      "将鸡蛋下锅，放入八角，香叶，桂皮，茴香，冰糖，红茶，生抽，老抽，食盐",
+      "加水直至没过鸡蛋",
+      "大火煮开之后，转中小火煮 15 分钟"
+    ],
+    "tags": [
+      "家常菜",
+      "煮",
+      "快手菜",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 519,
+      "protein": 46.9,
+      "fat": 30.1,
+      "carbs": 15.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        478,
+        561
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_tomato_beef_egg_soup",
+    "name": "番茄牛肉蛋花汤",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "tomato_beef_egg_soup",
+      "sourceUrl": "https://local.import/tomato_beef_egg_soup",
+      "sourceFile": "data/raw_recipes/tomato_beef_egg_soup.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "993834856d85184f1d698a2e2cd67652e1655719e916ca9faa6c4b6bde0e76a5"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_beef",
+        "name": "牛肉",
+        "amount": 150,
+        "unit": "g",
+        "originalRawText": "牛肉",
+        "mode": "single"
+      },
+      {
+        "id": "v_tomato",
+        "name": "西红柿",
+        "amount": 1,
+        "unit": "个",
+        "originalRawText": "番茄",
+        "mode": "single"
+      },
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 1,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "pantry_garlic",
+      "pantry_salt",
+      "pantry_black_pepper"
+    ],
+    "instructions": [
+      "牛肉切成薄片",
+      "番茄切成小块",
+      "葱切成葱花",
+      "姜切成姜片",
+      "蒜剁成蒜泥",
+      "牛肉放入碗中",
+      "加盐、胡椒粉腌制 15-20 分钟",
+      "加水煮开",
+      "加入姜片和牛肉片，煮至牛肉变色",
+      "加入番茄块，煮至番茄变软",
+      "打散鸡蛋液，缓慢地倒入锅中，用筷子搅拌形成蛋花",
+      "加入盐和胡椒粉调味",
+      "最后加入葱花，即可出锅"
+    ],
+    "tags": [
+      "家常菜",
+      "煮"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 322,
+      "protein": 37,
+      "fat": 17.1,
+      "carbs": 6.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        297,
+        348
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "中等",
+    "rawDifficulty": "★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_tomato_beef_sirloin",
+    "name": "西红柿牛腩",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "tomato_beef_sirloin",
+      "sourceUrl": "https://local.import/tomato_beef_sirloin",
+      "sourceFile": "data/raw_recipes/tomato_beef_sirloin.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "b1755d56a148445a6fe8bb172b49650a741eab7170aecfa785d99c6173873168"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_tomato",
+        "name": "西红柿",
+        "amount": 200,
+        "unit": "g",
+        "originalRawText": "西红柿",
+        "mode": "single"
+      },
+      {
+        "id": "p_beef",
+        "name": "牛肉",
+        "amount": 500,
+        "unit": "g",
+        "originalRawText": "牛腩",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "pantry_black_pepper",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "牛腩切条、切块成长宽高均 2cm ，冷水下锅，开锅煮制 2 分钟去除血水，捞出冲洗干净",
+      "另起锅 2L 水烧开，加入 2cm 两段葱段、两片姜片、八角、料/黄酒 5-10ml，放入焯好的牛肉，盖盖炖制（砂锅 1 小时，高压锅炖肉模式 45 分钟），筷子能轻松插透就证明炖好了",
+      "西红柿去皮：西红柿头部滑十字至腰线，筷子/刀叉从果蒂捅入，煤气灶小火，一边转动一边烤，及时拿下来查看，起皮后撕下来，切块。越小越好（撕皮小心烫，去皮后的西红柿特别滑，慢切注意安全）",
+      "起锅烧油，油温 7 成热，葱、姜各 10g，番茄下锅，炒透炒出番茄红色，加入煮好的牛腩和原汤，原汤刚刚没过牛肉即可",
+      "根据个人口味放入盐、糖、生抽调味盖盖",
+      "开锅后大火继续炒制 3-5 分钟",
+      "待番茄汁呈中等粘稠程度后关火，散入葱花，盛盘"
+    ],
+    "tags": [
+      "家常菜",
+      "煮",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": "煮",
+    "nutrition": {
+      "calories": 912,
+      "protein": 101.7,
+      "fat": 53.1,
+      "carbs": 8.9,
+      "confidence": "estimated",
+      "calorieRange": [
+        839,
+        985
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "困难",
+    "rawDifficulty": "★★★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_tomato_egg_soup",
+    "name": "西红柿鸡蛋汤",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "tomato_egg_soup",
+      "sourceUrl": "https://local.import/tomato_egg_soup",
+      "sourceFile": "data/raw_recipes/tomato_egg_soup.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "dfcdbf702f96c059163f4aad7ff858d548e6208617b81386417d381da67bfa59"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_tomato",
+        "name": "西红柿",
+        "amount": 1,
+        "unit": "个",
+        "originalRawText": "西红柿",
+        "mode": "single"
+      },
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 1.5,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_sesame_oil",
+      "pantry_salt",
+      "preset_scallion",
+      "preset_ginger",
+      "pantry_garlic"
+    ],
+    "instructions": [
+      "将西红柿洗净，切块。",
+      "葱姜蒜切碎。",
+      "鸡蛋打到碗中，用筷子（或打蛋器）搅拌均匀。",
+      "热锅，并放入 15 毫升的油，待能从油中看到冒出一丝烟时，放入葱姜蒜翻炒 30 秒。",
+      "放入西红柿翻炒 1 分钟。",
+      "倒入水，水的高度大约为锅内菜品高度的 1.2 倍，并放入盐。",
+      "待开锅后，将鸡蛋液放入，并用筷子将鸡蛋打散，放入味素和香油。",
+      "等待 30 秒，关火出锅。"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 184,
+      "protein": 9.9,
+      "fat": 13.9,
+      "carbs": 6.4,
+      "confidence": "estimated",
+      "calorieRange": [
+        170,
+        199
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_tomato_potato_beef",
+    "name": "西红柿土豆炖牛肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "tomato_potato_beef",
+      "sourceUrl": "https://local.import/tomato_potato_beef",
+      "sourceFile": "data/raw_recipes/tomato_potato_beef.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "3555edc49f7dcc08eba083480274d16ab454490968046900d68498529e7e6595"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_beef",
+        "name": "牛肉",
+        "amount": 600,
+        "unit": "g",
+        "originalRawText": "牛肉",
+        "mode": "single"
+      },
+      {
+        "id": "c_potato",
+        "name": "土豆",
+        "amount": 2.5,
+        "unit": "个",
+        "originalRawText": "土豆",
+        "mode": "single"
+      },
+      {
+        "id": "v_tomato",
+        "name": "西红柿",
+        "amount": 2.5,
+        "unit": "个",
+        "originalRawText": "西红柿",
+        "mode": "single"
+      },
+      {
+        "id": "v_onion",
+        "name": "洋葱",
+        "amount": 1,
+        "unit": "根",
+        "originalRawText": "洋葱",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "preset_cooking_wine",
+      "preset_sichuan_pepper",
+      "preset_star_anise",
+      "preset_bay_leaf",
+      "preset_sugar",
+      "pantry_soy_sauce",
+      "preset_dark_soy_sauce",
+      "pantry_black_pepper"
+    ],
+    "instructions": [
+      "备菜:（土豆去皮、切成 5cm 大块，备用）（西红柿切十字花刀，开水烫后去皮，把中间的芯去掉，切 3cm 小块备用）（葱切 4g 的葱花出来，剩下的掰成 5-8cm 大段）（牛肉泡凉水半小时去血水，或凉水下锅煮至表面变白捞出，期间撇去浮末）（洋葱切 0.5-1cm 小粒）",
+      "制作（全程中火）（凉水没过牛肉，放入高压锅，放入葱段，姜片，放入 20g 料酒，上汽压 20 分钟）（取出牛肉后，切 5cm 大块，挑出姜，汤盛到一个大碗里一会炖煮用）（倒油，油四到五成热以后下花椒八角香叶，出香味之后糊之前挑出不用）（下入牛肉，葱姜，炒香，炒多久都无所谓，看着有点要糊可以舀 10ml 汤，此下同理）（炒香后加入生抽 15ml，料酒 15ml，胡椒粉，5-10g 番茄膏番茄酱或一个番茄罐头，加入洋葱炒至透明）（（可选）可以加一点点盐使洋葱出水不容易糊，不要加太多，后面再调味）（加入西红柿炒至西红柿化开软烂，倒入剩下的汤）",
+      "炖煮（中火开锅后，全程小火）（出锅前 30-40 分钟 加土豆并调味）（依据个人口味边尝边加糖盐，合适为止）（筷子戳牛肉软烂后出锅！）"
+    ],
+    "tags": [
+      "家常菜",
+      "快手菜",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 1334,
+      "protein": 132.8,
+      "fat": 53.7,
+      "carbs": 80.6,
+      "confidence": "estimated",
+      "calorieRange": [
+        1227,
+        1440
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "困难",
+    "rawDifficulty": "★★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_winter_melon_steamed_chicken",
+    "name": "冬瓜桑拿鸡",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "winter_melon_steamed_chicken",
+      "sourceUrl": "https://local.import/winter_melon_steamed_chicken",
+      "sourceFile": "data/raw_recipes/winter_melon_steamed_chicken.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "330fe29941edc0182a84dd894b76576241a8c59515d994b3bab6c19d6a389020"
+    },
+    "requiredIngredients": [
+      {
+        "id": "p_chicken_whole",
+        "name": "鸡",
+        "amount": 400,
+        "unit": "g",
+        "originalRawText": "鸡肉",
+        "mode": "single"
+      },
+      {
+        "id": "v_winter_melon",
+        "name": "冬瓜",
+        "amount": 300,
+        "unit": "g",
+        "originalRawText": "冬瓜",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_ginger",
+      "pantry_soy_sauce",
+      "preset_oyster_sauce",
+      "pantry_salt",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "鸡切块，加姜丝、生抽、蚝油、盐、食用油，揉搓均匀后腌制 20 分钟",
+      "冬瓜切薄片铺在盘子底部",
+      "再铺一层泡好的虫草花",
+      "把腌好的鸡肉铺在虫草花上面",
+      "水烧开后放入蒸锅，上汽后蒸 15 分钟，出锅即可"
+    ],
+    "tags": [
+      "家常菜",
+      "快手菜"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 482,
+      "protein": 53.1,
+      "fat": 26.8,
+      "carbs": 8.8,
+      "confidence": "estimated",
+      "calorieRange": [
+        443,
+        520
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_winter_melon_stuffed_meat",
+    "name": "冬瓜酿肉",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "winter_melon_stuffed_meat",
+      "sourceUrl": "https://local.import/winter_melon_stuffed_meat",
+      "sourceFile": "data/raw_recipes/winter_melon_stuffed_meat.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "c69a33e62d11aa51ff4de5d8990739907c966e920f85c15d02b288278ef34b01"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_winter_melon",
+        "name": "冬瓜",
+        "amount": 200,
+        "unit": "g",
+        "originalRawText": "冬瓜",
+        "mode": "single"
+      },
+      {
+        "id": "p_pork_minced",
+        "name": "猪肉末",
+        "amount": 300,
+        "unit": "g",
+        "originalRawText": "猪肉末",
+        "mode": "single"
+      },
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 1,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "preset_scallion",
+      "preset_ginger",
+      "pantry_black_pepper",
+      "pantry_soy_sauce",
+      "preset_starch",
+      "pantry_salt"
+    ],
+    "instructions": [
+      "冬瓜去皮，切成 25cm 长 3cm 厚的片",
+      "将切好的冬瓜放入碗中，放入 15g 盐，将冬瓜抹匀，放置 10 分钟",
+      "放置冬瓜的同时，换个碗放入肉末，葱姜末， 5g 盐，淀粉 5g，胡椒粉，生抽，胡椒粉",
+      "使用筷子在肉末中进行顺时针搅拌，搅拌到食材颜色没有明显对比（约 2 分钟）",
+      "将腌制好的冬瓜（会变软）使用清水洗三遍",
+      "拿出 1 片冬瓜片卷起来，并把肉塞进去",
+      "放入碟子中摆到碟子的边缘",
+      "打入 1 个鸡蛋到中间圆圈处",
+      "放入普通铁锅中水烧开后，蒸 15 分钟，盖上锅盖",
+      "开盖，取出蒸好的冬瓜酿肉",
+      "将冬瓜酿肉碟子的水倒入锅中，放入水淀粉，加入 50ml 清水倒入锅中烧开",
+      "淋到冬瓜酿肉上"
+    ],
+    "tags": [
+      "家常菜",
+      "cheat_or_share",
+      "控油建议"
+    ],
+    "cookingMethod": null,
+    "nutrition": {
+      "calories": 1129,
+      "protein": 47.8,
+      "fat": 96.1,
+      "carbs": 19.1,
+      "confidence": "estimated",
+      "calorieRange": [
+        1039,
+        1219
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "困难",
+    "rawDifficulty": "★★★★",
+    "estimatedMinutes": null
+  },
+  {
+    "id": "imported_howtocook_zucchini_scrambled_eggs",
+    "name": "西葫芦炒鸡蛋",
+    "category": "家常热菜",
+    "provenance": {
+      "source": "howtocook",
+      "sourceId": "zucchini_scrambled_eggs",
+      "sourceUrl": "https://local.import/zucchini_scrambled_eggs",
+      "sourceFile": "data/raw_recipes/zucchini_scrambled_eggs.md",
+      "license": "CC-BY-4.0",
+      "contentHash": "5fe89093ca49ec11a9e10d94f47557b7891282e890ccd222a04d8fbde338f372"
+    },
+    "requiredIngredients": [
+      {
+        "id": "v_zucchini",
+        "name": "西葫芦",
+        "amount": 500,
+        "unit": "g",
+        "originalRawText": "西葫芦",
+        "mode": "single"
+      },
+      {
+        "id": "p_egg",
+        "name": "鸡蛋",
+        "amount": 3,
+        "unit": "个",
+        "originalRawText": "鸡蛋",
+        "mode": "single"
+      }
+    ],
+    "pantryIngredients": [
+      "pantry_salt",
+      "pantry_oil"
+    ],
+    "instructions": [
+      "西红柿洗净，切成小块，备用",
+      "西葫芦洗净，切成边长约为 4cm 的菱形，备用",
+      "打三个鸡蛋到碗里，打散搅匀，备用",
+      "热锅，锅内放入 5ml - 10ml 食用油",
+      "倒入鸡蛋，保持翻炒至鸡蛋成固体，用锅铲分成小块后盛到碗里，备用",
+      "锅内放入 5ml - 10ml 食用油，倒入西红柿，炒至变软",
+      "倒入西葫芦一起翻炒均匀，放入 6g 食用盐，将火调小然后**等待 4 - 5 分钟**",
+      "倒入备用的鸡蛋，中火翻炒 15 秒",
+      "关火，盛盘"
+    ],
+    "tags": [
+      "家常菜",
+      "炒"
+    ],
+    "cookingMethod": "炒",
+    "nutrition": {
+      "calories": 375,
+      "protein": 20,
+      "fat": 25.7,
+      "carbs": 17,
+      "confidence": "estimated",
+      "calorieRange": [
+        345,
+        405
+      ],
+      "isEstimated": true
+    },
+    "servings": null,
+    "difficulty": "简单",
+    "rawDifficulty": "★★",
     "estimatedMinutes": null
   }
 ]

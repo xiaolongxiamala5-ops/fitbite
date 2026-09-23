@@ -43,6 +43,13 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     verifiedBy: 'manual_curation'
   },
   {
+    canonicalId: 'p_chicken_whole',
+    foodCode: '091101x', // 鸡（代表值）
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '整鸡/半鸡代表值，带骨可食部约 63%',
+    verifiedBy: 'manual_curation'
+  },
+  {
     canonicalId: 'p_egg',
     foodCode: '111101x', // 鸡蛋（代表值）
     defaultWeightBasis: 'gross_as_purchased',
@@ -74,10 +81,59 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
   // 该条目的营养组成与 FitBite 所需的 generic fresh peeled shrimp 产品语义无法可靠对应；
   // source metadata 未确认其具体加工状态，因此暂时保持 unmapped。
   {
+    canonicalId: 'p_oyster',
+    foodCode: '124109', // 生蚝
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '生蚝，100% 可食或带壳',
+    verifiedBy: 'manual_curation'
+  },
+  {
     canonicalId: 'p_fish_seabass',
     foodCode: '121226', // 鲈鱼［鲈花］
     defaultWeightBasis: 'gross_as_purchased',
     notes: '整条鲜鲈鱼，带骨带鳞可食部约 58%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_fish_grass_carp',
+    foodCode: '121102', // 草鱼
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '生草鱼，带骨带鳞可食部约 58%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_fish_basa',
+    foodCode: '121120', // 鲇鱼 proxy (巴沙鱼)
+    defaultWeightBasis: 'edible_net',
+    notes: '巴沙鱼柳/片，无骨纯肉计算，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_fish_cod',
+    foodCode: '121239', // 鳕鱼［鳕狭、明太鱼］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '鳕鱼，带皮带骨可食部约 45%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_fish_mandarin',
+    foodCode: '121129', // 鳜鱼［桂鱼、花鲫鱼］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '鳜鱼/桂鱼，带骨带鳞可食部约 61%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_fish_bream',
+    foodCode: '121126', // 鳊鱼［鲂鱼、武昌鱼］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '鳊鱼/武昌鱼，带骨带鳞可食部约 59%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_fish_carp',
+    foodCode: '121111', // 鲤鱼［鲤拐子］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '鲤鱼，带骨带鳞可食部约 54%',
     verifiedBy: 'manual_curation'
   },
   {
@@ -92,6 +148,13 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     foodCode: '031306', // 豆腐（北豆腐）
     defaultWeightBasis: 'edible_net',
     notes: '老豆腐/北豆腐/卤水豆腐，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_tofu_dried',
+    foodCode: '031516', // 豆腐干（香干）
+    defaultWeightBasis: 'edible_net',
+    notes: '香干/豆腐干，100% 可食',
     verifiedBy: 'manual_curation'
   },
   {
@@ -113,6 +176,13 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     foodCode: '082101x', // 牛肉（代表值，fat9g）
     defaultWeightBasis: 'edible_net',
     notes: '生鲜牛肉，净肉净重计算',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'p_luncheon_meat',
+    foodCode: '081307', // 午餐肉（北京）
+    defaultWeightBasis: 'edible_net',
+    notes: '午餐肉，100% 可食',
     verifiedBy: 'manual_curation'
   },
   {
@@ -188,6 +258,13 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     verifiedBy: 'manual_curation'
   },
   {
+    canonicalId: 'v_hot_pepper',
+    foodCode: '043123', // 辣椒（青、尖）［尖椒］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '尖椒/鲜辣椒/小米辣，去蒂可食部约 91%',
+    verifiedBy: 'manual_curation'
+  },
+  {
     canonicalId: 'v_mushroom_shiitake',
     foodCode: '051019', // 香菇（鲜）［香蕈，冬菇］
     defaultWeightBasis: 'edible_net',
@@ -208,6 +285,132 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     notes: '白玉菇，鲜蘑 proxy，100% 可食',
     verifiedBy: 'manual_curation'
   },
+  {
+    canonicalId: 'v_cabbage',
+    foodCode: '045210', // 结球甘蓝（绿）［圆白菜］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '生圆白菜/卷心菜/包菜，去外叶可食部约 86%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_baby_cabbage',
+    foodCode: '045123', // 娃娃菜
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '生娃娃菜，去根部可食部约 97%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_choy_sum',
+    foodCode: '045108', // 白菜薹［菜薹，菜心］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '生鲜菜心/菜薹，去根部老茎可食部约 84%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_celery',
+    foodCode: '045312', // 芹菜茎
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '生芹菜茎，去叶可食部约 67%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_mushroom_enoki',
+    foodCode: '051008', // 金针菇（鲜）［智力菇］
+    defaultWeightBasis: 'edible_net',
+    notes: '生鲜金针菇，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_lettuce',
+    foodCode: '045333', // 生菜［叶用莴苣］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '生菜，去外叶可食部约 94%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_youmaicai',
+    foodCode: '045334', // 油麦菜
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '油麦菜，去老根可食部约 81%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_spinach',
+    foodCode: '045301', // 菠菜（鲜）［赤根菜］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '菠菜，去根部可食部约 89%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_water_spinach',
+    foodCode: '045337', // 蕹菜［空心菜、藤藤菜］
+    defaultWeightBasis: 'edible_net',
+    notes: '空心菜，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_bok_choy',
+    foodCode: '045120', // 小白菜［青菜］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '青菜/小白菜，去老根可食部约 94%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_cauliflower',
+    foodCode: '045216', // 菜花（白色）［花椰菜］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '菜花/花菜，去外叶根部可食部约 82%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_zucchini',
+    foodCode: '043218', // 西葫芦
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '西葫芦，去蒂可食部约 73%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_winter_melon',
+    foodCode: '043221', // 冬瓜
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '冬瓜，去皮去瓤可食部约 80%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_pumpkin',
+    foodCode: '043213', // 南瓜（鲜）［倭瓜，番瓜］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '南瓜，去皮去籽可食部约 85%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_asparagus_lettuce',
+    foodCode: '045324', // 莴笋（鲜）［莴苣］
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '莴笋，去皮可食部约 62%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_garlic_moss',
+    foodCode: '044107', // 蒜薹（圆）
+    defaultWeightBasis: 'gross_as_purchased',
+    notes: '蒜薹，去梢可食部约 90%',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_black_fungus',
+    foodCode: '051013', // 木耳（干）［黑木耳，云耳］
+    defaultWeightBasis: 'edible_net',
+    notes: '干木耳，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'v_seaweed',
+    foodCode: '052008', // 紫菜（干）
+    defaultWeightBasis: 'edible_net',
+    notes: '干紫菜，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
 
   // ================= 碳水类 (Carb) =================
   {
@@ -224,6 +427,13 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     notes: '熟米饭/白米饭（蒸），100% 可食，每 100g 约 116 kcal',
     verifiedBy: 'manual_curation'
   },
+  {
+    canonicalId: 'c_oats',
+    foodCode: '019012', // 燕麦
+    defaultWeightBasis: 'edible_net',
+    notes: '纯燕麦，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
 
   // ================= 其他辅料 (Other) =================
   {
@@ -231,6 +441,13 @@ export const CANONICAL_TO_SANOTSU: CanonicalNutritionMapping[] = [
     foodCode: '072004', // 花生仁（生）
     defaultWeightBasis: 'edible_net',
     notes: '生花生米/花生仁，100% 可食',
+    verifiedBy: 'manual_curation'
+  },
+  {
+    canonicalId: 'other_milk',
+    foodCode: '101101x', // 纯牛奶（代表值，全脂）
+    defaultWeightBasis: 'edible_net',
+    notes: '纯牛奶，100% 可食',
     verifiedBy: 'manual_curation'
   }
 ];

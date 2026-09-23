@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { Recipe } from '../../data/recipes';
 import { MatchResult } from '../../core/matcher/types';
 import { getPantryItemName, translatePantryEnglishOrId } from '../../ui/pantryPresets';
@@ -97,7 +98,7 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
 
   const isReadyToCook = missingMainCount === 0;
 
-  return (
+  const modalContent = (
     <div className="recipe-modal-overlay" onClick={onClose}>
       <div className="recipe-modal-sheet" onClick={e => e.stopPropagation()}>
         {/* iOS 顶部下拉感指示条 */}
@@ -315,4 +316,6 @@ export const RecipeDetailModal: React.FC<RecipeDetailModalProps> = ({
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(modalContent, document.body) : modalContent;
 };

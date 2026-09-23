@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
@@ -430,10 +430,26 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
   });
 
   describe('5. Full Pipeline End-to-End Verification', () => {
-    it('5.1 15 道真实 HowToCook 菜谱全流程导入必须 100% 通过验证且零失败', () => {
+    let backupContent: string | null = null;
+
+    beforeAll(() => {
+      const dataOutputPath = path.join(process.cwd(), 'data', 'recipes_imported.json');
+      if (fs.existsSync(dataOutputPath)) {
+        backupContent = fs.readFileSync(dataOutputPath, 'utf-8');
+      }
+    });
+
+    afterAll(() => {
+      const dataOutputPath = path.join(process.cwd(), 'data', 'recipes_imported.json');
+      if (backupContent !== null) {
+        fs.writeFileSync(dataOutputPath, backupContent, 'utf-8');
+      }
+    });
+
+    it('5.1 21 道真实 HowToCook 菜谱全流程导入必须 100% 通过验证且零失败', () => {
       const result = runPipeline();
-      expect(result.total).toBe(15);
-      expect(result.imported.length).toBe(15);
+      expect(result.total).toBe(21);
+      expect(result.imported.length).toBe(21);
       expect(result.failed.length).toBe(0);
       expect(result.success).toBe(true);
 
@@ -459,7 +475,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
       const fileContent = fs.readFileSync(dataOutputPath, 'utf-8');
       const parsed = JSON.parse(fileContent);
       expect(Array.isArray(parsed)).toBe(true);
-      expect(parsed.length).toBe(15);
+      expect(parsed.length).toBe(21);
       expect(parsed.every((r: any) => r.id && r.name && r.provenance)).toBe(true);
     });
 

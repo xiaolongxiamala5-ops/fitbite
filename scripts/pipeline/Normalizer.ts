@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { SourceRecipe, NormalizedRecipe, NormalizedIngredient, FitBiteRecipe, FitBiteIngredientItem, FitBitePantryItem, CanonicalOption } from './types';
-import { resolveCanonicalWithOptions, cleanIngredientRawText } from './canonicalDictionary';
+import { resolveCanonical, resolveCanonicalWithOptions, cleanIngredientRawText } from './canonicalDictionary';
 import { resolvePantry, isWaterOrIgnored, isKitchenTool } from './pantryDictionary';
 import { evaluateRecipeNutrition } from '../../shared/nutrition';
 import { CANONICAL_NUTRITION_LOOKUP, PANTRY_TO_SANOTSU } from '../../data/nutrition/mappings/canonical-to-sanotsu';
@@ -30,9 +30,14 @@ function getFoodsMap(): Map<string, NutritionFood> {
 function parseChineseNum(str: string): number | null {
   const map: Record<string, number> = {
     '一': 1, '二': 2, '两': 2, '三': 3, '四': 4, '五': 5,
-    '六': 6, '七': 7, '八': 8, '九': 9, '十': 10, '半': 0.5
+    '六': 6, '七': 7, '八': 8, '九': 9, '十': 10, '半': 0.5,
+    '一两': 1.5, '两三': 2.5, '三四': 3.5, '四五': 4.5, '五六': 5.5, '六七': 6.5, '七八': 7.5, '八九': 8.5
   };
   if (map[str] !== undefined) return map[str];
+  if (str.includes('/')) {
+    const [num, den] = str.split('/').map(Number);
+    if (den && !isNaN(num) && !isNaN(den)) return num / den;
+  }
   const num = parseFloat(str);
   return Number.isFinite(num) ? num : null;
 }
@@ -48,19 +53,56 @@ function parseChineseNum(str: string): number | null {
  * - "2 片生姜"
  * - "黄瓜 200 克 * 份数"
  */
-function parseRawCalculationItem(calc: string): { name: string; amount?: number; unit?: string } | null {
-  const line = calc.replace(/^[-*•]\s*/, '').trim();
+function splitOutsideParentheses(text: string): string[] {
+  if (/(或者|或|\/|or)/i.test(text)) return [text];
+  const parts: string[] = [];
+  let current = '';
+  let parenDepth = 0;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (char === '（' || char === '(') {
+      parenDepth++;
+      current += char;
+    } else if (char === '）' || char === ')') {
+      if (parenDepth > 0) parenDepth--;
+      current += char;
+    } else if (parenDepth === 0 && (char === '、' || char === ',' || char === '，')) {
+      if (current.trim()) {
+        parts.push(current.trim());
+      }
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  if (current.trim()) {
+    parts.push(current.trim());
+  }
+  return parts;
+}
+
+/**
+ * Parses raw calculation lines supporting both prefix and suffix quantity patterns
+ */
+export function parseRawCalculationItem(calc: string): { name: string; amount?: number; unit?: string } | null {
+  let line = calc.replace(/^[-*•]\s*/, '').trim();
+  line = line.replace(/^[\p{Emoji_Presentation}\p{Extended_Pictographic}\uFE0F\u200D\s]+/u, '').trim();
   if (!line) return null;
 
-  // Case A: Explicit delimiter (=, :, ：)
-  // e.g. "带皮五花肉 = 800克", "手枪腿（或者鸡胸脯肉） = 1 支（约 350g）", "冰糖 = 80克", "八角 = 3个"
-  if (/[=：:]/.test(line)) {
-    const parts = line.split(/[=：:]/);
-    const rawName = parts[0].trim();
-    const qtyPart = parts.slice(1).join('=').trim();
+  // Case A: Explicit delimiter (=, :, ：, 为)
+  // e.g. "带皮五花肉 = 800克", "牛肉用量为 250 g/人", "白豆腐的数量 = 份数 * 0.8", "莴笋 = 约 250g"
+  const delimMatch = line.match(/(?:用量|数量|量|比例)\s*为|[=：:]|\s+为\s+/);
+  if (delimMatch && delimMatch.index !== undefined) {
+    const rawName = line.slice(0, delimMatch.index).trim().replace(/(?:用量|数量|量)$/, '');
+    let qtyPart = line.slice(delimMatch.index + delimMatch[0].length).trim();
+    qtyPart = qtyPart.replace(/^(?:份数|每份)\s*[\*xX×]\s*/, '').trim();
+    qtyPart = qtyPart.replace(/[\/\*]\s*(?:per|人|份数|三人|二人|两人).*$/i, '').trim();
+    qtyPart = qtyPart.replace(/\s*向上取整.*$/, '').trim();
+    qtyPart = qtyPart.replace(/^(?:约|大概|共约|每份约)\s*/, '').trim();
 
-    // Check range in qtyPart: e.g. "10-15ml", "20-30g"
-    const range = qtyPart.match(/^([0-9.]+)\s*[-~至到]\s*([0-9.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)/);
+    // Check range in qtyPart: e.g. "10-15ml", "20-30g", "300g 至 500g"
+    const range = qtyPart.match(/^([0-9.]+)\s*(?:g|克|ml)?\s*[-~至到]\s*([0-9.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)/);
     if (range) {
       return {
         name: cleanIngredientRawText(rawName),
@@ -69,10 +111,13 @@ function parseRawCalculationItem(calc: string): { name: string; amount?: number;
       };
     }
 
-    const single = qtyPart.match(/^([一二两三四五六七八九十半\d\.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)?/);
+    const single = qtyPart.match(/^([一二两三四五六七八九十半\d\.\/]+)\s*([a-zA-Z\u4e00-\u9fa5]+)?/);
     if (single) {
       const num = parseChineseNum(single[1]) ?? undefined;
-      const unit = single[2] ? single[2].trim() : undefined;
+      let unit = single[2] ? single[2].trim() : undefined;
+      if (unit) {
+        unit = unit.replace(/[，,（(].*$/, '').replace(/[\/\*].*$/, '').trim();
+      }
       return {
         name: cleanIngredientRawText(rawName),
         amount: num,
@@ -83,9 +128,36 @@ function parseRawCalculationItem(calc: string): { name: string; amount?: number;
     return { name: cleanIngredientRawText(rawName) };
   }
 
+  // Check parenthesized or comma-separated gram / ml amount:
+  // e.g. "花椒 30 颗(20g)", "花生 10 颗(30g)", "生菜 1 棵( 200 g ± 50 )", "蒜苔 1 扎（每扎蒜苔约 190g）", "黑鳕鱼，带皮，2 片，450g", "五花肉薄片 4 片（约 20g）"
+  const parenGrams = line.match(/[（(][^）)]*?([0-9.]+)\s*(g|克|ml|毫升)[^）)]*?[）)]/i);
+  if (parenGrams) {
+    const mainNamePart = line.replace(/[（(].*[）)]/, '').trim();
+    const nameMatch = mainNamePart.match(/^([^\s0-9一二两三四五六七八九十半，,]+)/);
+    if (nameMatch) {
+      return {
+        name: cleanIngredientRawText(nameMatch[1].trim()),
+        amount: parseFloat(parenGrams[1]),
+        unit: parenGrams[2].toLowerCase() === '克' ? 'g' : parenGrams[2]
+      };
+    }
+  }
+
+  const commaGrams = line.match(/[,，]\s*([0-9.]+)\s*(g|克|ml|毫升)/i);
+  if (commaGrams) {
+    const nameMatch = line.match(/^([^\s0-9一二两三四五六七八九十半，,]+)/);
+    if (nameMatch) {
+      return {
+        name: cleanIngredientRawText(nameMatch[1].trim()),
+        amount: parseFloat(commaGrams[1]),
+        unit: commaGrams[2].toLowerCase() === '克' ? 'g' : commaGrams[2]
+      };
+    }
+  }
+
   // Case B: Leading quantity without delimiter
   // e.g. "1 盒内脂豆腐", "1 枚咸鸭蛋", "20-30g 五花肉", "两瓣大蒜", "2 片生姜", "5 根小米辣"
-  const rangeMatch = line.match(/^([0-9.]+)\s*[-~至到]\s*([0-9.]+)\s*(g|kg|ml|克|千克|毫升|瓣|片|块|个|只|条|根|朵|盒|包|枚|支)\s*(?:的)?\s*(.+)$/);
+  const rangeMatch = line.match(/^([0-9.]+)\s*[-~至到]\s*([0-9.]+)\s*(g|kg|ml|克|千克|毫升|瓣|片|块|个|只|条|根|朵|盒|包|枚|支|颗|把|扎)\s*(?:的)?\s*(.+)$/);
   if (rangeMatch) {
     return {
       name: cleanIngredientRawText(rangeMatch[4].trim()),
@@ -94,7 +166,7 @@ function parseRawCalculationItem(calc: string): { name: string; amount?: number;
     };
   }
 
-  const leadingNumMatch = line.match(/^([一二两三四五六七八九十半\d\.]+)\s*([个只条根朵瓣盒块包枚支片粒gkgml克千克毫升]+)\s*(?:的)?\s*(.+)$/);
+  const leadingNumMatch = line.match(/^([一二两三四五六七八九十半\d\.]+)\s*([个只条根朵瓣盒块包枚支片粒颗把扎叶gkgml克千克毫升]+)\s*(?:的)?\s*(.+)$/);
   if (leadingNumMatch) {
     const num = parseChineseNum(leadingNumMatch[1]) ?? undefined;
     const unit = leadingNumMatch[2].trim();
@@ -103,36 +175,42 @@ function parseRawCalculationItem(calc: string): { name: string; amount?: number;
   }
 
   // Case C: Name first without delimiter
-  // e.g. "西兰花 约 200 g （约 1/2...）", "青椒 2 个（共约 200g）", "虾 250g * 份数", "虾 10 只", "黄瓜 200 克", "鲈鱼 一条"
-  const parenGrams = line.match(/（(?:共约|约)?\s*([0-9.]+)\s*(g|克)）/);
-  if (parenGrams) {
-    const mainNamePart = line.replace(/（.*）/, '').trim();
-    const nameMatch = mainNamePart.match(/^([^\s0-9一二两三四五六七八九十半]+)/);
-    if (nameMatch) {
-      return {
-        name: cleanIngredientRawText(nameMatch[1].trim()),
-        amount: parseFloat(parenGrams[1]),
-        unit: parenGrams[2]
-      };
-    }
-  }
-
-  // Check suffix range: e.g. "食用油 10-15ml", "蒜 5-8 瓣"
-  const suffixRange = line.match(/^([^\d一二两三四五六七八九十半\s]+)\s+(?:约|大概)?\s*([0-9.]+)\s*[-~至到]\s*([0-9.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)/);
+  // Suffix range: e.g. "食用油 10-15ml", "蒜 5-8 瓣", "金针菇 400-500 克"
+  const suffixRange = line.match(/^([^\d\s=：:，,]+?)\s+(?:约|大概)?\s*([0-9.]+)\s*[-~至到]\s*([0-9.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)/);
   if (suffixRange) {
+    let unit = suffixRange[4].trim().replace(/[\/\*].*$/, '');
     return {
       name: cleanIngredientRawText(suffixRange[1].trim()),
       amount: (parseFloat(suffixRange[2]) + parseFloat(suffixRange[3])) / 2,
-      unit: suffixRange[4].trim()
+      unit
     };
   }
 
-  const standardMatch = line.match(/^([^\d一二两三四五六七八九十半\s]+)\s*(?:约|大概)?\s*([一二两三四五六七八九十半\d\.]+)\s*([a-zA-Z\u4e00-\u9fa5]+)?/);
-  if (standardMatch) {
+  // Standard match with space: e.g. "五花肉 200 g", "包菜 1 颗", "青椒 5 个，长度在 10-15cm 的最为合适", "鸡蛋 1 个/per"
+  const spaceMatch = line.match(/^([^\d\s=：:，,]+?)\s+(?:约|大概)?\s*([一二两三四五六七八九十半\d\.\/]+)\s*([a-zA-Z\u4e00-\u9fa5]+)?/);
+  if (spaceMatch) {
+    let unit = spaceMatch[3] ? spaceMatch[3].trim() : undefined;
+    if (unit) {
+      unit = unit.replace(/[，,（(].*$/, '').replace(/[\/\*].*$/, '').trim();
+    }
     return {
-      name: cleanIngredientRawText(standardMatch[1].trim()),
-      amount: parseChineseNum(standardMatch[2]) ?? undefined,
-      unit: standardMatch[3] ? standardMatch[3].trim() : undefined
+      name: cleanIngredientRawText(spaceMatch[1].trim()),
+      amount: parseChineseNum(spaceMatch[2]) ?? undefined,
+      unit
+    };
+  }
+
+  // Standard match without space: e.g. "土豆两三个", "葱一根", "鸡蛋4个"
+  const noSpaceMatch = line.match(/^([^\d\s=：:，,一二两三四五六七八九十半]+)(?:约|大概)?([一二两三四五六七八九十半\d\.\/]+)\s*([a-zA-Z\u4e00-\u9fa5]+)?/);
+  if (noSpaceMatch) {
+    let unit = noSpaceMatch[3] ? noSpaceMatch[3].trim() : undefined;
+    if (unit) {
+      unit = unit.replace(/[，,（(].*$/, '').replace(/[\/\*].*$/, '').trim();
+    }
+    return {
+      name: cleanIngredientRawText(noSpaceMatch[1].trim()),
+      amount: parseChineseNum(noSpaceMatch[2]) ?? undefined,
+      unit
     };
   }
 
@@ -158,9 +236,14 @@ export class Normalizer {
     // 建立 calculation 快速检索映射，用于提取真实存在的克数或数量
     const calculationMap = new Map<string, { amount?: number; unit?: string }>();
     for (const calc of source.rawCalculations) {
-      const parsed = parseRawCalculationItem(calc);
-      if (parsed) {
-        calculationMap.set(parsed.name, { amount: parsed.amount, unit: parsed.unit });
+      const items = (calc.includes('、') && !/(或者|或|\/|or)/i.test(calc))
+        ? calc.split('、').map(s => s.trim())
+        : [calc];
+      for (const item of items) {
+        const parsed = parseRawCalculationItem(item);
+        if (parsed) {
+          calculationMap.set(parsed.name, { amount: parsed.amount, unit: parsed.unit });
+        }
       }
     }
 
@@ -168,17 +251,13 @@ export class Normalizer {
     const seenPantryIds = new Set<string>();
 
     // 预处理：展开单行包含多个食材/调料的情况（如 "葱、姜"、"料酒、盐、冰糖、植物油"）
+    // 括号内的逗号/顿号（如"昆布酱油（一种日式的少盐酱油，用于为温泉蛋调味）"）不可拆分
     const expandedRawIngredients: string[] = [];
     for (const rawItem of source.rawIngredients) {
       const cleaned = rawItem.replace(/^[-*•]\s*/, '').trim();
       if (!cleaned) continue;
-      // 若包含顿号/逗号且不是二选一 (or / 或者)
-      if (/[、,，]/.test(cleaned) && !/(或者|或|\/|or)/i.test(cleaned)) {
-        const parts = cleaned.split(/[、,，]/).map(s => s.trim()).filter(Boolean);
-        expandedRawIngredients.push(...parts);
-      } else {
-        expandedRawIngredients.push(cleaned);
-      }
+      const parts = splitOutsideParentheses(cleaned);
+      expandedRawIngredients.push(...parts);
     }
 
     for (const cleanedRaw of expandedRawIngredients) {
@@ -256,11 +335,54 @@ export class Normalizer {
 
           const cleanedName = cleanIngredientRawText(cleanedRaw);
           for (const [calcName, val] of calculationMap.entries()) {
-            if (calcName === cleanedName || calcName.includes(cleanedName) || cleanedName.includes(calcName)) {
+            const sameCanonical = canonicalDef && resolveCanonical(calcName)?.id === canonicalDef.id;
+            if (calcName === cleanedName || calcName.includes(cleanedName) || cleanedName.includes(calcName) || sameCanonical) {
               amount = val.amount;
               unit = val.unit;
               break;
             }
+          }
+
+          // 增强：若未命中，进行肉类/主要蛋白质跨同义词匹配
+          if (amount === undefined) {
+            for (const [calcName, val] of calculationMap.entries()) {
+              if (canonicalDef.id.startsWith('p_pork') && ['肉', '猪肉', '瘦肉', '肉丝', '肉片', '五花肉'].includes(calcName)) {
+                amount = val.amount;
+                unit = val.unit;
+                break;
+              }
+              if (canonicalDef.id.startsWith('p_beef') && ['牛肉', '牛肉丝', '牛肉片', '牛腩', '肉'].includes(calcName)) {
+                amount = val.amount;
+                unit = val.unit;
+                break;
+              }
+              if (canonicalDef.id.startsWith('p_chicken') && ['鸡', '鸡肉', '半只鸡'].includes(calcName)) {
+                amount = val.amount;
+                unit = val.unit;
+                break;
+              }
+              if (canonicalDef.id.startsWith('p_fish') && ['鱼', '鱼肉', '鱼片'].includes(calcName)) {
+                amount = val.amount;
+                unit = val.unit;
+                break;
+              }
+            }
+          }
+
+          // 若属于可选配料（如"虾仁（个人口味，可加可不加）"、"莴笋（可选）"），跳过不作为主要必备食材
+          const isOptional = /（(?:可选|如需要|可加可不加|依个人口味|个人口味)[^）)]*）|\((?:可选|如需要|可加可不加|依个人口味|个人口味)[^)]*\)/.test(cleanedRaw);
+          if (isOptional) {
+            continue;
+          }
+
+          // 厨房配菜未定量时的合理估算（如上汤娃娃菜中的火腿/午餐肉丁、点缀辣椒）
+          if (amount === undefined && (cleanedName.includes('午餐肉') || cleanedName.includes('火腿') || canonicalDef.id === 'p_luncheon_meat')) {
+            amount = 50;
+            unit = 'g';
+          }
+          if (amount === undefined && canonicalDef.id === 'v_hot_pepper') {
+            amount = 1;
+            unit = '根';
           }
 
           // 核心护栏：为 anyOf 的每个选项精确分配自身的数量与单位
@@ -551,6 +673,10 @@ export class Normalizer {
         calorieRange: evalResult.calorieRange,
         isEstimated: evalResult.isEstimated
       };
+    } else {
+      if (process.env.DEBUG_NORMALIZER) {
+        console.log(`[DEBUG_NORMALIZER] ${fitBiteRecipe.name}:`, evalResult.blockingCriticalIngredients, evalResult.incompleteReasons);
+      }
     }
 
     return { normalized, fitBiteRecipe };

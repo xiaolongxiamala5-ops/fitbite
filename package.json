@@ -11,7 +11,8 @@
     "db:init": "npx tsx scripts/pipeline/initLocalDb.ts",
     "nutrition:sync": "npx tsx scripts/nutrition/syncSanotsu.ts",
     "nutrition:verify": "npx tsx scripts/nutrition/verifyFullData.ts",
-    "nutrition:evaluate": "npx tsx scripts/nutrition/evaluateImportedRecipes.ts"
+    "nutrition:evaluate": "npx tsx scripts/nutrition/evaluateImportedRecipes.ts",
+    "batch:import": "npx tsx scripts/batch_import_local.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

@@ -24,6 +24,7 @@ export class RecipeParser {
     const rawSteps: string[] = [];
 
     let currentSection: 'header' | 'ingredients' | 'calculations' | 'steps' | 'other' = 'header';
+    let isSubOptional = false;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
@@ -45,6 +46,7 @@ export class RecipeParser {
 
       // 判断节标题
       if (line.startsWith('## ')) {
+        isSubOptional = false;
         const headerText = line.replace(/^##\s*/, '').trim();
         if (headerText.includes('原料') || headerText.includes('工具') || headerText.includes('食材')) {
           currentSection = 'ingredients';
@@ -54,6 +56,17 @@ export class RecipeParser {
           currentSection = 'steps';
         } else {
           currentSection = 'other';
+        }
+        continue;
+      }
+
+      // 子标题：如 "### 可选原料"、"### 选配食材"
+      if (line.startsWith('### ')) {
+        const subHeaderText = line.replace(/^###\s*/, '').trim();
+        if (subHeaderText.includes('可选') || subHeaderText.includes('选配') || subHeaderText.includes('附加')) {
+          isSubOptional = true;
+        } else {
+          isSubOptional = false;
         }
         continue;
       }
@@ -75,7 +88,11 @@ export class RecipeParser {
         }
       } else if (currentSection === 'ingredients') {
         if (line.startsWith('- ') || line.startsWith('* ')) {
-          rawIngredients.push(line.replace(/^[-*]\s*/, '').trim());
+          let item = line.replace(/^[-*]\s*/, '').trim();
+          if (isSubOptional && !item.includes('可选')) {
+            item += '（可选）';
+          }
+          rawIngredients.push(item);
         }
       } else if (currentSection === 'calculations') {
         if (line.startsWith('- ') || line.startsWith('* ')) {

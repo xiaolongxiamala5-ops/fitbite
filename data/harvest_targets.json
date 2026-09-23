@@ -1,0 +1,267 @@
+[
+  {
+    "slug": "steamed_oysters",
+    "name": "清蒸生蚝",
+    "sourceFile": "dishes/aquatic/清蒸生蚝.md"
+  },
+  {
+    "slug": "boiled_fish_slices",
+    "name": "水煮鱼",
+    "sourceFile": "dishes/aquatic/水煮鱼.md"
+  },
+  {
+    "slug": "microwave_cod",
+    "name": "微波葱姜黑鳕鱼",
+    "sourceFile": "dishes/aquatic/微波葱姜黑鳕鱼.md"
+  },
+  {
+    "slug": "scallion_mandarin_fish",
+    "name": "葱油桂鱼",
+    "sourceFile": "dishes/aquatic/葱油桂鱼/葱油桂鱼.md"
+  },
+  {
+    "slug": "braised_carp_tofu",
+    "name": "鳊鱼炖豆腐",
+    "sourceFile": "dishes/aquatic/鳊鱼炖豆腐/鳊鱼炖豆腐.md"
+  },
+  {
+    "slug": "garlic_butter_shrimp",
+    "name": "蒜香黄油虾",
+    "sourceFile": "dishes/aquatic/蒜香黄油虾/蒜香黄油虾.md"
+  },
+  {
+    "slug": "pan_fried_red_shrimp",
+    "name": "干煎阿根廷红虾",
+    "sourceFile": "dishes/aquatic/干煎阿根廷红虾/干煎阿根廷红虾.md"
+  },
+  {
+    "slug": "carp_with_cabbage",
+    "name": "鲤鱼炖白菜",
+    "sourceFile": "dishes/aquatic/鲤鱼炖白菜/鲤鱼炖白菜.md"
+  },
+  {
+    "slug": "oyster_sauce_lettuce",
+    "name": "蚝油生菜",
+    "sourceFile": "dishes/vegetable_dish/蚝油生菜.md"
+  },
+  {
+    "slug": "garlic_water_spinach",
+    "name": "蒜蓉空心菜",
+    "sourceFile": "dishes/vegetable_dish/蒜蓉空心菜/蒜蓉空心菜.md"
+  },
+  {
+    "slug": "spinach_scrambled_eggs",
+    "name": "菠菜炒鸡蛋",
+    "sourceFile": "dishes/vegetable_dish/菠菜炒鸡蛋/菠菜炒鸡蛋.md"
+  },
+  {
+    "slug": "zucchini_scrambled_eggs",
+    "name": "西葫芦炒鸡蛋",
+    "sourceFile": "dishes/vegetable_dish/西葫芦炒鸡蛋/西葫芦炒鸡蛋.md"
+  },
+  {
+    "slug": "stir_fried_greens",
+    "name": "炒青菜",
+    "sourceFile": "dishes/vegetable_dish/炒青菜.md"
+  },
+  {
+    "slug": "cold_black_fungus",
+    "name": "凉拌木耳",
+    "sourceFile": "dishes/vegetable_dish/凉拌木耳/凉拌木耳.md"
+  },
+  {
+    "slug": "cold_enoki_mushroom",
+    "name": "凉拌金针菇",
+    "sourceFile": "dishes/vegetable_dish/凉拌金针菇.md"
+  },
+  {
+    "slug": "cold_asparagus_lettuce",
+    "name": "凉拌莴笋",
+    "sourceFile": "dishes/vegetable_dish/凉拌莴笋/凉拌莴笋.md"
+  },
+  {
+    "slug": "cold_youmaicai",
+    "name": "凉拌油麦菜",
+    "sourceFile": "dishes/vegetable_dish/凉拌油麦菜.md"
+  },
+  {
+    "slug": "stir_fried_cauliflower",
+    "name": "清炒花菜",
+    "sourceFile": "dishes/vegetable_dish/清炒花菜.md"
+  },
+  {
+    "slug": "garlic_celery",
+    "name": "蒜蓉炒芹菜",
+    "sourceFile": "dishes/vegetable_dish/蒜蓉炒芹菜/蒜蓉炒芹菜.md"
+  },
+  {
+    "slug": "chives_scrambled_eggs",
+    "name": "韭菜炒蛋",
+    "sourceFile": "dishes/vegetable_dish/韭菜炒蛋/韭菜炒蛋.md"
+  },
+  {
+    "slug": "onion_scrambled_eggs",
+    "name": "洋葱炒鸡蛋",
+    "sourceFile": "dishes/vegetable_dish/洋葱炒鸡蛋/洋葱炒鸡蛋.md"
+  },
+  {
+    "slug": "water_oil_braised_veg",
+    "name": "水油焖蔬菜",
+    "sourceFile": "dishes/vegetable_dish/水油焖蔬菜.md"
+  },
+  {
+    "slug": "steamed_pumpkin",
+    "name": "清蒸南瓜",
+    "sourceFile": "dishes/vegetable_dish/清蒸南瓜.md"
+  },
+  {
+    "slug": "scrambled_eggs",
+    "name": "炒滑蛋",
+    "sourceFile": "dishes/vegetable_dish/炒滑蛋/炒滑蛋.md"
+  },
+  {
+    "slug": "scallion_pan_fried_tofu",
+    "name": "葱煎豆腐",
+    "sourceFile": "dishes/vegetable_dish/葱煎豆腐.md"
+  },
+  {
+    "slug": "cold_tofu",
+    "name": "凉拌豆腐",
+    "sourceFile": "dishes/vegetable_dish/凉拌豆腐.md"
+  },
+  {
+    "slug": "spiced_beef",
+    "name": "酱牛肉",
+    "sourceFile": "dishes/meat_dish/酱牛肉/酱牛肉.md"
+  },
+  {
+    "slug": "cumin_beef",
+    "name": "孜然牛肉",
+    "sourceFile": "dishes/meat_dish/孜然牛肉.md"
+  },
+  {
+    "slug": "pepper_stir_fried_beef",
+    "name": "尖椒炒牛肉",
+    "sourceFile": "dishes/meat_dish/尖椒炒牛肉.md"
+  },
+  {
+    "slug": "tomato_beef_sirloin",
+    "name": "西红柿牛腩",
+    "sourceFile": "dishes/meat_dish/西红柿牛腩/西红柿牛腩.md"
+  },
+  {
+    "slug": "tomato_potato_beef",
+    "name": "西红柿土豆炖牛肉",
+    "sourceFile": "dishes/meat_dish/西红柿土豆炖牛肉/西红柿土豆炖牛肉.md"
+  },
+  {
+    "slug": "garlic_moss_minced_pork",
+    "name": "蒜苔炒肉末",
+    "sourceFile": "dishes/meat_dish/蒜苔炒肉末.md"
+  },
+  {
+    "slug": "dried_tofu_shredded_pork",
+    "name": "香干肉丝",
+    "sourceFile": "dishes/meat_dish/香干肉丝.md"
+  },
+  {
+    "slug": "dried_tofu_celery_pork",
+    "name": "香干芹菜炒肉",
+    "sourceFile": "dishes/meat_dish/香干芹菜炒肉/香干芹菜炒肉.md"
+  },
+  {
+    "slug": "cucumber_stir_fried_pork",
+    "name": "黄瓜炒肉",
+    "sourceFile": "dishes/meat_dish/黄瓜炒肉.md"
+  },
+  {
+    "slug": "winter_melon_stuffed_meat",
+    "name": "冬瓜酿肉",
+    "sourceFile": "dishes/meat_dish/冬瓜酿肉/冬瓜酿肉.md"
+  },
+  {
+    "slug": "winter_melon_steamed_chicken",
+    "name": "冬瓜桑拿鸡",
+    "sourceFile": "dishes/meat_dish/冬瓜桑拿鸡.md"
+  },
+  {
+    "slug": "saliva_chicken",
+    "name": "口水鸡",
+    "sourceFile": "dishes/meat_dish/口水鸡/口水鸡.md"
+  },
+  {
+    "slug": "scallion_oil_chicken",
+    "name": "姜葱捞鸡",
+    "sourceFile": "dishes/meat_dish/姜葱捞鸡/姜葱捞鸡.md"
+  },
+  {
+    "slug": "onion_stir_fried_pork",
+    "name": "洋葱炒猪肉",
+    "sourceFile": "dishes/meat_dish/洋葱炒猪肉.md"
+  },
+  {
+    "slug": "steamed_meat_patty_egg",
+    "name": "肉饼炖蛋",
+    "sourceFile": "dishes/meat_dish/肉饼炖蛋.md"
+  },
+  {
+    "slug": "scallion_braised_chicken_leg",
+    "name": "葱烧鸡腿",
+    "sourceFile": "dishes/meat_dish/葱烧鸡腿.md"
+  },
+  {
+    "slug": "seaweed_egg_soup",
+    "name": "紫菜蛋花汤",
+    "sourceFile": "dishes/soup/紫菜蛋花汤.md"
+  },
+  {
+    "slug": "tomato_egg_soup",
+    "name": "西红柿鸡蛋汤",
+    "sourceFile": "dishes/soup/西红柿鸡蛋汤.md"
+  },
+  {
+    "slug": "tomato_beef_egg_soup",
+    "name": "番茄牛肉蛋花汤",
+    "sourceFile": "dishes/soup/番茄牛肉蛋花汤.md"
+  },
+  {
+    "slug": "cucumber_century_egg_soup",
+    "name": "黄瓜皮蛋汤",
+    "sourceFile": "dishes/soup/黄瓜皮蛋汤.md"
+  },
+  {
+    "slug": "enoki_mushroom_soup",
+    "name": "金针菇汤",
+    "sourceFile": "dishes/soup/金针菇汤.md"
+  },
+  {
+    "slug": "century_egg_lean_pork_porridge",
+    "name": "皮蛋瘦肉粥",
+    "sourceFile": "dishes/soup/皮蛋瘦肉粥.md"
+  },
+  {
+    "slug": "catfish_tofu_soup",
+    "name": "昂刺鱼豆腐汤",
+    "sourceFile": "dishes/soup/昂刺鱼豆腐汤/昂刺鱼豆腐汤.md"
+  },
+  {
+    "slug": "tea_egg",
+    "name": "茶叶蛋",
+    "sourceFile": "dishes/breakfast/茶叶蛋.md"
+  },
+  {
+    "slug": "perfect_boiled_egg",
+    "name": "完美水煮蛋",
+    "sourceFile": "dishes/breakfast/完美水煮蛋.md"
+  },
+  {
+    "slug": "onsen_tamago",
+    "name": "温泉蛋",
+    "sourceFile": "dishes/breakfast/温泉蛋/温泉蛋.md"
+  },
+  {
+    "slug": "milk_oatmeal",
+    "name": "牛奶燕麦",
+    "sourceFile": "dishes/breakfast/牛奶燕麦.md"
+  }
+]

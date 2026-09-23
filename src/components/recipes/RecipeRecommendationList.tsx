@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { MatchGroups, MatchResult } from '../../core/matcher/types';
 import { searchRecipesByKeyword } from '../../core/matcher/matcher';
 import { useFridge } from '../../context/FridgeContext';
@@ -9,7 +9,10 @@ interface RecipeRecommendationListProps {
   matchGroups: MatchGroups;
 }
 
-export const DEFAULT_RECIPE_DISPLAY_LIMIT = 3;
+// 方案 3：精选置顶 + 步进展开核心常量
+export const INITIAL_VISIBLE_COUNT = 5;
+export const PAGE_STEP = 6;
+export const DEFAULT_RECIPE_DISPLAY_LIMIT = 3; // 兼容既有生产套件单测引用
 
 type FilterMode = 'all' | 'ready' | 'lean' | 'favorites';
 
@@ -19,13 +22,16 @@ interface CollapsibleRecipeGridProps {
   initialLimit?: number;
 }
 
+/**
+ * 兼容导出：可折叠网格组件
+ */
 export const CollapsibleRecipeGrid: React.FC<CollapsibleRecipeGridProps> = ({
   list,
   onSelect,
   initialLimit = DEFAULT_RECIPE_DISPLAY_LIMIT
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const hasMore = list.length > initialLimit;
   const visibleList = isExpanded ? list : list.slice(0, initialLimit);
@@ -55,7 +61,7 @@ export const CollapsibleRecipeGrid: React.FC<CollapsibleRecipeGridProps> = ({
           className="recipe-expand-btn"
           onClick={handleToggle}
         >
-          <span>{isExpanded ? '收起' : `查看更多（${list.length - initialLimit}）`}</span>
+          <span>{isExpanded ? '收起' : `查看全部（${list.length}）`}</span>
           <span className={`recipe-expand-icon ${isExpanded ? 'expanded' : ''}`}>
             ▾
           </span>
@@ -65,7 +71,9 @@ export const CollapsibleRecipeGrid: React.FC<CollapsibleRecipeGridProps> = ({
   );
 };
 
-/** 轻盈纤细的 SVG 放大镜图标（1.5px 线条，继承 currentColor）*/
+/**
+ * 轻量精致的内联 SVG 放大镜图标
+ */
 const SearchIcon: React.FC = () => (
   <svg
     className="island-search-icon-svg"
@@ -87,10 +95,15 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
   const [searchKeyword, setSearchKeyword] = useState('');
   const [filterMode, setFilterMode] = useState<FilterMode>('all');
   const [isCollapsed, setIsCollapsed] = useState(false);
+
   // 吸顶态内联搜索展开状态（不触发任何滚动，原地展开）
   const [isStickySearchOpen, setIsStickySearchOpen] = useState(false);
-  const stickySearchRef = React.useRef<HTMLInputElement>(null);
-  const pageSearchRef = React.useRef<HTMLInputElement>(null);
+  const stickySearchRef = useRef<HTMLInputElement>(null);
+  const pageSearchRef = useRef<HTMLInputElement>(null);
+
+  // 方案 3：分页可见数量状态与列表容器引用
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_COUNT);
+  const listContainerRef = useRef<HTMLDivElement>(null);
 
   // 筛选标签定义（收藏数量动态）
   const FILTER_TABS: { value: FilterMode; label: string }[] = [
@@ -100,13 +113,17 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
     { value: 'favorites', label: `❤️ 收藏${favoriteCount > 0 ? ` (${favoriteCount})` : ''}` }
   ];
 
-  // 吸顶岛：监听实际滚动容器（当前页面由 window 承载滚动），scrollTop > 50 时折叠为 44px
+  // 状态重置机制：当用户切换顶部筛选 Tab、输入搜索词或匹配结果变动时，自动将 visibleCount 重置回 INITIAL_VISIBLE_COUNT
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE_COUNT);
+  }, [filterMode, searchKeyword, matchGroups]);
+
+  // 吸顶岛：监听滚动容器，scrollTop > 50 时折叠为 44px
   useEffect(() => {
     const onScroll = () => {
       const scrollTop = window.scrollY ?? document.documentElement.scrollTop ?? 0;
       const collapsed = scrollTop > 50;
       setIsCollapsed(collapsed);
-      // 回到顶部后自动收起吸顶搜索框，避免残留态
       if (!collapsed) setIsStickySearchOpen(false);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -126,8 +143,8 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
     setIsStickySearchOpen(false);
   };
 
-  // 统一聚合所有结果，并严格按"主食材决定可做性"进行重组与健康加权分流
-  const { availableNow, oneStepAway, otherList, favoritedList } = useMemo(() => {
+  // 统一聚合所有结果，并严格按"主食材决定可做性"重组、排序与分流
+  const filteredRecipes = useMemo(() => {
     const map = new Map<string, MatchResult>();
     [
       ...matchGroups.favoritedCanMake,
@@ -138,98 +155,58 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
       map.set(item.recipe.id, item);
     });
 
-    let all = Array.from(map.values());
+    let list = Array.from(map.values());
 
     // 搜索过滤（支持菜名、标签与上位词层级反查）
     if (searchKeyword.trim()) {
-      all = searchRecipesByKeyword(searchKeyword, all);
+      list = searchRecipesByKeyword(searchKeyword, list);
     }
 
-    // 收藏模式：仅展示已收藏菜谱（跨越可做/不可做边界，按收藏时间逆序暂不支持，改按 score 排）
-    const favoriteSet = new Set(favorites);
-    const favoritedAll = all
-      .filter(item => favoriteSet.has(item.recipe.id))
-      .sort((a, b) => {
-        const aScore = a.healthAdjustedScore ?? a.matchScore;
-        const bScore = b.healthAdjustedScore ?? b.matchScore;
-        return bScore - aScore;
-      });
-
-    // 筛选标签过滤（收藏模式走独立分支，不再参与下方三栏分组）
-    if (filterMode === 'ready') {
-      all = all.filter(item => item.missingIngredients.length === 0);
+    // 筛选标签过滤
+    if (filterMode === 'favorites') {
+      const favoriteSet = new Set(favorites);
+      list = list.filter(item => favoriteSet.has(item.recipe.id));
+    } else if (filterMode === 'ready') {
+      list = list.filter(item => item.missingIngredients.length === 0);
     } else if (filterMode === 'lean') {
-      all = all.filter(item => item.calorieTier === 'lean_choice');
+      list = list.filter(item => item.calorieTier === 'lean_choice');
     }
 
-    // 核心护栏 1：主食材缺失为 0 时即为"现在就能做"，调料不参与阻断
-    // 模块二：引入健康加权（lean_choice 优先加权，cheat_or_share 同度降权后移）
-    const ready = all
-      .filter(item => item.missingIngredients.length === 0)
-      .sort((a, b) => {
-        // 1. 收藏优先
-        if (b.isFavorited !== a.isFavorited) {
-          return (b.isFavorited ? 1 : 0) - (a.isFavorited ? 1 : 0);
-        }
-        // 2. 健康加权分优先：lean_choice 置顶，cheat_or_share 降权
-        const aScore = a.healthAdjustedScore ?? a.matchScore;
-        const bScore = b.healthAdjustedScore ?? b.matchScore;
-        if (bScore !== aScore) {
-          return bScore - aScore;
-        }
-        return 0;
-      });
+    // 综合加权排序（精选置顶排序流）：
+    // 1. 收藏优先
+    // 2. 主食材可做性优先 (缺0样 > 缺1-2样 > 缺更多)
+    // 3. 健康加权分与匹配分优先（减脂优选置顶 +15，高能分食 -30% 降权后移）
+    const favoriteSet = new Set(favorites);
+    list.sort((a, b) => {
+      // 1. 收藏优先
+      const aFav = favoriteSet.has(a.recipe.id);
+      const bFav = favoriteSet.has(b.recipe.id);
+      if (bFav !== aFav) {
+        return (bFav ? 1 : 0) - (aFav ? 1 : 0);
+      }
 
-    // 主食材缺 1~2 样即为"就差一步"，调料不阻止
-    const stepAway = all
-      .filter(item => item.missingIngredients.length === 1 || item.missingIngredients.length === 2)
-      .sort((a, b) => {
-        if (a.missingIngredients.length !== b.missingIngredients.length) {
-          return a.missingIngredients.length - b.missingIngredients.length;
-        }
-        const aScore = a.healthAdjustedScore ?? a.matchScore;
-        const bScore = b.healthAdjustedScore ?? b.matchScore;
-        return bScore - aScore;
-      });
+      // 2. 主食材可做性优先
+      if (a.missingIngredients.length !== b.missingIngredients.length) {
+        return a.missingIngredients.length - b.missingIngredients.length;
+      }
 
-    // 主食材缺失 > 2 样归入其他
-    const others = all.filter(item => item.missingIngredients.length > 2);
+      // 3. 健康加权分优先
+      const aScore = a.healthAdjustedScore ?? a.matchScore;
+      const bScore = b.healthAdjustedScore ?? b.matchScore;
+      return bScore - aScore;
+    });
 
-    return {
-      availableNow: ready,
-      oneStepAway: stepAway,
-      otherList: others,
-      favoritedList: favoritedAll
-    };
+    return list;
   }, [matchGroups, searchKeyword, filterMode, favorites]);
 
-  const renderSection = (enTitle: string, cnSubtitle: string, list: MatchResult[], badgeColor: string) => {
-    if (list.length === 0) return null;
-    return (
-      <div className="recipe-section">
-        <div className="recipe-section-heading">
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-            <h3>{enTitle}</h3>
-            <span style={{ fontSize: '13px', fontWeight: 900, color: 'var(--ios-forest)', fontFamily: 'var(--font-chinese-title)' }}>
-              {cnSubtitle}
-            </span>
-          </div>
-          <span className="recipe-count" style={{ backgroundColor: badgeColor }}>
-            {list.length}
-          </span>
-        </div>
-        <CollapsibleRecipeGrid
-          list={list}
-          onSelect={setSelectedResult}
-        />
-      </div>
-    );
-  };
-
-  const totalActionable = availableNow.length + oneStepAway.length;
+  // 数据切片渲染：实际渲染在列表中的菜谱
+  const displayedRecipes = filteredRecipes.slice(0, visibleCount);
+  const remaining = filteredRecipes.length - visibleCount;
+  const showPaginationBtn = filteredRecipes.length > INITIAL_VISIBLE_COUNT;
+  const isAllExpanded = visibleCount >= filteredRecipes.length;
 
   return (
-    <div className="recommendation-list">
+    <div ref={listContainerRef} className="recommendation-list">
       {/* 44px 毛玻璃悬浮双轴吸顶岛：展开态=搜索框+标签，折叠-标签态=横滑胶囊+放大镜，折叠-搜索态=原位输入框 */}
       <div className={`recommendation-island-wrap ${isCollapsed ? 'is-collapsed' : ''}`}>
 
@@ -309,44 +286,67 @@ export const RecipeRecommendationList: React.FC<RecipeRecommendationListProps> =
         )}
       </div>
 
-      {/* ── 收藏模式独立渲染分支 ── */}
-      {filterMode === 'favorites' ? (
-        favoritedList.length > 0 ? (
-          renderSection('My Favorites', '我的收藏', favoritedList, '#c45e2e')
-        ) : (
+      {/* ── 推荐列表主体 ── */}
+      {filteredRecipes.length === 0 ? (
+        filterMode === 'favorites' ? (
           <div className="empty-recipes empty-favorites">
             <p className="empty-favorites-icon">🤍</p>
             <p className="empty-favorites-title">暂无收藏菜谱</p>
             <p className="empty-favorites-hint">
-              点击卡片右上角的心形图标，把喜欢的家常菜存到这里吧
+              点击卡片右侧心形图标，把喜欢的家常菜存到这里吧
             </p>
+          </div>
+        ) : (
+          <div className="empty-recipes">
+            {searchKeyword
+              ? `未找到与 "${searchKeyword}" 相关的菜谱，换个关键词试一试。`
+              : '目前还没有满足条件的菜谱，在上方输入或勾选更多食材试一试。'}
           </div>
         )
       ) : (
-        <>
-          {renderSection('Available Now', '现在就能做', availableNow, '#2f765b')}
-          {renderSection('One Step Away', '就差一步', oneStepAway, '#c97850')}
+        <div className="collapsible-recipe-section">
+          {/* 单行紧凑推荐网格 (Dense Rows) */}
+          <div className="recipe-grid">
+            {displayedRecipes.map((item, index) => (
+              <RecipeCard
+                key={item.recipe.id}
+                result={item}
+                onSelect={() => setSelectedResult(item)}
+                className={index >= INITIAL_VISIBLE_COUNT ? 'recipe-card-animated' : ''}
+              />
+            ))}
+          </div>
 
-          {totalActionable === 0 && (
-            <div className="empty-recipes">
-              {searchKeyword ? `未找到与 "${searchKeyword}" 相关的菜谱，换个关键词试一试。` : '目前还没有满足条件的菜谱，在上方输入或勾选更多食材试一试。'}
+          {/* 方案 3：底部按钮文案与步进交互 */}
+          {showPaginationBtn && (
+            <div className="recipe-pagination-wrap">
+              <button
+                type="button"
+                className="recipe-pagination-btn"
+                onClick={() => {
+                  if (!isAllExpanded) {
+                    setVisibleCount(prev => Math.min(prev + PAGE_STEP, filteredRecipes.length));
+                  } else {
+                    setVisibleCount(INITIAL_VISIBLE_COUNT);
+                    listContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+              >
+                <span>
+                  {!isAllExpanded
+                    ? `查看更多 (剩余 ${remaining} 道)`
+                    : '收起至精选'}
+                </span>
+                <span className="recipe-pagination-icon">
+                  {!isAllExpanded ? '▾' : '▴'}
+                </span>
+              </button>
             </div>
           )}
-
-          {otherList.length > 0 && (
-            <details className="other-recipes">
-              <summary>查看其他暂不满足的菜谱 ({otherList.length})</summary>
-              <div style={{ marginTop: '12px' }}>
-                <CollapsibleRecipeGrid
-                  list={otherList}
-                  onSelect={setSelectedResult}
-                />
-              </div>
-            </details>
-          )}
-        </>
+        </div>
       )}
 
+      {/* 菜谱详情弹窗 (Portal 挂载到 document.body) */}
       <RecipeDetailModal
         recipe={selectedResult?.recipe || null}
         matchResult={selectedResult}
