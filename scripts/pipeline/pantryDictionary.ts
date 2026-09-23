@@ -11,27 +11,27 @@ export interface PantryDefinition {
 }
 
 export const PANTRY_CATALOG: PantryDefinition[] = [
-  { id: 'pantry_oil', name: '食用油', aliases: ['食用油', '油', '植物油', '花生油', '菜籽油', '玉米油', '橄榄油', '猪油', '色拉油'] },
-  { id: 'pantry_salt', name: '食盐', aliases: ['食盐', '盐', '精盐', '细盐', '食用盐'] },
-  { id: 'pantry_soy_sauce', name: '生抽', aliases: ['生抽', '酱油', '生抽酱油', '味极鲜', '一品鲜'] },
+  { id: 'pantry_oil', name: '食用油', aliases: ['食用油', '油', '植物油', '花生油', '菜籽油', '玉米油', '橄榄油', '猪油', '色拉油', 'oil', 'olive oil', 'vegetable oil'] },
+  { id: 'pantry_salt', name: '食盐', aliases: ['食盐', '盐', '精盐', '细盐', '食用盐', 'salt'] },
+  { id: 'pantry_soy_sauce', name: '生抽', aliases: ['生抽', '酱油', '生抽酱油', '味极鲜', '一品鲜', 'soy sauce'] },
   { id: 'preset_dark_soy_sauce', name: '老抽', aliases: ['老抽', '老抽酱油', '浓色酱油', '红烧酱油'] },
-  { id: 'pantry_garlic', name: '大蒜', aliases: ['大蒜', '蒜', '蒜瓣', '蒜末', '蒜泥', '蒜蓉', '大蒜瓣', '大蒜末'] },
-  { id: 'pantry_black_pepper', name: '黑胡椒', aliases: ['黑胡椒', '白胡椒', '胡椒粉', '黑胡椒粉', '白胡椒粉', '黑椒', '黑椒粉', '黑椒腌料'] },
+  { id: 'pantry_garlic', name: '大蒜', aliases: ['大蒜', '蒜', '蒜瓣', '蒜末', '蒜泥', '蒜蓉', '大蒜瓣', '大蒜末', 'garlic'] },
+  { id: 'pantry_black_pepper', name: '黑胡椒', aliases: ['黑胡椒', '白胡椒', '胡椒粉', '黑胡椒粉', '白胡椒粉', '黑椒', '黑椒粉', '黑椒腌料', 'black pepper', 'pepper', 'ground black pepper'] },
   { id: 'preset_chicken_essence', name: '鸡精', aliases: ['鸡精', '鸡粉', '蘑菇精', '蔬之鲜'] },
-  { id: 'preset_ginger', name: '生姜', aliases: ['生姜', '姜', '老姜', '姜片', '姜丝', '姜末'] },
+  { id: 'preset_ginger', name: '生姜', aliases: ['生姜', '姜', '老姜', '姜片', '姜丝', '姜末', 'ginger'] },
   { id: 'preset_starch', name: '淀粉', aliases: ['淀粉', '玉米淀粉', '生粉', '水淀粉', '太白粉', '红薯淀粉'] },
   { id: 'preset_cooking_wine', name: '料酒', aliases: ['料酒', '黄酒', '绍兴酒', '烹调料酒', '白酒'] },
-  { id: 'preset_vinegar', name: '香醋', aliases: ['香醋', '白醋', '陈醋', '米醋', '镇江香醋', '香醋（陈醋）', '醋'] },
-  { id: 'preset_sugar', name: '白糖', aliases: ['白糖', '糖', '白砂糖', '绵白糖', '砂糖'] },
+  { id: 'preset_vinegar', name: '香醋', aliases: ['香醋', '白醋', '陈醋', '米醋', '镇江香醋', '香醋（陈醋）', '醋', 'vinegar', 'red wine vinegar'] },
+  { id: 'preset_sugar', name: '白糖', aliases: ['白糖', '糖', '白砂糖', '绵白糖', '砂糖', 'sugar', 'brown sugar'] },
   { id: 'preset_rock_sugar', name: '冰糖', aliases: ['冰糖', '黄冰糖', '老冰糖', '碎冰糖'] },
-  { id: 'preset_oyster_sauce', name: '蚝油', aliases: ['蚝油'] },
+  { id: 'preset_oyster_sauce', name: '蚝油', aliases: ['蚝油', 'oyster sauce'] },
   { id: 'preset_scallion', name: '葱花', aliases: ['葱花', '葱', '大葱', '小葱', '香葱', '葱段', '葱白', '葱丝'] },
-  { id: 'preset_coriander', name: '香菜', aliases: ['香菜', '香菜段', '香菜碎', '香菜叶', '芫荽'] },
+  { id: 'preset_coriander', name: '香菜', aliases: ['香菜', '香菜段', '香菜碎', '香菜叶', '芫荽', 'coriander', 'fresh coriander'] },
   { id: 'preset_star_anise', name: '八角', aliases: ['八角', '大料', '八角茴香'] },
   { id: 'preset_sichuan_pepper', name: '花椒', aliases: ['花椒', '花椒粉', '花椒粒', '花椒油', '青花椒', '麻椒'] },
   { id: 'preset_sesame_oil', name: '芝麻油', aliases: ['芝麻油', '香油', '麻油'] },
-  { id: 'preset_cumin', name: '孜然', aliases: ['孜然', '孜然粉', '孜然粒'] },
-  { id: 'preset_chili_powder', name: '辣椒粉', aliases: ['辣椒粉', '辣椒面', '辣椒碎'] },
+  { id: 'preset_cumin', name: '孜然', aliases: ['孜然', '孜然粉', '孜然粒', 'cumin ground', 'cumin'] },
+  { id: 'preset_chili_powder', name: '辣椒粉', aliases: ['辣椒粉', '辣椒面', '辣椒碎', 'smoked paprika', 'paprika'] },
   { id: 'preset_dried_chili', name: '干辣椒', aliases: ['干辣椒', '干红辣椒', '干辣椒碎', '干辣椒段'] },
   { id: 'preset_chili_oil', name: '辣椒油', aliases: ['辣椒油', '红油', '油泼辣子', '红油辣子'] },
   { id: 'preset_doubanjiang', name: '豆瓣酱', aliases: ['豆瓣酱', '郫县豆瓣酱', '红油豆瓣酱'] },
@@ -39,7 +39,12 @@ export const PANTRY_CATALOG: PantryDefinition[] = [
   { id: 'preset_steamed_fish_soy_sauce', name: '蒸鱼豉油', aliases: ['蒸鱼豉油', '豉油'] },
   { id: 'preset_bay_leaf', name: '香叶', aliases: ['香叶', '月桂叶'] },
   { id: 'preset_cinnamon', name: '桂皮', aliases: ['桂皮', '肉桂'] },
-  { id: 'preset_bean_paste', name: '黄豆酱', aliases: ['黄豆酱', '大豆酱', '东北大酱'] }
+  { id: 'preset_bean_paste', name: '黄豆酱', aliases: ['黄豆酱', '大豆酱', '东北大酱'] },
+  // Cooklang 英文调料补充
+  { id: 'preset_fish_sauce', name: '鱼露', aliases: ['fish sauce', '鱼露'] },
+  { id: 'preset_smoked_paprika', name: '烟熏辣椒粉', aliases: ['smoked paprika', '烟熏辣椒粉'] },
+  { id: 'preset_worcester_sauce', name: '伍斯特酱', aliases: ['Worcester sauce', 'worcestershire sauce', '伍斯特酱'] },
+  { id: 'preset_red_wine', name: '红酒', aliases: ['red wine', '红酒'] }
 ];
 
 // 建立精确匹配映射表
@@ -99,6 +104,21 @@ export function resolvePantry(rawText: string): PantryDefinition | null {
     if ((cleaned.includes('油麦菜') || cleaned.includes('油菜')) && alias.includes('油')) {
       continue;
     }
+    // English compound-ingredient exclusions (prevent short alias false-positives)
+    if (cleaned.includes('olive oil') && alias === 'oil') continue;
+    if (cleaned.includes('vegetable oil') && alias === 'oil') continue;
+    if (cleaned.includes('red wine vinegar') && (alias === 'vinegar' || alias === '醋')) continue;
+    if (cleaned.includes('black pepper') && alias === 'pepper') continue;
+    if (cleaned.includes('ground black pepper') && alias === 'pepper') continue;
+    if (cleaned.includes('basil leaves') || cleaned.includes('fresh basil')) continue;
+    if (cleaned.includes('fresh coriander')) continue;
+    if (cleaned.includes('chicken broth') || cleaned.includes('chicken stock')) continue;
+    if (cleaned.includes('mushroom soup powder')) continue;
+    if (cleaned.includes('smoked paprika')) continue;
+    if (cleaned.includes('red chilli')) continue;
+    if (cleaned.includes('oyster sauce') && alias === '蚝油') continue;
+    if (cleaned.includes('fish sauce')) continue;
+    if (cleaned.includes('Worcester sauce')) continue;
     if (cleaned.includes(alias) && alias.length > maxMatchedLen) {
       matched = def;
       maxMatchedLen = alias.length;

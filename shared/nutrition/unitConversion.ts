@@ -424,6 +424,59 @@ function resolveCalibratedGramsPerUnit(
     }
   }
 
+  // =================== Cooklang English unit support ===================
+
+  // 升 / litre
+  if (['l'].includes(normUnit)) {
+    if (isOilLike(idLower)) {
+      return 920; // 油 1L ≈ 920g
+    }
+    return 1000; // 液体 1L = 1000g
+  }
+
+  // 蒜瓣 / clove
+  if (['clove', '瓣'].includes(normUnit)) {
+    if (idLower.includes('garlic') || idLower.includes('蒜')) {
+      return 2; // 去皮中等蒜瓣 2g
+    }
+  }
+
+  // 包 / packet (标准食材包)
+  if (['packet', '包'].includes(normUnit)) {
+    return 200; // 标准冷冻蔬菜包约 200g
+  }
+
+  // 枝 / sprig (香草小枝)
+  if (['sprigs', 'sprig', '枝'].includes(normUnit)) {
+    return 5; // 迷迭香/百里香 1 小枝约 5g
+  }
+
+  // 把 / bunch (香草束)
+  if (['bunch', '把'].includes(normUnit)) {
+    if (idLower.includes('herb') || idLower.includes('香') || idLower.includes('parsley') || idLower.includes('rosemary') || idLower.includes('thyme') || idLower.includes('迷迭香') || idLower.includes('百里香') || idLower.includes('欧芹')) {
+      return 25; // 小把香草约 25g
+    }
+  }
+
+  // 片 / slice (面包/奶酪片)
+  if (['slices', 'slice', '片'].includes(normUnit)) {
+    if (idLower.includes('bread') || idLower.includes('面包') || idLower.includes('ciabatta') || idLower.includes('cheese') || idLower.includes('奶酪')) {
+      return 30; // 面包/奶酪 1 片约 30g
+    }
+  }
+
+  // 罐 / tin (标准罐头)
+  if (['tin', '罐'].includes(normUnit)) {
+    return 400; // 标准番茄罐头约 400g
+  }
+
+  // 大个 / large (大号食材单件)
+  if (['large', '大'].includes(normUnit)) {
+    if (idLower.includes('potato') || idLower.includes('土豆')) {
+      return 200; // 大土豆 1 个约 200g
+    }
+  }
+
   return null;
 }
 
