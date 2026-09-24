@@ -2,6 +2,7 @@ node_modules/
 dist/
 .DS_Store
 .codex/
+.claude/
 
 # Temporary development notes
 /findings.md
@@ -22,3 +23,11 @@ dist/
 
 # Generated normalized nutrition artifacts
 /data/nutrition/generated/
+
+# Scratch / temp files
+/scratch/
+/data/external_sources/xiachufang_filtered.jsonl
+/data/external_sources/cooklang_raw/
+/data/external_sources/cooklang.zip
+/data/external_sources/sample.jsonl
+/data/external_sources/everyday_food.json
