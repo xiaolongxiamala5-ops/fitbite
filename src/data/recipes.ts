@@ -57,7 +57,9 @@ export const IMPORTED_RECIPES: Recipe[] = (importedRecipesJson as any[]).map(raw
   calories: raw.nutrition?.calories || 0,
   nutrition: raw.nutrition || null,
   servings: raw.servings || 1,
-  source: raw.provenance?.source === 'howtocook' ? 'HowToCook 开源菜谱' : (raw.provenance?.source || '开源菜谱'),
+  source: raw.provenance?.source === 'howtocook' ? 'HowToCook 开源菜谱'
+    : raw.provenance?.source === 'everyday-food' ? 'EveryDay_Food 减脂增肌菜谱'
+    : (raw.provenance?.source || '开源菜谱'),
   instructions: raw.instructions || []
 }));
 

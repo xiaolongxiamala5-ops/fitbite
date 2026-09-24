@@ -12,7 +12,8 @@
     "nutrition:sync": "npx tsx scripts/nutrition/syncSanotsu.ts",
     "nutrition:verify": "npx tsx scripts/nutrition/verifyFullData.ts",
     "nutrition:evaluate": "npx tsx scripts/nutrition/evaluateImportedRecipes.ts",
-    "batch:import": "npx tsx scripts/batch_import_local.ts"
+    "batch:import": "npx tsx scripts/batch_import_local.ts",
+    "convert:cooklang": "npx tsx scripts/convert_cooklang.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

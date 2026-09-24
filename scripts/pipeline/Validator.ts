@@ -18,7 +18,7 @@ export class RecipeValidator {
     const warnings: string[] = [];
 
     // 1. 基础标识验证
-    if (!recipe.id || (!recipe.id.startsWith('imported_howtocook_') && !recipe.id.startsWith('imported_cookbook-kg_'))) {
+    if (!recipe.id || (!recipe.id.startsWith('imported_howtocook_') && !recipe.id.startsWith('imported_cookbook-kg_') && !recipe.id.startsWith('imported_everyday-food_'))) {
       errors.push(`菜谱 ID 格式非法或缺失: ${recipe.id}`);
     }
     if (!recipe.name || recipe.name.trim().length === 0) {
@@ -43,6 +43,13 @@ export class RecipeValidator {
         }
         if (prov.license !== 'unknown' && prov.license !== null) {
           errors.push(`CookBook-KG 来源无明确许可证，license 必须为 'unknown' 或 null，当前为: ${prov.license}`);
+        }
+      } else if (prov.source === 'everyday-food') {
+        if (!prov.sourceFile || !prov.sourceFile.endsWith('.json')) {
+          errors.push(`非法 sourceFile: ${prov.sourceFile}`);
+        }
+        if (prov.license !== 'MIT' && prov.license !== null) {
+          errors.push(`EveryDay_Food 来源许可证必须为 'MIT' 或 null，当前为: ${prov.license}`);
         }
       } else {
         errors.push(`非法来源: ${prov.source}`);

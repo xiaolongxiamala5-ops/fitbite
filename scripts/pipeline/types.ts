@@ -9,7 +9,7 @@
 
 export interface SourceRecipe {
   originalTitle: string;
-  source: 'howtocook' | 'cookbook-kg';
+  source: 'howtocook' | 'cookbook-kg' | 'everyday-food';
   sourceId: string;
   sourceUrl: string;
   sourceFile: string;
@@ -60,7 +60,7 @@ export interface NormalizedRecipe {
 }
 
 export interface RecipeProvenance {
-  source: 'howtocook' | 'cookbook-kg';
+  source: 'howtocook' | 'cookbook-kg' | 'everyday-food';
   sourceId: string;
   sourceUrl: string;
   sourceFile: string;
