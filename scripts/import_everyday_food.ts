@@ -132,7 +132,6 @@ const INGREDIENT_MAP: Record<string, { id: string; name: string; cat: 'protein' 
   '海带':         { id: 'v_seaweed', name: '海带', cat: 'vegetable' },
   '干海带':       { id: 'v_seaweed', name: '干海带', cat: 'vegetable' },
   '鲜百合':       { id: 'v_lily_bulb', name: '鲜百合', cat: 'vegetable' },
-  '秋葵':         { id: 'v_okra', name: '秋葵', cat: 'vegetable' },
   // === 碳水 ===
   '米饭':         { id: 'c_rice', name: '米饭', cat: 'carb' },
   '糙米饭':       { id: 'c_brown_rice', name: '糙米饭', cat: 'carb' },

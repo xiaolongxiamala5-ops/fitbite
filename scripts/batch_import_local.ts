@@ -304,7 +304,7 @@ async function main(): Promise<void> {
     // 修正 provenance.source 为 'howtocook'（Validator 要求）
     // 本地导入的 markdown 格式与 HowToCook 相同，使用 howtocook source 确保许可证校验通过
     (fitBiteRecipe.provenance as any).source = 'howtocook';
-    (fitBiteRecipe.provenance as any).license = 'CC-BY-4.0';
+    (fitBiteRecipe.provenance as any).license = 'Unlicense';
 
     // Validate
     const validation = RecipeValidator.validate(fitBiteRecipe);

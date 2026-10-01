@@ -8,7 +8,7 @@
       "sourceId": "tomato_scrambled_eggs",
       "sourceUrl": "https://local.import/tomato_scrambled_eggs",
       "sourceFile": "data/raw_recipes/tomato_scrambled_eggs.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "6ef54c60c7701866ba212e3e7cbc19a2d84c109e142824084d1f467dc701dc2f"
     },
     "requiredIngredients": [
@@ -79,7 +79,7 @@
       "sourceId": "garlic_broccoli",
       "sourceUrl": "https://local.import/garlic_broccoli",
       "sourceFile": "data/raw_recipes/garlic_broccoli.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "1ba3a15254c64f119807d4411d0e50ed3f1a3a6037249c6a4ebd0a071f91ef22"
     },
     "requiredIngredients": [
@@ -140,7 +140,7 @@
       "sourceId": "cold_shredded_chicken",
       "sourceUrl": "https://local.import/cold_shredded_chicken",
       "sourceFile": "data/raw_recipes/cold_shredded_chicken.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "9e61031ea3b77c4686b05fb40bf54f50928c9ff807acd81d9a1dcdf3b1345c18"
     },
     "requiredIngredients": [
@@ -210,7 +210,7 @@
       "sourceId": "kung_pao_chicken",
       "sourceUrl": "https://local.import/kung_pao_chicken",
       "sourceFile": "data/raw_recipes/kung_pao_chicken.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "4208f08fca5f07d359ecc3759693d678d374dfa80ae7185077d0f9bd38b8c9a1"
     },
     "requiredIngredients": [
@@ -314,7 +314,7 @@
       "sourceId": "boiled_shrimp",
       "sourceUrl": "https://local.import/boiled_shrimp",
       "sourceFile": "data/raw_recipes/boiled_shrimp.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "6296adcbaaeb2ecd0280c60b22c91d1c4a97b888791320942e4787b9d58f9b43"
     },
     "requiredIngredients": [
@@ -384,7 +384,7 @@
       "sourceId": "braised_prawns",
       "sourceUrl": "https://local.import/braised_prawns",
       "sourceFile": "data/raw_recipes/braised_prawns.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "549b692854b812ee008f4280ff471e052d975028d12188d25f7a6d18093b598f"
     },
     "requiredIngredients": [
@@ -449,7 +449,7 @@
       "sourceId": "garlic_shrimp",
       "sourceUrl": "https://local.import/garlic_shrimp",
       "sourceFile": "data/raw_recipes/garlic_shrimp.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "d8965d8b868bdba8892843fabf5c58fcad6a46fe1b92da25eaec07895e471881"
     },
     "requiredIngredients": [
@@ -506,7 +506,7 @@
       "sourceId": "mapo_tofu",
       "sourceUrl": "https://local.import/mapo_tofu",
       "sourceFile": "data/raw_recipes/mapo_tofu.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "11547a2586819cd712ccd275aebf7318a724e2bb5d47d10f5f0e6fa71735ba3d"
     },
     "requiredIngredients": [
@@ -612,7 +612,7 @@
       "sourceId": "century_egg_tofu",
       "sourceUrl": "https://local.import/century_egg_tofu",
       "sourceFile": "data/raw_recipes/century_egg_tofu.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "efafaaf488fb839634e9146ec98298c86a33e0507a0838cedf4aa17c115e5127"
     },
     "requiredIngredients": [
@@ -682,7 +682,7 @@
       "sourceId": "pepper_potato_pork",
       "sourceUrl": "https://local.import/pepper_potato_pork",
       "sourceFile": "data/raw_recipes/pepper_potato_pork.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "6312784fb25a4f1d7b144e3824180e3951890a75e6c3c34f4332dc7db35f011d"
     },
     "requiredIngredients": [
@@ -773,7 +773,7 @@
       "sourceId": "tiger_skin_pepper",
       "sourceUrl": "https://local.import/tiger_skin_pepper",
       "sourceFile": "data/raw_recipes/tiger_skin_pepper.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "b49f516f967eb74688024ba32c332ee3893ad85ab0706de61ed87d6cd33e71da"
     },
     "requiredIngredients": [
@@ -835,7 +835,7 @@
       "sourceId": "steamed_egg_custard",
       "sourceUrl": "https://local.import/steamed_egg_custard",
       "sourceFile": "data/raw_recipes/steamed_egg_custard.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "315fa22701bdabd3a35de3546f3f3a08fe325ff75b5dc70c1f519d5e8254d248"
     },
     "requiredIngredients": [
@@ -901,7 +901,7 @@
       "sourceId": "cold_cucumber",
       "sourceUrl": "https://local.import/cold_cucumber",
       "sourceFile": "data/raw_recipes/cold_cucumber.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "4e0602a73250f8e485a5500ed7a3daa6722e64d017efdf517100c4c76562ce67"
     },
     "requiredIngredients": [
@@ -961,7 +961,7 @@
       "sourceId": "steamed_sea_bass",
       "sourceUrl": "https://local.import/steamed_sea_bass",
       "sourceFile": "data/raw_recipes/steamed_sea_bass.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "fe51b4171a90f9f8f2b194f24ac8da7e1966518ca7f437935418bf339a21ff1a"
     },
     "requiredIngredients": [
@@ -1039,7 +1039,7 @@
       "sourceId": "oyster_sauce_mushrooms",
       "sourceUrl": "https://local.import/oyster_sauce_mushrooms",
       "sourceFile": "data/raw_recipes/oyster_sauce_mushrooms.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "c2581b940bc3682d53fe0d1911f225195829e153d25fc059c1f3deadaedd43e5"
     },
     "requiredIngredients": [
@@ -1146,7 +1146,7 @@
       "sourceId": "baby_cabbage_in_broth",
       "sourceUrl": "https://local.import/baby_cabbage_in_broth",
       "sourceFile": "data/raw_recipes/baby_cabbage_in_broth.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "711961387a8d1d0827971b4f9cc56683c8718711b8f99ade547de5aa19b94b0d"
     },
     "requiredIngredients": [
@@ -1227,7 +1227,7 @@
       "sourceId": "black_pepper_beef",
       "sourceUrl": "https://local.import/black_pepper_beef",
       "sourceFile": "data/raw_recipes/black_pepper_beef.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "8940e16d6bde2acaae1cb2eb51dde3179f8616cb2a66d7562fb3a54064951471"
     },
     "requiredIngredients": [
@@ -1316,7 +1316,7 @@
       "sourceId": "boiled_choy_sum",
       "sourceUrl": "https://local.import/boiled_choy_sum",
       "sourceFile": "data/raw_recipes/boiled_choy_sum.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "561f737f57b78c83187b17abbc77df05cb5bf4f4f80467dcb7232a34147c1eb2"
     },
     "requiredIngredients": [
@@ -1383,7 +1383,7 @@
       "sourceId": "braised_carp_tofu",
       "sourceUrl": "https://local.import/braised_carp_tofu",
       "sourceFile": "data/raw_recipes/braised_carp_tofu.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "7c8e55be70aa36ad253badbe1b1e7ef1084ba32c1e749afb790ef1e8e5a42089"
     },
     "requiredIngredients": [
@@ -1472,7 +1472,7 @@
       "sourceId": "carp_with_cabbage",
       "sourceUrl": "https://local.import/carp_with_cabbage",
       "sourceFile": "data/raw_recipes/carp_with_cabbage.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "401ff1a661e38930f6d7057dab7045cbf4d05bfad8f63e13a3a802980ee46122"
     },
     "requiredIngredients": [
@@ -1545,7 +1545,7 @@
       "sourceId": "catfish_tofu_soup",
       "sourceUrl": "https://local.import/catfish_tofu_soup",
       "sourceFile": "data/raw_recipes/catfish_tofu_soup.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a4d624b7221e2759cf8e2c4a1db27f9298a620ab62f58d57109a6c557e0d4ae3"
     },
     "requiredIngredients": [
@@ -1616,7 +1616,7 @@
       "sourceId": "century_egg_lean_pork_porridge",
       "sourceUrl": "https://local.import/century_egg_lean_pork_porridge",
       "sourceFile": "data/raw_recipes/century_egg_lean_pork_porridge.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "4667b625ebf86e20cb666a8dec32404247a71d290a02fc109b14f2171a9045f7"
     },
     "requiredIngredients": [
@@ -1708,7 +1708,7 @@
       "sourceId": "chicken_with_mushrooms",
       "sourceUrl": "https://local.import/chicken_with_mushrooms",
       "sourceFile": "data/raw_recipes/chicken_with_mushrooms.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "4a6b5f53985d554fb022fe4aba1aecc0a8d09b6afd70ac31004aa3400eb13070"
     },
     "requiredIngredients": [
@@ -1780,7 +1780,7 @@
       "sourceId": "chives_scrambled_eggs",
       "sourceUrl": "https://local.import/chives_scrambled_eggs",
       "sourceFile": "data/raw_recipes/chives_scrambled_eggs.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "7e81de0922c738b6490a51e8f642d6ea2e0e32056498977c889bd13db4b1c432"
     },
     "requiredIngredients": [
@@ -1839,7 +1839,7 @@
       "sourceId": "cold_asparagus_lettuce",
       "sourceUrl": "https://local.import/cold_asparagus_lettuce",
       "sourceFile": "data/raw_recipes/cold_asparagus_lettuce.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "afaa0919e959544ca06727903301ea17b086712ca7a3114e6737a98e58e1ec7d"
     },
     "requiredIngredients": [
@@ -1906,7 +1906,7 @@
       "sourceId": "cold_black_fungus",
       "sourceUrl": "https://local.import/cold_black_fungus",
       "sourceFile": "data/raw_recipes/cold_black_fungus.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "b95f20a1c5b898edb1aa7c424bb92ffed443062978d5221fb3a5348d9bfef748"
     },
     "requiredIngredients": [
@@ -1976,7 +1976,7 @@
       "sourceId": "cold_enoki_mushroom",
       "sourceUrl": "https://local.import/cold_enoki_mushroom",
       "sourceFile": "data/raw_recipes/cold_enoki_mushroom.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "80ef4610a4e7212a2f320d74fb663b0365cfe2735c66a5c0aa0daa68921708f0"
     },
     "requiredIngredients": [
@@ -2045,7 +2045,7 @@
       "sourceId": "cold_tofu",
       "sourceUrl": "https://local.import/cold_tofu",
       "sourceFile": "data/raw_recipes/cold_tofu.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "81b9f1abfa69206d096ea92190a2528905b92903d52fda178ac98aed72accf00"
     },
     "requiredIngredients": [
@@ -2126,7 +2126,7 @@
       "sourceId": "cold_youmaicai",
       "sourceUrl": "https://local.import/cold_youmaicai",
       "sourceFile": "data/raw_recipes/cold_youmaicai.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "2b4e49e5b21d37d6f9c2e96868bb19f040520e510c618189c9435860a5894596"
     },
     "requiredIngredients": [
@@ -2187,7 +2187,7 @@
       "sourceId": "cucumber_century_egg_soup",
       "sourceUrl": "https://local.import/cucumber_century_egg_soup",
       "sourceFile": "data/raw_recipes/cucumber_century_egg_soup.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "da89a5f0b9cab8aebb24a44066143c864f3fed9e382c78e88d4d7df0c561c4e1"
     },
     "requiredIngredients": [
@@ -2255,7 +2255,7 @@
       "sourceId": "cucumber_stir_fried_pork",
       "sourceUrl": "https://local.import/cucumber_stir_fried_pork",
       "sourceFile": "data/raw_recipes/cucumber_stir_fried_pork.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "3c4dced5ce7e8fda59c68b4e6b0b6f384c6bb234d9a7fa29645b03ffbaf917f5"
     },
     "requiredIngredients": [
@@ -2333,7 +2333,7 @@
       "sourceId": "cumin_beef",
       "sourceUrl": "https://local.import/cumin_beef",
       "sourceFile": "data/raw_recipes/cumin_beef.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "1e5985b6e05fe60c3567361e9fe38f2359da7873c266ed71585c06fc4e95479d"
     },
     "requiredIngredients": [
@@ -2413,7 +2413,7 @@
       "sourceId": "dried_tofu_celery_pork",
       "sourceUrl": "https://local.import/dried_tofu_celery_pork",
       "sourceFile": "data/raw_recipes/dried_tofu_celery_pork.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "46f585ea15424884b1990ca9455466fb1d64235b07649c7681c57d27c9135a0c"
     },
     "requiredIngredients": [
@@ -2497,7 +2497,7 @@
       "sourceId": "dried_tofu_shredded_pork",
       "sourceUrl": "https://local.import/dried_tofu_shredded_pork",
       "sourceFile": "data/raw_recipes/dried_tofu_shredded_pork.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a99888f4dc5aab15ca961a2fd63bfab1dccd90deafd1b90b6cc16cf9df4b2e02"
     },
     "requiredIngredients": [
@@ -2589,7 +2589,7 @@
       "sourceId": "enoki_mushroom_soup",
       "sourceUrl": "https://local.import/enoki_mushroom_soup",
       "sourceFile": "data/raw_recipes/enoki_mushroom_soup.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "63c779c7d77aed5c48293929dc3eeb53517cf412f2eb4de665fa9f5158ddd0da"
     },
     "requiredIngredients": [
@@ -2642,7 +2642,7 @@
       "sourceId": "garlic_celery",
       "sourceUrl": "https://local.import/garlic_celery",
       "sourceFile": "data/raw_recipes/garlic_celery.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "97175dd6dd96f92bbfb1d99f8f54f72e4c9a2ecfbf2d7e6ba63d86d8b29d11b3"
     },
     "requiredIngredients": [
@@ -2700,7 +2700,7 @@
       "sourceId": "garlic_moss_minced_pork",
       "sourceUrl": "https://local.import/garlic_moss_minced_pork",
       "sourceFile": "data/raw_recipes/garlic_moss_minced_pork.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "904213150ca13ef09dc912bde114457ba5ce9eba17f5efc7620ee36ad9dbb904"
     },
     "requiredIngredients": [
@@ -2761,7 +2761,7 @@
       "sourceId": "garlic_water_spinach",
       "sourceUrl": "https://local.import/garlic_water_spinach",
       "sourceFile": "data/raw_recipes/garlic_water_spinach.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a6cdf483004897f134973d0b077be06440f562a4fb2051648321433aae1eadfa"
     },
     "requiredIngredients": [
@@ -2821,7 +2821,7 @@
       "sourceId": "microwave_cod",
       "sourceUrl": "https://local.import/microwave_cod",
       "sourceFile": "data/raw_recipes/microwave_cod.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "f1e923faeee86cc7c5aa65aca1b43345b830286d757bf24a6672ca8e93f2ec1b"
     },
     "requiredIngredients": [
@@ -2886,7 +2886,7 @@
       "sourceId": "milk_oatmeal",
       "sourceUrl": "https://local.import/milk_oatmeal",
       "sourceFile": "data/raw_recipes/milk_oatmeal.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a2c84966d9c9ef586ed5ce00958758fe65d6ddbba6d1d4752c756d8308db0114"
     },
     "requiredIngredients": [
@@ -2960,7 +2960,7 @@
       "sourceId": "onion_scrambled_eggs",
       "sourceUrl": "https://local.import/onion_scrambled_eggs",
       "sourceFile": "data/raw_recipes/onion_scrambled_eggs.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "ca3d8d53751aef91f2a19098e4467a9698563adb51c2ca8275e13fbc408a58c9"
     },
     "requiredIngredients": [
@@ -3026,7 +3026,7 @@
       "sourceId": "onion_stir_fried_pork",
       "sourceUrl": "https://local.import/onion_stir_fried_pork",
       "sourceFile": "data/raw_recipes/onion_stir_fried_pork.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "b5a321be1aecd75da42fa4a9d3989d7e6b66d92c6bc9066ead12ce3835147c5c"
     },
     "requiredIngredients": [
@@ -3093,7 +3093,7 @@
       "sourceId": "onsen_tamago",
       "sourceUrl": "https://local.import/onsen_tamago",
       "sourceFile": "data/raw_recipes/onsen_tamago.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "52bb1be5b966e0746fb43825e55202b6cf5605c793feb939e3227d296d515f05"
     },
     "requiredIngredients": [
@@ -3149,7 +3149,7 @@
       "sourceId": "oyster_sauce_lettuce",
       "sourceUrl": "https://local.import/oyster_sauce_lettuce",
       "sourceFile": "data/raw_recipes/oyster_sauce_lettuce.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "3ac2ff58c425cf5b6a743dd324416b54557c55a0bcad82449433a79a9ba5a766"
     },
     "requiredIngredients": [
@@ -3212,7 +3212,7 @@
       "sourceId": "pepper_stir_fried_beef",
       "sourceUrl": "https://local.import/pepper_stir_fried_beef",
       "sourceFile": "data/raw_recipes/pepper_stir_fried_beef.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "32a690457c3872da77f494531d443edb4f851854c7c3ad3ed5a09f512afb86ff"
     },
     "requiredIngredients": [
@@ -3290,7 +3290,7 @@
       "sourceId": "perfect_boiled_egg",
       "sourceUrl": "https://local.import/perfect_boiled_egg",
       "sourceFile": "data/raw_recipes/perfect_boiled_egg.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "64c95d707c57dff5a936314c74b23404654f4181bcbf61730beb86c71066979f"
     },
     "requiredIngredients": [
@@ -3344,7 +3344,7 @@
       "sourceId": "saliva_chicken",
       "sourceUrl": "https://local.import/saliva_chicken",
       "sourceFile": "data/raw_recipes/saliva_chicken.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "de67bbfaa84db02ada45cd7419645f2fc7180f60a5805c0f435d351179de623b"
     },
     "requiredIngredients": [
@@ -3412,7 +3412,7 @@
       "sourceId": "scallion_braised_chicken_leg",
       "sourceUrl": "https://local.import/scallion_braised_chicken_leg",
       "sourceFile": "data/raw_recipes/scallion_braised_chicken_leg.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "e290e334bf12486e801d5d96d5c18a1c963c3f1459ef6574977d0d5442a02188"
     },
     "requiredIngredients": [
@@ -3487,7 +3487,7 @@
       "sourceId": "scallion_mandarin_fish",
       "sourceUrl": "https://local.import/scallion_mandarin_fish",
       "sourceFile": "data/raw_recipes/scallion_mandarin_fish.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "45309510d75b4ce5cf4599af5ef8c344b7b5e2cbef53b446b0b7f367b58f7e02"
     },
     "requiredIngredients": [
@@ -3568,7 +3568,7 @@
       "sourceId": "scallion_oil_chicken",
       "sourceUrl": "https://local.import/scallion_oil_chicken",
       "sourceFile": "data/raw_recipes/scallion_oil_chicken.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "1ba57e41be6f2b6338d90c2be293bca13d310043f6779db9e3ef7ecc431344e8"
     },
     "requiredIngredients": [
@@ -3633,7 +3633,7 @@
       "sourceId": "scrambled_eggs",
       "sourceUrl": "https://local.import/scrambled_eggs",
       "sourceFile": "data/raw_recipes/scrambled_eggs.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "22e52f28e305ed40704884ff3c0e8ad3cb2357306470f4715e8d59ba4db9b583"
     },
     "requiredIngredients": [
@@ -3708,7 +3708,7 @@
       "sourceId": "seaweed_egg_soup",
       "sourceUrl": "https://local.import/seaweed_egg_soup",
       "sourceFile": "data/raw_recipes/seaweed_egg_soup.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "0fca98cbf61d3540e95da8afd5e887c212d5f025774364ce754f5b2f5554f761"
     },
     "requiredIngredients": [
@@ -3773,7 +3773,7 @@
       "sourceId": "shredded_cabbage",
       "sourceUrl": "https://local.import/shredded_cabbage",
       "sourceFile": "data/raw_recipes/shredded_cabbage.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "731648cd8ee9a4b74dbad22f3bea9cbdf702a5b9aafe308da557713eca354ace"
     },
     "requiredIngredients": [
@@ -3855,7 +3855,7 @@
       "sourceId": "spiced_beef",
       "sourceUrl": "https://local.import/spiced_beef",
       "sourceFile": "data/raw_recipes/spiced_beef.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "5ae71ad86ccb58e54b2b24e8d2e5e3e2693eadd853d97036d83e2a77324cf167"
     },
     "requiredIngredients": [
@@ -3925,7 +3925,7 @@
       "sourceId": "spinach_scrambled_eggs",
       "sourceUrl": "https://local.import/spinach_scrambled_eggs",
       "sourceFile": "data/raw_recipes/spinach_scrambled_eggs.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "ebda1888d738e86a4645f92c6bc5f3c37c4bf42003861e6aeb6be08b8e697962"
     },
     "requiredIngredients": [
@@ -3991,7 +3991,7 @@
       "sourceId": "steamed_meat_patty_egg",
       "sourceUrl": "https://local.import/steamed_meat_patty_egg",
       "sourceFile": "data/raw_recipes/steamed_meat_patty_egg.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "7fe354fc4fce24aff00d0c264d79b3040425efb56e22cbddc9d6cd5be9e264d1"
     },
     "requiredIngredients": [
@@ -4058,7 +4058,7 @@
       "sourceId": "steamed_oysters",
       "sourceUrl": "https://local.import/steamed_oysters",
       "sourceFile": "data/raw_recipes/steamed_oysters.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a71dcb15a30018425d947808f72d08291da0a8c95825aeb3c7f714dbe8136697"
     },
     "requiredIngredients": [
@@ -4117,7 +4117,7 @@
       "sourceId": "steamed_pumpkin",
       "sourceUrl": "https://local.import/steamed_pumpkin",
       "sourceFile": "data/raw_recipes/steamed_pumpkin.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "5e658e0b314f17d000026f31d86a72aaa43bf86e95a73bd77eebcbe3853e79eb"
     },
     "requiredIngredients": [
@@ -4171,7 +4171,7 @@
       "sourceId": "stir_fried_beef",
       "sourceUrl": "https://local.import/stir_fried_beef",
       "sourceFile": "data/raw_recipes/stir_fried_beef.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "6ae03454317605642389b0bd92f0de1be39d2d148b67c1acd30a3e35eb6fa5d8"
     },
     "requiredIngredients": [
@@ -4248,7 +4248,7 @@
       "sourceId": "stir_fried_cauliflower",
       "sourceUrl": "https://local.import/stir_fried_cauliflower",
       "sourceFile": "data/raw_recipes/stir_fried_cauliflower.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "715be05ff33494e9ba48e6a3b4b90f9365d83fa98f01b49696bf8a0969ba6dcf"
     },
     "requiredIngredients": [
@@ -4310,7 +4310,7 @@
       "sourceId": "stir_fried_greens",
       "sourceUrl": "https://local.import/stir_fried_greens",
       "sourceFile": "data/raw_recipes/stir_fried_greens.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "12569137a964dbd12a47bf0d44f32a1d39e2e8bbfad947d22045f25cf83e90d1"
     },
     "requiredIngredients": [
@@ -4367,7 +4367,7 @@
       "sourceId": "tea_egg",
       "sourceUrl": "https://local.import/tea_egg",
       "sourceFile": "data/raw_recipes/tea_egg.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a788392f0b29dcb0396e2ba372c44ca2fd965e17a40c6397dd1350b5e77b5305"
     },
     "requiredIngredients": [
@@ -4431,7 +4431,7 @@
       "sourceId": "tomato_beef_egg_soup",
       "sourceUrl": "https://local.import/tomato_beef_egg_soup",
       "sourceFile": "data/raw_recipes/tomato_beef_egg_soup.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "993834856d85184f1d698a2e2cd67652e1655719e916ca9faa6c4b6bde0e76a5"
     },
     "requiredIngredients": [
@@ -4513,7 +4513,7 @@
       "sourceId": "tomato_beef_sirloin",
       "sourceUrl": "https://local.import/tomato_beef_sirloin",
       "sourceFile": "data/raw_recipes/tomato_beef_sirloin.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "b1755d56a148445a6fe8bb172b49650a741eab7170aecfa785d99c6173873168"
     },
     "requiredIngredients": [
@@ -4582,7 +4582,7 @@
       "sourceId": "tomato_egg_soup",
       "sourceUrl": "https://local.import/tomato_egg_soup",
       "sourceFile": "data/raw_recipes/tomato_egg_soup.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "dfcdbf702f96c059163f4aad7ff858d548e6208617b81386417d381da67bfa59"
     },
     "requiredIngredients": [
@@ -4651,7 +4651,7 @@
       "sourceId": "tomato_potato_beef",
       "sourceUrl": "https://local.import/tomato_potato_beef",
       "sourceFile": "data/raw_recipes/tomato_potato_beef.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "3555edc49f7dcc08eba083480274d16ab454490968046900d68498529e7e6595"
     },
     "requiredIngredients": [
@@ -4738,7 +4738,7 @@
       "sourceId": "winter_melon_steamed_chicken",
       "sourceUrl": "https://local.import/winter_melon_steamed_chicken",
       "sourceFile": "data/raw_recipes/winter_melon_steamed_chicken.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "330fe29941edc0182a84dd894b76576241a8c59515d994b3bab6c19d6a389020"
     },
     "requiredIngredients": [
@@ -4804,7 +4804,7 @@
       "sourceId": "winter_melon_stuffed_meat",
       "sourceUrl": "https://local.import/winter_melon_stuffed_meat",
       "sourceFile": "data/raw_recipes/winter_melon_stuffed_meat.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "c69a33e62d11aa51ff4de5d8990739907c966e920f85c15d02b288278ef34b01"
     },
     "requiredIngredients": [
@@ -4887,7 +4887,7 @@
       "sourceId": "zucchini_scrambled_eggs",
       "sourceUrl": "https://local.import/zucchini_scrambled_eggs",
       "sourceFile": "data/raw_recipes/zucchini_scrambled_eggs.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "5fe89093ca49ec11a9e10d94f47557b7891282e890ccd222a04d8fbde338f372"
     },
     "requiredIngredients": [
@@ -4954,7 +4954,7 @@
       "sourceId": "o型血牛肉鸡蛋减肥法",
       "sourceUrl": "https://xiachufang.com/recipe/o型血牛肉鸡蛋减肥法/",
       "sourceFile": "data/external_sources/xiachufang_full.json",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "77226fcba193d84264dd5c57fb5614cd88a9dc02565bc0355ad12d8ec029378e"
     },
     "requiredIngredients": [
@@ -17353,7 +17353,7 @@
       "sourceId": "凉粉",
       "sourceUrl": "https://local.import/凉粉",
       "sourceFile": "data/raw_recipes/凉粉.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a178b27f6d5c91627a45d7a5fed0a50589d021a542c146dcc86bdf4a84ddafdf"
     },
     "requiredIngredients": [
@@ -17429,7 +17429,7 @@
       "sourceId": "勾芡香菇汤",
       "sourceUrl": "https://local.import/勾芡香菇汤",
       "sourceFile": "data/raw_recipes/勾芡香菇汤.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "b4358b1495e95703a0b5d9ded54ef7ec765e5e90931ad56179a149ed0f900fd1"
     },
     "requiredIngredients": [
@@ -17489,7 +17489,7 @@
       "sourceId": "卤菜",
       "sourceUrl": "https://local.import/卤菜",
       "sourceFile": "data/raw_recipes/卤菜.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "50b095da9732d02e30905b349b8f9d0b21b7abd3f856f218c7b7e9c86f7cd39f"
     },
     "requiredIngredients": [
@@ -17590,7 +17590,7 @@
       "sourceId": "咖喱炒蟹",
       "sourceUrl": "https://local.import/咖喱炒蟹",
       "sourceFile": "data/raw_recipes/咖喱炒蟹.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "6232e6eadea7e0186e05d621bee159a652afcb3a475d57b1ed1e57d3a147341b"
     },
     "requiredIngredients": [
@@ -17671,7 +17671,7 @@
       "sourceId": "啤酒鸭",
       "sourceUrl": "https://local.import/啤酒鸭",
       "sourceFile": "data/raw_recipes/啤酒鸭.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "f0af11c89a037641d7576d28ed77ea135f8623118bc497b6675b1c8439615251"
     },
     "requiredIngredients": [
@@ -17741,7 +17741,7 @@
       "sourceId": "奥尔良风味烤鸡腿",
       "sourceUrl": "https://local.import/奥尔良风味烤鸡腿",
       "sourceFile": "data/raw_recipes/奥尔良风味烤鸡腿.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "5e20d6ead751af2c279280c62908db3c2e4f4b0f61888088464400479dd5d1ea"
     },
     "requiredIngredients": [
@@ -17805,7 +17805,7 @@
       "sourceId": "姜葱捞鸡",
       "sourceUrl": "https://local.import/姜葱捞鸡",
       "sourceFile": "data/raw_recipes/姜葱捞鸡.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "cf54de8a4ba26efcd84a9c549758cec1ded911a0193ea553e87042475021dcf0"
     },
     "requiredIngredients": [
@@ -17870,7 +17870,7 @@
       "sourceId": "小炒藕丁",
       "sourceUrl": "https://local.import/小炒藕丁",
       "sourceFile": "data/raw_recipes/小炒藕丁.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "be3cea3e09f01471722afe9c845e6dfa570d513562e232a55acf39a65498a669"
     },
     "requiredIngredients": [
@@ -17931,7 +17931,7 @@
       "sourceId": "小炒鸡肝",
       "sourceUrl": "https://local.import/小炒鸡肝",
       "sourceFile": "data/raw_recipes/小炒鸡肝.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "5deda38c689ab59effe6e2a34183ab280915c6f5cf51490f79fb69c4ff23eb71"
     },
     "requiredIngredients": [
@@ -17997,7 +17997,7 @@
       "sourceId": "小炒黄牛肉",
       "sourceUrl": "https://local.import/小炒黄牛肉",
       "sourceFile": "data/raw_recipes/小炒黄牛肉.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "02b20428ae93648cc9de76dc8040cfa8285fcb2641185418a00aec0d9f104fe5"
     },
     "requiredIngredients": [
@@ -18074,7 +18074,7 @@
       "sourceId": "尖叫牛蛙",
       "sourceUrl": "https://local.import/尖叫牛蛙",
       "sourceFile": "data/raw_recipes/尖叫牛蛙.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "493e83e5a00ce2a9145e61a42f7560f528a23d45c52f506922f1ac9e8bdb7ba1"
     },
     "requiredIngredients": [
@@ -18151,7 +18151,7 @@
       "sourceId": "干煸仔鸡",
       "sourceUrl": "https://local.import/干煸仔鸡",
       "sourceFile": "data/raw_recipes/干煸仔鸡.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a0d6ec52863ab98f20a8e4320e227417d510e5308d834b103fcb82e8433cccd1"
     },
     "requiredIngredients": [
@@ -18239,7 +18239,7 @@
       "sourceId": "干锅花菜",
       "sourceUrl": "https://local.import/干锅花菜",
       "sourceFile": "data/raw_recipes/干锅花菜.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "7bc7117f7735d73eee88229f81bc4e64ecd750205fa2543a4e1392905cda7780"
     },
     "requiredIngredients": [
@@ -18311,7 +18311,7 @@
       "sourceId": "广式萝卜牛腩",
       "sourceUrl": "https://local.import/广式萝卜牛腩",
       "sourceFile": "data/raw_recipes/广式萝卜牛腩.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "47301c4e88951cfadabf0af4ef2b5ec1ba737cd1cb6b170a2138e2a25944e4d2"
     },
     "requiredIngredients": [
@@ -18382,7 +18382,7 @@
       "sourceId": "微波葱姜黑鳕鱼",
       "sourceUrl": "https://local.import/微波葱姜黑鳕鱼",
       "sourceFile": "data/raw_recipes/微波葱姜黑鳕鱼.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "a93c5ee3fde811daa57f8de7806d2d54fb4ccddb733f81656cec6168f5cc27a3"
     },
     "requiredIngredients": [
@@ -18447,7 +18447,7 @@
       "sourceId": "意式肉酱面",
       "sourceUrl": "https://local.import/意式肉酱面",
       "sourceFile": "data/raw_recipes/意式肉酱面.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "02329109acd923c6466382e8e3b34c5ca3cd7b6befa3f45d15e25ef3fbecae6e"
     },
     "requiredIngredients": [
@@ -18511,7 +18511,7 @@
       "sourceId": "朱雀汤",
       "sourceUrl": "https://local.import/朱雀汤",
       "sourceFile": "data/raw_recipes/朱雀汤.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "ef0a8d60e6a1a914e30952c891bae31b2b681d273c2d0aa5fbfa60f643e1b59c"
     },
     "requiredIngredients": [
@@ -18565,7 +18565,7 @@
       "sourceId": "柱候牛腩",
       "sourceUrl": "https://local.import/柱候牛腩",
       "sourceFile": "data/raw_recipes/柱候牛腩.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "c313bca7971933e341ecc755cbf6fc2849445c2c6753c64b2399b646fd8a8819"
     },
     "requiredIngredients": [
@@ -18646,7 +18646,7 @@
       "sourceId": "河南蒸面条",
       "sourceUrl": "https://local.import/河南蒸面条",
       "sourceFile": "data/raw_recipes/河南蒸面条.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "5cbe8158982cbdc7cbf5eec9d13a2a8b51cadc8961a3f59c250c1aaac240dec4"
     },
     "requiredIngredients": [
@@ -18722,7 +18722,7 @@
       "sourceId": "油焖大虾",
       "sourceUrl": "https://local.import/油焖大虾",
       "sourceFile": "data/raw_recipes/油焖大虾.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "f7d0a6c69cdd4253e3db8816a2d8bacf61fd75bf0ac7c256f4acd2ce42f29c39"
     },
     "requiredIngredients": [
@@ -18786,7 +18786,7 @@
       "sourceId": "淄博烧烤",
       "sourceUrl": "https://local.import/淄博烧烤",
       "sourceFile": "data/raw_recipes/淄博烧烤.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "f7a4814f8adc51985e78db476e1cd453d67d524cc8eff5249f7dc4ceef54420a"
     },
     "requiredIngredients": [
@@ -18845,7 +18845,7 @@
       "sourceId": "清蒸鳜鱼",
       "sourceUrl": "https://local.import/清蒸鳜鱼",
       "sourceFile": "data/raw_recipes/清蒸鳜鱼.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "ad51e761fb8cd83de4632b011fc1de24c6230e8e540b2da3088412496bde4feb"
     },
     "requiredIngredients": [
@@ -18911,7 +18911,7 @@
       "sourceId": "湘祁米夫鸭",
       "sourceUrl": "https://local.import/湘祁米夫鸭",
       "sourceFile": "data/raw_recipes/湘祁米夫鸭.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "c2f4dcb20f2276f6d03fa8452e8fcc9eeff2480fad728acd5401aec08bf585d3"
     },
     "requiredIngredients": [
@@ -18971,7 +18971,7 @@
       "sourceId": "火腿饭团",
       "sourceUrl": "https://local.import/火腿饭团",
       "sourceFile": "data/raw_recipes/火腿饭团.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "192e2ba3063c84244c7220f979dc40b6b1cc439bd48250b3844054ab7b49939e"
     },
     "requiredIngredients": [
@@ -19035,7 +19035,7 @@
       "sourceId": "炒方便面",
       "sourceUrl": "https://local.import/炒方便面",
       "sourceFile": "data/raw_recipes/炒方便面.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "e37885e6886b5ab2202bad275a26f0254434e728d91f7adc5073db3408263c19"
     },
     "requiredIngredients": [
@@ -19103,7 +19103,7 @@
       "sourceId": "煮锅蒸米饭",
       "sourceUrl": "https://local.import/煮锅蒸米饭",
       "sourceFile": "data/raw_recipes/煮锅蒸米饭.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "0e9d2218d45694002cea57acad64b4f21353d290e06e8b701cd1fcebe5129285"
     },
     "requiredIngredients": [
@@ -19157,7 +19157,7 @@
       "sourceId": "田螺酿",
       "sourceUrl": "https://local.import/田螺酿",
       "sourceFile": "data/raw_recipes/田螺酿.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "4272b08485648d5b02ecab8b970ed4c6e4e170f8aa9ac3aa2069935f01973cd4"
     },
     "requiredIngredients": [
@@ -19239,7 +19239,7 @@
       "sourceId": "瘦肉土豆片",
       "sourceUrl": "https://local.import/瘦肉土豆片",
       "sourceFile": "data/raw_recipes/瘦肉土豆片.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "0ec7cf74e5ee4602413adeaa9dff718f6ed791bc540baa7cc9d1a1670150e789"
     },
     "requiredIngredients": [
@@ -19311,7 +19311,7 @@
       "sourceId": "糖拌西红柿",
       "sourceUrl": "https://local.import/糖拌西红柿",
       "sourceFile": "data/raw_recipes/糖拌西红柿.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "0a17cd82ca74f182fdd543842535beac063179b47bfdf55135f76b8a1101f822"
     },
     "requiredIngredients": [
@@ -19369,7 +19369,7 @@
       "sourceId": "红烧冬瓜",
       "sourceUrl": "https://local.import/红烧冬瓜",
       "sourceFile": "data/raw_recipes/红烧冬瓜.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "7cbc1b2c95167592c2bc80307fb106f24e51b109bdbd7744fc06b219015dff77"
     },
     "requiredIngredients": [
@@ -19436,7 +19436,7 @@
       "sourceId": "羊肉汤",
       "sourceUrl": "https://local.import/羊肉汤",
       "sourceFile": "data/raw_recipes/羊肉汤.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "67bb1e702aa8f78f908381c4bb137ab5ee98de2dc6167e0a53bd86d0119cddc1"
     },
     "requiredIngredients": [
@@ -19501,7 +19501,7 @@
       "sourceId": "老友猪肉粉",
       "sourceUrl": "https://local.import/老友猪肉粉",
       "sourceFile": "data/raw_recipes/老友猪肉粉.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "ad91d3064531f7d32c761e29e71544d039e99fef6da9a30639b7b53470ff7c8f"
     },
     "requiredIngredients": [
@@ -19564,7 +19564,7 @@
       "sourceId": "肉蟹煲",
       "sourceUrl": "https://local.import/肉蟹煲",
       "sourceFile": "data/raw_recipes/肉蟹煲.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "dadd756cedbad60272e6056812a264d8d1af80347e7f4a0f3aa9cbcb0e261a41"
     },
     "requiredIngredients": [
@@ -19664,7 +19664,7 @@
       "sourceId": "苏格兰蛋",
       "sourceUrl": "https://local.import/苏格兰蛋",
       "sourceFile": "data/raw_recipes/苏格兰蛋.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "01459abafb904ebc0aa08ae899468dbf1a6a7a65fcce7c95b7801e9b1a7b572a"
     },
     "requiredIngredients": [
@@ -19718,7 +19718,7 @@
       "sourceId": "茭白炒肉",
       "sourceUrl": "https://local.import/茭白炒肉",
       "sourceFile": "data/raw_recipes/茭白炒肉.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "cb8bbdfde0034b54a38c633f3231fc8d2bbd55b1138dd4b85324d520bdb33b34"
     },
     "requiredIngredients": [
@@ -19782,7 +19782,7 @@
       "sourceId": "荔枝肉",
       "sourceUrl": "https://local.import/荔枝肉",
       "sourceFile": "data/raw_recipes/荔枝肉.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "b2b68737a53faaca3d216875c33542b2e0dff60aacfa633d84e580db3a257802"
     },
     "requiredIngredients": [
@@ -19858,7 +19858,7 @@
       "sourceId": "莴笋叶煎饼",
       "sourceUrl": "https://local.import/莴笋叶煎饼",
       "sourceFile": "data/raw_recipes/莴笋叶煎饼.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "ad9ef92dab5e2ab6dcf569714053276dfe163464669c7f4f504483b8d7ee99b5"
     },
     "requiredIngredients": [
@@ -19925,7 +19925,7 @@
       "sourceId": "蛏抱蛋",
       "sourceUrl": "https://local.import/蛏抱蛋",
       "sourceFile": "data/raw_recipes/蛏抱蛋.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "328e71351946eb93ba64dbf49021639bf66aacbb495755c97f9ce8d824d6b962"
     },
     "requiredIngredients": [
@@ -19992,7 +19992,7 @@
       "sourceId": "血浆鸭",
       "sourceUrl": "https://local.import/血浆鸭",
       "sourceFile": "data/raw_recipes/血浆鸭.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "8045edf311564436599563ad0d3485151febb8e0dfd08b25badf486ff59e1a06"
     },
     "requiredIngredients": [
@@ -20057,7 +20057,7 @@
       "sourceId": "西红柿豆腐汤羹",
       "sourceUrl": "https://local.import/西红柿豆腐汤羹",
       "sourceFile": "data/raw_recipes/西红柿豆腐汤羹.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "d4d41279075a56094a4e3ef1dcf5db1db68c04f80a9871a25fbf58af6e54c88d"
     },
     "requiredIngredients": [
@@ -20134,7 +20134,7 @@
       "sourceId": "豆豉鲮鱼油麦菜",
       "sourceUrl": "https://local.import/豆豉鲮鱼油麦菜",
       "sourceFile": "data/raw_recipes/豆豉鲮鱼油麦菜.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "c681e57c88a55666cbbadd2e29b7d5e0e016bea5070ab642bcd7b6898212d2cb"
     },
     "requiredIngredients": [
@@ -20197,7 +20197,7 @@
       "sourceId": "阳朔啤酒鱼",
       "sourceUrl": "https://local.import/阳朔啤酒鱼",
       "sourceFile": "data/raw_recipes/阳朔啤酒鱼.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "72cf8b32ec2bba0b6d27fe84c07a7369ce32bd68d111bfc2427c81c41676d2fc"
     },
     "requiredIngredients": [
@@ -20303,7 +20303,7 @@
       "sourceId": "鸡蛋花",
       "sourceUrl": "https://local.import/鸡蛋花",
       "sourceFile": "data/raw_recipes/鸡蛋花.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "838ce837aa42928db3ca1d103d32ab74e9bc1c35c98f209fbdf7516db44bfc39"
     },
     "requiredIngredients": [
@@ -20359,7 +20359,7 @@
       "sourceId": "黔式腊肠娃娃菜",
       "sourceUrl": "https://local.import/黔式腊肠娃娃菜",
       "sourceFile": "data/raw_recipes/黔式腊肠娃娃菜.md",
-      "license": "CC-BY-4.0",
+      "license": "Unlicense",
       "contentHash": "e2f9a6d66824886063740947eccc258497d0da508037d96c3ec15e910a9bf341"
     },
     "requiredIngredients": [

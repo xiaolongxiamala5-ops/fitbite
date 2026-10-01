@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { RecipeParser } from './RecipeParser';
-import { Normalizer } from './Normalizer';
+import { Normalizer, NormalizerOptions } from './Normalizer';
 import { RecipeValidator } from './Validator';
 import { FitBiteRecipe } from './types';
 
@@ -119,7 +119,7 @@ const MANIFEST: RecipeManifestItem[] = [
   }
 ];
 
-export function runPipeline(): {
+export function runPipeline(options?: NormalizerOptions): {
   success: boolean;
   total: number;
   imported: FitBiteRecipe[];
@@ -152,7 +152,7 @@ export function runPipeline(): {
     });
 
     // 2. Normalizer (SourceRecipe -> NormalizedRecipe + FitBiteRecipe)
-    const { fitBiteRecipe } = Normalizer.normalize(sourceRecipe);
+    const { fitBiteRecipe } = Normalizer.normalize(sourceRecipe, options);
 
     // 3. Validator (FitBiteRecipe schema, safety & provenance checks)
     const validation = RecipeValidator.validate(fitBiteRecipe);

@@ -128,7 +128,7 @@ export class RecipeParser {
       sourceId: meta.sourceId,
       sourceUrl: meta.sourceUrl,
       sourceFile: meta.sourceFile,
-      license: 'CC-BY-4.0',
+      license: 'Unlicense',
       contentHash,
       rawIngredients,
       rawCalculations,

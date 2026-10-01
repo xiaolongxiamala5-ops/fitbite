@@ -355,7 +355,12 @@ describe('Recipe Nutrition Evaluation & Materiality Policy Test Suite (C.2.3)', 
   // =========================================================================
   describe('4. Batch Evaluation of 21 Real Imported Recipes', () => {
     it('4.1 21 道真实菜谱严格按 Materiality Policy 执行评估', () => {
-      const results = runImportedRecipesEvaluation();
+      const results = runImportedRecipesEvaluation({
+        foodLookup: idOrName =>
+          idOrName === 'v_cucumber' || idOrName === '黄瓜'
+            ? realSanotsuCucumber
+            : undefined
+      });
       expect(results.length).toBe(21);
 
       // 21 道导入菜谱因缺少 WeightBasis 来源证据、或未定量油糖/非质量单位，全部判定为 nutrition_incomplete

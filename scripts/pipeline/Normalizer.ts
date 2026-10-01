@@ -9,6 +9,11 @@ import { NutritionFood } from '../../shared/nutrition/types';
 import { roundTo } from '../../shared/nutrition/calculator';
 
 let cachedFoodsMap: Map<string, NutritionFood> | null = null;
+
+export interface NormalizerOptions {
+  foodLookup?: (idOrName: string) => NutritionFood | undefined;
+}
+
 function getFoodsMap(): Map<string, NutritionFood> {
   if (cachedFoodsMap) return cachedFoodsMap;
   cachedFoodsMap = new Map();
@@ -221,7 +226,7 @@ export function parseRawCalculationItem(calc: string): { name: string; amount?: 
  * FitBite Normalizer (C.1.1 Refined & Dual-Track Nutrition Evaluation)
  */
 export class Normalizer {
-  public static normalize(source: SourceRecipe): {
+  public static normalize(source: SourceRecipe, options?: NormalizerOptions): {
     normalized: NormalizedRecipe;
     fitBiteRecipe: FitBiteRecipe;
   } {
@@ -626,7 +631,7 @@ export class Normalizer {
 
     // 8. 营养计算引擎双轨估算注入 (Dual-Track Nutrition Feasibility)
     const foodsMap = getFoodsMap();
-    const foodLookup = (idOrName: string): NutritionFood | undefined => {
+    const defaultFoodLookup = (idOrName: string): NutritionFood | undefined => {
       let foodCode: string | undefined = CANONICAL_NUTRITION_LOOKUP.get(idOrName)?.foodCode || PANTRY_TO_SANOTSU[idOrName];
       if (!foodCode) {
         const resolved = resolveCanonicalWithOptions(idOrName)?.primary;
@@ -636,6 +641,7 @@ export class Normalizer {
       }
       return foodCode ? foodsMap.get(foodCode) : undefined;
     };
+    const foodLookup = options?.foodLookup ?? defaultFoodLookup;
 
     const evalResult = evaluateRecipeNutrition(
       {

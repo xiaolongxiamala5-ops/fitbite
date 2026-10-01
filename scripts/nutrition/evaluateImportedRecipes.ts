@@ -11,7 +11,9 @@ import { NutritionFood } from '../../shared/nutrition/types';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export function runImportedRecipesEvaluation(): RecipeNutritionEvaluationResult[] {
+export function runImportedRecipesEvaluation(options?: {
+  foodLookup?: (idOrName: string) => NutritionFood | undefined;
+}): RecipeNutritionEvaluationResult[] {
   const root = path.resolve(__dirname, '../..');
   const recipesPath = path.join(root, 'data', 'recipes_imported.json');
   const generatedFoodsPath = path.join(root, 'data', 'nutrition', 'generated', 'nutrition_foods.json');
@@ -62,13 +64,14 @@ export function runImportedRecipesEvaluation(): RecipeNutritionEvaluationResult[
     canonicalMap.set(m.canonicalId, m.foodCode);
   }
 
-  const foodLookup = (idOrName: string): NutritionFood | undefined => {
+  const defaultFoodLookup = (idOrName: string): NutritionFood | undefined => {
     const foodCode = canonicalMap.get(idOrName);
     if (foodCode) {
       return foodsMap.get(foodCode);
     }
     return undefined;
   };
+  const foodLookup = options?.foodLookup ?? defaultFoodLookup;
 
   const results: RecipeNutritionEvaluationResult[] = [];
 

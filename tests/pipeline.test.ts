@@ -8,6 +8,36 @@ import { Normalizer } from '../scripts/pipeline/Normalizer';
 import { RecipeValidator } from '../scripts/pipeline/Validator';
 import { runPipeline } from '../scripts/pipeline/importPipeline';
 import { FitBiteRecipe, SourceRecipe } from '../scripts/pipeline/types';
+import { NutritionFood } from '../shared/nutrition';
+
+// E2E 管线只验证营养注入机制，不依赖被 .gitignore 排除的本地全量营养库。
+const pipelineNutritionFixture: NutritionFood = {
+  id: 'test:generic-food',
+  foodCode: 'test-generic',
+  name: '测试食材',
+  englishName: null,
+  category: 'test-fixture',
+  edibleFraction: 1,
+  per100g: {
+    calories: 100,
+    protein: 10,
+    fat: 5,
+    carbs: 8,
+    fiber: 1,
+    sodium: 10
+  },
+  provenance: {
+    source: 'china_food_composition_v6',
+    commit: 'test-fixture',
+    sourceFile: 'tests/pipeline.test.ts',
+    rawEdible: '100',
+    hasTraceValues: false
+  }
+};
+
+const pipelineOptions = {
+  foodLookup: () => pipelineNutritionFixture
+};
 
 describe('FitBite Recipe Import Pipeline Test Suite', () => {
 
@@ -95,7 +125,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'test_kungpao',
         sourceUrl: 'https://github.com/test',
         sourceFile: 'dishes/test.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'c'.repeat(64),
         rawIngredients: ['- 手枪腿（或者鸡胸脯肉）'],
         rawCalculations: ['手枪腿（或者鸡胸脯肉） = 1 支'],
@@ -124,7 +154,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'test_kungpao',
         sourceUrl: 'https://github.com/test',
         sourceFile: 'dishes/test.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'c'.repeat(64),
         rawIngredients: ['- 手枪腿（或者鸡胸脯肉）'],
         rawCalculations: ['手枪腿（或者鸡胸脯肉） = 1 支（约 350g）'],
@@ -147,7 +177,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'test_kungpao',
         sourceUrl: 'https://github.com/test',
         sourceFile: 'dishes/test.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'c'.repeat(64),
         rawIngredients: ['- 手枪腿（或者鸡胸脯肉）'],
         rawCalculations: ['手枪腿（或者鸡胸脯肉） = 1 支（约 350g）'],
@@ -172,7 +202,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'test_kungpao',
         sourceUrl: 'https://github.com/test',
         sourceFile: 'dishes/test.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'c'.repeat(64),
         rawIngredients: ['- 手枪腿（或者鸡胸脯肉）'],
         rawCalculations: ['手枪腿（或者鸡胸脯肉） = 1 支（约 350g）'],
@@ -260,7 +290,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'test_nutr',
         sourceUrl: 'https://github.com/test',
         sourceFile: 'test.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'a'.repeat(64),
         rawIngredients: ['- 西红柿'],
         rawCalculations: [],
@@ -278,7 +308,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'test_no_qty',
         sourceUrl: 'https://github.com/test',
         sourceFile: 'test.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'a'.repeat(64),
         rawIngredients: ['- 西红柿'], // 无克数描述
         rawCalculations: [], // 无 calculations
@@ -341,7 +371,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'test_no_diff',
         sourceUrl: 'https://github.com/test',
         sourceFile: 'test.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'a'.repeat(64),
         rawIngredients: ['- 西红柿'],
         rawCalculations: [],
@@ -360,7 +390,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'test_with_diff',
         sourceUrl: 'https://github.com/test',
         sourceFile: 'test.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'a'.repeat(64),
         rawIngredients: ['- 西红柿'],
         rawCalculations: [],
@@ -384,7 +414,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
         sourceId: 'sample',
         sourceUrl: 'https://github.com/sample',
         sourceFile: 'dishes/sample.md',
-        license: 'CC-BY-4.0',
+        license: 'Unlicense',
         contentHash: 'b'.repeat(64)
       },
       requiredIngredients: [
@@ -447,7 +477,7 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
     });
 
     it('5.1 21 道真实 HowToCook 菜谱全流程导入必须 100% 通过验证且零失败', () => {
-      const result = runPipeline();
+      const result = runPipeline(pipelineOptions);
       expect(result.total).toBe(21);
       expect(result.imported.length).toBe(21);
       expect(result.failed.length).toBe(0);
@@ -482,11 +512,11 @@ describe('FitBite Recipe Import Pipeline Test Suite', () => {
     it('5.3 严格保证 Deterministic Build：相同输入连续多次运行 pipeline 输出内容与 SHA-256 完全一致', () => {
       const dataOutputPath = path.join(process.cwd(), 'data', 'recipes_imported.json');
 
-      const run1 = runPipeline();
+      const run1 = runPipeline(pipelineOptions);
       const content1 = fs.readFileSync(dataOutputPath, 'utf-8');
       const hash1 = crypto.createHash('sha256').update(content1).digest('hex');
 
-      const run2 = runPipeline();
+      const run2 = runPipeline(pipelineOptions);
       const content2 = fs.readFileSync(dataOutputPath, 'utf-8');
       const hash2 = crypto.createHash('sha256').update(content2).digest('hex');
 

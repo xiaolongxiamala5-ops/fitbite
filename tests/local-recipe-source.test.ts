@@ -120,7 +120,7 @@ describe('LocalRecipeSource & SQLite Data Layer Test Suite (C.1.2)', () => {
       // 出处严格保留
       expect(kungPao.provenance.source).toBe('howtocook');
       expect(kungPao.provenance.sourceId).toBe('kung_pao_chicken');
-      expect(kungPao.provenance.license).toBe('CC-BY-4.0');
+      expect(kungPao.provenance.license).toBe('Unlicense');
       expect(kungPao.provenance.contentHash).toMatch(/^[a-f0-9]{64}$/);
 
       // anyOf 食材替代组及独立单位数量核对

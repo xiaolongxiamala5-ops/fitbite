@@ -34,8 +34,8 @@ export class RecipeValidator {
         if (!prov.sourceFile || !prov.sourceFile.endsWith('.md')) {
           errors.push(`非法 sourceFile: ${prov.sourceFile}`);
         }
-        if (prov.license !== 'CC-BY-4.0') {
-          errors.push(`许可证必须为 CC-BY-4.0，当前为: ${prov.license}`);
+        if (prov.license !== 'Unlicense') {
+          errors.push(`HowToCook 来源许可证必须为 Unlicense，当前为: ${prov.license}`);
         }
       } else if (prov.source === 'cookbook-kg') {
         if (!prov.sourceFile || !prov.sourceFile.endsWith('.json')) {
